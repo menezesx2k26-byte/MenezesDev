@@ -1,0 +1,11 @@
+---
+interface Props {
+  heading?: string;
+}
+const { heading = "Solicitar diagnóstico" } = Astro.props;
+---
+
+<div class="surface-card prismae-cta">
+  <h2>{heading}</h2><a class="button" href="/demo/prismae/contact#diagnostico"
+    >Solicitar diagnóstico</a>
+</div>

@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import PrismaeHeader from "../../../components/PrismaeHeader.astro";
+import PrismaeFooter from "../../../components/PrismaeFooter.astro";
+import PrismaeForm from "../../../components/PrismaeForm.astro";
+import "../../../styles/prismae.css";
+---
+
+<BaseLayout
+  title="Contato — Prismae"
+  description="Formulário demonstrativo local do conceito fictício Prismae."
+  theme="prismae"
+  noindex
+  fonts={["--font-jakarta", "--font-inter"]}
+  preloadFont="--font-jakarta"
+>
+  <PrismaeHeader />
+  <main id="main-content">
+    <section class="prismae-hero prismae-grid-bg">
+      <div class="container prismae-hero__grid">
+        <div>
+          <p class="eyebrow">CONTATO</p><h1>Solicitar diagnóstico</h1><p class="lead">
+            Demonstração de interface. Nenhum dado será enviado.
+          </p>
+        </div><div class="prismae-hero__graphic">
+          <img
+            src="/assets/demos/prismae/prismae-hero-graphic.svg"
+            width="960"
+            height="720"
+            alt="Sistema gráfico abstrato sobre estratégia, processos e indicadores."
+            fetchpriority="high"
+          />
+        </div>
+      </div>
+    </section>
+    <PrismaeForm />
+  </main>
+  <PrismaeFooter />
+</BaseLayout>

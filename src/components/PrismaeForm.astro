@@ -1,0 +1,166 @@
+<section class="section" id="diagnostico" aria-labelledby="diagnostico-title">
+  <div class="container prismae-form-layout">
+    <div>
+      <p class="eyebrow">DIAGNÓSTICO</p><h2 id="diagnostico-title">Solicitar diagnóstico</h2><p
+        class="lead"
+      >
+        Demonstração de interface. Nenhum dado será enviado.
+      </p>
+    </div>
+    <div data-prismae-form-region>
+      <form class="surface-card prismae-form" data-prismae-form novalidate>
+        <p class="prismae-form__notice">
+          <strong>Demonstração de interface. Nenhum dado será enviado.</strong>
+        </p>
+        <p class="prismae-form__summary" data-form-summary role="status" aria-live="polite"></p>
+        <div class="prismae-form__field">
+          <label for="nome">Nome</label><input
+            id="nome"
+            name="nome"
+            type="text"
+            autocomplete="name"
+            required
+            minlength="2"
+            maxlength="80"
+            aria-describedby="nome-error"
+          /><p class="prismae-form__error" id="nome-error" data-error-for="nome"></p>
+        </div>
+        <div class="prismae-form__field">
+          <label for="empresa">Empresa</label><input
+            id="empresa"
+            name="empresa"
+            type="text"
+            autocomplete="organization"
+            required
+            minlength="2"
+            maxlength="120"
+            aria-describedby="empresa-error"
+          /><p class="prismae-form__error" id="empresa-error" data-error-for="empresa"></p>
+        </div>
+        <div class="prismae-form__field">
+          <label for="email">E-mail</label><input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+            aria-describedby="email-error"
+          /><p class="prismae-form__error" id="email-error" data-error-for="email"></p>
+        </div>
+        <div class="prismae-form__field">
+          <label for="whatsapp">WhatsApp</label><input
+            id="whatsapp"
+            name="whatsapp"
+            type="tel"
+            autocomplete="tel"
+            inputmode="tel"
+            aria-describedby="whatsapp-help whatsapp-error"
+          /><small class="prismae-form__help" id="whatsapp-help">DDD + número</small><p
+            class="prismae-form__error"
+            id="whatsapp-error"
+            data-error-for="whatsapp"
+          >
+          </p>
+        </div>
+        <div class="prismae-form__field prismae-form__field--wide">
+          <label for="desafio">Principal desafio</label><input
+            id="desafio"
+            name="desafio"
+            type="text"
+            required
+            minlength="3"
+            maxlength="160"
+            aria-describedby="desafio-error"
+          /><p class="prismae-form__error" id="desafio-error" data-error-for="desafio"></p>
+        </div>
+        <div class="prismae-form__field prismae-form__field--wide">
+          <label for="mensagem">Mensagem</label><textarea
+            id="mensagem"
+            name="mensagem"
+            maxlength="1000"
+            aria-describedby="mensagem-error"></textarea><p
+            class="prismae-form__error"
+            id="mensagem-error"
+            data-error-for="mensagem"
+          >
+          </p>
+        </div>
+        <div class="prismae-form__actions">
+          <button class="button" type="submit" data-submit>Solicitar diagnóstico</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const setupPrismaeForm = () => {
+    const form = document.querySelector<HTMLFormElement>("[data-prismae-form]");
+    if (!form || form.dataset.ready === "true") return;
+    form.dataset.ready = "true";
+    const summary = form.querySelector<HTMLElement>("[data-form-summary]");
+    const submit = form.querySelector<HTMLButtonElement>("[data-submit]");
+    let busy = false;
+
+    const messageFor = (field: HTMLInputElement | HTMLTextAreaElement): string => {
+      const value = field.value.trim();
+      if (field.id === "nome" && value.length < 2) return "Informe seu nome.";
+      if (field.id === "empresa" && value.length < 2) return "Informe sua empresa.";
+      if (field.id === "email") {
+        if (!value) return "Informe seu e-mail.";
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return "Informe um e-mail válido.";
+      }
+      if (field.id === "whatsapp" && value) {
+        const digits = value.replace(/\D/g, "");
+        if (digits.length < 10 || digits.length > 15) return "Informe um telefone válido com DDD.";
+      }
+      if (field.id === "desafio" && value.length < 3) return "Descreva seu principal desafio.";
+      if (field.id === "mensagem" && value.length > 1000) return "Use no máximo 1000 caracteres.";
+      return "";
+    };
+
+    const validateField = (field: HTMLInputElement | HTMLTextAreaElement): string => {
+      const message = messageFor(field);
+      const error = form.querySelector<HTMLElement>(`[data-error-for="${field.id}"]`);
+      field.setAttribute("aria-invalid", message ? "true" : "false");
+      if (error) error.textContent = message;
+      return message;
+    };
+
+    const fields = Array.from(
+      form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input, textarea"),
+    );
+    fields.forEach((field) => field.addEventListener("blur", () => validateField(field)));
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (busy) return;
+      const invalid = fields.filter((field) => Boolean(validateField(field)));
+      if (invalid.length > 0) {
+        if (summary)
+          summary.textContent = `${invalid.length} ${invalid.length === 1 ? "campo precisa" : "campos precisam"} de correção.`;
+        invalid[0]?.focus();
+        return;
+      }
+
+      busy = true;
+      form.setAttribute("aria-busy", "true");
+      fields.forEach((field) => (field.disabled = true));
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = "Processando demonstração…";
+      }
+      if (summary) summary.textContent = "Processando demonstração local.";
+
+      window.setTimeout(() => {
+        form.reset();
+        const region = form.closest<HTMLElement>("[data-prismae-form-region]");
+        if (!region) return;
+        region.innerHTML = `<div class="surface-card prismae-success"><h2 tabindex="-1" data-success-title>Recebemos sua solicitação.</h2><p>Em um projeto real, os dados seriam enviados ao fluxo comercial configurado para a empresa.</p><p>Como este é um conceito demonstrativo, nenhuma solicitação comercial será encaminhada à Prismae.</p></div>`;
+        region.querySelector<HTMLElement>("[data-success-title]")?.focus();
+      }, 300);
+    });
+  };
+  setupPrismaeForm();
+  document.addEventListener("astro:page-load", setupPrismaeForm);
+</script>

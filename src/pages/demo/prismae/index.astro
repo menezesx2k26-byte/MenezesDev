@@ -1,0 +1,109 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import PrismaeHeader from "../../../components/PrismaeHeader.astro";
+import PrismaeFooter from "../../../components/PrismaeFooter.astro";
+import PrismaeSolutions from "../../../components/PrismaeSolutions.astro";
+import PrismaeProcess from "../../../components/PrismaeProcess.astro";
+import PrismaeCharts from "../../../components/PrismaeCharts.astro";
+import PrismaeForm from "../../../components/PrismaeForm.astro";
+import PrismaeCta from "../../../components/PrismaeCta.astro";
+import { prismaeProblems } from "../../../data/prismae";
+import "../../../styles/prismae.css";
+---
+
+<BaseLayout
+  title="Prismae — Conceito demonstrativo"
+  description="Site demonstrativo para uma consultoria empresarial fictícia."
+  image="/assets/demos/prismae/prismae-hero-graphic.svg"
+  theme="prismae"
+  noindex
+  fonts={["--font-jakarta", "--font-inter"]}
+  preloadFont="--font-jakarta"
+>
+  <PrismaeHeader />
+  <main id="main-content">
+    <section class="prismae-hero prismae-grid-bg" aria-labelledby="prismae-title">
+      <div class="container prismae-hero__grid">
+        <div>
+          <p class="eyebrow">GESTÃO E ESTRATÉGIA</p><h1 id="prismae-title">
+            Clareza para decidir.<br />Estrutura para crescer.
+          </h1><p class="lead">
+            Consultoria empresarial para transformar objetivos em processos, indicadores e decisões
+            mais claras.
+          </p><div class="button-row">
+            <a class="button" href="/demo/prismae/contact#diagnostico">Solicitar diagnóstico</a><a
+              class="button button--secondary"
+              href="/demo/prismae/solutions">Conhecer soluções</a>
+          </div>
+        </div><div class="prismae-hero__graphic">
+          <img
+            src="/assets/demos/prismae/prismae-hero-graphic.svg"
+            width="960"
+            height="720"
+            alt="Sistema gráfico abstrato sobre estratégia, processos e indicadores."
+            fetchpriority="high"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="problem-title">
+      <div class="container prismae-problem">
+        <div>
+          <p class="eyebrow">DESAFIO</p><h2 id="problem-title">
+            Crescer sem organização custa caro.
+          </h2>
+        </div><ul class="prismae-problem__items">
+          {prismaeProblems.map((problem) => <li>{problem}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section--compact" aria-labelledby="solutions-title">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">SOLUÇÕES</p><h2 id="solutions-title">
+            Estratégia, processos e indicadores.
+          </h2>
+        </div><PrismaeSolutions /><div class="button-row" style="margin-top:2rem">
+          <a class="button" href="/demo/prismae/contact#diagnostico">Solicitar diagnóstico</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="metodologia" aria-labelledby="method-title">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">METODOLOGIA</p><h2 id="method-title">
+            Diagnóstico, priorização, implementação e acompanhamento.
+          </h2>
+        </div><PrismaeProcess /><div class="button-row" style="margin-top:2rem">
+          <a class="button" href="/demo/prismae/contact#diagnostico">Solicitar diagnóstico</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section--compact"><div class="container"><PrismaeCta /></div></section>
+
+    <section class="section" aria-labelledby="data-title">
+      <div class="container prismae-data">
+        <div>
+          <p class="eyebrow">VISUALIZAÇÃO DE DADOS</p><h2 id="data-title">
+            Informação organizada para apoiar decisões melhores.
+          </h2><p>Gráficos demonstrativos sem alegar resultados reais.</p>
+        </div><PrismaeCharts />
+      </div>
+    </section>
+
+    <PrismaeForm />
+
+    <section class="section--compact">
+      <div class="container">
+        <PrismaeCta heading="Clareza para decidir." /><p class="demo-disclosure">
+          Conceito demonstrativo criado pela MenezesDev. Esta empresa é fictícia.
+        </p>
+      </div>
+    </section>
+  </main>
+  <PrismaeFooter />
+</BaseLayout>

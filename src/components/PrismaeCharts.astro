@@ -1,0 +1,19 @@
+---
+import { prismaeDataModules } from "../data/prismae";
+---
+
+<div class="prismae-charts">
+  {
+    prismaeDataModules.map((module) => (
+      <article class="surface-card prismae-chart">
+        <h3>{module.title}</h3>
+        <div class="prismae-chart__bars" aria-hidden="true">
+          {module.bars.map((height) => (
+            <span class="prismae-chart__bar" style={`--bar:${height}`} />
+          ))}
+        </div>
+        <small>Dados ilustrativos.</small>
+      </article>
+    ))
+  }
+</div>

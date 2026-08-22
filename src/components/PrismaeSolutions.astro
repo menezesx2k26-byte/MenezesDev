@@ -1,0 +1,16 @@
+---
+import { prismaeSolutions } from "../data/prismae";
+---
+
+<div class="prismae-solutions">
+  {
+    prismaeSolutions.map((solution) => (
+      <a class="prismae-solution" href={`/demo/prismae/solutions/${solution.slug}`}>
+        <>
+          <h3>{solution.title}</h3>
+          <p>{solution.description}</p>
+        </>
+      </a>
+    ))
+  }
+</div>

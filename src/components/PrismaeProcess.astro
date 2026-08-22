@@ -1,0 +1,32 @@
+---
+import { prismaeSteps } from "../data/prismae";
+---
+
+<div class="prismae-process__desktop">
+  <img
+    src="/assets/demos/prismae/prismae-process.svg"
+    width="1280"
+    height="360"
+    alt="Processo Prismae em quatro etapas: diagnóstico, priorização, implementação e acompanhamento."
+    loading="lazy"
+  />
+</div>
+<div class="prismae-process__mobile">
+  <ol class="prismae-process__steps">
+    {
+      prismaeSteps.map((step) => (
+        <li>
+          <>
+            <strong>{step.number}</strong>
+            <div>
+              <>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+              </>
+            </div>
+          </>
+        </li>
+      ))
+    }
+  </ol>
+</div>

@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import PrismaeHeader from "../../../../components/PrismaeHeader.astro";
+import PrismaeFooter from "../../../../components/PrismaeFooter.astro";
+import PrismaeSolutions from "../../../../components/PrismaeSolutions.astro";
+import PrismaeProcess from "../../../../components/PrismaeProcess.astro";
+import PrismaeCta from "../../../../components/PrismaeCta.astro";
+import "../../../../styles/prismae.css";
+---
+
+<BaseLayout
+  title="Soluções — Prismae"
+  description="Estratégia, processos e indicadores no conceito demonstrativo Prismae."
+  image="/assets/demos/prismae/prismae-hero-graphic.svg"
+  theme="prismae"
+  noindex
+  fonts={["--font-jakarta", "--font-inter"]}
+  preloadFont="--font-jakarta"
+>
+  <PrismaeHeader />
+  <main id="main-content">
+    <section class="prismae-hero prismae-grid-bg">
+      <div class="container prismae-hero__grid">
+        <div>
+          <p class="eyebrow">SOLUÇÕES</p><h1>Estratégia, processos e indicadores.</h1><p
+            class="lead"
+          >
+            Consultoria empresarial para transformar objetivos em processos, indicadores e decisões
+            mais claras.
+          </p>
+        </div><div class="prismae-hero__graphic">
+          <img
+            src="/assets/demos/prismae/prismae-hero-graphic.svg"
+            width="960"
+            height="720"
+            alt="Sistema gráfico abstrato sobre estratégia, processos e indicadores."
+            fetchpriority="high"
+          />
+        </div>
+      </div>
+    </section>
+    <section class="section--compact"><div class="container"><PrismaeSolutions /></div></section>
+    <section class="section" aria-labelledby="solutions-method">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">METODOLOGIA</p><h2 id="solutions-method">
+            Diagnóstico, priorização, implementação e acompanhamento.
+          </h2>
+        </div><PrismaeProcess />
+      </div>
+    </section>
+    <section class="section--compact"><div class="container"><PrismaeCta /></div></section>
+  </main>
+  <PrismaeFooter />
+</BaseLayout>

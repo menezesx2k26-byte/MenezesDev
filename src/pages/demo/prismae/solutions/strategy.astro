@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import PrismaeHeader from "../../../../components/PrismaeHeader.astro";
+import PrismaeFooter from "../../../../components/PrismaeFooter.astro";
+import PrismaeProcess from "../../../../components/PrismaeProcess.astro";
+import PrismaeCta from "../../../../components/PrismaeCta.astro";
+import "../../../../styles/prismae.css";
+---
+
+<BaseLayout
+  title="Estratégia — Prismae"
+  description="Planejamento e prioridades que transformam objetivos em ações."
+  theme="prismae"
+  noindex
+  fonts={["--font-jakarta", "--font-inter"]}
+  preloadFont="--font-jakarta"
+>
+  <PrismaeHeader />
+  <main id="main-content">
+    <section class="prismae-hero prismae-grid-bg">
+      <div class="container prismae-hero__grid">
+        <div>
+          <p class="eyebrow">SOLUÇÕES · ESTRATÉGIA</p><h1>Estratégia</h1><p class="lead">
+            Planejamento e prioridades que transformam objetivos em ações.
+          </p>
+        </div><div
+          class="prismae-diagram"
+          aria-label="Relação entre objetivos, prioridades e ações"
+        >
+          <div class="surface-card"><strong>Objetivos</strong></div><div class="surface-card">
+            <strong>Prioridades</strong>
+          </div><div class="surface-card"><strong>Ações</strong></div>
+        </div>
+      </div>
+    </section>
+    <section class="section"><div class="container"><PrismaeProcess /></div></section>
+    <section class="section--compact"><div class="container"><PrismaeCta /></div></section>
+  </main>
+  <PrismaeFooter />
+</BaseLayout>

@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import PrismaeHeader from "../../../../components/PrismaeHeader.astro";
+import PrismaeFooter from "../../../../components/PrismaeFooter.astro";
+import PrismaeCharts from "../../../../components/PrismaeCharts.astro";
+import PrismaeProcess from "../../../../components/PrismaeProcess.astro";
+import PrismaeCta from "../../../../components/PrismaeCta.astro";
+import "../../../../styles/prismae.css";
+---
+
+<BaseLayout
+  title="Indicadores — Prismae"
+  description="Informação organizada para apoiar decisões melhores."
+  theme="prismae"
+  noindex
+  fonts={["--font-jakarta", "--font-inter"]}
+  preloadFont="--font-jakarta"
+>
+  <PrismaeHeader />
+  <main id="main-content">
+    <section class="prismae-hero prismae-grid-bg">
+      <div class="container prismae-data">
+        <div>
+          <p class="eyebrow">SOLUÇÕES · INDICADORES</p><h1>Indicadores</h1><p class="lead">
+            Informação organizada para apoiar decisões melhores.
+          </p>
+        </div><PrismaeCharts />
+      </div>
+    </section>
+    <section class="section"><div class="container"><PrismaeProcess /></div></section>
+    <section class="section--compact"><div class="container"><PrismaeCta /></div></section>
+  </main>
+  <PrismaeFooter />
+</BaseLayout>

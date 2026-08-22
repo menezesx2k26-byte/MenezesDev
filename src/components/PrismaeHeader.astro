@@ -1,0 +1,20 @@
+---
+import SiteHeader from "./SiteHeader.astro";
+import { prismaeNav } from "../data/prismae";
+---
+
+<SiteHeader
+  brandHref="/demo/prismae"
+  brandLabel="Prismae"
+  logoSrc="/assets/demos/prismae/prismae-logo.svg"
+  logoWidth={640}
+  logoHeight={120}
+  nav={[...prismaeNav]}
+>
+  <a slot="desktop-action" class="button" href="/demo/prismae/contact#diagnostico"
+    >Solicitar diagnóstico</a
+  >
+  <a slot="mobile-action" class="button button--wide" href="/demo/prismae/contact#diagnostico"
+    >Solicitar diagnóstico</a
+  >
+</SiteHeader>

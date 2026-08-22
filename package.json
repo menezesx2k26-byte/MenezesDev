@@ -15,11 +15,11 @@
     "check:routes": "node scripts/check-routes.mjs",
     "check:acceptance": "node scripts/check-acceptance.mjs",
     "check:release": "node scripts/check-release.mjs",
-    "build": "pnpm check && pnpm build:site && pnpm check:routes",
+    "build": "astro check && astro build && node scripts/check-routes.mjs",
     "preview": "astro preview",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "validate": "pnpm format:check && pnpm build && pnpm check:acceptance"
+    "validate": "prettier --check . && astro check && astro build && node scripts/check-routes.mjs && node scripts/check-acceptance.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.3",

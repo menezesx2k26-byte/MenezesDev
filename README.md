@@ -8,7 +8,7 @@ O projeto está sendo construído com **Codex como agente principal**, documenta
 
 ## Estado atual
 
-- **Fase atual:** 5 — produção dos assets visuais.
+- **Fase atual:** 6 — wireframes desktop + mobile concluídos.
 - **Work Mode:** 4.5.
 - **Agente principal:** Codex nativo.
 - **Custo obrigatório adicional de API para o baseline:** R$ 0.
@@ -17,7 +17,7 @@ O projeto está sendo construído com **Codex como agente principal**, documenta
 - **M47 hero:** WebP, 1536×960, 16:10, status `generated`.
 - **MCP de imagem anterior:** desativado e mantido apenas como registro histórico.
 
-O próximo marco da Fase 5 é completar os assets dos três cases demonstrativos, validar cada série visual e somente depois avançar para wireframes e implementação visual final.
+Os assets dos três cases e os wireframes responsivos estão concluídos. A Fase 7, ainda não iniciada, deve tratar interações e comportamento antes de qualquer implementação visual final.
 
 ## Oferta comercial
 
@@ -125,8 +125,8 @@ Leia `docs/WORK_MODE_4_5.md` antes de alterar a infraestrutura de agentes.
 - [x] Oferta comercial
 - [x] Copy completa da Home
 - [x] Cases demonstrativos
-- [ ] **Produção dos assets visuais — em andamento**
-- [ ] Wireframe desktop + mobile
+- [x] Produção dos assets visuais
+- [x] **Wireframe desktop + mobile**
 - [ ] Interações e comportamento
 - [ ] Especificação técnica final
 - [ ] Critérios de aceite

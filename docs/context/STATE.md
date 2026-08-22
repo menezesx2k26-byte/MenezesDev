@@ -36,12 +36,24 @@ Last updated: 2026-08-22
 - Every generated raster remains at status `generated`; no asset has been promoted to `approved` or `in-use` without implementation review.
 - No screenshot, browser automation, Canva generation, stock asset, OpenAI Image API call or image MCP was used.
 
+## Phase 6 wireframes
+
+- Canonical responsive wireframes now exist under `docs/wireframes/` for the MenezesDev Home, reusable MenezesDev project page, M47 landing page, Tavola 27 Home/internal structure and Prismae Home/internal structure.
+- The wireframes define desktop/mobile grids, gutters, section order and height, text/media proportions, CTA positions, asset positions, crop behavior, reordering and mobile simplification.
+- The Home maps every approved copy section from `HOME_COPY.md — MenezesDev.md`; no testimonials, client logos, metrics or results were added.
+- Final demo identities M47 Barber, Tavola 27 and Prismae replace only the legacy placeholder names Atlas Barber, Casa Nostra and Nexa Consultoria in the Home case cards. The remaining approved card copy stays source-bound.
+- Existing final assets were inspected and assigned a concrete function. No raster, SVG, prompt or metadata sidecar was modified.
+- The MenezesDev hero uses a pure editorial composition of existing case assets, without fictional browser UI or screenshots.
+- Project-page screenshot sections are conditional and remain absent until real implemented pages can be captured.
+- No component, frontend framework, browser validation or Phase 7 work has started.
+
 ## Git and worktree
 
 - M47 asset commit: `265bcc814534d924dfff024db8a919dd08d058f0`.
 - Tavola 27 asset commit: `c375d1c163f4f2a4e0b9f61422d8a460c28c0218`.
+- Prismae asset commit: `1378c19a96b44af5a57c87e63744af55fef8cba0`.
 - Two pre-existing user changes remain uncommitted and untouched in `tools/mcp-image/src/core/promptBuilder.ts` and `tools/mcp-image/tests/workspace-prompt.test.mjs`.
 
 ## Next logical step
 
-Phase 6 can implement the three demos with real HTML/frontend, consume these assets responsively and validate the implemented pages on desktop/mobile. Phase 6 was not started in this session.
+Phase 7 may define interactions and behavior only when explicitly requested. Site implementation, Astro/Tailwind setup, browser validation and real screenshots have not started.

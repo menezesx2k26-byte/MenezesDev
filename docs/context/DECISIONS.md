@@ -57,3 +57,21 @@ This entry is retained as historical context only. Its implementation is no long
 The official raster workflow is repository briefing → `$menezesdev-image-director` → `$imagegen` native → visual review → repository asset. It must not depend on `OPENAI_API_KEY`, separate OpenAI API billing, Image API endpoints, an image MCP, or browser automation. `tools/mcp-image` remains historical and disconnected.
 
 Canva is reserved for later editable compositions. Screenshots come only from the real implementation. Logos, marks, charts, diagrams, exact geometry and exact UI use SVG or frontend.
+
+## D-010 — Phase 6 wireframes are the canonical composition contract
+**Status:** accepted
+**Date:** 2026-08-22
+
+Responsive composition is specified in `docs/wireframes/`. These documents define hierarchy, grids, section order, responsive reordering, asset use and conditional content without starting frontend implementation. Later phases may refine micro-aesthetics and interaction, but must preserve this structural contract or record a new decision.
+
+## D-011 — Final demo identities supersede legacy Home case names
+**Status:** accepted
+**Date:** 2026-08-22
+
+M47 Barber, Tavola 27 and Prismae are the final identities because they are established in `docs/DEMO_CASES.md` and the approved asset tree. They replace the provisional Atlas Barber, Casa Nostra and Nexa Consultoria names in Home case slots. Headlines, descriptions, tags, CTA and label from the approved Home copy remain unchanged unless a later copy approval explicitly replaces them.
+
+## D-012 — Missing real screenshots remove the module
+**Status:** accepted
+**Date:** 2026-08-22
+
+The reusable project page contains a conditional desktop/mobile screenshot module. Until real implementations and captures exist, the module is not rendered. Fictional UI, browser frames, mock screenshots and placeholders are not acceptable substitutes.

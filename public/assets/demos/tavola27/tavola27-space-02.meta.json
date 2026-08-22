@@ -1,0 +1,52 @@
+{
+  "project": "tavola27",
+  "asset_type": "space — open kitchen and pass",
+  "name": "tavola27-space-02",
+  "path": "public/assets/demos/tavola27/tavola27-space-02.webp",
+  "generator": "native-imagegen",
+  "date": "2026-08-22",
+  "aspect_ratio": "3:2",
+  "dimensions": {
+    "width": 1536,
+    "height": 1024
+  },
+  "format": "webp",
+  "briefing_files": [
+    "AGENTS.md",
+    "docs/DEMO_CASES.md",
+    "docs/IMAGE_GENERATION_RULES.md",
+    "docs/NATIVE_IMAGEGEN_WORKFLOW.md",
+    "docs/BRAND_GUIDE.md",
+    "docs/context/STATE.md",
+    "docs/context/DECISIONS.md",
+    ".agents/skills/menezesdev-image-director/SKILL.md"
+  ],
+  "references_used": [
+    {
+      "path": "public/assets/demos/tavola27/tavola27-hero.webp",
+      "role": "style, palette, restaurant and lighting reference"
+    }
+  ],
+  "status": "generated",
+  "suggested_alt": "Cozinha aberta do restaurante vista pelo passe, com cozinheiros trabalhando de forma natural.",
+  "review_notes": [
+    "Kitchen pass, circulation, stations, pans, ceramics, steel and partial cooks passed realism review.",
+    "Dining-room finishes connect the kitchen to the same restaurant while the narrative differs from Space 01.",
+    "No direct gaze, readable text, invented branding, watermark, theatrical chef trope or unsafe clutter was found.",
+    "One candidate generated; no targeted edit was required."
+  ],
+  "conversion": {
+    "source_format": "png",
+    "source_dimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "target_dimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "resampling": "lanczos",
+    "webp_quality": 90
+  },
+  "sha256": "c8b5fd434f15009db4084b1669c307a1f679fa4aeedcf46c2259f92d7384ad61"
+}

@@ -1,0 +1,52 @@
+{
+  "project": "tavola27",
+  "asset_type": "space — main dining room",
+  "name": "tavola27-space-01",
+  "path": "public/assets/demos/tavola27/tavola27-space-01.webp",
+  "generator": "native-imagegen",
+  "date": "2026-08-22",
+  "aspect_ratio": "16:10",
+  "dimensions": {
+    "width": 1536,
+    "height": 960
+  },
+  "format": "webp",
+  "briefing_files": [
+    "AGENTS.md",
+    "docs/DEMO_CASES.md",
+    "docs/IMAGE_GENERATION_RULES.md",
+    "docs/NATIVE_IMAGEGEN_WORKFLOW.md",
+    "docs/BRAND_GUIDE.md",
+    "docs/context/STATE.md",
+    "docs/context/DECISIONS.md",
+    ".agents/skills/menezesdev-image-director/SKILL.md"
+  ],
+  "references_used": [
+    {
+      "path": "public/assets/demos/tavola27/tavola27-hero.webp",
+      "role": "style, palette, restaurant and lighting reference"
+    }
+  ],
+  "status": "generated",
+  "suggested_alt": "Salão do Tavola 27 com paredes creme e verdes, mesas de madeira e luz natural.",
+  "review_notes": [
+    "Dining-room circulation, table spacing, chairs, ceramics, glassware and architectural materials passed realism review.",
+    "The wide eye-level view is distinct from the hero while matching its restaurant identity.",
+    "No readable text, invented branding, watermark, caricatured Italian cue or hotel-stock staging was found.",
+    "One candidate generated; no targeted edit was required."
+  ],
+  "conversion": {
+    "source_format": "png",
+    "source_dimensions": {
+      "width": 1586,
+      "height": 992
+    },
+    "target_dimensions": {
+      "width": 1536,
+      "height": 960
+    },
+    "resampling": "lanczos",
+    "webp_quality": 90
+  },
+  "sha256": "dc82ad56e33b652fa888d822a0c58d3f0fe1001db958951120790bbe2bef08b7"
+}

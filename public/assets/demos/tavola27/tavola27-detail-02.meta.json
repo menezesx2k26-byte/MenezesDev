@@ -1,0 +1,52 @@
+{
+  "project": "tavola27",
+  "asset_type": "detail — tableware and ingredients",
+  "name": "tavola27-detail-02",
+  "path": "public/assets/demos/tavola27/tavola27-detail-02.webp",
+  "generator": "native-imagegen",
+  "date": "2026-08-22",
+  "aspect_ratio": "3:2",
+  "dimensions": {
+    "width": 1536,
+    "height": 1024
+  },
+  "format": "webp",
+  "briefing_files": [
+    "AGENTS.md",
+    "docs/DEMO_CASES.md",
+    "docs/IMAGE_GENERATION_RULES.md",
+    "docs/NATIVE_IMAGEGEN_WORKFLOW.md",
+    "docs/BRAND_GUIDE.md",
+    "docs/context/STATE.md",
+    "docs/context/DECISIONS.md",
+    ".agents/skills/menezesdev-image-director/SKILL.md"
+  ],
+  "references_used": [
+    {
+      "path": "public/assets/demos/tavola27/tavola27-hero.webp",
+      "role": "style, palette, restaurant and lighting reference"
+    }
+  ],
+  "status": "generated",
+  "suggested_alt": "Louça artesanal, linho, ervas, farinha e azeite preparados para o serviço.",
+  "review_notes": [
+    "Ceramic glaze, linen weave, herbs, flour, glass cruet, oil and wood passed material realism review.",
+    "Functional asymmetrical still life complements food, space and preparation images without catalog styling.",
+    "No readable label, invented branding, watermark, caricatured Italian cue or floating object was found.",
+    "One candidate generated; no targeted edit was required."
+  ],
+  "conversion": {
+    "source_format": "png",
+    "source_dimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "target_dimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "resampling": "lanczos",
+    "webp_quality": 90
+  },
+  "sha256": "1b0b591c6b4350a0eaf8b8499994eade6bfd76745cd44d139f8432ff11506bbd"
+}

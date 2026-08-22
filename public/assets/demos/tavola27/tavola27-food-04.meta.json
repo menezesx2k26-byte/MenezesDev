@@ -1,0 +1,52 @@
+{
+  "project": "tavola27",
+  "asset_type": "food — contemporary Italian main course",
+  "name": "tavola27-food-04",
+  "path": "public/assets/demos/tavola27/tavola27-food-04.webp",
+  "generator": "native-imagegen",
+  "date": "2026-08-22",
+  "aspect_ratio": "3:2",
+  "dimensions": {
+    "width": 1536,
+    "height": 1024
+  },
+  "format": "webp",
+  "briefing_files": [
+    "AGENTS.md",
+    "docs/DEMO_CASES.md",
+    "docs/IMAGE_GENERATION_RULES.md",
+    "docs/NATIVE_IMAGEGEN_WORKFLOW.md",
+    "docs/BRAND_GUIDE.md",
+    "docs/context/STATE.md",
+    "docs/context/DECISIONS.md",
+    ".agents/skills/menezesdev-image-director/SKILL.md"
+  ],
+  "references_used": [
+    {
+      "path": "public/assets/demos/tavola27/tavola27-hero.webp",
+      "role": "style, restaurant, tableware and lighting reference"
+    }
+  ],
+  "status": "generated",
+  "suggested_alt": "Peixe assado servido com feijões cannellini, tomates e ervas em prato de cerâmica.",
+  "review_notes": [
+    "Fish, beans, roasted tomatoes, herbs, bread and glassware passed food and material realism review.",
+    "Near-overhead landscape framing and non-pasta subject avoid repetition across the food set.",
+    "No readable text, invented branding, watermark, caricatured Italian cue or plastic food was found.",
+    "One candidate generated; no targeted edit was required."
+  ],
+  "conversion": {
+    "source_format": "png",
+    "source_dimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "target_dimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "resampling": "lanczos",
+    "webp_quality": 90
+  },
+  "sha256": "d379ef148591f04df93d273edef721d6b539d594ce9d46aeb43eb85046e0dee0"
+}

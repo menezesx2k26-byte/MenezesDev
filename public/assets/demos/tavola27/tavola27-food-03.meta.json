@@ -1,0 +1,52 @@
+{
+  "project": "tavola27",
+  "asset_type": "food — Tiramisù della Casa",
+  "name": "tavola27-food-03",
+  "path": "public/assets/demos/tavola27/tavola27-food-03.webp",
+  "generator": "native-imagegen",
+  "date": "2026-08-22",
+  "aspect_ratio": "4:5",
+  "dimensions": {
+    "width": 1200,
+    "height": 1500
+  },
+  "format": "webp",
+  "briefing_files": [
+    "AGENTS.md",
+    "docs/DEMO_CASES.md",
+    "docs/IMAGE_GENERATION_RULES.md",
+    "docs/NATIVE_IMAGEGEN_WORKFLOW.md",
+    "docs/BRAND_GUIDE.md",
+    "docs/context/STATE.md",
+    "docs/context/DECISIONS.md",
+    ".agents/skills/menezesdev-image-director/SKILL.md"
+  ],
+  "references_used": [
+    {
+      "path": "public/assets/demos/tavola27/tavola27-hero.webp",
+      "role": "style, restaurant, tableware and lighting reference"
+    }
+  ],
+  "status": "generated",
+  "suggested_alt": "Porção de tiramisù com camadas de mascarpone, café e cacau em mesa de madeira.",
+  "review_notes": [
+    "Mascarpone, biscuit layers, cocoa, serving size, coffee cup and spoon passed realism review.",
+    "Intimate portrait table-level framing is distinct from both pasta photographs.",
+    "No readable text, invented branding, watermark, caricatured Italian cue or plastic dessert was found.",
+    "One candidate generated; no targeted edit was required."
+  ],
+  "conversion": {
+    "source_format": "png",
+    "source_dimensions": {
+      "width": 1122,
+      "height": 1402
+    },
+    "target_dimensions": {
+      "width": 1200,
+      "height": 1500
+    },
+    "resampling": "lanczos",
+    "webp_quality": 90
+  },
+  "sha256": "3cfde97469b2b09b0928bd64e27a28b0fa2baa81c5556f304b3f0e03881828c5"
+}

@@ -1,0 +1,52 @@
+{
+  "project": "tavola27",
+  "asset_type": "food — Tagliatelle al Ragù",
+  "name": "tavola27-food-01",
+  "path": "public/assets/demos/tavola27/tavola27-food-01.webp",
+  "generator": "native-imagegen",
+  "date": "2026-08-22",
+  "aspect_ratio": "4:5",
+  "dimensions": {
+    "width": 1200,
+    "height": 1500
+  },
+  "format": "webp",
+  "briefing_files": [
+    "AGENTS.md",
+    "docs/DEMO_CASES.md",
+    "docs/IMAGE_GENERATION_RULES.md",
+    "docs/NATIVE_IMAGEGEN_WORKFLOW.md",
+    "docs/BRAND_GUIDE.md",
+    "docs/context/STATE.md",
+    "docs/context/DECISIONS.md",
+    ".agents/skills/menezesdev-image-director/SKILL.md"
+  ],
+  "references_used": [
+    {
+      "path": "public/assets/demos/tavola27/tavola27-hero.webp",
+      "role": "style, restaurant, tableware and lighting reference"
+    }
+  ],
+  "status": "generated",
+  "suggested_alt": "Tagliatelle artesanal com ragù servido em prato de cerâmica sobre mesa de madeira.",
+  "review_notes": [
+    "Handmade pasta, ragù, cheese, serving size, ceramic, linen and cutlery passed realism review.",
+    "Portrait elevated framing is distinct from the environmental hero and the other food images.",
+    "No readable text, invented branding, watermark, caricatured Italian cue or plastic food was found.",
+    "One candidate generated; no targeted edit was required."
+  ],
+  "conversion": {
+    "source_format": "png",
+    "source_dimensions": {
+      "width": 1122,
+      "height": 1402
+    },
+    "target_dimensions": {
+      "width": 1200,
+      "height": 1500
+    },
+    "resampling": "lanczos",
+    "webp_quality": 90
+  },
+  "sha256": "d4e0158582ce1f12716009e3377f4f9e99ca06b725e3517d80bbdfff197d941a"
+}

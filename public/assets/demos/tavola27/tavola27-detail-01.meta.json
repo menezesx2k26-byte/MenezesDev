@@ -1,0 +1,56 @@
+{
+  "project": "tavola27",
+  "asset_type": "detail — fresh pasta preparation",
+  "name": "tavola27-detail-01",
+  "path": "public/assets/demos/tavola27/tavola27-detail-01.webp",
+  "generator": "native-imagegen",
+  "date": "2026-08-22",
+  "aspect_ratio": "3:2",
+  "dimensions": {
+    "width": 1536,
+    "height": 1024
+  },
+  "format": "webp",
+  "briefing_files": [
+    "AGENTS.md",
+    "docs/DEMO_CASES.md",
+    "docs/IMAGE_GENERATION_RULES.md",
+    "docs/NATIVE_IMAGEGEN_WORKFLOW.md",
+    "docs/BRAND_GUIDE.md",
+    "docs/context/STATE.md",
+    "docs/context/DECISIONS.md",
+    ".agents/skills/menezesdev-image-director/SKILL.md"
+  ],
+  "references_used": [
+    {
+      "path": "public/assets/demos/tavola27/tavola27-hero.webp",
+      "role": "style, restaurant, materials and lighting reference"
+    },
+    {
+      "path": "native intermediate candidate",
+      "role": "edit target; not materialized in repository"
+    }
+  ],
+  "status": "generated",
+  "suggested_alt": "Mãos cortando massa fresca em tiras sobre bancada enfarinhada na cozinha.",
+  "review_notes": [
+    "The initial candidate was rejected for extended guiding fingertips too close to the blade.",
+    "One targeted edit changed only the guiding hand to a safe curled claw grip and preserved the composition.",
+    "Edited hands, knife, dough contact, flour, pasta, ceramic and kitchen materials passed high-detail review.",
+    "No face, readable text, invented branding, watermark, caricatured Italian cue or cooking-show staging was found."
+  ],
+  "conversion": {
+    "source_format": "png",
+    "source_dimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "target_dimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "resampling": "lanczos",
+    "webp_quality": 90
+  },
+  "sha256": "9b012adbe5629b000669eecbbe3919d7d4abe3388552362c3d9547366e6d3443"
+}

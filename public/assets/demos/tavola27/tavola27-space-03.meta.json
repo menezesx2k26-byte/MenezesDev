@@ -1,0 +1,52 @@
+{
+  "project": "tavola27",
+  "asset_type": "space — intimate window table",
+  "name": "tavola27-space-03",
+  "path": "public/assets/demos/tavola27/tavola27-space-03.webp",
+  "generator": "native-imagegen",
+  "date": "2026-08-22",
+  "aspect_ratio": "4:5",
+  "dimensions": {
+    "width": 1200,
+    "height": 1500
+  },
+  "format": "webp",
+  "briefing_files": [
+    "AGENTS.md",
+    "docs/DEMO_CASES.md",
+    "docs/IMAGE_GENERATION_RULES.md",
+    "docs/NATIVE_IMAGEGEN_WORKFLOW.md",
+    "docs/BRAND_GUIDE.md",
+    "docs/context/STATE.md",
+    "docs/context/DECISIONS.md",
+    ".agents/skills/menezesdev-image-director/SKILL.md"
+  ],
+  "references_used": [
+    {
+      "path": "public/assets/demos/tavola27/tavola27-hero.webp",
+      "role": "style, palette, restaurant and lighting reference"
+    }
+  ],
+  "status": "generated",
+  "suggested_alt": "Mesa para duas pessoas junto à janela em canto íntimo do restaurante Tavola 27.",
+  "review_notes": [
+    "Window corner, furniture, place settings, architecture and mixed natural/practical light passed realism review.",
+    "Portrait environmental framing complements the wide room and kitchen without romantic-stock staging.",
+    "No readable text, invented branding, watermark, caricatured Italian cue or duplicated setting was found.",
+    "One candidate generated; no targeted edit was required."
+  ],
+  "conversion": {
+    "source_format": "png",
+    "source_dimensions": {
+      "width": 1122,
+      "height": 1402
+    },
+    "target_dimensions": {
+      "width": 1200,
+      "height": 1500
+    },
+    "resampling": "lanczos",
+    "webp_quality": 90
+  },
+  "sha256": "98f861f1b28c7ef1b2e4a15f4b2df8173baa3dbbbefdc9aa6c8ea55c5cecf3d1"
+}

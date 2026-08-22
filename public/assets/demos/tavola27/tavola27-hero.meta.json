@@ -1,0 +1,48 @@
+{
+  "project": "tavola27",
+  "asset_type": "hero",
+  "name": "tavola27-hero",
+  "path": "public/assets/demos/tavola27/tavola27-hero.webp",
+  "generator": "native-imagegen",
+  "date": "2026-08-22",
+  "aspect_ratio": "16:10",
+  "dimensions": {
+    "width": 1536,
+    "height": 960
+  },
+  "format": "webp",
+  "briefing_files": [
+    "AGENTS.md",
+    "docs/DEMO_CASES.md",
+    "docs/IMAGE_GENERATION_RULES.md",
+    "docs/NATIVE_IMAGEGEN_WORKFLOW.md",
+    "docs/BRAND_GUIDE.md",
+    "docs/context/STATE.md",
+    "docs/context/DECISIONS.md",
+    ".agents/skills/menezesdev-image-director/SKILL.md"
+  ],
+  "references_used": [],
+  "status": "generated",
+  "suggested_alt": "Mesa de restaurante italiano contemporâneo com massa, vinho e interior em tons quentes.",
+  "review_notes": [
+    "Food, serving hand, glassware, table and restaurant materials passed high-detail realism review.",
+    "Roughly 40% calm negative space remains on the left for HTML; the focal table and plate sit center-right.",
+    "Desktop composition passed; a center-right 4:5 crop retained plate, wine and restaurant atmosphere.",
+    "No readable text, invented branding, watermark, caricatured Italian cue, stock pose or plastic food was found.",
+    "One candidate generated; no targeted edit was required."
+  ],
+  "conversion": {
+    "source_format": "png",
+    "source_dimensions": {
+      "width": 1586,
+      "height": 992
+    },
+    "target_dimensions": {
+      "width": 1536,
+      "height": 960
+    },
+    "resampling": "lanczos",
+    "webp_quality": 90
+  },
+  "sha256": "52782361d1e1f391a3d7c6936f0b38a93ec80f5ca1118f1bebb6170e0251c60e"
+}

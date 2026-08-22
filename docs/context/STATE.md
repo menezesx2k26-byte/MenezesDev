@@ -5,7 +5,7 @@ Last updated: 2026-08-22
 ## Repository
 
 - Project: MenezesDev.
-- Current delivery phase: 9 — acceptance criteria and release gates completed.
+- Current delivery phase: 10 — implementation completed on `feat/phase-10-implementation`; production release remains blocked.
 - Work Mode: 4.5.
 - Primary coding agent: Codex.
 - Claude Code subscription: not required.
@@ -86,6 +86,20 @@ Last updated: 2026-08-22
 - The WhatsApp URL, canonical domain/TLS and any required Brand Kit materialization are production blockers. Prismae About and real screenshots are post-implementation items and do not block the current 16-route implementation.
 - No package, lockfile, `src/`, frontend, asset, screenshot, Cloudflare configuration or deploy was created in Phase 9.
 
+## Phase 10 implementation
+
+- Astro 7.2.4 static output, strict TypeScript 6.0.3, Tailwind CSS 4.3.3, pnpm 11.22.0 and Node.js 24.19.0 are materialized with a versioned lockfile.
+- All 16 canonical routes plus a real 404 are implemented. `/demo/prismae/about` remains absent.
+- MenezesDev Home/cases, M47, Tavola 27 and Prismae preserve their canonical copy, assets, responsive composition and interaction contracts.
+- The 23 final demo assets are used without regeneration, recompression or byte changes. Five licensed WOFF2 families are self-hosted.
+- MenezesDev WhatsApp remains a single central `null` value; commercial controls expose the pending state without fake links. The negative release guard fails as required.
+- Demo actions are local-only. Prismae sends and persists no data.
+- Development/preview are noindex; production indexation is conditional on an approved canonical URL. Demos are always noindex and absent from the sitemap.
+- Automated QA passed 97/97 hard gates, 16/16 route checks, 99 source/build assertions, 92 responsive combinations and axe-core on all 16 routes with zero violations.
+- Twenty-one Lighthouse reports were produced. Performance medians are 95–100 and accessibility medians are 100. Best Practices/CSP, production SEO and two Tavola LCP measurements remain documented target exceptions/blockers, not hard-gate failures.
+- `IMPLEMENTATION DONE`: yes. `PRODUCTION READY`: no. `VISUAL PORTFOLIO COMPLETE`: no.
+- Full evidence is in `docs/PHASE_10_IMPLEMENTATION_REPORT.md`.
+
 ## Git and worktree
 
 - M47 asset commit: `265bcc814534d924dfff024db8a919dd08d058f0`.
@@ -94,8 +108,17 @@ Last updated: 2026-08-22
 - Phase 6 wireframe commit: `0d8d310d79fd306c90c00cf7cb7dce3cad868386`.
 - Phase 7 interaction commit: `fa7d92a1a726299bca279b80a20af810d95b5470`.
 - Phase 8 technical specification commit: `03ae135eca6754b5c828f2682d9f514621de9d0a`.
+- Phase 10 foundation commit: `3c9c5d3`.
+- MenezesDev implementation commit: `dc5fb08`.
+- M47 implementation commit: `6c4d2b9`.
+- Tavola 27 implementation commit: `6a4753a`.
+- Prismae implementation commit: `884744c`.
+- Responsive/accessibility QA commit: `927d5c3`.
+- Automated acceptance checks commit: `4129d9b`.
+- FAQ keyboard completion commit: `4a4e15c`.
+- Global-pnpm-independent validation commit: `22cdd04`.
 - Two pre-existing user changes remain uncommitted and untouched in `tools/mcp-image/src/core/promptBuilder.ts` and `tools/mcp-image/tests/workspace-prompt.test.mjs`.
 
 ## Next logical step
 
-Phase 10 implementation may begin only when explicitly requested. Astro/Tailwind setup, browser validation, real screenshots, Cloudflare configuration and deploy have not started.
+Do not start a new phase or merge automatically. Review the feature branch and, when the external values are available, approve the real WhatsApp URL, canonical domain/TLS and Cloudflare Pages configuration. Real portfolio screenshots/mockups remain a later explicit task.

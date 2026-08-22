@@ -177,3 +177,21 @@ The aggregate Lighthouse SEO target applies only to `/` and `/projetos/*`. Apply
 **Date:** 2026-08-22
 
 WCAG 2.2 AA is the conformance target, with zero automated critical/serious findings and manual keyboard, focus, reflow and reduced-motion checks. Although WCAG 2.2 defines a 24×24 CSS px minimum target with formal exceptions, the project retains 44×44 CSS px as a hard gate for mobile controls and prefers 48 px for primary controls.
+
+## D-030 — Phase 10 implementation satisfies the static baseline
+**Status:** accepted
+**Date:** 2026-08-22
+
+The 16 canonical routes are implemented as Astro static output with strict TypeScript, Tailwind CSS-first, semantic HTML and small vanilla client scripts. No client framework, SSR, Cloudflare adapter/runtime, backend, persistence or secret was introduced. The feature branch may be reviewed, but it must not be merged or deployed automatically while release gates remain open.
+
+## D-031 — Production behavior is conditional and fail-closed
+**Status:** accepted
+**Date:** 2026-08-22
+
+Development and previews remain noindex. Indexable metadata requires both an explicit production environment and an approved canonical URL. The commercial WhatsApp value remains null and its negative release test blocks publication instead of creating a fake or broken link. Cloudflare analytics remains disabled until production host and configuration are approved.
+
+## D-032 — Measured target exceptions do not weaken hard gates
+**Status:** accepted
+**Date:** 2026-08-22
+
+The Phase 10 audit records Lighthouse Best Practices 92 on pages where Lighthouse's own inline-style instrumentation is blocked by the enforcing CSP, and LCP medians above 2.5 seconds on the two Tavola surfaces. These are investigated TARGET results, not permission to weaken CSP, alter approved assets or misreport the matrix. All 97 HARD GATES must remain passing.

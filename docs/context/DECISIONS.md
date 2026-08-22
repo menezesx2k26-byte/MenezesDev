@@ -75,3 +75,33 @@ M47 Barber, Tavola 27 and Prismae are the final identities because they are esta
 **Date:** 2026-08-22
 
 The reusable project page contains a conditional desktop/mobile screenshot module. Until real implementations and captures exist, the module is not rendered. Fictional UI, browser frames, mock screenshots and placeholders are not acceptable substitutes.
+
+## D-013 — Phase 7 interaction contracts are canonical
+**Status:** accepted
+**Date:** 2026-08-22
+
+Navigation, CTA behavior, states, motion, forms, accessibility and functional mobile differences are specified in `docs/interactions/`. These contracts complement, but do not replace, the Phase 6 composition in `docs/wireframes/`. Phase 8 must implement both or record a new explicit decision.
+
+## D-014 — Public routes use the repository path architecture
+**Status:** accepted
+**Date:** 2026-08-22
+
+MenezesDev case pages use `/projetos/m47`, `/projetos/tavola-27` and `/projetos/prismae`. Initial demos use `/demo/m47`, `/demo/tavola27` and `/demo/prismae`, with the documented child routes for Tavola 27 and Prismae. Internal navigation stays in the same tab.
+
+## D-015 — Demo commercial actions are local-only
+**Status:** accepted
+**Date:** 2026-08-22
+
+M47 scheduling/location, Tavola 27 reservation and Prismae diagnosis submission cannot contact a real or fictitious business. M47 and Tavola actions show local demonstrative status. Prismae validates locally, briefly processes a demonstration state, displays the approved success message and sends or persists no data.
+
+## D-016 — MenezesDev WhatsApp requires an approved real destination
+**Status:** accepted
+**Date:** 2026-08-22
+
+All MenezesDev commercial CTAs share one real approved WhatsApp URL and the approved prefilled message. The repository currently has no approved URL. Publication is blocked until Phase 8 configures it; fake numbers, `#`, generic WhatsApp links and silent disabled fallbacks are forbidden.
+
+## D-017 — Prismae About is conditional on approved copy
+**Status:** accepted
+**Date:** 2026-08-22
+
+The Phase 6 navigation slot and route `/demo/prismae/about` remain reserved, but no public link or page is rendered until expanded institutional copy is approved. Do not substitute history, team, credentials, clients, metrics or a redirect to another section.

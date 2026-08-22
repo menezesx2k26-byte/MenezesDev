@@ -8,7 +8,7 @@ O projeto está sendo construído com **Codex como agente principal**, documenta
 
 ## Estado atual
 
-- **Fase atual:** 6 — wireframes desktop + mobile concluídos.
+- **Fase atual:** 7 — interações e comportamento concluídos.
 - **Work Mode:** 4.5.
 - **Agente principal:** Codex nativo.
 - **Custo obrigatório adicional de API para o baseline:** R$ 0.
@@ -17,7 +17,7 @@ O projeto está sendo construído com **Codex como agente principal**, documenta
 - **M47 hero:** WebP, 1536×960, 16:10, status `generated`.
 - **MCP de imagem anterior:** desativado e mantido apenas como registro histórico.
 
-Os assets dos três cases e os wireframes responsivos estão concluídos. A Fase 7, ainda não iniciada, deve tratar interações e comportamento antes de qualquer implementação visual final.
+Os assets, wireframes responsivos e contratos de interação estão concluídos. A Fase 8, ainda não iniciada, deve tratar a especificação técnica antes de qualquer implementação visual final.
 
 ## Oferta comercial
 
@@ -126,8 +126,8 @@ Leia `docs/WORK_MODE_4_5.md` antes de alterar a infraestrutura de agentes.
 - [x] Copy completa da Home
 - [x] Cases demonstrativos
 - [x] Produção dos assets visuais
-- [x] **Wireframe desktop + mobile**
-- [ ] Interações e comportamento
+- [x] Wireframe desktop + mobile
+- [x] **Interações e comportamento**
 - [ ] Especificação técnica final
 - [ ] Critérios de aceite
 - [ ] Prompt Mestre do Codex
@@ -170,6 +170,8 @@ MenezesDev/
 - `SERVICES_AND_PRICING.md — MenezesDev.md` — oferta e limites comerciais.
 - `docs/IMAGE_GENERATION_RULES.md` — regras globais de produção visual.
 - `docs/NATIVE_IMAGEGEN_WORKFLOW.md` — workflow oficial do ImageGen nativo.
+- `docs/wireframes/README.md` — composição canônica desktop/mobile.
+- `docs/interactions/README.md` — estados e comportamento canônicos.
 - `docs/context/STATE.md` — estado operacional atual.
 - `docs/context/DECISIONS.md` — decisões canônicas do projeto.
 - `docs/context/HANDOFF.md` — continuidade entre sessões/agentes.

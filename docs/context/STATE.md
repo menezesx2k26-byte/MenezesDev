@@ -45,15 +45,30 @@ Last updated: 2026-08-22
 - Existing final assets were inspected and assigned a concrete function. No raster, SVG, prompt or metadata sidecar was modified.
 - The MenezesDev hero uses a pure editorial composition of existing case assets, without fictional browser UI or screenshots.
 - Project-page screenshot sections are conditional and remain absent until real implemented pages can be captured.
-- No component, frontend framework, browser validation or Phase 7 work has started.
+- No component, frontend framework or browser validation was started during Phase 6.
+
+## Phase 7 interactions
+
+- Canonical interaction contracts now exist under `docs/interactions/` for global navigation/motion/accessibility, MenezesDev, M47, Tavola 27 and Prismae.
+- Internal destinations are fixed under `/projetos/*` and `/demo/*`; all internal routes and anchors remain in the same tab.
+- Mobile navigation uses an accessible modal panel with Escape, outside click, focus trap, focus restoration and document scroll lock.
+- FAQ and mobile plan disclosures start closed, allow multiple open panels, support keyboard navigation and respect reduced motion.
+- Project cards are single links with no nested controls or hover-only content. Informational services, process blocks, images and data graphics remain non-interactive.
+- Motion is limited to short feedback, navigation, disclosure and one-time section entry; there is no parallax, scroll hijacking, autoplay or continuous decoration.
+- MenezesDev commercial CTAs require one real approved WhatsApp URL. No approved number/URL currently exists in the repository, so publication must fail until Phase 8 supplies it.
+- M47 scheduling/location and Tavola 27 reservation actions are local demonstrative states; they open no external service.
+- Prismae validates its form locally, uses the approved success copy and sends/persists no data. Anti-spam remains a technical Phase 8 requirement only for any future real form.
+- Prismae `/about` remains reserved and absent from public navigation until expanded institutional copy is approved.
+- No frontend, component, package, asset, screenshot, backend or Phase 8 implementation has started.
 
 ## Git and worktree
 
 - M47 asset commit: `265bcc814534d924dfff024db8a919dd08d058f0`.
 - Tavola 27 asset commit: `c375d1c163f4f2a4e0b9f61422d8a460c28c0218`.
 - Prismae asset commit: `1378c19a96b44af5a57c87e63744af55fef8cba0`.
+- Phase 6 wireframe commit: `0d8d310d79fd306c90c00cf7cb7dce3cad868386`.
 - Two pre-existing user changes remain uncommitted and untouched in `tools/mcp-image/src/core/promptBuilder.ts` and `tools/mcp-image/tests/workspace-prompt.test.mjs`.
 
 ## Next logical step
 
-Phase 7 may define interactions and behavior only when explicitly requested. Site implementation, Astro/Tailwind setup, browser validation and real screenshots have not started.
+Phase 8 may define technical architecture and implementation details only when explicitly requested. Site implementation, Astro/Tailwind setup, browser validation and real screenshots have not started.

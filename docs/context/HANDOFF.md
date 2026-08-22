@@ -1,49 +1,34 @@
 # Session Handoff
 
+## Current phase
+
+Phase 7 — interactions and behavior — is complete in documentation. Phase 8 has not started.
+
 ## Completed
 
-- Read the mandatory operating, brand, demo, commercial, Home copy and context documents in full.
-- Inventoried the local workspace, including uncommitted files, and preserved the two pre-existing edits in the historical MCP tree.
-- Inspected every final M47 and Tavola 27 raster, its dimensions and review metadata; inspected the Prismae SVG structure and the absence of MenezesDev-specific media.
-- Created canonical Phase 6 documentation under `docs/wireframes/`:
-  - shared grids, source precedence, asset registry and Phase 7 boundaries;
-  - MenezesDev Home desktop/mobile;
-  - reusable MenezesDev project page desktop/mobile;
-  - M47 landing desktop/mobile;
-  - Tavola 27 Home desktop/mobile and internal-page rules;
-  - Prismae Home desktop/mobile and internal-page rules.
-- Assigned every approved raster/SVG a concrete layout function without changing any asset.
-- Mapped all approved Home copy sections to positions and excluded testimonials, client claims and unverified metrics.
-- Kept screenshot modules conditional until real implementations exist.
-- Started no frontend, component, Astro/Tailwind setup, browser validation, asset generation or Phase 7 work.
+- Created `docs/interactions/README.md` with global routes, navigation, menu mobile, state vocabulary, motion, accordion, forms, accessibility and responsive behavior.
+- Created project contracts for MenezesDev, M47, Tavola 27 and Prismae.
+- Defined every CTA and navigation destination from the approved copy, briefings and wireframes.
+- Kept M47 scheduling/location and Tavola reservation strictly demonstrative.
+- Defined Prismae client-side validation, local processing and the exact approved success state with no network or persistence.
+- Kept Prismae `/about` absent until expanded copy is approved.
+- Changed no wireframe, asset, component, frontend architecture or historical MCP file.
 
-## Current state
+## Validated
 
-- Phase 6 composition and responsive hierarchy are closed in documentation.
-- `docs/wireframes/README.md` is the entrypoint; case-specific files contain the page contracts.
-- M47 mobile hero must use a horizontal object position between 65% and 70%.
-- Tavola 27 mobile hero uses a center-right crop and separates copy from photography.
-- Prismae uses no office photograph; the horizontal process SVG becomes equivalent HTML steps on mobile.
-- The Home case slots use M47 Barber, Tavola 27 and Prismae as final identities while preserving the remaining approved Home card copy.
-- No demo frontend or real screenshot exists yet.
-- All raster metadata statuses remain `generated`; Phase 6 did not promote or edit them.
-- Two unrelated user changes remain uncommitted and untouched:
-  - `tools/mcp-image/src/core/promptBuilder.ts`;
-  - `tools/mcp-image/tests/workspace-prompt.test.mjs`.
+- All 17 distinct CTA labels are covered.
+- Escape, outside click, focus trap/restoration, scroll lock, keyboard, `aria-expanded`, `aria-current`, errors, loading, success and reduced motion are specified.
+- Mobile requires no hover and preserves every essential action.
+- No demo opens a real booking, restaurant, map, WhatsApp or Prismae endpoint.
+- Approved assets remain unchanged and no frontend/package exists.
+- The two pre-existing user edits in `tools/mcp-image/` remain uncommitted and untouched.
 
-## Next logical step
+## Pending
 
-Begin Phase 7 only when explicitly requested. Its expected scope is interaction and behavior specification based on the canonical wireframes. Do not infer authorization to implement the site, initialize Astro/Tailwind, capture screenshots or modify approved assets.
+- Real approved MenezesDev WhatsApp URL; publication must remain blocked without it.
+- Expanded public copy for Prismae `/about`; keep the route/link absent meanwhile.
+- All framework, component, backend, anti-spam, analytics, 404, build and hosting choices belong to Phase 8.
 
-## Known content constraint
+## Next action
 
-- Prismae `/about` has a valid minimal structure based on the approved methodology, but expanded institutional copy does not exist. Keep the page concise or obtain approved copy; do not invent company history, team, credentials or results.
-
-## Validation performed
-
-- Compared the full asset inventory with references in the wireframe documents; every final WebP/SVG is assigned.
-- Checked the Home copy sections 1–61 against the coverage matrix.
-- Checked desktop/mobile diagrams and explicit responsive changes for every requested page.
-- Checked the three demos for distinct section rhythm and media behavior.
-- Checked that no layout requires stock, placeholder, fictional screenshot, invented testimonial, client, metric or result.
-- Reviewed the final Markdown diff and preserved unrelated worktree changes.
+Begin Phase 8 only when explicitly requested. Use `docs/wireframes/` as the composition contract and `docs/interactions/` as the behavior contract. Do not infer permission to generate assets or capture screenshots before a real implementation exists.

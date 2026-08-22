@@ -1,0 +1,43 @@
+---
+import CommercialAction from "./CommercialAction.astro";
+import { siteConfig } from "../config/site";
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div>
+        <img
+          class="md-logo-footer"
+          src="/assets/brand/logo-light.png"
+          width="1200"
+          height="360"
+          alt="MenezesDev"
+          loading="lazy"
+        />
+        <p><strong>Sites que impulsionam negócios.</strong></p>
+        <p class="lead">
+          Design e desenvolvimento web para empresas e profissionais que querem uma presença digital
+          mais profissional.
+        </p>
+      </div>
+      <nav class="site-footer__links" aria-label="Navegação do rodapé">
+        <strong>Navegação</strong>
+        {siteConfig.navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+      </nav>
+      <div class="site-footer__links">
+        <strong>Serviços</strong>
+        <span>Landing Pages</span>
+        <span>Sites institucionais</span>
+        <span>Catálogos</span>
+        <span>Integrações</span>
+        <span>Projetos personalizados</span>
+        <CommercialAction label="Solicitar orçamento" showPendingNote />
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <span>© 2026 MenezesDev. Todos os direitos reservados.</span>
+      <span>Sites que impulsionam negócios.</span>
+    </div>
+  </div>
+</footer>

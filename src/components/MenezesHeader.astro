@@ -1,0 +1,22 @@
+---
+import CommercialAction from "./CommercialAction.astro";
+import SiteHeader from "./SiteHeader.astro";
+import { siteConfig } from "../config/site";
+---
+
+<SiteHeader
+  brandHref="/"
+  brandLabel="MenezesDev"
+  logoSrc="/assets/brand/logo-light.png"
+  logoWidth={1200}
+  logoHeight={360}
+  nav={[...siteConfig.navigation]}
+>
+  <CommercialAction slot="desktop-action" label="Solicitar orçamento" />
+  <CommercialAction
+    slot="mobile-action"
+    label="Falar pelo WhatsApp"
+    class="button button--wide"
+    showPendingNote
+  />
+</SiteHeader>

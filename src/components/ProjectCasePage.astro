@@ -1,0 +1,135 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MenezesHeader from "./MenezesHeader.astro";
+import MenezesFooter from "./MenezesFooter.astro";
+import { ArrowLeft, ArrowUpRight, Check } from "lucide-astro";
+import type { Project } from "../types";
+import "../styles/menezesdev.css";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const title = `${project.name} — Projeto MenezesDev`;
+const description = `${project.headline} ${project.description}`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={project.cover.src}
+  theme="menezesdev"
+  fonts={["--font-manrope", "--font-inter"]}
+  preloadFont="--font-manrope"
+>
+  <MenezesHeader />
+  <main id="main-content">
+    <section class="md-case-hero">
+      <div class="container md-case-hero__grid">
+        <div>
+          <a href="/#projetos"><ArrowLeft aria-hidden="true" size={18} /> Voltar aos projetos</a>
+          <p class="eyebrow" style="margin-top:2rem">{project.category}</p>
+          <p class="demo-disclosure">{project.label}</p>
+          <h1>{project.name}</h1>
+          <p class="lead"><strong>{project.headline}</strong></p>
+          <p>{project.description}</p>
+          <p class="md-project__meta">{project.plan}</p>
+          <ul class="tag-list">{project.tags.map((tag) => <li>{tag}</li>)}</ul>
+          <div class="button-row" style="margin-top:1.5rem">
+            <a class="button" href={project.demoHref}
+              >Ver projeto <ArrowUpRight aria-hidden="true" size={18} /></a
+            >
+            <a class="button button--secondary" href="/#planos">Ver planos</a>
+          </div>
+        </div>
+        <div class="md-case-hero__media">
+          <img
+            src={project.cover.src}
+            width={project.cover.width}
+            height={project.cover.height}
+            alt={project.cover.alt}
+            fetchpriority="high"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="section--compact">
+      <div class="container md-split">
+        <div>
+          <p class="eyebrow">CONTEXTO</p>
+          <h2>Contexto do projeto.</h2>
+          {project.context.map((paragraph) => <p class="lead">{paragraph}</p>)}
+        </div>
+        <div>
+          <p class="eyebrow">DIREÇÃO VISUAL</p>
+          {
+            project.approach.map((item) => (
+              <article class="md-service">
+                <>
+                  <Check aria-hidden="true" size={20} />
+                  <div>
+                    <h3>{item}</h3>
+                  </div>
+                </>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section--compact" aria-labelledby="assets-title">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">SISTEMA VISUAL</p><h2 id="assets-title">Assets aprovados.</h2>
+        </div>
+        <div
+          class:list={["md-case-strip", { "md-case-strip--single": project.strip.length === 1 }]}
+        >
+          {
+            project.strip.map((image) => (
+              <img
+                src={image.src}
+                width={image.width}
+                height={image.height}
+                alt={image.alt}
+                loading="lazy"
+              />
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section--compact">
+      <div class="container md-split">
+        <div><p class="eyebrow">ESCOPO DEMONSTRADO</p><h2>Recursos demonstrados.</h2></div>
+        <ul class="md-capabilities">
+          {
+            project.features.map((feature) => (
+              <li class="surface-card" style="padding:1.25rem;list-style:none">
+                <Check aria-hidden="true" size={20} /> {feature}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class="section--compact">
+      <div class="container surface-card md-portfolio-cta">
+        <div>
+          <p class="eyebrow">CONCEITO DEMONSTRATIVO</p><h3>Ver projeto</h3><p>
+            Este case apresenta uma empresa fictícia e não representa resultados comerciais reais.
+          </p>
+        </div>
+        <a class="button" href={project.demoHref}
+          >Ver projeto <ArrowUpRight aria-hidden="true" size={18} /></a
+        >
+      </div>
+    </section>
+  </main>
+  <MenezesFooter />
+</BaseLayout>

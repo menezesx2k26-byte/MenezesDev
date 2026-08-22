@@ -19,22 +19,22 @@ Last updated: 2026-08-22
 - Claude-Mem: deferred from baseline pending a clean Windows/Codex smoke test.
 - Secrets: must remain outside Git.
 
-## Image pipeline — Etapa 4.5 / Fase 2
+## Image pipeline — Etapa 4.5
 
-- MCP transport: local STDIO.
-- Runtime: Node.js 22+ / TypeScript / ESM / pnpm.
-- Tools implemented: `generate_hero_image`, `edit_image_asset`.
-- Default real-generation model: `gpt-image-2`.
-- `dry_run` works without `OPENAI_API_KEY` and must be used before the first paid call of a category.
-- Workspace safety includes allowlisted paths, path-traversal protection, SVG blocking, overwrite protection, transactional writes and SHA-256 metadata.
-- `gpt-image-2` transparency is blocked by the current implementation because the current API contract rejects transparent backgrounds.
-- No paid generation has been executed yet.
+- Official architecture: repository briefing → `$menezesdev-image-director` → `$imagegen` native → visual review → repository asset.
+- Repo-local art-direction skill: `.agents/skills/menezesdev-image-director/SKILL.md`.
+- Native ImageGen is available and does not require `OPENAI_API_KEY` or separate OpenAI API billing.
+- The project-local `menezesdev_image` MCP configuration and its versioned example are disabled.
+- `tools/mcp-image/` remains as a clearly deprecated historical implementation and is outside the active workflow.
+- Useful historical rules were preserved: briefing order, project identity, naming, negative space, references, overwrite protection, auditable prompts, metadata and desktop/mobile review.
+- The first native asset exists at `public/assets/demos/m47/m47-hero.webp`, with `1536×960` dimensions, exact 16:10 ratio, WebP format and status `generated`.
+- Sidecars exist at `m47-hero.prompt.md` and `m47-hero.meta.json`; SHA-256 is `02da87e3542740e62091ba3589ff989d106505e744f26babd7a1a10ecb0fce49`.
+- One candidate was generated and passed high-detail review; no targeted edit was required.
+- There is no M47 frontend component yet. A future 4:5 mobile crop should bias the image toward the center-right at approximately 65–70% horizontal position.
+- No OpenAI Image API call, API key, browser automation, Canva generation, stock or placeholder was used.
 
 ## Next logical step
 
-1. On the development machine, run `scripts/work-mode-doctor.ps1` and confirm native Codex works.
-2. In `tools/mcp-image`, run `pnpm install` and `pnpm check`.
-3. Copy `.codex/config.example.toml` to `.codex/config.toml` and set the absolute repository path.
-4. Set `IMAGEGEN_WORKSPACE_ROOT` to the same repository root.
-5. Execute the first `generate_hero_image` with `dry_run: true` for `public/assets/demos/m47/m47-hero.webp`.
-6. Review `prompt_preview` before authorizing any paid generation.
+1. Implement the M47 hero component using the generated asset and HTML copy.
+2. Set responsive image positioning to preserve the center-right action on mobile.
+3. Validate the real page on desktop and mobile, then promote metadata from `generated` only when the layout passes.

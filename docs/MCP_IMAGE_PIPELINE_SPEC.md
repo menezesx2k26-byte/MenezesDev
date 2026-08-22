@@ -1,125 +1,120 @@
-# MenezesDev Image Pipeline — Especificação MCP
+# MenezesDev Image Pipeline — especificação histórica e migração
 
-**Versão:** 1.0.0  
-**Etapa:** 4.5  
-**Estado atual:** Fase 2 integrada
+**Versão:** 2.0.0
+**Etapa:** 4.5
+**Estado atual:** MCP descontinuado; substituído pelo ImageGen nativo em 2026-08-22
 
-## 1. Objetivo
+## 1. Decisão vigente
 
-Expor ao Codex um servidor MCP local via STDIO capaz de gerar e editar assets raster da MenezesDev e dos cases, com briefing estruturado, workspace seguro, rastreabilidade e controle explícito de custo.
-
-Fluxo:
+A implementação baseada em servidor MCP local e OpenAI Image API foi retirada do fluxo ativo. A geração e edição raster agora usam:
 
 ```text
-Codex → tool MCP → validação/workspace → promptBuilder → OpenAI Image API → validação/escrita → asset + sidecars
+briefing do repositório
+  → $menezesdev-image-director
+  → $imagegen nativo do Codex
+  → revisão visual
+  → asset + prompt + metadata no repositório
 ```
 
-## 2. Decisões técnicas
+O fluxo não exige `OPENAI_API_KEY`, faturamento separado da OpenAI API, `images.generate`, `images.edit`, processo STDIO local ou configuração de tool MCP.
 
-- transporte: STDIO local;
-- runtime: Node.js 22+ / TypeScript / ESM;
-- package manager: pnpm 11;
-- API: OpenAI Image API;
-- modelo padrão: `gpt-image-2`, configurável por ambiente;
-- raster somente: PNG/JPEG/WebP;
-- SVG, diagramas e gráficos exatos ficam no frontend/vetor;
-- screenshots precisam vir do site real;
-- geração paga nunca ocorre em `dry_run`.
+## 2. Configuração desativada
 
-## 3. Fontes oficiais
+O servidor `menezesdev_image` não deve aparecer em `.codex/config.toml` nem na configuração versionada de exemplo. As antigas tools `generate_hero_image` e `edit_image_asset` não fazem parte do contrato operacional.
 
-Ordem de autoridade:
+Nenhuma configuração global do usuário é alterada por esta migração. Se uma configuração global antiga ainda existir em outra máquina, sua remoção exige autorização e deve ser feita separadamente.
 
-1. instrução específica aprovada para o asset;
-2. `docs/DEMO_CASES.md`;
-3. `docs/BRAND_GUIDE.md` quando aplicável;
-4. `docs/IMAGE_GENERATION_RULES.md`;
-5. preset do projeto;
-6. observações estruturadas da chamada.
+## 3. Implementação histórica preservada
 
-## 4. Estrutura
+`tools/mcp-image/` permanece no repositório como registro técnico. Não apagar ou reutilizar silenciosamente.
 
 ```text
 tools/mcp-image/
 ├── package.json
 ├── src/
-│   ├── index.ts
-│   ├── server.ts
 │   ├── core/
 │   ├── tools/
-│   └── types/
+│   ├── index.ts
+│   └── server.ts
 ├── tests/
 ├── scripts/
-├── config/
-└── README.md
-
-public/assets/
-├── menezesdev/
-└── demos/
-    ├── m47/
-    ├── tavola27/
-    └── prismae/
+└── config/
 ```
 
-Temporários ficam em `.imagegen/tmp/` e não são versionados.
+O diretório está fora do fluxo ativo e não deve:
 
-## 5. Tools da Fase 2
+- receber credenciais;
+- ser conectado ao Codex;
+- executar geração ou edição real;
+- ser tratado como dependência de produção de assets;
+- servir como fallback automático quando o ImageGen nativo estiver indisponível.
 
-### `generate_hero_image`
+## 4. Partes exclusivamente ligadas à API
 
-Gera um hero raster com composição coerente com o layout HTML. Entradas principais: `project`, `asset_name`, `brief_file`, `output_path`, `aspect_ratio`, `layout_role`, `negative_space`, `text_block_position`, `focal_point`, `mobile_strategy`, `quality`, `reference_images`, `dry_run` e `overwrite`.
+Estas partes são históricas e não são portadas para o fluxo nativo:
 
-Quando há referências, a chamada real usa edição para aumentar fidelidade. `dry_run` valida inputs, resolve arquivos e monta o prompt sem chamar a API.
+- cliente `OpenAIImageClient`;
+- dependência do SDK `openai` para geração;
+- endpoints de geração e edição de imagens;
+- seleção de modelo por ambiente;
+- chave, tentativas, timeout e request ID da API;
+- transporte MCP STDIO e registro das tools;
+- `dry_run` como porta de entrada para posterior chamada paga;
+- parâmetros específicos de qualidade, compressão e compatibilidade do modelo.
 
-### `edit_image_asset`
+Elas podem continuar presentes no código histórico, mas não em configuração, documentação operacional ou comandos de produção.
 
-Edita um ou mais assets existentes. Entradas principais: `project`, `source_images`, `mask_file` opcional, `brief_file`, `output_path`, `change_request`, `preserve`, `quality`, `background`, `dry_run` e `overwrite`.
+## 5. Garantias preservadas
 
-A edição separa o que muda do que deve permanecer. Máscara precisa ser PNG, menor que 4 MB e compatível com as dimensões da primeira imagem.
+As seguintes decisões continuam obrigatórias no fluxo nativo:
 
-## 6. Workspace e segurança
+- leitura do briefing antes da geração;
+- identidade isolada por projeto;
+- função do asset no layout;
+- espaço negativo e posição do ponto focal;
+- crop desktop/mobile;
+- nomes determinísticos e candidatas versionadas;
+- referências com papel explícito;
+- proteção contra sobrescrita;
+- prompt auditável;
+- sidecar de metadata;
+- revisão visual antes de aprovação;
+- SVG/frontend para logos, marcas, gráficos, diagramas, geometria e UI exata;
+- screenshots somente do site real.
 
-Leitura permitida:
+## 6. Fontes oficiais
 
-- `docs/**`;
-- `public/assets/**`;
-- `.imagegen/references/**`.
+Ordem de autoridade:
 
-Escrita permitida:
+1. `AGENTS.md` aplicável;
+2. instrução específica do asset;
+3. componente ou wireframe consumidor, quando existir;
+4. `docs/DEMO_CASES.md`;
+5. `docs/IMAGE_GENERATION_RULES.md`;
+6. `docs/BRAND_GUIDE.md` quando aplicável;
+7. referências explicitamente fornecidas.
 
-- MenezesDev: `public/assets/menezesdev/**`;
-- M47: `public/assets/demos/m47/**`;
-- Tavola 27: `public/assets/demos/tavola27/**`;
-- Prismae: `public/assets/demos/prismae/**`;
-- temporários: `.imagegen/tmp/**`.
+## 7. Responsabilidades atuais
 
-O servidor bloqueia caminhos absolutos recebidos pela tool, path traversal, escape por symlink, extensões não raster e sobrescrita implícita. Assets marcados `approved` ou `in-use` permanecem protegidos mesmo com `overwrite=true`.
+### `$menezesdev-image-director`
 
-## 7. Configuração
+O skill repo-local em `.agents/skills/menezesdev-image-director/SKILL.md`:
 
-Variáveis:
+- classifica a rota correta do asset;
+- lê briefing e consumidor;
+- preserva a identidade do projeto;
+- define composição, espaço negativo e crop;
+- consolida restrições e referências;
+- entrega um prompt auditável;
+- conduz a revisão visual e, quando necessário, uma edição direcionada.
 
-```text
-OPENAI_API_KEY=
-OPENAI_IMAGE_MODEL=gpt-image-2
-IMAGEGEN_WORKSPACE_ROOT=
-DEFAULT_OUTPUT_FORMAT=webp
-DEFAULT_QUALITY=medium
-DEFAULT_OUTPUT_COMPRESSION=85
-DEFAULT_BACKGROUND=opaque
-OPENAI_MAX_ATTEMPTS=2
-OPENAI_TIMEOUT_MS=180000
-```
+### `$imagegen`
 
-A chave só é exigida em execução real. Nunca deve ser commitada ou recebida como argumento de tool.
+O skill nativo do Codex executa a geração ou edição raster sem chave da OpenAI API. Outputs destinados ao projeto são materializados no repositório; não permanecem apenas no diretório de geração do Codex.
 
-## 8. Compatibilidade do modelo
+## 8. Persistência
 
-A implementação atual bloqueia `background: transparent` para `gpt-image-2` antes da API, porque o contrato atual do modelo não aceita essa combinação. Também não envia `input_fidelity` ao modelo.
-
-## 9. Persistência
-
-Para cada geração real:
+Cada asset materializado recebe:
 
 ```text
 m47-hero.webp
@@ -127,52 +122,35 @@ m47-hero.prompt.md
 m47-hero.meta.json
 ```
 
-A escrita é transacional: staging em `.imagegen/tmp/<run-id>`, validação de bytes/formato/dimensões, SHA-256, promoção atômica e rollback em falha.
+O metadata registra o gerador `native-imagegen`, dimensões reais, formato, data, fontes, referências, status, alt text sugerido e observações da revisão. Hash é recomendado quando disponível.
 
-## 10. Retorno e erros
+## 9. Edição
 
-Sucesso retorna `success`, `status`, projeto, tipo do asset, paths, modelo, tamanho, qualidade, formato, `prompt_preview`, request ID quando disponível e warnings. Erros são normalizados e indicam se a falha é retryable.
+Uma edição nativa usa a imagem visível como alvo e declara:
 
-## 11. Testes da Fase 2
-
-O pacote entregue registrou:
-
-- TypeScript typecheck aprovado;
-- build aprovado;
-- 9 testes locais aprovados e 0 falhas;
-- smoke MCP STDIO aprovado;
-- tools anunciadas: `edit_image_asset` e `generate_hero_image`;
-- nenhuma chamada paga executada.
-
-A integração no repositório deve repetir `pnpm check` na máquina de desenvolvimento antes da primeira geração real.
-
-## 12. Codex
-
-Configuração de exemplo: `.codex/config.example.toml`.
-
-Após `pnpm build`, o MCP aponta para `tools/mcp-image/dist/index.js`, com `cwd` igual à raiz absoluta do repositório e as variáveis `OPENAI_API_KEY`, `OPENAI_IMAGE_MODEL` e `IMAGEGEN_WORKSPACE_ROOT` herdadas do ambiente.
-
-## 13. Primeiro dry run
-
-```json
-{
-  "project": "m47",
-  "asset_name": "m47-hero",
-  "brief_file": "docs/DEMO_CASES.md",
-  "output_path": "public/assets/demos/m47/m47-hero.webp",
-  "aspect_ratio": "16:10",
-  "layout_role": "Hero principal com conteúdo HTML à esquerda",
-  "negative_space": "left",
-  "text_block_position": "left",
-  "focal_point": "right",
-  "mobile_strategy": "shared-crop",
-  "quality": "low",
-  "dry_run": true
-}
+```text
+CHANGE: uma correção objetiva
+PRESERVE: composição, identidade, luz, sujeito e demais invariantes
 ```
 
-Revisar o `prompt_preview`. Somente depois disso considerar `dry_run: false`.
+Não reescrever o prompt inteiro para variar aleatoriamente. Se a edição nativa não estiver disponível, interromper a etapa visual e reportar o bloqueio; não reativar o MCP ou a API.
 
-## 14. Próximas fases
+## 10. Canva e screenshots
 
-Fase 3 adicionará `generate_brand_image`, `generate_gallery_image` e `generate_mockup_image`. A Etapa 5 usará o pipeline para produzir os assets reais dos demos e da Home da MenezesDev.
+Canva entra somente depois da aprovação dos assets, para banners, mockups, montagens desktop/mobile e apresentações editáveis. Screenshots usados nessas composições devem ser capturados da implementação real validada no navegador.
+
+## 11. Validação da migração
+
+A migração está correta quando:
+
+- não existe stanza ativa `mcp_servers.menezesdev_image` no projeto;
+- nenhuma instrução operacional pede chave da API para gerar assets;
+- `tools/mcp-image/` está explicitamente marcado como histórico;
+- as regras apontam para os dois skills;
+- o destino é protegido contra sobrescrita;
+- prompts e metadados permanecem auditáveis;
+- o primeiro hero M47 é revisado em desktop e mobile antes de promoção.
+
+## 12. Reativação
+
+Reativar o MCP histórico exigiria uma nova decisão arquitetural explícita, análise de custo e segurança, atualização documental e autorização do usuário. Não existe fallback implícito para ele.

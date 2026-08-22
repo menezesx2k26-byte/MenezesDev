@@ -46,6 +46,10 @@ Do not put transient chatter in `DECISIONS.md`.
 
 ## Tooling policy
 
+### Image assets
+
+Quando um asset raster definido no briefing não existir, use `$menezesdev-image-director` e `$imagegen`. Não use OpenAI Image API, `OPENAI_API_KEY`, MCP de imagem, navegador, stock genérico, gradientes, blobs ou placeholders como substituto. Logos, diagramas, gráficos e UI exata devem ser construídos como SVG ou frontend. Screenshots devem vir da implementação real.
+
 ### Native Codex
 Use by default:
 `./scripts/codex-native.ps1`

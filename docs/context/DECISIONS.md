@@ -43,7 +43,17 @@ Do not include Claude-Mem in the baseline until its Codex integration passes a c
 Real API keys, tokens, cookies, certificates, and `.env` files are excluded. Examples may document variable names with blank values only.
 
 ## D-008 — Image generation uses a local MCP pipeline
-**Status:** accepted  
+**Status:** superseded by D-009
 **Date:** 2026-08-22
 
 Raster image generation/editing is exposed to Codex through a local STDIO MCP server in `tools/mcp-image`. The server must read approved project briefings, keep native Codex as the execution path, support cost-free `dry_run`, protect the workspace, and never require an API key for validation-only runs. Paid OpenAI Image API calls remain explicit and opt-in.
+
+This entry is retained as historical context only. Its implementation is no longer active.
+
+## D-009 — Raster generation uses native Codex ImageGen
+**Status:** accepted
+**Date:** 2026-08-22
+
+The official raster workflow is repository briefing → `$menezesdev-image-director` → `$imagegen` native → visual review → repository asset. It must not depend on `OPENAI_API_KEY`, separate OpenAI API billing, Image API endpoints, an image MCP, or browser automation. `tools/mcp-image` remains historical and disconnected.
+
+Canva is reserved for later editable compositions. Screenshots come only from the real implementation. Logos, marks, charts, diagrams, exact geometry and exact UI use SVG or frontend.

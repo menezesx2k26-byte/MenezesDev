@@ -1,93 +1,41 @@
-# MenezesDev Image Pipeline — MCP Fase 2
+# MenezesDev Image Pipeline — implementação histórica
 
-Servidor MCP local via STDIO para gerar e editar assets raster usando a Image API da OpenAI. A Fase 2 disponibiliza `generate_hero_image` e `edit_image_asset`, com `dry_run`, prompt estruturado, isolamento do workspace, proteção contra sobrescrita e logs rastreáveis.
+> **Descontinuado para geração real desde 2026-08-22.** Este pacote não faz parte do fluxo ativo e não deve ser conectado ao Codex, receber credenciais ou produzir assets.
 
-## Requisitos
+Esta pasta preserva a implementação da Etapa 4.5 / Fase 2 baseada em MCP STDIO e OpenAI Image API para fins de histórico, auditoria e eventual consulta de decisões técnicas.
 
-- Node.js 22 ou superior;
-- pnpm 11;
-- chave da OpenAI API apenas para chamadas reais;
-- build antes de conectar o servidor ao Codex.
+O fluxo oficial atual é:
 
-## Instalação e validação
-
-```bash
-cd tools/mcp-image
-pnpm install
-cp .env.example .env
-pnpm check
+```text
+briefing do repositório
+  → $menezesdev-image-director
+  → $imagegen nativo
+  → revisão visual
+  → asset + sidecars no repositório
 ```
 
-`pnpm check` executa typecheck, build, testes unitários e um smoke test MCP completo por STDIO. Nenhuma chamada paga ocorre durante essa validação.
+Consulte:
 
-## Configuração
+- `docs/NATIVE_IMAGEGEN_WORKFLOW.md` para o processo ativo;
+- `docs/IMAGE_GENERATION_RULES.md` para as regras criativas;
+- `docs/MCP_IMAGE_PIPELINE_SPEC.md` para o mapeamento entre a implementação histórica e a arquitetura atual.
 
-Variáveis principais:
+## O que continua útil aqui
 
-```bash
-OPENAI_API_KEY=
-OPENAI_IMAGE_MODEL=gpt-image-2
-IMAGEGEN_WORKSPACE_ROOT=/caminho/absoluto/do/repositorio
-DEFAULT_OUTPUT_FORMAT=webp
-DEFAULT_QUALITY=medium
-DEFAULT_OUTPUT_COMPRESSION=85
-DEFAULT_BACKGROUND=opaque
-OPENAI_MAX_ATTEMPTS=2
-OPENAI_TIMEOUT_MS=180000
-```
+- leitura de briefing e isolamento por projeto;
+- presets de identidade;
+- convenções de caminhos e nomes;
+- proteção contra sobrescrita;
+- estrutura de prompt auditável;
+- metadados e validação de arquivos;
+- testes históricos dessas garantias.
 
-`OPENAI_API_KEY` pode ficar vazia para `dry_run=true`. A implementação atual bloqueia `background: transparent` quando o modelo é `gpt-image-2`, porque o contrato vigente desse modelo rejeita transparência.
+## O que não deve mais ser usado
 
-## Conectar ao Codex
+- servidor `menezesdev_image`;
+- tools `generate_hero_image` e `edit_image_asset`;
+- cliente e endpoints da OpenAI Image API;
+- configuração por chave ou modelo de API;
+- `pnpm start`, `pnpm smoke` ou chamadas reais para produção de assets.
 
-1. Faça o build com `pnpm build`.
-2. Copie `config/codex.config.example.toml` para a configuração do projeto em `.codex/config.toml`.
-3. Troque o `cwd` pelo caminho absoluto do repositório.
-4. Exporte `OPENAI_API_KEY` e `IMAGEGEN_WORKSPACE_ROOT` no ambiente do Codex.
-5. Reinicie a sessão do Codex e confirme as tools com `codex mcp list` ou pela interface disponível.
-
-## Primeiro dry run
-
-Chame `generate_hero_image` com:
-
-```json
-{
-  "project": "m47",
-  "asset_name": "m47-hero",
-  "brief_file": "docs/DEMO_CASES.md",
-  "output_path": "public/assets/demos/m47/m47-hero.webp",
-  "aspect_ratio": "16:10",
-  "layout_role": "Hero principal com conteúdo HTML à esquerda",
-  "negative_space": "left",
-  "text_block_position": "left",
-  "focal_point": "right",
-  "mobile_strategy": "shared-crop",
-  "quality": "low",
-  "dry_run": true
-}
-```
-
-Depois de revisar `prompt_preview`, repita com `dry_run: false`. A ferramenta cria o asset, o `.prompt.md` e o `.meta.json` no mesmo diretório.
-
-## Limites de segurança
-
-- leituras: `docs/**`, `public/assets/**`, `.imagegen/references/**`;
-- escrita MenezesDev: `public/assets/menezesdev/**`;
-- escrita dos cases: `public/assets/demos/<project>/**`;
-- caminhos absolutos, `..`, symlinks de escape e SVG são recusados;
-- `overwrite` é falso por padrão;
-- assets marcados `approved` ou `in-use` nunca são sobrescritos;
-- temporários são isolados em `.imagegen/tmp/**` e limpos após sucesso ou erro.
-
-## Comandos
-
-| Comando | Função |
-| --- | --- |
-| `pnpm typecheck` | valida TypeScript sem emitir arquivos |
-| `pnpm build` | compila `src/**` para `dist/**` |
-| `pnpm test` | executa os testes locais sobre o build |
-| `pnpm smoke` | abre o servidor via cliente MCP e faz um dry run |
-| `pnpm check` | executa toda a validação sem custo de API |
-| `pnpm start` | inicia o servidor MCP STDIO compilado |
-
-Não escreva logs em `stdout` dentro do servidor: o canal é reservado ao protocolo MCP. Logs operacionais usam `stderr`.
+Os fontes e testes permanecem intactos como registro. Alterações futuras nesta pasta exigem uma decisão arquitetural explícita; não reative o MCP por conveniência.

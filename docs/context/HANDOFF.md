@@ -2,62 +2,45 @@
 
 ## Completed
 
-- Preserved the Codex-native Work Mode 4.5 baseline.
-- Integrated Etapa 4.5 / Fase 2 image-pipeline sources into `tools/mcp-image/`.
-- Added `generate_hero_image` and `edit_image_asset` MCP tools.
-- Added the official image-generation rules, MCP specification, demo cases and brand guide at canonical `docs/` paths.
-- Added a Codex MCP configuration example at `.codex/config.example.toml`.
-- Added asset destination directories for MenezesDev, M47, Tavola 27 and Prismae.
-- Added `.imagegen/tmp/` and machine-local `.codex/config.toml` to root Git ignore rules.
-- Preserved source-only version control: compiled `dist/`, `node_modules/`, `.env` and temporary image files stay out of Git.
+- Migrated the official raster workflow from the `menezesdev_image` MCP/OpenAI Image API path to `$menezesdev-image-director` + `$imagegen` native.
+- Added the repo-local director skill at `.agents/skills/menezesdev-image-director/SKILL.md`.
+- Disabled the local project MCP stanza and removed it from the versioned configuration example.
+- Rewrote the operational image rules and MCP specification; added `docs/NATIVE_IMAGEGEN_WORKFLOW.md`.
+- Marked `tools/mcp-image/` and the Fase 2 report as historical without deleting the implementation.
+- Generated exactly one native M47 hero candidate; no API key, API call, browser, Canva, stock or placeholder was used.
+- Reviewed the source, detail crop and mobile crop; no targeted ImageGen edit was required.
+- Materialized `public/assets/demos/m47/m47-hero.webp` plus prompt and metadata sidecars.
 
 ## Current state
 
-Fase 2 is integrated at repository level. The delivered package had already passed TypeScript typecheck/build, 9 local tests and a STDIO MCP smoke test in its source workspace. This integration environment re-audited the package structure and scanned the staged files for obvious API-key patterns, but did not reinstall dependencies or rerun pnpm checks because package-registry access is unavailable here.
-
-No paid image generation has been executed.
+- Asset: `public/assets/demos/m47/m47-hero.webp`.
+- Format/dimensions: WebP, 1536×960, exact 16:10.
+- Status: `generated`.
+- SHA-256: `02da87e3542740e62091ba3589ff989d106505e744f26babd7a1a10ecb0fce49`.
+- Desktop composition passes the briefing.
+- A 4:5 crop preserves the action when biased to the center-right.
+- No M47 component or wireframe exists yet.
+- The historical MCP source and its pre-existing uncommitted prompt-builder/test changes were left intact.
 
 ## Next logical step
 
-On the development machine:
-
-```powershell
-.\scripts\work-mode-doctor.ps1
-cd tools\mcp-image
-pnpm install
-pnpm check
-```
-
-Then copy `.codex/config.example.toml` to `.codex/config.toml`, set the absolute repository path and run the first `generate_hero_image` for M47 with `dry_run: true`.
-
-Expected destination:
-
-```text
-public/assets/demos/m47/m47-hero.webp
-```
-
-Review the returned `prompt_preview` before any paid call.
+Implement the M47 hero with real HTML copy and set the image position around 65–70% horizontally on narrow viewports. Validate the implemented page on desktop and mobile before promoting the asset beyond `generated`.
 
 ## Blockers / risks
 
-- Machine-level Codex/MCP configuration still needs validation on the actual Windows development machine.
-- `OPENAI_API_KEY` is intentionally absent from the repository.
-- Real `gpt-image-2` generation/editing has not yet been smoke-tested because no paid call was authorized.
-- Current `gpt-image-2` implementation rejects transparent backgrounds; the MCP blocks that combination before making the API call.
+- `$menezesdev-image-director` was not available at session start. It is now repo-local; if it does not appear automatically in a future skill selector, restart Codex as described by the official skill documentation.
+- The bundled `quick_validate.py` could not run because PyYAML is absent from both available Python runtimes. A dependency-free manual structural validation passed instead.
+- Centered 4:5 cropping truncates part of the client; the future implementation must use the documented center-right image position.
 
-## Tests / checks available
+## Commands / tests run
 
-Delivered Fase 2 report:
+- `git diff --check` — passed after final edits.
+- Dependency-free skill frontmatter/name/placeholder validation — passed.
+- Pillow WebP open/format/dimensions verification — passed.
+- SHA-256 versus metadata verification — passed.
+- Prompt audit for ratio, constraints and prohibited clichés — passed.
+- Active configuration scan for `mcp_servers.menezesdev_image` — none found.
+- Active code scan outside `tools/mcp-image/` for API-key and image-endpoint dependencies — none found.
+- High-detail visual review plus desktop and 4:5 mobile crop inspection — passed with the center-right positioning note above.
 
-- TypeScript typecheck: approved.
-- TypeScript build: approved.
-- Local tests: 9 passed, 0 failed.
-- MCP STDIO smoke: approved.
-- Tools announced: `edit_image_asset`, `generate_hero_image`.
-
-Integration audit in this environment:
-
-- package structure inspected;
-- `dist/` excluded from version control as intended;
-- obvious OpenAI API-key patterns: none found;
-- runtime dry run not repeated here because dependencies could not be installed from the package registry.
+The historical MCP smoke test was intentionally not run because that server is no longer part of the active workflow and was not used to generate this asset.

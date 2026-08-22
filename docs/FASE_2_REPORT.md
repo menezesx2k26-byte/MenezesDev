@@ -1,5 +1,7 @@
 # MenezesDev — Etapa 4.5 / Relatório da Fase 2
 
+> **Registro histórico, substituído em 2026-08-22.** A implementação descrita abaixo não faz parte do fluxo ativo. A geração raster oficial usa `$menezesdev-image-director` + `$imagegen` nativo, conforme `docs/NATIVE_IMAGEGEN_WORKFLOW.md`, sem chave ou chamada à OpenAI Image API.
+
 | Campo | Resultado |
 | --- | --- |
 | Status | Concluída localmente |

@@ -18,34 +18,30 @@ Princípios:
 
 Leia `docs/WORK_MODE_4_5.md` antes de alterar a infraestrutura de agentes.
 
-## Pipeline MCP de imagens — Etapa 4.5 / Fase 2
+## Pipeline nativo de imagens — Etapa 4.5
 
-O repositório inclui um servidor MCP local via STDIO em `tools/mcp-image/` para geração e edição de assets raster com direção de arte baseada nos briefings do projeto.
+Assets raster usam o fluxo nativo do Codex:
 
-Ferramentas disponíveis nesta fase:
+```text
+briefing do repositório
+  → $menezesdev-image-director
+  → $imagegen nativo
+  → revisão visual
+  → asset + prompt + metadata no repositório
+```
 
-- `generate_hero_image`
-- `edit_image_asset`
+Esse caminho não usa `OPENAI_API_KEY`, faturamento separado da OpenAI API, `images.generate`, `images.edit` ou MCP de imagem. O skill de direção de arte fica em `.agents/skills/menezesdev-image-director/`.
 
-Características principais:
-
-- `dry_run` sem chave e sem custo de geração;
-- uso de `gpt-image-2` apenas em execuções reais;
-- workspace com allowlist de leitura/escrita;
-- bloqueio de path traversal, SVG e sobrescrita indevida;
-- assets aprovados/in-use protegidos;
-- prompt e metadados rastreáveis com SHA-256;
-- nenhuma chave da OpenAI entra no Git.
+Canva é reservado para composições editáveis posteriores. Screenshots são capturados apenas do site implementado. Logos, marcas, gráficos, diagramas e UI exata são produzidos como SVG ou frontend.
 
 Documentação:
 
 - `docs/MCP_IMAGE_PIPELINE_SPEC.md`
 - `docs/IMAGE_GENERATION_RULES.md`
+- `docs/NATIVE_IMAGEGEN_WORKFLOW.md`
 - `docs/DEMO_CASES.md`
 - `docs/BRAND_GUIDE.md`
 - `docs/FASE_2_REPORT.md`
 - `tools/mcp-image/README.md`
 
-Configuração de exemplo do Codex: `.codex/config.example.toml`.
-
-O primeiro teste previsto é um `dry_run` de `public/assets/demos/m47/m47-hero.webp`. Nenhuma geração paga deve ocorrer antes da revisão do `prompt_preview`.
+`tools/mcp-image/` e `docs/FASE_2_REPORT.md` permanecem apenas como registro histórico da implementação substituída.

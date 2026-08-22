@@ -1,0 +1,46 @@
+{
+  "project": "m47",
+  "asset_type": "hero",
+  "name": "m47-hero",
+  "path": "public/assets/demos/m47/m47-hero.webp",
+  "generator": "native-imagegen",
+  "date": "2026-08-22",
+  "generated_at": "2026-08-22T19:35:01Z",
+  "aspect_ratio": "16:10",
+  "dimensions": {
+    "width": 1536,
+    "height": 960
+  },
+  "format": "webp",
+  "briefing_files": [
+    "AGENTS.md",
+    "docs/DEMO_CASES.md",
+    "docs/IMAGE_GENERATION_RULES.md",
+    "docs/BRAND_GUIDE.md",
+    ".agents/skills/menezesdev-image-director/SKILL.md"
+  ],
+  "references_used": [],
+  "status": "generated",
+  "suggested_alt": "Barbeiro finalizando o corte de um cliente em uma barbearia contemporânea escura.",
+  "review_notes": [
+    "Realism, anatomy, hair, beard, professional tools, materials and warm side lighting passed visual review.",
+    "The left side preserves clean low-detail negative space and the focal action remains on the center-right.",
+    "Desktop crop passed; a 4:5 mobile crop passes when biased to the center-right, so the future implementation should use approximately 65–70% horizontal object/background position.",
+    "No readable text, invented logo, watermark, prohibited barber cliché, direct-to-camera gaze or stock-photo staging was found.",
+    "No targeted ImageGen edit was required."
+  ],
+  "conversion": {
+    "source_format": "png",
+    "source_dimensions": {
+      "width": 1586,
+      "height": 992
+    },
+    "exact_ratio_crop": {
+      "width": 1584,
+      "height": 990
+    },
+    "resampling": "lanczos",
+    "webp_quality": 90
+  },
+  "sha256": "02da87e3542740e62091ba3589ff989d106505e744f26babd7a1a10ecb0fce49"
+}

@@ -1,90 +1,129 @@
 # MenezesDev — Regras de Geração de Imagens
 
-**Versão:** 1.0.0  
-**Etapa:** 4.5 — pipeline MCP de imagens  
+**Versão:** 2.0.0
+**Etapa:** 4.5 — ImageGen nativo do Codex
 **Status:** regra criativa oficial
 
 ## 1. Finalidade
 
-O Codex e o servidor MCP devem gerar ou editar apenas assets raster que tenham uma função concreta no layout e respeitem os briefings oficiais. O pipeline não existe para preencher espaço com imagens genéricas.
+Gerar ou editar apenas assets raster com função concreta no layout e aderência aos briefings oficiais. O pipeline não existe para preencher espaço com imagens genéricas.
 
-## 2. Princípios obrigatórios
+## 2. Arquitetura obrigatória
+
+O fluxo oficial é:
+
+```text
+briefing do repositório
+  → $menezesdev-image-director
+  → $imagegen nativo
+  → revisão visual
+  → asset + prompt + metadata no repositório
+```
+
+- `$menezesdev-image-director` interpreta briefing, identidade, função no layout, referências, nomes e critérios de revisão.
+- `$imagegen` nativo é o gerador e editor raster oficial.
+- Nenhuma etapa depende de `OPENAI_API_KEY`, faturamento separado da OpenAI API, `images.generate`, `images.edit` ou MCP de imagem.
+- Canva é reservado para composições editáveis posteriores com assets já aprovados.
+- O navegador serve somente para validar o site implementado e capturar screenshots reais.
+- Logos, marcas, ícones, gráficos, diagramas, geometria exata e UI fiel são construídos como SVG ou frontend.
+
+## 3. Princípios obrigatórios
 
 1. A função no layout vem antes da estética.
 2. O briefing vem antes do improviso.
 3. Texto de interface deve ser HTML, não pixels.
-4. Logo final, ícone exato, gráfico e diagrama devem ser SVG/frontend, não geração raster.
-5. Screenshots de portfólio devem vir do site real implementado.
-6. O modelo não pode inventar fatos empresariais, avaliações, métricas, endereços, telefones ou resultados.
-7. Assets de um mesmo case precisam parecer parte do mesmo ensaio ou sistema.
-8. M47, Tavola 27 e Prismae precisam manter linguagens visuais distintas.
-9. Uma imagem aprovada ou em uso não pode ser sobrescrita automaticamente.
-10. Toda geração real deve ser rastreável por prompt, parâmetros, metadados e hash.
+4. Screenshots de portfólio devem vir do site real implementado.
+5. O gerador não pode inventar fatos empresariais, avaliações, métricas, endereços, telefones ou resultados.
+6. Assets de um mesmo case precisam parecer parte do mesmo ensaio ou sistema.
+7. M47, Tavola 27 e Prismae precisam manter linguagens visuais distintas.
+8. Uma imagem aprovada ou em uso não pode ser sobrescrita automaticamente.
+9. Toda geração materializada deve ser rastreável por prompt, fontes, referências e metadados.
+10. Gerar uma candidata por vez e corrigir somente falhas objetivas.
 
-## 3. Fontes antes da geração
+## 4. Fontes antes da geração
 
-Antes de uma chamada real, ler nesta ordem:
+Ler, nesta ordem:
 
-1. instrução específica aprovada para o asset, quando existir;
-2. `docs/DEMO_CASES.md`;
-3. `docs/BRAND_GUIDE.md` quando o asset pertencer à MenezesDev;
-4. este arquivo;
-5. preset do projeto;
-6. observações estruturadas da chamada.
+1. `AGENTS.md` aplicável;
+2. instrução específica aprovada para o asset;
+3. componente, wireframe ou contrato de layout que consumirá o asset, quando existir;
+4. `docs/DEMO_CASES.md`;
+5. este arquivo;
+6. `docs/BRAND_GUIDE.md` quando aplicável;
+7. referências visuais explicitamente fornecidas.
 
-A primeira geração de uma categoria deve usar `dry_run: true` e o `prompt_preview` deve ser revisado antes de qualquer gasto.
+Registrar no sidecar quais arquivos foram lidos e quais referências foram usadas. Não transformar imagem externa genérica em referência aprovada por inferência.
 
-## 4. Classificação do asset
+## 5. Classificação do asset
 
-Usar geração raster para hero fotográfico, galeria, fotografia editorial, textura ou fundo. Não usar Image API para logo final, favicon vetorial, gráfico de dados, diagrama exato ou screenshot. Mockups devem preservar screenshots reais; IA pode, no máximo, produzir o cenário ou fundo quando isso fizer sentido.
+Usar geração raster para hero fotográfico, galeria, fotografia editorial, textura, fundo fotográfico ou cena para mockup. Não usar geração raster para logo final, favicon vetorial, gráfico de dados, diagrama exato, UI fiel ou screenshot.
 
-## 5. Composição para web
+Canva pode montar banners, apresentações e composições desktop/mobile depois que os assets e screenshots reais estiverem aprovados. Ele não é o gerador fotográfico principal.
 
-O espaço negativo deve ser planejado. Quando o HTML fica à esquerda, o ponto focal normalmente fica à direita e cerca de 38%–45% da largura deve permanecer visualmente calma. Para texto à direita, inverter a lógica. O ponto focal precisa sobreviver ao crop mobile ou deve existir um asset mobile dedicado.
+## 6. Composição para web
 
-## 6. Anatomia obrigatória do prompt
+O espaço negativo deve ser planejado. Quando o HTML fica à esquerda, o ponto focal normalmente fica à direita e cerca de 38%–45% da largura deve permanecer visualmente calma. Para texto à direita, inverter a lógica.
 
-O prompt final deve ser auditável e usar, quando aplicável, estas seções:
+O prompt deve dizer:
+
+- onde ficará o HTML;
+- qual área precisa permanecer limpa;
+- onde está o ponto focal;
+- quais detalhes não podem invadir a área de texto;
+- como a narrativa sobrevive ao crop mobile.
+
+Se a composição não resistir ao crop mobile, usar um asset mobile dedicado em vez de aprovar um hero frágil.
+
+## 7. Anatomia do prompt auditável
+
+Usar a estrutura do `$imagegen`, mantendo apenas os campos aplicáveis:
 
 ```text
-PURPOSE
-PROJECT IDENTITY
-SCENE / BACKGROUND
-SUBJECT
-COMPOSITION
-LIGHTING AND COLOR
-MATERIALS AND TEXTURE
-WEB LAYOUT REQUIREMENTS
-PRESERVE
-CHANGE
-CONSTRAINTS
-OUTPUT
+Use case
+Asset type
+Primary request
+Scene/backdrop
+Subject
+Style/medium
+Composition/framing
+Lighting/mood
+Color palette
+Materials/textures
+Constraints
+Avoid
 ```
 
-Em edições, separar explicitamente o que muda (`CHANGE`) do que deve permanecer (`PRESERVE`). Preferir uma mudança principal por iteração para reduzir drift.
+Em edições, acrescentar explicitamente:
 
-## 7. Texto, logos e marcas
+```text
+CHANGE
+PRESERVE
+```
+
+Preferir uma mudança principal por iteração para reduzir drift.
+
+## 8. Texto, logos e marcas
 
 Não gerar headline, CTA, preço, menu, endereço, avaliação ou logo legível dentro do bitmap. Não inventar logos em fotografias. Evitar marcas reais de terceiros como foco. Logos finais dos demos e da MenezesDev devem ser vetoriais e aplicados pelo frontend ou por composição determinística.
 
-## 8. Pessoas e realismo
+## 9. Pessoas e realismo
 
 Quando houver pessoas, mãos, ferramentas e objetos precisam interagir de forma fisicamente plausível. Evitar pose de stock, pele plástica, anatomia confusa, objetos fundidos e retoque excessivo. Pessoas devem ser fictícias e não devem receber identidade, cargo ou depoimento.
 
-## 9. Formato e qualidade
+## 10. Formato e dimensões
 
-- padrão web fotográfico: WebP, compressão 85;
-- PNG: quando necessário para fluxo intermediário ou alpha em modelo compatível;
-- JPEG: apenas para fotografia opaca quando houver motivo;
-- `low`: exploração;
-- `medium`: candidato padrão de produção;
-- `high`: somente quando o detalhe justificar.
+- proporção e crop são definidos pela função no layout;
+- padrão final para fotografia web: WebP;
+- PNG é permitido como saída nativa intermediária ou quando alpha for necessário;
+- JPEG só é usado para fotografia opaca quando houver motivo;
+- o arquivo final deve ser convertido de forma determinística quando a saída nativa não estiver no formato solicitado;
+- registrar dimensões reais, não dimensões presumidas.
 
-A implementação atual bloqueia `background: transparent` com `gpt-image-2` antes da chamada, pois o contrato atual do modelo rejeita essa combinação.
+Conversão de formato e crop não autorizam alterar conteúdo visual, inventar elementos ou sobrescrever um asset existente.
 
-## 10. Convenção de nomes
+## 11. Convenção de nomes
 
-Usar minúsculas, hífen e sequência com dois dígitos, por exemplo:
+Usar minúsculas, hífen e sequência com dois dígitos:
 
 ```text
 m47-hero.webp
@@ -94,15 +133,40 @@ tavola27-food-01.webp
 prismae-office-01.webp
 ```
 
-Candidatas ainda não aprovadas devem usar `-candidate-01`, `-candidate-02` etc. Não usar nomes como `final-final.webp`, `image1.webp` ou `new-hero.webp`.
+Se o destino já existir, usar `-candidate-01`, `-candidate-02` etc. Nunca usar `final-final.webp`, `image1.webp` ou `new-hero.webp`.
 
-## 11. Edição
+## 12. Referências
 
-Toda edição deve preservar explicitamente os invariantes. Se houver máscara, a alteração deve permanecer na região solicitada. Não mudar proporção, sujeito, roupa, luz ou cenário sem pedido. Para `gpt-image-2`, não enviar `input_fidelity`.
+Toda imagem de entrada deve ter papel explícito: referência de estilo, referência de composição, alvo de edição ou inserção. Para edição nativa de arquivo local, abrir primeiro a imagem para torná-la visível ao fluxo do Codex. Referências não autorizam copiar logos, pessoas identificáveis ou marcas de terceiros.
 
-## 12. Rastreabilidade
+## 13. Edição
 
-Uma geração real cria, ao lado do asset:
+Uma edição deve declarar uma falha objetiva e preservar os invariantes. Usar:
+
+```text
+CHANGE: <uma correção direcionada>
+PRESERVE: <identidade, composição, luz, sujeito e demais invariantes>
+```
+
+Não mudar proporção, sujeito, roupa, luz, cenário ou crop sem pedido. Para a primeira candidata, permitir no máximo uma edição direcionada antes de reportar o resultado.
+
+## 14. Revisão visual
+
+Abrir a imagem em detalhe alto e verificar:
+
+- aderência ao briefing e à identidade do projeto;
+- realismo, anatomia e interação entre pessoas, objetos e ferramentas;
+- materiais, cabelo, barba, pele, comida ou outros detalhes críticos;
+- iluminação, cor, contraste e textura;
+- espaço negativo e posição do foco;
+- crop desktop e crop mobile;
+- ausência de texto aleatório, watermark, logo inventado, aparência de stock e clichês proibidos.
+
+Não aprovar automaticamente. O status inicial é sempre `generated`.
+
+## 15. Rastreabilidade
+
+Ao materializar um asset, criar ao lado:
 
 ```text
 <asset>.webp
@@ -110,55 +174,76 @@ Uma geração real cria, ao lado do asset:
 <asset>.meta.json
 ```
 
-O metadata deve registrar projeto, tipo, modelo, qualidade, tamanho, formato, data, arquivos-fonte, referências, SHA-256, request ID quando disponível e status.
+O metadata deve registrar, no mínimo:
 
-## 13. Estados
+- projeto;
+- tipo e nome do asset;
+- caminho;
+- gerador `native-imagegen`;
+- data;
+- proporção;
+- dimensões reais;
+- formato;
+- arquivos de briefing lidos;
+- referências utilizadas;
+- status `generated`;
+- sugestão de alt text;
+- observações da revisão.
+
+Hash do arquivo pode ser acrescentado quando a ferramenta local disponível permitir.
+
+## 16. Estados e proteção contra sobrescrita
 
 ```text
 generated → reviewed → approved → in-use
                   ↘ rejected
 ```
 
-`overwrite` é falso por padrão. Assets `approved` ou `in-use` nunca podem ser sobrescritos pela tool.
+Assets `approved` ou `in-use` nunca podem ser sobrescritos automaticamente. Se o destino existir sem autorização explícita de substituição, criar uma candidata versionada.
 
-## 14. Segurança e custo
+## 17. Segurança, custo e rotas proibidas
 
-A chave da API nunca é argumento de tool e nunca vai para prompt, metadata ou Git. `dry_run` não chama a API e não exige `OPENAI_API_KEY`. Variantes extras só podem ser solicitadas explicitamente. O pipeline usa concorrência e tentativas conservadoras.
+Não pedir, ler, registrar ou configurar chave da OpenAI API para gerar assets. Não usar o MCP histórico `menezesdev_image`, automação do ChatGPT pelo navegador, Canva como gerador fotográfico, stock genérico, placeholder, gradiente ou blob como substituto silencioso.
 
-## 19. Regras globais de conteúdo
+Prompts, metadata e logs não podem conter chaves, tokens, cookies ou dados sensíveis.
+
+## 18. Regras globais de conteúdo
 
 Os negócios demonstrativos são fictícios. Não incluir empresa real apresentada como cliente, CNPJ/telefone/endereço real, avaliação falsa, prêmio, certificação, número de clientes, resultado financeiro, antes/depois enganoso, watermark ou assinatura do gerador. O demo pode parecer convincente, mas deve continuar transparentemente demonstrativo.
 
-## 20. Direção específica — M47 Barber
+## 19. Direção específica — M47 Barber
 
-M47 é urbano, preciso, masculino e contemporâneo. Usar preto profundo, tons quentes e dourado fosco discreto. Fotografia editorial de alto contraste controlado, luz lateral quente, textura real de cabelo/barba, ferramentas plausíveis e ambiente premium sem ostentação. Evitar barber pole, bigode como ícone, caveira, navalhas cruzadas, western, madeira envelhecida dominante, fundo branco, pose de stock e olhar direto para a câmera. No hero, o HTML fica à esquerda; barbeiro e cliente ficam à direita, com espaço negativo real à esquerda.
+M47 é urbano, preciso, masculino e contemporâneo. Usar preto profundo, tons quentes e dourado fosco discreto. Fotografia editorial de alto contraste controlado, luz lateral quente, textura real de cabelo/barba, ferramentas plausíveis e ambiente premium sem ostentação.
 
-## 21. Direção específica — Tavola 27
+Evitar barber pole, bigode como ícone, caveira, navalhas cruzadas, western, madeira envelhecida dominante, fundo branco, pose de stock e olhar direto para a câmera. No hero, o HTML fica à esquerda; barbeiro e cliente ficam à direita, com espaço negativo real à esquerda e composição resistente ao crop mobile.
+
+## 20. Direção específica — Tavola 27
 
 Tavola 27 deve ser quente, simples, tátil e editorial. Priorizar creme, verde, vinho e tons naturais de comida; luz natural ou ambiental suave; massa fresca, louça, ingredientes, cozinha e mesa vivida. Evitar bandeira italiana, mapa da Itália, cantina turística, pizzaria, chef sorrindo para câmera, queijo voando, saturação extrema e comida plástica.
 
-## 22. Direção específica — Prismae
+## 21. Direção específica — Prismae
 
 Prismae depende principalmente de grid, tipografia, dados, diagramas e frontend, não de fotografia. Fotografia é opcional e deve parecer editorial, silenciosa e racional. Evitar aperto de mãos, executivos apontando gráficos, equipe sorrindo para notebook, prédios espelhados, skyline, setas, foguetes, alvos, xadrez e stock corporativo azul.
 
-## 23. Direção específica — MenezesDev
+## 22. Direção específica — MenezesDev
 
 Tecnologia premium, escura, contemporânea e comercial. Violeta/magenta são assinatura, não efeito aplicado em tudo. Evitar Matrix, chuva de código, hacker de capuz, robô humanoide genérico, circuitos aleatórios, globo digital, hologramas, excesso de neon, cyberpunk e blobs 3D genéricos de startup.
 
-## 24. Critérios de rejeição
+## 23. Critérios de rejeição
 
-Rejeitar imediatamente quando houver anatomia claramente errada, texto aleatório relevante, watermark, logo inventado, clichê proibido central, alimento plástico, crop mobile inviável, ponto focal sob o HTML, identidade confundida com outro case, UI falsa apresentada como screenshot, dados empresariais inventados ou arquivo incompatível.
+Rejeitar quando houver anatomia claramente errada, texto aleatório relevante, watermark, logo inventado, clichê proibido central, alimento plástico, crop mobile inviável, ponto focal sob o HTML, identidade confundida com outro case, UI falsa apresentada como screenshot, dados empresariais inventados ou arquivo incompatível.
 
-## 25. Ciclo de iteração
+## 24. Ciclo de iteração
 
-1. executar `dry_run`;
-2. gerar em `low` ou `medium`;
-3. revisar contra função, realismo, identidade e integridade;
-4. corrigir o maior defeito por vez;
-5. implementar no layout;
-6. revisar desktop/mobile;
-7. promover para `approved` quando realmente aprovado.
+1. auditar o briefing e o destino com `$menezesdev-image-director`;
+2. preparar um prompt final auditável;
+3. gerar uma candidata com `$imagegen` nativo;
+4. revisar em detalhe alto;
+5. fazer no máximo uma edição direcionada para a falha objetiva mais importante;
+6. materializar asset e sidecars;
+7. implementar no layout e revisar desktop/mobile;
+8. promover para `approved` somente após aprovação humana ou critério explícito do projeto.
 
-## 26. Primeiro teste
+## 25. Primeiro asset operacional
 
-O primeiro asset operacional é `public/assets/demos/m47/m47-hero.webp`, em 16:10, com texto HTML à esquerda, foco à direita, `quality: low` e `dry_run: true` antes da primeira chamada paga.
+O primeiro asset é `public/assets/demos/m47/m47-hero.webp`, em 16:10, com conteúdo HTML à esquerda, foco à direita e status inicial `generated`.

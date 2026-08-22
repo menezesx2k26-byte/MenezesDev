@@ -32,15 +32,18 @@
   object-position: center;
 }
 
-.m47-hero__copy {
+.m47-hero__copy-wrap {
   position: relative;
   z-index: 1;
+}
+
+.m47-hero__copy {
   max-width: 38rem;
   padding-block: 6rem;
 }
 
 .m47-hero h1 {
-  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-size: clamp(3.5rem, 7vw, 6.25rem);
   text-transform: uppercase;
 }
 
@@ -179,8 +182,9 @@
 
 @media (max-width: 47.99rem) {
   .m47-hero {
-    display: block;
+    display: flex;
     min-height: auto;
+    flex-direction: column;
   }
 
   .m47-hero__copy {
@@ -189,6 +193,7 @@
 
   .m47-hero__media {
     position: relative;
+    order: 2;
     width: 100%;
     height: min(125vw, 38rem);
   }
@@ -233,5 +238,9 @@
 
   .m47-location > * {
     padding: 1.5rem;
+  }
+
+  .m47-about__mark {
+    right: 0;
   }
 }

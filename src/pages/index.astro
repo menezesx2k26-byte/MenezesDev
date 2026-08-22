@@ -63,7 +63,7 @@ import "../styles/menezesdev.css";
               width="1536"
               height="960"
               alt="Conceito Tavola 27"
-              fetchpriority="high"
+              fetchpriority="low"
             />
           </div>
           <div class="md-mosaic__item">
@@ -72,7 +72,7 @@ import "../styles/menezesdev.css";
               width="960"
               height="720"
               alt="Conceito gráfico Prismae"
-              fetchpriority="high"
+              fetchpriority="low"
             />
           </div>
         </div>
@@ -359,10 +359,31 @@ import "../styles/menezesdev.css";
         <div class="button-row">
           <CommercialAction label="Falar pelo WhatsApp" showPendingNote /><a
             class="button button--secondary"
-            href="#planos">Ver planos</a>
+            href="#planos">Ver planos</a
+          >
         </div>
       </div>
     </section>
   </main>
   <MenezesFooter />
+  <script>
+    const setupFaq = () => {
+      document.querySelectorAll<HTMLDetailsElement>(".md-faq details").forEach((details) => {
+        if (details.dataset.ready === "true") return;
+        details.dataset.ready = "true";
+        const summary = details.querySelector<HTMLElement>("summary");
+        if (!summary) return;
+        const syncExpanded = () => summary.setAttribute("aria-expanded", String(details.open));
+        syncExpanded();
+        details.addEventListener("toggle", syncExpanded);
+        summary.addEventListener("keydown", (event) => {
+          if (event.key !== "Enter" && event.key !== " ") return;
+          event.preventDefault();
+          details.open = !details.open;
+        });
+      });
+    };
+    setupFaq();
+    document.addEventListener("astro:page-load", setupFaq);
+  </script>
 </BaseLayout>

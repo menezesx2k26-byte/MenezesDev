@@ -206,9 +206,23 @@ h3 {
 .site-header__brand img {
   width: auto;
   max-width: min(13rem, 46vw);
-  height: 2rem;
+  height: 2.75rem;
   object-fit: contain;
   object-position: left center;
+}
+
+.site-header__brand--with-text {
+  gap: 0.65rem;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.site-header__brand--with-text img {
+  width: 2.4rem;
+  height: 2.4rem;
 }
 
 .site-header__brand--text {
@@ -352,8 +366,13 @@ h3 {
 .button[aria-disabled="true"],
 .button:disabled {
   cursor: not-allowed;
-  opacity: 0.58;
   transform: none;
+}
+
+.button[aria-disabled="true"] {
+  border-color: #554b6b;
+  background: #322942;
+  color: #e3dcef;
 }
 
 .commercial-pending {
@@ -548,6 +567,10 @@ h3 {
 
   .mobile-menu-trigger {
     display: inline-flex;
+  }
+
+  .site-header__brand img {
+    height: 2.2rem;
   }
 
   .card-grid {

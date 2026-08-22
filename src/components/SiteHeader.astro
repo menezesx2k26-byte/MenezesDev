@@ -12,6 +12,7 @@ interface Props {
   logoSrc?: string;
   logoWidth?: number;
   logoHeight?: number;
+  showBrandText?: boolean;
   nav: NavItem[];
   currentPath?: string;
   menuLabel?: string;
@@ -23,6 +24,7 @@ const {
   logoSrc,
   logoWidth = 320,
   logoHeight = 60,
+  showBrandText = false,
   nav,
   currentPath = Astro.url.pathname,
   menuLabel = "Abrir menu",
@@ -33,13 +35,27 @@ const menuId = `mobile-menu-${brandLabel.toLowerCase().replace(/[^a-z0-9]+/g, "-
 <header class="site-header">
   <div class="container site-header__inner">
     <a
-      class:list={["site-header__brand", { "site-header__brand--text": !logoSrc }]}
+      class:list={[
+        "site-header__brand",
+        {
+          "site-header__brand--text": !logoSrc,
+          "site-header__brand--with-text": logoSrc && showBrandText,
+        },
+      ]}
       href={brandHref}
       aria-label={`${brandLabel} — início`}
     >
       {
         logoSrc ? (
-          <img src={logoSrc} width={logoWidth} height={logoHeight} alt={brandLabel} />
+          <>
+            <img
+              src={logoSrc}
+              width={logoWidth}
+              height={logoHeight}
+              alt={showBrandText ? "" : brandLabel}
+            />
+            {showBrandText && <span>{brandLabel}</span>}
+          </>
         ) : (
           brandLabel
         )
@@ -125,6 +141,12 @@ const menuId = `mobile-menu-${brandLabel.toLowerCase().replace(/[^a-z0-9]+/g, "-
       });
 
       close?.addEventListener("click", closeDialog);
+      dialog.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeDialog();
+        }
+      });
       dialog.addEventListener("click", (event) => {
         if (event.target === dialog) closeDialog();
       });

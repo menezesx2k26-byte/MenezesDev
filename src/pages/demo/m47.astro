@@ -93,6 +93,32 @@ const services = [
   </SiteHeader>
   <main id="main-content">
     <section class="m47-hero" aria-labelledby="m47-title">
+      <div class="container m47-hero__copy-wrap">
+        <div class="m47-hero__copy" data-demo-scope>
+          <p class="eyebrow">BARBEARIA CONTEMPORÂNEA</p>
+          <h1 id="m47-title">Corte preciso.<br />Presença forte.</h1>
+          <p class="lead">
+            Cortes, barba e acabamento feitos com atenção aos detalhes — do primeiro fio ao último.
+          </p>
+          <div class="button-row">
+            <DemoAction
+              label="Agendar horário"
+              message="Esta é uma demonstração. Nenhum agendamento foi enviado."
+            /><a class="button button--secondary" href="#servicos"
+              >Ver serviços <ArrowDown aria-hidden="true" size={18} /></a
+            >
+          </div>
+          <p
+            class="status-message"
+            data-demo-status
+            data-demo-global-status
+            role="status"
+            tabindex="-1"
+            hidden
+          >
+          </p>
+        </div>
+      </div>
       <div class="m47-hero__media">
         <img
           src="/assets/demos/m47/m47-hero.webp"
@@ -101,29 +127,6 @@ const services = [
           alt="Barbeiro finalizando o corte de um cliente em uma barbearia contemporânea escura."
           fetchpriority="high"
         />
-      </div>
-      <div class="container m47-hero__copy" data-demo-scope>
-        <p class="eyebrow">BARBEARIA CONTEMPORÂNEA</p>
-        <h1 id="m47-title">Corte preciso.<br />Presença forte.</h1>
-        <p class="lead">
-          Cortes, barba e acabamento feitos com atenção aos detalhes — do primeiro fio ao último.
-        </p>
-        <div class="button-row">
-          <DemoAction
-            label="Agendar horário"
-            message="Esta é uma demonstração. Nenhum agendamento foi enviado."
-          /><a class="button button--secondary" href="#servicos"
-            >Ver serviços <ArrowDown aria-hidden="true" size={18} /></a>
-        </div>
-        <p
-          class="status-message"
-          data-demo-status
-          data-demo-global-status
-          role="status"
-          tabindex="-1"
-          hidden
-        >
-        </p>
       </div>
     </section>
 

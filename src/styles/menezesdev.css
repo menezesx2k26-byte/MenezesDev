@@ -223,6 +223,10 @@
   color: #555348;
 }
 
+.md-project--tavola .demo-disclosure {
+  color: #5c5141;
+}
+
 .md-project--tavola .tag-list li {
   border-color: #bbb09d;
 }

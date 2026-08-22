@@ -1,0 +1,52 @@
+{
+  "project": "m47",
+  "asset_type": "gallery — haircut in progress",
+  "name": "m47-gallery-01",
+  "path": "public/assets/demos/m47/m47-gallery-01.webp",
+  "generator": "native-imagegen",
+  "date": "2026-08-22",
+  "aspect_ratio": "4:5",
+  "dimensions": {
+    "width": 1200,
+    "height": 1500
+  },
+  "format": "webp",
+  "briefing_files": [
+    "AGENTS.md",
+    "docs/DEMO_CASES.md",
+    "docs/IMAGE_GENERATION_RULES.md",
+    "docs/NATIVE_IMAGEGEN_WORKFLOW.md",
+    "docs/BRAND_GUIDE.md",
+    "docs/context/STATE.md",
+    "docs/context/DECISIONS.md",
+    ".agents/skills/menezesdev-image-director/SKILL.md"
+  ],
+  "references_used": [
+    {
+      "path": "public/assets/demos/m47/m47-hero.webp",
+      "role": "style, palette and fictional environment reference"
+    }
+  ],
+  "status": "generated",
+  "suggested_alt": "Barbeiro realizando corte masculino com tesoura e pente em ambiente contemporâneo escuro.",
+  "review_notes": [
+    "Distinct haircut-in-progress scene with plausible scissor, comb, hand and hair contact.",
+    "Natural hair, skin, cape and metal textures; warm side light and M47 palette passed.",
+    "No readable text, invented branding, watermark, stock pose or prohibited barber cliché was found.",
+    "One candidate generated; no targeted edit was required."
+  ],
+  "conversion": {
+    "source_format": "png",
+    "source_dimensions": {
+      "width": 1122,
+      "height": 1402
+    },
+    "target_dimensions": {
+      "width": 1200,
+      "height": 1500
+    },
+    "resampling": "lanczos",
+    "webp_quality": 90
+  },
+  "sha256": "f4972faddf6fde6d8b483e6e41dd704b3c619e0a7192e40e4912ea019ba3cff6"
+}

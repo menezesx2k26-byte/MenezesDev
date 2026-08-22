@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 120" role="img" aria-labelledby="title desc">
+  <title id="title">M47 Barber</title>
+  <desc id="desc">Assinatura horizontal da M47 Barber com monograma geométrico e wordmark.</desc>
+  <g aria-hidden="true">
+    <path fill="#F3F0E9" d="M8 104V16h19l31 46 31-46h19v88H86V54L58 94 30 54v50H8Z"/>
+    <path fill="#C9A96E" fill-rule="evenodd" d="M119 75 151 16h23v55h12v19h-12v14h-22V90h-33V75Zm24-4h9V53l-9 18Z"/>
+    <path fill="#C9A96E" d="M188 16h29v18l-21 70h-23l21-69h-22V16h16Z"/>
+    <path fill="#7D6543" d="M246 24h2v72h-2z"/>
+  </g>
+  <text x="278" y="75" fill="#F3F0E9" font-family="Archivo, Arial, sans-serif" font-size="42" font-weight="800" letter-spacing="8">BARBER</text>
+</svg>

@@ -1,0 +1,52 @@
+{
+  "project": "m47",
+  "asset_type": "gallery — hair finishing detail",
+  "name": "m47-gallery-03",
+  "path": "public/assets/demos/m47/m47-gallery-03.webp",
+  "generator": "native-imagegen",
+  "date": "2026-08-22",
+  "aspect_ratio": "3:2",
+  "dimensions": {
+    "width": 1536,
+    "height": 1024
+  },
+  "format": "webp",
+  "briefing_files": [
+    "AGENTS.md",
+    "docs/DEMO_CASES.md",
+    "docs/IMAGE_GENERATION_RULES.md",
+    "docs/NATIVE_IMAGEGEN_WORKFLOW.md",
+    "docs/BRAND_GUIDE.md",
+    "docs/context/STATE.md",
+    "docs/context/DECISIONS.md",
+    ".agents/skills/menezesdev-image-director/SKILL.md"
+  ],
+  "references_used": [
+    {
+      "path": "public/assets/demos/m47/m47-hero.webp",
+      "role": "style, palette and fictional environment reference"
+    }
+  ],
+  "status": "generated",
+  "suggested_alt": "Detalhe lateral de corte masculino com degradê e pente refinando o acabamento.",
+  "review_notes": [
+    "Close technical detail clearly shows a natural fade, hair fibers, scalp, comb and plausible hand.",
+    "Landscape crop is distinct from the service portraits and retains the critical finishing detail.",
+    "No readable text, invented branding, watermark or prohibited barber cliché was found.",
+    "One candidate generated; no targeted edit was required."
+  ],
+  "conversion": {
+    "source_format": "png",
+    "source_dimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "target_dimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "resampling": "lanczos",
+    "webp_quality": 90
+  },
+  "sha256": "1cd2ffe5c920a2fa2c7f7437062a9092a98f96ebdc6a300195222067e4449951"
+}

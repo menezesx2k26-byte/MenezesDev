@@ -1,0 +1,52 @@
+{
+  "project": "m47",
+  "asset_type": "gallery — beard finishing",
+  "name": "m47-gallery-02",
+  "path": "public/assets/demos/m47/m47-gallery-02.webp",
+  "generator": "native-imagegen",
+  "date": "2026-08-22",
+  "aspect_ratio": "4:5",
+  "dimensions": {
+    "width": 1200,
+    "height": 1500
+  },
+  "format": "webp",
+  "briefing_files": [
+    "AGENTS.md",
+    "docs/DEMO_CASES.md",
+    "docs/IMAGE_GENERATION_RULES.md",
+    "docs/NATIVE_IMAGEGEN_WORKFLOW.md",
+    "docs/BRAND_GUIDE.md",
+    "docs/context/STATE.md",
+    "docs/context/DECISIONS.md",
+    ".agents/skills/menezesdev-image-director/SKILL.md"
+  ],
+  "references_used": [
+    {
+      "path": "public/assets/demos/m47/m47-hero.webp",
+      "role": "style, palette and fictional environment reference"
+    }
+  ],
+  "status": "generated",
+  "suggested_alt": "Barbeiro refinando o contorno da barba de um cliente com aparador profissional.",
+  "review_notes": [
+    "Beard-finishing action is clear; trimmer grip, contact, hands and anatomy are plausible.",
+    "Natural beard and skin texture, controlled warm side light and M47 palette passed.",
+    "No readable text, invented branding, watermark, stock pose or prohibited barber cliché was found.",
+    "One candidate generated; no targeted edit was required."
+  ],
+  "conversion": {
+    "source_format": "png",
+    "source_dimensions": {
+      "width": 1122,
+      "height": 1402
+    },
+    "target_dimensions": {
+      "width": 1200,
+      "height": 1500
+    },
+    "resampling": "lanczos",
+    "webp_quality": 90
+  },
+  "sha256": "9c593084a931866ffab37b910e42eed2449529b17018f81dc0b9b543b6cb588e"
+}

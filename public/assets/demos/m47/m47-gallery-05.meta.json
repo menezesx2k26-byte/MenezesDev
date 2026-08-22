@@ -1,0 +1,52 @@
+{
+  "project": "m47",
+  "asset_type": "gallery — interior",
+  "name": "m47-gallery-05",
+  "path": "public/assets/demos/m47/m47-gallery-05.webp",
+  "generator": "native-imagegen",
+  "date": "2026-08-22",
+  "aspect_ratio": "16:10",
+  "dimensions": {
+    "width": 1536,
+    "height": 960
+  },
+  "format": "webp",
+  "briefing_files": [
+    "AGENTS.md",
+    "docs/DEMO_CASES.md",
+    "docs/IMAGE_GENERATION_RULES.md",
+    "docs/NATIVE_IMAGEGEN_WORKFLOW.md",
+    "docs/BRAND_GUIDE.md",
+    "docs/context/STATE.md",
+    "docs/context/DECISIONS.md",
+    ".agents/skills/menezesdev-image-director/SKILL.md"
+  ],
+  "references_used": [
+    {
+      "path": "public/assets/demos/m47/m47-hero.webp",
+      "role": "style, palette and fictional environment reference"
+    }
+  ],
+  "status": "generated",
+  "suggested_alt": "Interior de barbearia contemporânea com estações pretas, madeira discreta e luz lateral quente.",
+  "review_notes": [
+    "Wide establishing view has coherent workstations, circulation, reflections, furniture and professional equipment.",
+    "Deep black, restrained wood and matte-gold details match the M47 identity without exaggerated luxury.",
+    "No readable text, invented branding, watermark, stock real-estate staging or prohibited barber cliché was found.",
+    "One candidate generated; no targeted edit was required."
+  ],
+  "conversion": {
+    "source_format": "png",
+    "source_dimensions": {
+      "width": 1586,
+      "height": 992
+    },
+    "target_dimensions": {
+      "width": 1536,
+      "height": 960
+    },
+    "resampling": "lanczos",
+    "webp_quality": 90
+  },
+  "sha256": "125f0e5f93f12fb8bc39899428b47281f11def2fcf7e3dc9b6163e6fbf98ad21"
+}

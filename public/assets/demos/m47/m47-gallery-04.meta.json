@@ -1,0 +1,52 @@
+{
+  "project": "m47",
+  "asset_type": "gallery — professional tools in use",
+  "name": "m47-gallery-04",
+  "path": "public/assets/demos/m47/m47-gallery-04.webp",
+  "generator": "native-imagegen",
+  "date": "2026-08-22",
+  "aspect_ratio": "3:2",
+  "dimensions": {
+    "width": 1536,
+    "height": 1024
+  },
+  "format": "webp",
+  "briefing_files": [
+    "AGENTS.md",
+    "docs/DEMO_CASES.md",
+    "docs/IMAGE_GENERATION_RULES.md",
+    "docs/NATIVE_IMAGEGEN_WORKFLOW.md",
+    "docs/BRAND_GUIDE.md",
+    "docs/context/STATE.md",
+    "docs/context/DECISIONS.md",
+    ".agents/skills/menezesdev-image-director/SKILL.md"
+  ],
+  "references_used": [
+    {
+      "path": "public/assets/demos/m47/m47-hero.webp",
+      "role": "style, palette and fictional environment reference"
+    }
+  ],
+  "status": "generated",
+  "suggested_alt": "Mãos de barbeiro usando máquina e pente no acabamento de um corte masculino.",
+  "review_notes": [
+    "Tool-led framing clearly shows clipper-over-comb technique with separate, plausible hands and equipment.",
+    "Metal, comb, hair and skin textures plus M47 lighting and palette passed.",
+    "No readable equipment label, invented branding, watermark or prohibited barber cliché was found.",
+    "One candidate generated; no targeted edit was required."
+  ],
+  "conversion": {
+    "source_format": "png",
+    "source_dimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "target_dimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "resampling": "lanczos",
+    "webp_quality": 90
+  },
+  "sha256": "cb3984de008805975f166fb3922a849ce4e382f2f95663476163315d0df8d4f7"
+}

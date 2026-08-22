@@ -1,6 +1,7 @@
 [CmdletBinding()]
 param(
-    [string]$Profile = "gemini-gemini-2-5-flash",
+    [string]$Model = "auto/coding:free",
+    [string]$Profile,
 
     [Parameter(ValueFromRemainingArguments = $true)]
     [string[]]$CodexArgs
@@ -61,12 +62,23 @@ if (-not (Test-OmniRouteHealth)) {
 }
 
 Write-Host "Repo: $repoRoot"
-Write-Host "Perfil OmniRoute: $Profile"
 
-$launchArgs = @("launch-codex", "--profile", $Profile)
+$launchArgs = @("launch-codex")
+$defaultCodexArgs = @()
 
-# Free-provider profiles may inherit reasoning settings unsupported upstream.
-$defaultCodexArgs = @("-c", 'model_reasoning_effort="none"')
+if ($Profile) {
+    # Explicit profile remains available as a stable/manual escape hatch.
+    Write-Host "Perfil OmniRoute: $Profile"
+    $launchArgs += @("--profile", $Profile)
+}
+else {
+    # auto/coding:free keeps the route coding-oriented and filters to free-tier candidates.
+    Write-Host "Rota OmniRoute: $Model"
+    $defaultCodexArgs += @("-c", "model=`"$Model`"")
+}
+
+# Free-provider routes can inherit reasoning settings unsupported by some upstreams.
+$defaultCodexArgs += @("-c", 'model_reasoning_effort="none"')
 
 if ($CodexArgs -and $CodexArgs.Count -gt 0) {
     $defaultCodexArgs += $CodexArgs

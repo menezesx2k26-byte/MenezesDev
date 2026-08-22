@@ -8,7 +8,7 @@ O projeto está sendo construído com **Codex como agente principal**, documenta
 
 ## Estado atual
 
-- **Fase atual:** 8 — especificação técnica final concluída.
+- **Fase atual:** 9 — critérios de aceite e release gates concluídos.
 - **Work Mode:** 4.5.
 - **Agente principal:** Codex nativo.
 - **Custo obrigatório adicional de API para o baseline:** R$ 0.
@@ -17,7 +17,7 @@ O projeto está sendo construído com **Codex como agente principal**, documenta
 - **M47 hero:** WebP, 1536×960, 16:10, status `generated`.
 - **MCP de imagem anterior:** desativado e mantido apenas como registro histórico.
 
-Os assets, wireframes responsivos, contratos de interação e a especificação técnica estão concluídos. A Fase 9 deve transformar esses contratos em critérios de aceite mensuráveis antes da implementação.
+Os assets, wireframes responsivos, contratos de interação, especificação técnica e critérios de aceite estão concluídos. A Fase 10 de implementação ainda não foi iniciada.
 
 ## Baseline técnico fechado
 
@@ -30,7 +30,7 @@ Os assets, wireframes responsivos, contratos de interação e a especificação 
 - nenhum framework cliente, backend, endpoint ou segredo no baseline;
 - Cloudflare Web Analytics somente na superfície real de produção, nunca nas demos fictícias.
 
-O contrato completo, incluindo versões, rotas, tokens, fontes, SEO, acessibilidade, segurança, performance e decisões de revisão, está em `docs/TECHNICAL_SPEC.md`. Nenhum scaffold ou pacote foi criado na Fase 8.
+O contrato técnico completo está em `docs/TECHNICAL_SPEC.md`. A auditoria futura usa `docs/ACCEPTANCE_CRITERIA.md`, com 97 hard gates, 10 release gates e 8 targets. Nenhum scaffold ou pacote foi criado nas Fases 8–9.
 
 ## Oferta comercial
 
@@ -142,7 +142,7 @@ Leia `docs/WORK_MODE_4_5.md` antes de alterar a infraestrutura de agentes.
 - [x] Wireframe desktop + mobile
 - [x] **Interações e comportamento**
 - [x] **Especificação técnica final**
-- [ ] Critérios de aceite
+- [x] **Critérios de aceite**
 - [ ] Prompt Mestre do Codex
 
 A implementação deve respeitar essa ordem para reduzir improvisação e retrabalho.
@@ -164,6 +164,7 @@ MenezesDev/
 │   ├── MCP_IMAGE_PIPELINE_SPEC.md
 │   ├── NATIVE_IMAGEGEN_WORKFLOW.md
 │   ├── TECHNICAL_SPEC.md
+│   ├── ACCEPTANCE_CRITERIA.md
 │   ├── wireframes/
 │   ├── interactions/
 │   └── context/
@@ -189,6 +190,7 @@ MenezesDev/
 - `docs/wireframes/README.md` — composição canônica desktop/mobile.
 - `docs/interactions/README.md` — estados e comportamento canônicos.
 - `docs/TECHNICAL_SPEC.md` — arquitetura e decisões técnicas canônicas para a implementação futura.
+- `docs/ACCEPTANCE_CRITERIA.md` — matriz objetiva de hard gates, release gates, targets e Definition of Done.
 - `docs/context/STATE.md` — estado operacional atual.
 - `docs/context/DECISIONS.md` — decisões canônicas do projeto.
 - `docs/context/HANDOFF.md` — continuidade entre sessões/agentes.

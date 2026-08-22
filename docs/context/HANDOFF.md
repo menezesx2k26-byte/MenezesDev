@@ -2,35 +2,33 @@
 
 ## Current phase
 
-Phase 8 — final technical specification — is complete in documentation. Phase 9 has not started.
+Phase 9 — acceptance criteria and release gates — is complete in documentation. Phase 10 has not started.
 
 ## Completed
 
-- Created `docs/TECHNICAL_SPEC.md` as the canonical contract for Phase 10.
-- Fixed the stack at Astro 7 static, strict TypeScript, Tailwind CSS 4 with `@tailwindcss/vite`, pnpm 11, Node.js 24 LTS, Lucide, semantic HTML, CSS-first and minimal vanilla TypeScript.
-- Fixed Cloudflare Pages as the initial static host: GitHub `main` → `pnpm build` → `dist`, with pull-request previews and no Cloudflare adapter or runtime backend.
-- Mapped all 16 routes, approved assets, responsive image behavior, accessibility interactions, likely LCP elements, typed content domains and central configuration.
-- Defined local-only demo actions, production-only analytics, security headers, custom 404, local fonts and the final SEO/indexation policy.
-- Updated `README.md`, `STATE.md` and `DECISIONS.md` without creating implementation files.
+- Created `docs/ACCEPTANCE_CRITERIA.md` with 115 stable criteria: 97 hard gates, 10 release gates and 8 targets.
+- Mapped all 16 routes, the 404 fallback, reserved Prismae About, 17 CTA labels and 23 final assets.
+- Defined clean-build evidence, viewport coverage, keyboard/accessibility checks, form Network/storage audit, SEO policy, Lighthouse targets, Cloudflare release checks and three completion states.
+- Classified WhatsApp, domain/TLS and conditional Brand Kit materialization as production blockers; About and screenshots remain post-implementation.
+- Updated README and project memory without creating or changing implementation files.
 
 ## Validated
 
-- The specification was confronted with all wireframes, interactions, demo briefings and the approved asset inventory.
-- The 16 public routes match Phase 7; `/demo/prismae/about` remains absent.
-- MenezesDev and `/projetos/*` are indexable; fictitious `/demo/**` routes are noindex and omitted from the sitemap.
-- Cloudflare Pages supports the entire current scope; no baseline feature requires an API, secret, database, SSR or Worker.
-- No fictitious action transmits or persists data.
-- No `package.json`, lockfile, `src/`, framework scaffold, asset, screenshot, Cloudflare configuration or deployment was created.
-- The two pre-existing user edits in `tools/mcp-image/` remain uncommitted and untouched.
+- Matrix contains 30 numbered sections, unique stable IDs and mechanically matching severity counts.
+- Criteria were confronted with Technical Spec, all wireframes/interactions, Demo Cases, Home Copy, offer and the asset inventory.
+- SEO target scope resolves the deliberate noindex behavior without weakening demo hard gates.
+- WCAG 2.2 contrast/touch rules were checked against current W3C sources; Lighthouse scoring guidance was checked against Chrome documentation.
+- No `package.json`, lockfile, `src/`, frontend, asset, screenshot, deploy or Cloudflare configuration was created.
+- The two pre-existing edits in `tools/mcp-image/` remain uncommitted and untouched.
 
-## Pending for Phase 9
+## Pending
 
-- Convert the approved real MenezesDev WhatsApp URL into an acceptance gate; production must remain blocked until it exists.
-- Keep `/demo/prismae/about` absent until expanded copy is approved.
-- Define measurable thresholds and test coverage for accessibility, performance, routes, metadata, forms, analytics exclusion, CSP and responsive behavior.
-- Confirm control/TLS for `menezesdev.com.br` and Cloudflare production/preview settings before launch.
-- Plan real screenshots only after the implementation exists; never substitute mock screenshots.
+- Real approved MenezesDev WhatsApp URL: blocks production, not implementation.
+- Canonical domain/TLS and Cloudflare environment verification: blocks production.
+- Brand Kit materialization: blocks production only where a required public logo/favicon is still absent.
+- Prismae `/about`: keep absent; does not block the 16-route implementation.
+- Real screenshots/mockups: only after working demos; required for Visual Portfolio Complete.
 
 ## Next action
 
-Start Phase 9 only when explicitly requested. Use `docs/TECHNICAL_SPEC.md` together with `docs/wireframes/` and `docs/interactions/`; do not scaffold Astro, configure Cloudflare, implement components or capture screenshots before the authorized implementation phase.
+Start Phase 10 only when explicitly requested. Implement against `docs/TECHNICAL_SPEC.md` and audit against `docs/ACCEPTANCE_CRITERIA.md`; do not invent pending inputs or publish while a release gate is blocked.

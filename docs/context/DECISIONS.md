@@ -153,3 +153,27 @@ Plan Cloudflare Web Analytics at the edge for the canonical production host only
 **Date:** 2026-08-22
 
 Brand name, canonical base URL, default metadata, navigation, approved social links and the MenezesDev WhatsApp URL belong in one typed site configuration. The WhatsApp value starts null and must block production publication until approved; it cannot be copied as a placeholder across pages.
+
+## D-026 — Phase 9 acceptance matrix is canonical
+**Status:** accepted
+**Date:** 2026-08-22
+
+`docs/ACCEPTANCE_CRITERIA.md` converts the approved contracts into 115 stable, auditable criteria: 97 HARD GATES, 10 RELEASE GATES and 8 TARGETS. Phase 10 is complete only against this matrix; changing a gate requires an explicit decision rather than silently weakening the test.
+
+## D-027 — Completion and release are separate states
+**Status:** accepted
+**Date:** 2026-08-22
+
+`IMPLEMENTATION DONE` requires every HARD GATE to pass. `PRODUCTION READY` additionally requires every RELEASE GATE, including real WhatsApp, domain/TLS and Cloudflare environment checks. `VISUAL PORTFOLIO COMPLETE` comes later and requires real screenshots and derived mockups. A missing production input must not be replaced by fake data merely to mark implementation complete.
+
+## D-028 — Lighthouse SEO target excludes deliberately noindex demos
+**Status:** accepted
+**Date:** 2026-08-22
+
+The aggregate Lighthouse SEO target applies only to `/` and `/projetos/*`. Applying it to `/demo/**` would contradict D-022 because the audit penalizes intentional noindex. Demos instead pass explicit hard gates for `noindex, nofollow, noarchive`, sitemap exclusion, factual metadata and safe structured data.
+
+## D-029 — Accessibility acceptance uses WCAG 2.2 AA plus the stronger project touch baseline
+**Status:** accepted
+**Date:** 2026-08-22
+
+WCAG 2.2 AA is the conformance target, with zero automated critical/serious findings and manual keyboard, focus, reflow and reduced-motion checks. Although WCAG 2.2 defines a 24×24 CSS px minimum target with formal exceptions, the project retains 44×44 CSS px as a hard gate for mobile controls and prefers 48 px for primary controls.

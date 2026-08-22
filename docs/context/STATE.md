@@ -5,7 +5,7 @@ Last updated: 2026-08-22
 ## Repository
 
 - Project: MenezesDev.
-- Current delivery phase: 8 — technical specification completed.
+- Current delivery phase: 9 — acceptance criteria and release gates completed.
 - Work Mode: 4.5.
 - Primary coding agent: Codex.
 - Claude Code subscription: not required.
@@ -56,7 +56,7 @@ Last updated: 2026-08-22
 - FAQ and mobile plan disclosures start closed, allow multiple open panels, support keyboard navigation and respect reduced motion.
 - Project cards are single links with no nested controls or hover-only content. Informational services, process blocks, images and data graphics remain non-interactive.
 - Motion is limited to short feedback, navigation, disclosure and one-time section entry; there is no parallax, scroll hijacking, autoplay or continuous decoration.
-- MenezesDev commercial CTAs require one real approved WhatsApp URL. No approved number/URL currently exists in the repository, so publication must fail until Phase 8 supplies it.
+- MenezesDev commercial CTAs require one real approved WhatsApp URL. No approved number/URL currently exists in the repository, so production remains blocked until it is approved and configured.
 - M47 scheduling/location and Tavola 27 reservation actions are local demonstrative states; they open no external service.
 - Prismae validates its form locally, uses the approved success copy and sends/persists no data. Anti-spam remains a technical Phase 8 requirement only for any future real form.
 - Prismae `/about` remains reserved and absent from public navigation until expanded institutional copy is approved.
@@ -75,6 +75,17 @@ Last updated: 2026-08-22
 - The real MenezesDev WhatsApp URL remains unresolved. It will have one nullable central configuration value, and a production build must fail while that required destination is absent.
 - No package, `src/`, framework scaffold, asset, screenshot, Cloudflare configuration or implementation was created in Phase 8.
 
+## Phase 9 acceptance criteria
+
+- `docs/ACCEPTANCE_CRITERIA.md` is the canonical PASS/FAIL contract for the future implementation and release audit.
+- The matrix contains 115 stable criteria: 97 HARD GATES, 10 RELEASE GATES and 8 TARGETS.
+- All 16 canonical routes, the deliberate absence of `/demo/prismae/about`, the 404 fallback, 17 distinct CTA labels and 23 final assets are explicitly mapped.
+- `IMPLEMENTATION DONE`, `PRODUCTION READY` and `VISUAL PORTFOLIO COMPLETE` are separate states. A release blocker cannot be disguised as implementation failure or bypassed with a placeholder.
+- WCAG 2.2 AA is the accessibility target. Automated audits require zero critical and zero serious findings; the project retains the stronger 44×44 CSS px mobile-control baseline.
+- Lighthouse targets use the median of three mobile production-like runs. The SEO score target applies only to `/` and `/projetos/*`; demos are deliberately noindex and use explicit SEO gates instead.
+- The WhatsApp URL, canonical domain/TLS and any required Brand Kit materialization are production blockers. Prismae About and real screenshots are post-implementation items and do not block the current 16-route implementation.
+- No package, lockfile, `src/`, frontend, asset, screenshot, Cloudflare configuration or deploy was created in Phase 9.
+
 ## Git and worktree
 
 - M47 asset commit: `265bcc814534d924dfff024db8a919dd08d058f0`.
@@ -82,8 +93,9 @@ Last updated: 2026-08-22
 - Prismae asset commit: `1378c19a96b44af5a57c87e63744af55fef8cba0`.
 - Phase 6 wireframe commit: `0d8d310d79fd306c90c00cf7cb7dce3cad868386`.
 - Phase 7 interaction commit: `fa7d92a1a726299bca279b80a20af810d95b5470`.
+- Phase 8 technical specification commit: `03ae135eca6754b5c828f2682d9f514621de9d0a`.
 - Two pre-existing user changes remain uncommitted and untouched in `tools/mcp-image/src/core/promptBuilder.ts` and `tools/mcp-image/tests/workspace-prompt.test.mjs`.
 
 ## Next logical step
 
-Phase 9 may define acceptance criteria only when explicitly requested. Site implementation, Astro/Tailwind setup, browser validation, real screenshots, Cloudflare configuration and deploy have not started.
+Phase 10 implementation may begin only when explicitly requested. Astro/Tailwind setup, browser validation, real screenshots, Cloudflare configuration and deploy have not started.

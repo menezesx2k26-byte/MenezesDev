@@ -1,0 +1,233 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import DemoAction from "../../components/DemoAction.astro";
+import DemoFooter from "../../components/DemoFooter.astro";
+import { ArrowDown } from "lucide-astro";
+import "../../styles/m47.css";
+
+const nav = [
+  { label: "Serviços", href: "/demo/m47#servicos" },
+  { label: "Galeria", href: "/demo/m47#galeria" },
+  { label: "Sobre", href: "/demo/m47#sobre" },
+  { label: "Localização", href: "/demo/m47#localizacao" },
+];
+const gallery = [
+  {
+    src: "/assets/demos/m47/m47-gallery-01.webp",
+    width: 1200,
+    height: 1500,
+    alt: "Barbeiro realizando corte masculino com tesoura e pente em ambiente contemporâneo escuro.",
+  },
+  {
+    src: "/assets/demos/m47/m47-gallery-03.webp",
+    width: 1536,
+    height: 1024,
+    alt: "Detalhe lateral de corte masculino com degradê e pente refinando o acabamento.",
+  },
+  {
+    src: "/assets/demos/m47/m47-gallery-04.webp",
+    width: 1536,
+    height: 1024,
+    alt: "Mãos de barbeiro usando máquina e pente no acabamento de um corte masculino.",
+  },
+  {
+    src: "/assets/demos/m47/m47-gallery-05.webp",
+    width: 1536,
+    height: 960,
+    alt: "Interior de barbearia contemporânea com estações pretas, madeira discreta e luz lateral quente.",
+  },
+  {
+    src: "/assets/demos/m47/m47-gallery-02.webp",
+    width: 1200,
+    height: 1500,
+    alt: "Barbeiro refinando o contorno da barba de um cliente com aparador profissional.",
+  },
+  {
+    src: "/assets/demos/m47/m47-gallery-06.webp",
+    width: 1200,
+    height: 1500,
+    alt: "Cliente após o atendimento em retrato editorial de perfil dentro da barbearia.",
+  },
+];
+const services = [
+  {
+    title: "Corte masculino",
+    text: "Tesoura e máquina com acabamento personalizado.",
+    price: "R$55",
+  },
+  { title: "Barba", text: "Contorno, acabamento e tratamento.", price: "R$45" },
+  { title: "Corte + barba", text: "Experiência completa em um único horário.", price: "R$90" },
+];
+---
+
+<BaseLayout
+  title="M47 Barber — Conceito demonstrativo"
+  description="Landing page demonstrativa para uma barbearia contemporânea fictícia."
+  image="/assets/demos/m47/m47-hero.webp"
+  theme="m47"
+  noindex
+  fonts={["--font-archivo", "--font-inter"]}
+  preloadFont="--font-archivo"
+>
+  <div id="top"></div>
+  <SiteHeader
+    brandHref="/demo/m47#top"
+    brandLabel="M47 Barber"
+    logoSrc="/assets/demos/m47/m47-logo.svg"
+    logoWidth={620}
+    logoHeight={120}
+    nav={nav}
+  >
+    <DemoAction
+      slot="desktop-action"
+      label="Agendar horário"
+      message="Esta é uma demonstração. Nenhum agendamento foi enviado."
+    />
+    <DemoAction
+      slot="mobile-action"
+      label="Agendar horário"
+      message="Esta é uma demonstração. Nenhum agendamento foi enviado."
+      class="button button--wide"
+    />
+  </SiteHeader>
+  <main id="main-content">
+    <section class="m47-hero" aria-labelledby="m47-title">
+      <div class="m47-hero__media">
+        <img
+          src="/assets/demos/m47/m47-hero.webp"
+          width="1536"
+          height="960"
+          alt="Barbeiro finalizando o corte de um cliente em uma barbearia contemporânea escura."
+          fetchpriority="high"
+        />
+      </div>
+      <div class="container m47-hero__copy" data-demo-scope>
+        <p class="eyebrow">BARBEARIA CONTEMPORÂNEA</p>
+        <h1 id="m47-title">Corte preciso.<br />Presença forte.</h1>
+        <p class="lead">
+          Cortes, barba e acabamento feitos com atenção aos detalhes — do primeiro fio ao último.
+        </p>
+        <div class="button-row">
+          <DemoAction
+            label="Agendar horário"
+            message="Esta é uma demonstração. Nenhum agendamento foi enviado."
+          /><a class="button button--secondary" href="#servicos"
+            >Ver serviços <ArrowDown aria-hidden="true" size={18} /></a>
+        </div>
+        <p
+          class="status-message"
+          data-demo-status
+          data-demo-global-status
+          role="status"
+          tabindex="-1"
+          hidden
+        >
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="servicos" aria-labelledby="m47-services-title">
+      <div class="container m47-services">
+        <header>
+          <p class="eyebrow">M47</p><h2 id="m47-services-title">Serviços</h2><p>
+            Os valores são exclusivamente demonstrativos.
+          </p>
+        </header>
+        {
+          services.map((service) => (
+            <article class="m47-service">
+              <>
+                <h3>{service.title}</h3>
+                <p>{service.text}</p>
+                <span class="m47-service__price">{service.price}</span>
+              </>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section--compact" id="galeria" aria-labelledby="m47-gallery-title">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">M47</p><h2 id="m47-gallery-title">Galeria</h2>
+        </div><div class="m47-gallery">
+          {
+            gallery.map((image) => (
+              <figure>
+                <img
+                  src={image.src}
+                  width={image.width}
+                  height={image.height}
+                  alt={image.alt}
+                  loading="lazy"
+                />
+              </figure>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sobre" aria-labelledby="m47-about-title">
+      <div class="container m47-about">
+        <div class="m47-about__portrait">
+          <img
+            src="/assets/demos/m47/m47-gallery-06.webp"
+            width="1200"
+            height="1500"
+            alt="Cliente após o atendimento em retrato editorial de perfil dentro da barbearia."
+            loading="lazy"
+          /><img
+            class="m47-about__mark"
+            src="/assets/demos/m47/m47-mark.svg"
+            width="240"
+            height="240"
+            alt=""
+            loading="lazy"
+          />
+        </div>
+        <div>
+          <p class="eyebrow">SOBRE A M47</p><h2 id="m47-about-title">
+            Mais que cortar.<br />Saber o que combina com você.
+          </h2><p class="lead">
+            Na M47, cada atendimento começa entendendo o estilo, a rotina e o resultado que você
+            procura.
+          </p><p>Sem pressa, sem receita pronta.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section--compact" id="localizacao" aria-labelledby="m47-location-title">
+      <div class="container m47-location">
+        <div class="surface-card">
+          <p class="eyebrow">LOCALIZAÇÃO DEMONSTRATIVA</p><h2
+            id="m47-location-title"
+            class="m47-location__city"
+          >
+            Centro · São Paulo
+          </h2><p>Localização fictícia apresentada apenas para demonstrar a estrutura da página.</p>
+        </div>
+        <div class="surface-card" data-demo-scope>
+          <h3>Abrir localização</h3><p>Nenhum mapa ou endereço real será aberto.</p><DemoAction
+            label="Abrir localização"
+            message="Esta é uma demonstração. Nenhuma localização real será aberta."
+          /><p class="status-message" data-demo-status role="status" tabindex="-1" hidden></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section--compact">
+      <div class="container surface-card m47-final" data-demo-scope>
+        <h2>Seu próximo corte começa aqui.</h2><div class="button-row">
+          <DemoAction
+            label="Agendar pelo WhatsApp"
+            message="Esta é uma demonstração. Nenhum agendamento foi enviado."
+          />
+        </div><p class="status-message" data-demo-status role="status" tabindex="-1" hidden></p>
+      </div>
+    </section>
+  </main>
+  <DemoFooter name="M47 Barber" logoSrc="/assets/demos/m47/m47-logo.svg" nav={nav} />
+</BaseLayout>

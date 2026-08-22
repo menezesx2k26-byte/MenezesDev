@@ -8,7 +8,7 @@ O projeto está sendo construído com **Codex como agente principal**, documenta
 
 ## Estado atual
 
-- **Fase atual:** 7 — interações e comportamento concluídos.
+- **Fase atual:** 8 — especificação técnica final concluída.
 - **Work Mode:** 4.5.
 - **Agente principal:** Codex nativo.
 - **Custo obrigatório adicional de API para o baseline:** R$ 0.
@@ -17,7 +17,20 @@ O projeto está sendo construído com **Codex como agente principal**, documenta
 - **M47 hero:** WebP, 1536×960, 16:10, status `generated`.
 - **MCP de imagem anterior:** desativado e mantido apenas como registro histórico.
 
-Os assets, wireframes responsivos e contratos de interação estão concluídos. A Fase 8, ainda não iniciada, deve tratar a especificação técnica antes de qualquer implementação visual final.
+Os assets, wireframes responsivos, contratos de interação e a especificação técnica estão concluídos. A Fase 9 deve transformar esses contratos em critérios de aceite mensuráveis antes da implementação.
+
+## Baseline técnico fechado
+
+- Astro 7 com geração estática e TypeScript strict;
+- Tailwind CSS 4 via `@tailwindcss/vite`;
+- pnpm 11 e Node.js 24 LTS;
+- HTML semântico, CSS-first e JavaScript cliente mínimo;
+- GitHub `main` como origem de produção no Cloudflare Pages;
+- `pnpm build` como build e `dist` como diretório publicado;
+- nenhum framework cliente, backend, endpoint ou segredo no baseline;
+- Cloudflare Web Analytics somente na superfície real de produção, nunca nas demos fictícias.
+
+O contrato completo, incluindo versões, rotas, tokens, fontes, SEO, acessibilidade, segurança, performance e decisões de revisão, está em `docs/TECHNICAL_SPEC.md`. Nenhum scaffold ou pacote foi criado na Fase 8.
 
 ## Oferta comercial
 
@@ -128,7 +141,7 @@ Leia `docs/WORK_MODE_4_5.md` antes de alterar a infraestrutura de agentes.
 - [x] Produção dos assets visuais
 - [x] Wireframe desktop + mobile
 - [x] **Interações e comportamento**
-- [ ] Especificação técnica final
+- [x] **Especificação técnica final**
 - [ ] Critérios de aceite
 - [ ] Prompt Mestre do Codex
 
@@ -150,6 +163,9 @@ MenezesDev/
 │   ├── IMAGE_GENERATION_RULES.md
 │   ├── MCP_IMAGE_PIPELINE_SPEC.md
 │   ├── NATIVE_IMAGEGEN_WORKFLOW.md
+│   ├── TECHNICAL_SPEC.md
+│   ├── wireframes/
+│   ├── interactions/
 │   └── context/
 ├── public/
 │   └── assets/
@@ -172,6 +188,7 @@ MenezesDev/
 - `docs/NATIVE_IMAGEGEN_WORKFLOW.md` — workflow oficial do ImageGen nativo.
 - `docs/wireframes/README.md` — composição canônica desktop/mobile.
 - `docs/interactions/README.md` — estados e comportamento canônicos.
+- `docs/TECHNICAL_SPEC.md` — arquitetura e decisões técnicas canônicas para a implementação futura.
 - `docs/context/STATE.md` — estado operacional atual.
 - `docs/context/DECISIONS.md` — decisões canônicas do projeto.
 - `docs/context/HANDOFF.md` — continuidade entre sessões/agentes.

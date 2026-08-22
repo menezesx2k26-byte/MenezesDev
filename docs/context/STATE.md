@@ -5,7 +5,8 @@ Last updated: 2026-08-22
 ## Repository
 
 - Project: MenezesDev.
-- Work Mode stage: 4.5.
+- Current delivery phase: 8 — technical specification completed.
+- Work Mode: 4.5.
 - Primary coding agent: Codex.
 - Claude Code subscription: not required.
 - Mandatory additional AI API cost target: R$ 0 for the baseline.
@@ -61,14 +62,28 @@ Last updated: 2026-08-22
 - Prismae `/about` remains reserved and absent from public navigation until expanded institutional copy is approved.
 - No frontend, component, package, asset, screenshot, backend or Phase 8 implementation has started.
 
+## Phase 8 technical specification
+
+- `docs/TECHNICAL_SPEC.md` is the canonical architecture contract for the future Phase 10 implementation.
+- Baseline: Astro 7 static output, strict TypeScript, Tailwind CSS 4 through `@tailwindcss/vite`, pnpm 11, Node.js 24 LTS, Lucide, semantic HTML, CSS-first and minimal vanilla client JavaScript.
+- Cloudflare Pages is sufficient for the initial static scope. GitHub `main` is the production source, pull requests may receive previews, the build command is `pnpm build`, and the output directory is `dist`.
+- No Cloudflare adapter, client framework, backend, persistence, external demo submission, real demo booking/reservation or frontend secret is part of the baseline.
+- All 16 public routes from Phase 7 are fixed. `/demo/prismae/about` remains absent until approved expanded copy exists.
+- MenezesDev and its three portfolio case pages are indexable. All `/demo/**` routes are `noindex, nofollow, noarchive` and excluded from the sitemap because the businesses are fictitious.
+- Cloudflare Web Analytics is planned only for the canonical production host and real MenezesDev/portfolio routes; demos, previews and development are excluded.
+- Fonts are self-hosted as licensed WOFF2 files with route-scoped weights. Images and SVGs use only the approved asset set.
+- The real MenezesDev WhatsApp URL remains unresolved. It will have one nullable central configuration value, and a production build must fail while that required destination is absent.
+- No package, `src/`, framework scaffold, asset, screenshot, Cloudflare configuration or implementation was created in Phase 8.
+
 ## Git and worktree
 
 - M47 asset commit: `265bcc814534d924dfff024db8a919dd08d058f0`.
 - Tavola 27 asset commit: `c375d1c163f4f2a4e0b9f61422d8a460c28c0218`.
 - Prismae asset commit: `1378c19a96b44af5a57c87e63744af55fef8cba0`.
 - Phase 6 wireframe commit: `0d8d310d79fd306c90c00cf7cb7dce3cad868386`.
+- Phase 7 interaction commit: `fa7d92a1a726299bca279b80a20af810d95b5470`.
 - Two pre-existing user changes remain uncommitted and untouched in `tools/mcp-image/src/core/promptBuilder.ts` and `tools/mcp-image/tests/workspace-prompt.test.mjs`.
 
 ## Next logical step
 
-Phase 8 may define technical architecture and implementation details only when explicitly requested. Site implementation, Astro/Tailwind setup, browser validation and real screenshots have not started.
+Phase 9 may define acceptance criteria only when explicitly requested. Site implementation, Astro/Tailwind setup, browser validation, real screenshots, Cloudflare configuration and deploy have not started.

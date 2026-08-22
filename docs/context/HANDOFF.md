@@ -2,33 +2,35 @@
 
 ## Current phase
 
-Phase 7 — interactions and behavior — is complete in documentation. Phase 8 has not started.
+Phase 8 — final technical specification — is complete in documentation. Phase 9 has not started.
 
 ## Completed
 
-- Created `docs/interactions/README.md` with global routes, navigation, menu mobile, state vocabulary, motion, accordion, forms, accessibility and responsive behavior.
-- Created project contracts for MenezesDev, M47, Tavola 27 and Prismae.
-- Defined every CTA and navigation destination from the approved copy, briefings and wireframes.
-- Kept M47 scheduling/location and Tavola reservation strictly demonstrative.
-- Defined Prismae client-side validation, local processing and the exact approved success state with no network or persistence.
-- Kept Prismae `/about` absent until expanded copy is approved.
-- Changed no wireframe, asset, component, frontend architecture or historical MCP file.
+- Created `docs/TECHNICAL_SPEC.md` as the canonical contract for Phase 10.
+- Fixed the stack at Astro 7 static, strict TypeScript, Tailwind CSS 4 with `@tailwindcss/vite`, pnpm 11, Node.js 24 LTS, Lucide, semantic HTML, CSS-first and minimal vanilla TypeScript.
+- Fixed Cloudflare Pages as the initial static host: GitHub `main` → `pnpm build` → `dist`, with pull-request previews and no Cloudflare adapter or runtime backend.
+- Mapped all 16 routes, approved assets, responsive image behavior, accessibility interactions, likely LCP elements, typed content domains and central configuration.
+- Defined local-only demo actions, production-only analytics, security headers, custom 404, local fonts and the final SEO/indexation policy.
+- Updated `README.md`, `STATE.md` and `DECISIONS.md` without creating implementation files.
 
 ## Validated
 
-- All 17 distinct CTA labels are covered.
-- Escape, outside click, focus trap/restoration, scroll lock, keyboard, `aria-expanded`, `aria-current`, errors, loading, success and reduced motion are specified.
-- Mobile requires no hover and preserves every essential action.
-- No demo opens a real booking, restaurant, map, WhatsApp or Prismae endpoint.
-- Approved assets remain unchanged and no frontend/package exists.
+- The specification was confronted with all wireframes, interactions, demo briefings and the approved asset inventory.
+- The 16 public routes match Phase 7; `/demo/prismae/about` remains absent.
+- MenezesDev and `/projetos/*` are indexable; fictitious `/demo/**` routes are noindex and omitted from the sitemap.
+- Cloudflare Pages supports the entire current scope; no baseline feature requires an API, secret, database, SSR or Worker.
+- No fictitious action transmits or persists data.
+- No `package.json`, lockfile, `src/`, framework scaffold, asset, screenshot, Cloudflare configuration or deployment was created.
 - The two pre-existing user edits in `tools/mcp-image/` remain uncommitted and untouched.
 
-## Pending
+## Pending for Phase 9
 
-- Real approved MenezesDev WhatsApp URL; publication must remain blocked without it.
-- Expanded public copy for Prismae `/about`; keep the route/link absent meanwhile.
-- All framework, component, backend, anti-spam, analytics, 404, build and hosting choices belong to Phase 8.
+- Convert the approved real MenezesDev WhatsApp URL into an acceptance gate; production must remain blocked until it exists.
+- Keep `/demo/prismae/about` absent until expanded copy is approved.
+- Define measurable thresholds and test coverage for accessibility, performance, routes, metadata, forms, analytics exclusion, CSP and responsive behavior.
+- Confirm control/TLS for `menezesdev.com.br` and Cloudflare production/preview settings before launch.
+- Plan real screenshots only after the implementation exists; never substitute mock screenshots.
 
 ## Next action
 
-Begin Phase 8 only when explicitly requested. Use `docs/wireframes/` as the composition contract and `docs/interactions/` as the behavior contract. Do not infer permission to generate assets or capture screenshots before a real implementation exists.
+Start Phase 9 only when explicitly requested. Use `docs/TECHNICAL_SPEC.md` together with `docs/wireframes/` and `docs/interactions/`; do not scaffold Astro, configure Cloudflare, implement components or capture screenshots before the authorized implementation phase.

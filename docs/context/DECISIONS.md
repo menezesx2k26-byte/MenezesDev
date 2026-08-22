@@ -80,7 +80,7 @@ The reusable project page contains a conditional desktop/mobile screenshot modul
 **Status:** accepted
 **Date:** 2026-08-22
 
-Navigation, CTA behavior, states, motion, forms, accessibility and functional mobile differences are specified in `docs/interactions/`. These contracts complement, but do not replace, the Phase 6 composition in `docs/wireframes/`. Phase 8 must implement both or record a new explicit decision.
+Navigation, CTA behavior, states, motion, forms, accessibility and functional mobile differences are specified in `docs/interactions/`. These contracts complement, but do not replace, the Phase 6 composition in `docs/wireframes/`. Phase 8 must translate both into technical decisions; Phase 10 must implement both or record a new explicit decision.
 
 ## D-014 — Public routes use the repository path architecture
 **Status:** accepted
@@ -98,10 +98,58 @@ M47 scheduling/location, Tavola 27 reservation and Prismae diagnosis submission 
 **Status:** accepted
 **Date:** 2026-08-22
 
-All MenezesDev commercial CTAs share one real approved WhatsApp URL and the approved prefilled message. The repository currently has no approved URL. Publication is blocked until Phase 8 configures it; fake numbers, `#`, generic WhatsApp links and silent disabled fallbacks are forbidden.
+All MenezesDev commercial CTAs share one real approved WhatsApp URL and the approved prefilled message. The repository currently has no approved URL. Phase 8 defines one nullable central configuration value and a production build gate; publication remains blocked until the real URL is approved and configured. Fake numbers, `#`, generic WhatsApp links and silent disabled fallbacks are forbidden.
 
 ## D-017 — Prismae About is conditional on approved copy
 **Status:** accepted
 **Date:** 2026-08-22
 
 The Phase 6 navigation slot and route `/demo/prismae/about` remain reserved, but no public link or page is rendered until expanded institutional copy is approved. Do not substitute history, team, credentials, clients, metrics or a redirect to another section.
+
+## D-018 — Phase 8 technical specification is canonical
+**Status:** accepted
+**Date:** 2026-08-22
+
+`docs/TECHNICAL_SPEC.md` is the architecture contract for Phase 10. It resolves runtime, hosting, routes, data, assets, accessibility, performance, security, SEO and quality tooling without creating implementation files. Phase 9 may add measurable acceptance criteria but must not silently replace this baseline.
+
+## D-019 — Initial delivery is Astro static on Cloudflare Pages
+**Status:** accepted
+**Date:** 2026-08-22
+
+Use Astro 7 with static output and publish `dist` from GitHub `main` through Cloudflare Pages. Do not add `@astrojs/cloudflare`, Pages Functions, Workers runtime or SSR while the site has no runtime backend requirement. Revisit only when an API, server-side form, authentication, runtime storage, middleware or SSR becomes concrete.
+
+## D-020 — Runtime and presentation stack are deliberately small
+**Status:** accepted
+**Date:** 2026-08-22
+
+The implementation baseline is Node.js 24 LTS, pnpm 11, strict TypeScript, Tailwind CSS 4 through `@tailwindcss/vite`, Lucide and local CSS. React, Vue, Svelte, a client router and heavy animation libraries are excluded because the approved interactions can use native HTML, CSS and small vanilla TypeScript controllers.
+
+## D-021 — Fonts are local and route-scoped
+**Status:** accepted
+**Date:** 2026-08-22
+
+Use licensed WOFF2 font files with Astro's local Fonts API, only the approved families and weights required per identity, `font-display: swap`, and selective hero preload. Runtime Google Fonts or Fontsource requests are not part of the baseline.
+
+## D-022 — Fictitious demos are excluded from search indexing
+**Status:** accepted
+**Date:** 2026-08-22
+
+The MenezesDev Home and `/projetos/*` case pages are indexable. Every `/demo/**` route is `noindex, nofollow, noarchive` and excluded from the sitemap so M47, Tavola 27 and Prismae are not presented as real businesses in search. Do not emit `LocalBusiness` for them.
+
+## D-023 — Initial release has no backend or transmitted demo data
+**Status:** accepted
+**Date:** 2026-08-22
+
+M47 and Tavola commercial interactions are local demonstration states. Prismae validates and completes locally without network, endpoint, persistence or anti-spam integration. Any future real submission reopens the backend, privacy, abuse-prevention and Cloudflare runtime decisions.
+
+## D-024 — Analytics covers only the real production surface
+**Status:** accepted
+**Date:** 2026-08-22
+
+Plan Cloudflare Web Analytics at the edge for the canonical production host only. Exclude `/demo/**`, development and preview hosts; do not add Google Analytics or a client analytics package. The technical collection behavior is documented without making a legal consent conclusion.
+
+## D-025 — Global commercial values have one source of truth
+**Status:** accepted
+**Date:** 2026-08-22
+
+Brand name, canonical base URL, default metadata, navigation, approved social links and the MenezesDev WhatsApp URL belong in one typed site configuration. The WhatsApp value starts null and must block production publication until approved; it cannot be copied as a placeholder across pages.

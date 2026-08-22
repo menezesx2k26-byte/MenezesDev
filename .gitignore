@@ -10,6 +10,10 @@
 .omniroute/
 .headroom/
 
+# Local Codex / image pipeline
+.codex/config.toml
+.imagegen/tmp/
+
 # Node
 node_modules/
 dist/

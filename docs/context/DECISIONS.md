@@ -41,3 +41,9 @@ Do not include Claude-Mem in the baseline until its Codex integration passes a c
 **Date:** 2026-08-22
 
 Real API keys, tokens, cookies, certificates, and `.env` files are excluded. Examples may document variable names with blank values only.
+
+## D-008 — Image generation uses a local MCP pipeline
+**Status:** accepted  
+**Date:** 2026-08-22
+
+Raster image generation/editing is exposed to Codex through a local STDIO MCP server in `tools/mcp-image`. The server must read approved project briefings, keep native Codex as the execution path, support cost-free `dry_run`, protect the workspace, and never require an API key for validation-only runs. Paid OpenAI Image API calls remain explicit and opt-in.

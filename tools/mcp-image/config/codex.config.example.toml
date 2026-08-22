@@ -1,0 +1,8 @@
+[mcp_servers.menezesdev_image]
+command = "node"
+args = ["tools/mcp-image/dist/index.js"]
+cwd = "/CAMINHO/ABSOLUTO/DO/REPOSITORIO"
+env_vars = ["OPENAI_API_KEY", "OPENAI_IMAGE_MODEL", "IMAGEGEN_WORKSPACE_ROOT"]
+enabled_tools = ["generate_hero_image", "edit_image_asset"]
+startup_timeout_sec = 20
+tool_timeout_sec = 300

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 360" role="img" aria-labelledby="title desc">
+  <title id="title">Metodologia Prismae em quatro etapas</title>
+  <desc id="desc">Diagnóstico, priorização, implementação e acompanhamento.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="m0 0 10 5-10 5Z" fill="#174D4A"/>
+    </marker>
+  </defs>
+  <rect width="1280" height="360" rx="32" fill="#F6F7F4"/>
+  <g fill="none" stroke="#174D4A" stroke-width="3" marker-end="url(#arrow)">
+    <path d="M296 180h26"/><path d="M608 180h26"/><path d="M920 180h26"/>
+  </g>
+  <g font-family="Plus Jakarta Sans, Inter, Arial, sans-serif">
+    <g transform="translate(16 48)">
+      <rect width="280" height="264" rx="24" fill="#FFFFFF" stroke="#DCE2DE" stroke-width="2"/>
+      <circle cx="44" cy="44" r="24" fill="#D6E45D"/>
+      <text x="44" y="51" text-anchor="middle" fill="#172323" font-size="17" font-weight="700">01</text>
+      <text x="28" y="112" fill="#172323" font-size="25" font-weight="700">Diagnóstico</text>
+      <text x="28" y="154" fill="#667170" font-family="Inter, Arial, sans-serif" font-size="17">
+        <tspan x="28" dy="0">Entendimento do</tspan><tspan x="28" dy="26">cenário atual.</tspan>
+      </text>
+      <path d="M28 224h132" stroke="#174D4A" stroke-width="8" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(328 48)">
+      <rect width="280" height="264" rx="24" fill="#FFFFFF" stroke="#DCE2DE" stroke-width="2"/>
+      <circle cx="44" cy="44" r="24" fill="#D6E45D"/>
+      <text x="44" y="51" text-anchor="middle" fill="#172323" font-size="17" font-weight="700">02</text>
+      <text x="28" y="112" fill="#172323" font-size="25" font-weight="700">Priorização</text>
+      <text x="28" y="154" fill="#667170" font-family="Inter, Arial, sans-serif" font-size="17">
+        <tspan x="28" dy="0">Identificação do que</tspan><tspan x="28" dy="26">precisa mudar primeiro.</tspan>
+      </text>
+      <path d="M28 224h168" stroke="#174D4A" stroke-width="8" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(640 48)">
+      <rect width="280" height="264" rx="24" fill="#FFFFFF" stroke="#DCE2DE" stroke-width="2"/>
+      <circle cx="44" cy="44" r="24" fill="#D6E45D"/>
+      <text x="44" y="51" text-anchor="middle" fill="#172323" font-size="17" font-weight="700">03</text>
+      <text x="28" y="112" fill="#172323" font-size="25" font-weight="700">Implementação</text>
+      <text x="28" y="154" fill="#667170" font-family="Inter, Arial, sans-serif" font-size="17">
+        <tspan x="28" dy="0">Construção das soluções</tspan><tspan x="28" dy="26">junto à operação.</tspan>
+      </text>
+      <path d="M28 224h208" stroke="#174D4A" stroke-width="8" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(952 48)">
+      <rect width="280" height="264" rx="24" fill="#FFFFFF" stroke="#DCE2DE" stroke-width="2"/>
+      <circle cx="44" cy="44" r="24" fill="#D6E45D"/>
+      <text x="44" y="51" text-anchor="middle" fill="#172323" font-size="17" font-weight="700">04</text>
+      <text x="28" y="112" fill="#172323" font-size="25" font-weight="700">Acompanhamento</text>
+      <text x="28" y="154" fill="#667170" font-family="Inter, Arial, sans-serif" font-size="17">
+        <tspan x="28" dy="0">Indicadores para</tspan><tspan x="28" dy="26">acompanhar evolução.</tspan>
+      </text>
+      <path d="M28 224h232" stroke="#174D4A" stroke-width="8" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

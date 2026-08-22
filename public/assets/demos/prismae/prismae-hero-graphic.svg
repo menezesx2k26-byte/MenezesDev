@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720" role="img" aria-labelledby="title desc">
+  <title id="title">Sistema visual de gestão Prismae</title>
+  <desc id="desc">Diagrama abstrato relacionando estratégia, processos e indicadores, com dados ilustrativos.</desc>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0v40" fill="none" stroke="#DCE2DE" stroke-width="1"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="m0 0 10 5-10 5Z" fill="#174D4A"/>
+    </marker>
+  </defs>
+  <rect width="960" height="720" rx="40" fill="#F6F7F4"/>
+  <rect x="36" y="36" width="888" height="648" rx="32" fill="url(#grid)" stroke="#DCE2DE" stroke-width="2"/>
+  <rect x="76" y="72" width="808" height="576" rx="28" fill="#FFFFFF" stroke="#DCE2DE" stroke-width="2"/>
+  <text x="116" y="126" fill="#172323" font-family="Plus Jakarta Sans, Inter, Arial, sans-serif" font-size="22" font-weight="700">ESTRUTURA DE DECISÃO</text>
+  <text x="116" y="154" fill="#667170" font-family="Inter, Arial, sans-serif" font-size="15">Visão integrada para organizar prioridades e acompanhamento.</text>
+  <g font-family="Plus Jakarta Sans, Inter, Arial, sans-serif">
+    <rect x="116" y="196" width="208" height="116" rx="18" fill="#F6F7F4" stroke="#DCE2DE"/>
+    <circle cx="148" cy="230" r="12" fill="#D6E45D"/>
+    <text x="172" y="237" fill="#172323" font-size="20" font-weight="700">Estratégia</text>
+    <path d="M148 270h116" stroke="#174D4A" stroke-width="8" stroke-linecap="round"/>
+    <path d="M148 290h78" stroke="#B7CAC7" stroke-width="8" stroke-linecap="round"/>
+    <rect x="376" y="196" width="208" height="116" rx="18" fill="#F6F7F4" stroke="#DCE2DE"/>
+    <circle cx="408" cy="230" r="12" fill="#D6E45D"/>
+    <text x="432" y="237" fill="#172323" font-size="20" font-weight="700">Processos</text>
+    <path d="M408 270h116" stroke="#174D4A" stroke-width="8" stroke-linecap="round"/>
+    <path d="M408 290h92" stroke="#B7CAC7" stroke-width="8" stroke-linecap="round"/>
+    <rect x="636" y="196" width="208" height="116" rx="18" fill="#F6F7F4" stroke="#DCE2DE"/>
+    <circle cx="668" cy="230" r="12" fill="#D6E45D"/>
+    <text x="692" y="237" fill="#172323" font-size="20" font-weight="700">Indicadores</text>
+    <path d="M668 270h116" stroke="#174D4A" stroke-width="8" stroke-linecap="round"/>
+    <path d="M668 290h66" stroke="#B7CAC7" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <path d="M220 312v44h520v-44M480 312v68" fill="none" stroke="#174D4A" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="116" y="384" width="728" height="190" rx="22" fill="#174D4A"/>
+  <text x="148" y="426" fill="#FFFFFF" font-family="Plus Jakarta Sans, Inter, Arial, sans-serif" font-size="18" font-weight="700">ACOMPANHAMENTO ILUSTRATIVO</text>
+  <g fill="#D6E45D">
+    <rect x="156" y="500" width="38" height="34" rx="6"/>
+    <rect x="210" y="474" width="38" height="60" rx="6"/>
+    <rect x="264" y="452" width="38" height="82" rx="6"/>
+    <rect x="318" y="430" width="38" height="104" rx="6"/>
+  </g>
+  <path d="M430 520c44-2 61-58 107-52 42 6 55 42 94 26 34-14 46-64 96-74" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+  <g fill="#D6E45D" stroke="#174D4A" stroke-width="4">
+    <circle cx="430" cy="520" r="9"/><circle cx="537" cy="468" r="9"/><circle cx="631" cy="494" r="9"/><circle cx="727" cy="420" r="9"/>
+  </g>
+  <text x="148" y="554" fill="#B7CAC7" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="600" letter-spacing="2">DADOS ILUSTRATIVOS.</text>
+  <path d="M116 608h728" stroke="#DCE2DE"/>
+  <text x="116" y="630" fill="#667170" font-family="Inter, Arial, sans-serif" font-size="13">Estratégia → processo → indicador → decisão</text>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 120" role="img" aria-labelledby="title desc">
+  <title id="title">Prismae Consultoria</title>
+  <desc id="desc">Logo geométrico da Prismae Consultoria em verde petróleo e lima.</desc>
+  <g aria-hidden="true" transform="translate(8 12)">
+    <path fill="#174D4A" d="M48 0 92 24v48L48 96 4 72V24L48 0Zm0 20L23 34v28l25 14 25-14V34L48 20Z"/>
+    <path fill="#D6E45D" d="m48 20 25 14-25 15-25-15 25-14Z"/>
+    <path fill="#B7CAC7" d="m48 49 25-15v28L48 76V49Z"/>
+  </g>
+  <text x="132" y="70" fill="#172323" font-family="Plus Jakarta Sans, Inter, Arial, sans-serif" font-size="58" font-weight="700" letter-spacing="-2">Prismae</text>
+  <text x="136" y="98" fill="#174D4A" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="5">CONSULTORIA</text>
+</svg>

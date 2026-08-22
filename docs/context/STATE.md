@@ -21,20 +21,27 @@ Last updated: 2026-08-22
 
 ## Image pipeline — Etapa 4.5
 
-- Official architecture: repository briefing → `$menezesdev-image-director` → `$imagegen` native → visual review → repository asset.
-- Repo-local art-direction skill: `.agents/skills/menezesdev-image-director/SKILL.md`.
-- Native ImageGen is available and does not require `OPENAI_API_KEY` or separate OpenAI API billing.
-- The project-local `menezesdev_image` MCP configuration and its versioned example are disabled.
-- `tools/mcp-image/` remains as a clearly deprecated historical implementation and is outside the active workflow.
-- Useful historical rules were preserved: briefing order, project identity, naming, negative space, references, overwrite protection, auditable prompts, metadata and desktop/mobile review.
-- The first native asset exists at `public/assets/demos/m47/m47-hero.webp`, with `1536×960` dimensions, exact 16:10 ratio, WebP format and status `generated`.
-- Sidecars exist at `m47-hero.prompt.md` and `m47-hero.meta.json`; SHA-256 is `02da87e3542740e62091ba3589ff989d106505e744f26babd7a1a10ecb0fce49`.
-- One candidate was generated and passed high-detail review; no targeted edit was required.
-- There is no M47 frontend component yet. A future 4:5 mobile crop should bias the image toward the center-right at approximately 65–70% horizontal position.
-- No OpenAI Image API call, API key, browser automation, Canva generation, stock or placeholder was used.
+- Official architecture remains repository briefing → `$menezesdev-image-director` → `$imagegen` native → visual review → repository asset.
+- Native ImageGen is available without `OPENAI_API_KEY` or separate OpenAI API billing.
+- The historical image MCP remains disconnected and outside the active workflow.
+- Phase 5 asset production did not modify the agent architecture, Codex configuration, migration documentation, MCP history or `tools/mcp-image/`.
+
+## Phase 5 assets
+
+- M47: the existing `m47-hero.webp` was preserved byte-for-byte. Six editorial gallery WebPs, six prompt/metadata sidecar pairs, `m47-logo.svg` and `m47-mark.svg` now exist under `public/assets/demos/m47/`.
+- Tavola 27: the hero, four food images, three space images, two detail images, ten prompt/metadata sidecar pairs and `tavola27-logo.svg` now exist under `public/assets/demos/tavola27/`.
+- Tavola 27 uses one coherent fictional restaurant across the full photographic set. The initial `tavola27-detail-01` candidate required one targeted edit to correct an unsafe guiding-hand position; the edited asset passed review.
+- Prismae: `prismae-hero-graphic.svg`, `prismae-process.svg` and `prismae-logo.svg` now exist under `public/assets/demos/prismae/`.
+- `prismae-office-01.webp` was intentionally not generated because the case has no concrete photographic need and is designed around grid, data and deterministic SVG/frontend visuals.
+- Every generated raster remains at status `generated`; no asset has been promoted to `approved` or `in-use` without implementation review.
+- No screenshot, browser automation, Canva generation, stock asset, OpenAI Image API call or image MCP was used.
+
+## Git and worktree
+
+- M47 asset commit: `265bcc814534d924dfff024db8a919dd08d058f0`.
+- Tavola 27 asset commit: `c375d1c163f4f2a4e0b9f61422d8a460c28c0218`.
+- Two pre-existing user changes remain uncommitted and untouched in `tools/mcp-image/src/core/promptBuilder.ts` and `tools/mcp-image/tests/workspace-prompt.test.mjs`.
 
 ## Next logical step
 
-1. Implement the M47 hero component using the generated asset and HTML copy.
-2. Set responsive image positioning to preserve the center-right action on mobile.
-3. Validate the real page on desktop and mobile, then promote metadata from `generated` only when the layout passes.
+Phase 6 can implement the three demos with real HTML/frontend, consume these assets responsively and validate the implemented pages on desktop/mobile. Phase 6 was not started in this session.

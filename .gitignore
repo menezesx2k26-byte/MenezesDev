@@ -1,0 +1,33 @@
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local Work Mode
+.workmode/
+.omniroute/
+.headroom/
+
+# Node
+node_modules/
+dist/
+build/
+.next/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*

@@ -331,7 +331,7 @@ import "../styles/menezesdev.css";
         <div class="md-faq">
           {
             faqs.map((item) => (
-              <details name="faq">
+              <details>
                 <>
                   <summary>{item.question}</summary>
                   <div class="md-faq__answer">
@@ -368,7 +368,12 @@ import "../styles/menezesdev.css";
   <MenezesFooter />
   <script>
     const setupFaq = () => {
-      document.querySelectorAll<HTMLDetailsElement>(".md-faq details").forEach((details) => {
+      const detailsItems = [...document.querySelectorAll<HTMLDetailsElement>(".md-faq details")];
+      const summaries = detailsItems
+        .map((details) => details.querySelector<HTMLElement>("summary"))
+        .filter((summary): summary is HTMLElement => Boolean(summary));
+
+      detailsItems.forEach((details) => {
         if (details.dataset.ready === "true") return;
         details.dataset.ready = "true";
         const summary = details.querySelector<HTMLElement>("summary");
@@ -377,9 +382,27 @@ import "../styles/menezesdev.css";
         syncExpanded();
         details.addEventListener("toggle", syncExpanded);
         summary.addEventListener("keydown", (event) => {
-          if (event.key !== "Enter" && event.key !== " ") return;
-          event.preventDefault();
-          details.open = !details.open;
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            details.open = !details.open;
+            return;
+          }
+
+          const currentIndex = summaries.indexOf(summary);
+          const focusSummary = (index: number) => {
+            event.preventDefault();
+            summaries[index]?.focus();
+          };
+
+          if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+            focusSummary((currentIndex + 1) % summaries.length);
+          } else if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+            focusSummary((currentIndex - 1 + summaries.length) % summaries.length);
+          } else if (event.key === "Home") {
+            focusSummary(0);
+          } else if (event.key === "End") {
+            focusSummary(summaries.length - 1);
+          }
         });
       });
     };

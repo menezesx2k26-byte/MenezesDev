@@ -1,0 +1,136 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import TavolaHeader from "../../../components/TavolaHeader.astro";
+import TavolaFooter from "../../../components/TavolaFooter.astro";
+import TavolaGallery from "../../../components/TavolaGallery.astro";
+import TavolaReservation from "../../../components/TavolaReservation.astro";
+import { tavolaDishes, tavolaImages } from "../../../data/tavola";
+import "../../../styles/tavola.css";
+
+const homeGallery = tavolaImages.filter((_, index) => [4, 6, 7, 8].includes(index));
+---
+
+<BaseLayout
+  title="Tavola 27 — Conceito demonstrativo"
+  description="Site demonstrativo para um restaurante italiano contemporâneo fictício."
+  image="/assets/demos/tavola27/tavola27-hero.webp"
+  theme="tavola"
+  noindex
+  fonts={["--font-cormorant", "--font-manrope"]}
+  preloadFont="--font-cormorant"
+>
+  <TavolaHeader home />
+  <main id="main-content">
+    <section class="tavola-hero" aria-labelledby="tavola-title">
+      <div class="tavola-hero__media">
+        <img
+          src="/assets/demos/tavola27/tavola27-hero.webp"
+          width="1536"
+          height="960"
+          alt="Mesa de restaurante italiano contemporâneo com massa, vinho e interior em tons quentes."
+          fetchpriority="high"
+        />
+      </div>
+      <div class="container tavola-hero__copy">
+        <p class="eyebrow">COZINHA ITALIANA CONTEMPORÂNEA</p><h1 id="tavola-title">
+          Tempo, mesa<br />e boa comida.
+        </h1><p class="lead">
+          Cozinha italiana feita com ingredientes simples, técnica e tempo.
+        </p><div class="button-row">
+          <a class="button" href="/demo/tavola27/menu">Conhecer o menu</a><a
+            class="button button--secondary"
+            href="#reservas">Reservar mesa</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="manifesto-title">
+      <div class="container tavola-manifesto">
+        <div>
+          <p class="eyebrow">NOSSA COZINHA</p><h2 id="manifesto-title">
+            Poucos ingredientes.<br />Muito cuidado.
+          </h2><p class="lead">
+            A melhor comida italiana começa antes do prato: ingredientes bem escolhidos, massa feita
+            todos os dias e respeito pelo tempo de cada receita.
+          </p>
+        </div><div class="tavola-manifesto__image">
+          <img
+            src="/assets/demos/tavola27/tavola27-detail-02.webp"
+            width="1536"
+            height="1024"
+            alt="Louça artesanal, linho, ervas, farinha e azeite preparados para o serviço."
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="section--compact" aria-labelledby="menu-title">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">DESTAQUES DO MENU</p><h2 id="menu-title">Três pratos.</h2><p>
+            Valores apenas demonstrativos.
+          </p>
+        </div><div class="tavola-menu">
+          {
+            tavolaDishes.map((dish) => (
+              <article class="tavola-dish">
+                <>
+                  <div class="tavola-dish__image">
+                    <img
+                      src={dish.image.src}
+                      width={dish.image.width}
+                      height={dish.image.height}
+                      alt={dish.image.alt}
+                      loading="lazy"
+                    />
+                  </div>
+                  <h3>{dish.name}</h3>
+                  <p>{dish.description}</p>
+                </>
+              </article>
+            ))
+          }
+        </div><div class="button-row" style="margin-top:2rem">
+          <a class="button" href="/demo/tavola27/menu">Conhecer o menu</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="story-title">
+      <div class="container tavola-story">
+        <img
+          src="/assets/demos/tavola27/tavola27-space-01.webp"
+          width="1536"
+          height="960"
+          alt="Salão do Tavola 27 com paredes creme e verdes, mesas de madeira e luz natural."
+          loading="lazy"
+        /><div>
+          <p class="eyebrow">NOSSA HISTÓRIA</p><h2 id="story-title">
+            Uma mesa criada para reunir pessoas.
+          </h2><p class="lead">
+            Tavola 27 nasceu de uma ideia simples: comida boa pede tempo — para preparar,
+            compartilhar e lembrar.
+          </p><a class="button button--secondary" href="/demo/tavola27/storia">Nossa história</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section--compact" aria-labelledby="gallery-title">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">GALERIA</p><h2 id="gallery-title">
+            Pratos, ingredientes, ambiente e cozinha.
+          </h2>
+        </div><TavolaGallery images={homeGallery} label="Galeria editorial da Home Tavola 27" /><div
+          class="button-row"
+          style="margin-top:2rem"
+        >
+          <a class="button button--secondary" href="/demo/tavola27/gallery">Ver galeria</a>
+        </div>
+      </div>
+    </section>
+    <TavolaReservation />
+  </main>
+  <TavolaFooter />
+</BaseLayout>

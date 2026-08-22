@@ -1,0 +1,279 @@
+.tavola-hero {
+  position: relative;
+  min-height: calc(100svh - var(--header-height));
+  overflow: hidden;
+  background: #263c31;
+  color: #fff9ee;
+}
+
+.tavola-hero__media,
+.tavola-hero__media::after {
+  position: absolute;
+  inset: 0;
+}
+
+.tavola-hero__media::after {
+  background: linear-gradient(
+    90deg,
+    rgb(28 42 34 / 0.92),
+    rgb(28 42 34 / 0.58) 43%,
+    transparent 72%
+  );
+  content: "";
+}
+
+.tavola-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tavola-hero__copy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-height: calc(100svh - var(--header-height));
+  max-width: 39rem;
+  align-content: center;
+  padding-block: 5rem;
+}
+
+.tavola-hero h1 {
+  color: #fff9ee;
+  font-size: clamp(4rem, 9vw, 8.5rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+}
+
+.tavola-hero .lead,
+.tavola-hero .eyebrow {
+  color: #f2e8d7;
+}
+
+.tavola-manifesto {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  align-items: center;
+  gap: clamp(2rem, 7vw, 7rem);
+}
+
+.tavola-manifesto__image {
+  overflow: hidden;
+  border-radius: 12rem 12rem 1rem 1rem;
+}
+
+.tavola-manifesto__image img {
+  width: 100%;
+  height: 37rem;
+  object-fit: cover;
+}
+
+.tavola-menu {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.tavola-dish {
+  grid-column: span 4;
+}
+
+.tavola-dish:nth-child(2) {
+  margin-top: 5rem;
+}
+
+.tavola-dish__image {
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+  border-radius: 0.6rem;
+}
+
+.tavola-dish img {
+  width: 100%;
+  height: 31rem;
+  object-fit: cover;
+}
+
+.tavola-dish:nth-child(2) img {
+  height: 24rem;
+}
+
+.tavola-story {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  align-items: center;
+  gap: clamp(2rem, 6vw, 6rem);
+}
+
+.tavola-story img {
+  width: 100%;
+  height: 34rem;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+
+.tavola-gallery {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.tavola-gallery figure {
+  grid-column: span 4;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 0.6rem;
+}
+
+.tavola-gallery figure:nth-child(4n + 1) {
+  grid-column: span 7;
+}
+
+.tavola-gallery figure:nth-child(4n + 2) {
+  grid-column: span 5;
+}
+
+.tavola-gallery img {
+  width: 100%;
+  height: 27rem;
+  object-fit: cover;
+}
+
+.tavola-reservation {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  align-items: center;
+  gap: 3rem;
+  padding: clamp(2rem, 6vw, 5rem);
+  background: #294537;
+  color: #fff8ec;
+}
+
+.tavola-reservation h2,
+.tavola-reservation .eyebrow,
+.tavola-reservation .lead {
+  color: inherit;
+}
+
+.tavola-page-hero {
+  padding-block: clamp(4.5rem, 9vw, 8rem);
+}
+
+.tavola-page-hero__grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  align-items: center;
+  gap: clamp(2rem, 6vw, 6rem);
+}
+
+.tavola-page-hero img {
+  width: 100%;
+  max-height: 38rem;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+
+.tavola-interlude {
+  width: 100%;
+  max-height: 38rem;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+
+@media (max-width: 63.99rem) {
+  .tavola-manifesto,
+  .tavola-story,
+  .tavola-reservation,
+  .tavola-page-hero__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .tavola-hero {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    background: var(--background);
+    color: var(--text);
+  }
+
+  .tavola-hero__copy {
+    min-height: auto;
+    max-width: none;
+    padding-block: 4.5rem 3rem;
+  }
+
+  .tavola-hero h1,
+  .tavola-hero .lead,
+  .tavola-hero .eyebrow {
+    color: var(--text);
+  }
+
+  .tavola-hero__media {
+    position: relative;
+    order: 2;
+    height: min(125vw, 38rem);
+  }
+
+  .tavola-hero__media::after {
+    display: none;
+  }
+
+  .tavola-hero__media img {
+    object-position: 62% center;
+  }
+
+  .tavola-manifesto__image img,
+  .tavola-story img {
+    height: auto;
+    max-height: 38rem;
+  }
+
+  .tavola-menu {
+    grid-template-columns: 1fr;
+  }
+
+  .tavola-dish,
+  .tavola-dish:nth-child(2) {
+    grid-column: auto;
+    margin-top: 0;
+  }
+
+  .tavola-dish img,
+  .tavola-dish:nth-child(2) img {
+    height: auto;
+    max-height: 37rem;
+  }
+
+  .tavola-gallery {
+    display: flex;
+    width: 100vw;
+    margin-left: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    overflow-x: auto;
+    scroll-padding-inline: var(--gutter);
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+  }
+
+  .tavola-gallery figure,
+  .tavola-gallery figure:nth-child(n) {
+    min-width: min(78vw, 21rem);
+    scroll-snap-align: start;
+  }
+
+  .tavola-gallery img {
+    height: min(105vw, 31rem);
+  }
+
+  .tavola-reservation {
+    padding: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tavola-gallery {
+    scroll-snap-type: none;
+  }
+}

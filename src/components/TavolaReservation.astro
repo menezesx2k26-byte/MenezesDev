@@ -1,0 +1,35 @@
+---
+import DemoAction from "./DemoAction.astro";
+---
+
+<section class="section--compact" id="reservas" aria-labelledby="reservas-title" data-demo-scope>
+  <div class="container surface-card tavola-reservation">
+    <div>
+      <p class="eyebrow">RESERVAS</p><h2 id="reservas-title">Demonstração de interface.</h2><p
+        class="lead"
+      >
+        Esta página não realiza reservas e não coleta dados pessoais.
+      </p>
+    </div>
+    <div>
+      <DemoAction
+        label="Reservar mesa"
+        message="Demonstração de interface. Nenhuma reserva foi enviada."
+        class="button button--wide"
+      /><p class="status-message" data-demo-status role="status" tabindex="-1" hidden></p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const announceReservation = () => {
+    if (window.location.hash !== "#reservas") return;
+    const section = document.querySelector<HTMLElement>("#reservas");
+    const status = section?.querySelector<HTMLElement>("[data-demo-status]");
+    if (!status) return;
+    status.textContent = "Demonstração de interface. Nenhuma reserva foi enviada.";
+    status.hidden = false;
+  };
+  announceReservation();
+  window.addEventListener("hashchange", announceReservation);
+</script>

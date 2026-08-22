@@ -1,0 +1,22 @@
+---
+import SiteHeader from "./SiteHeader.astro";
+import { tavolaNav } from "../data/tavola";
+
+interface Props {
+  home?: boolean;
+}
+const { home = false } = Astro.props;
+const reserveHref = home ? "/demo/tavola27#reservas" : "/demo/tavola27/contact#reservas";
+---
+
+<SiteHeader
+  brandHref="/demo/tavola27"
+  brandLabel="Tavola 27"
+  logoSrc="/assets/demos/tavola27/tavola27-logo.svg"
+  logoWidth={620}
+  logoHeight={120}
+  nav={[...tavolaNav]}
+>
+  <a slot="desktop-action" class="button" href={reserveHref}>Reservar mesa</a>
+  <a slot="mobile-action" class="button button--wide" href={reserveHref}>Reservar mesa</a>
+</SiteHeader>

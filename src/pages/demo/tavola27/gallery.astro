@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import TavolaHeader from "../../../components/TavolaHeader.astro";
+import TavolaFooter from "../../../components/TavolaFooter.astro";
+import TavolaGallery from "../../../components/TavolaGallery.astro";
+import "../../../styles/tavola.css";
+---
+
+<BaseLayout
+  title="Galeria — Tavola 27"
+  description="Galeria editorial do conceito fictício Tavola 27."
+  image="/assets/demos/tavola27/tavola27-hero.webp"
+  theme="tavola"
+  noindex
+  fonts={["--font-cormorant", "--font-manrope"]}
+  preloadFont="--font-cormorant"
+>
+  <TavolaHeader />
+  <main id="main-content">
+    <section class="tavola-page-hero">
+      <div class="container tavola-page-hero__grid">
+        <div>
+          <p class="eyebrow">GALERIA</p><h1>Pratos, ingredientes, ambiente e cozinha.</h1>
+        </div><img
+          src="/assets/demos/tavola27/tavola27-hero.webp"
+          width="1536"
+          height="960"
+          alt="Mesa de restaurante italiano contemporâneo com massa, vinho e interior em tons quentes."
+          fetchpriority="high"
+        />
+      </div>
+    </section>
+    <section class="section--compact">
+      <div class="container">
+        <TavolaGallery /><div class="button-row" style="margin-top:2rem">
+          <a class="button" href="/demo/tavola27/contact#reservas">Reservar mesa</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <TavolaFooter />
+</BaseLayout>

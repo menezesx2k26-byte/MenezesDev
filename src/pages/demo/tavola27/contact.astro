@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import TavolaHeader from "../../../components/TavolaHeader.astro";
+import TavolaFooter from "../../../components/TavolaFooter.astro";
+import TavolaReservation from "../../../components/TavolaReservation.astro";
+import "../../../styles/tavola.css";
+---
+
+<BaseLayout
+  title="Contato — Tavola 27"
+  description="Contato demonstrativo do conceito fictício Tavola 27."
+  image="/assets/demos/tavola27/tavola27-space-03.webp"
+  theme="tavola"
+  noindex
+  fonts={["--font-cormorant", "--font-manrope"]}
+  preloadFont="--font-cormorant"
+>
+  <TavolaHeader />
+  <main id="main-content">
+    <section class="tavola-page-hero">
+      <div class="container tavola-page-hero__grid">
+        <div>
+          <p class="eyebrow">CONTATO</p><h1>Reservar mesa.</h1><p class="lead">
+            Demonstração de interface.
+          </p><p>Nenhuma reserva, mensagem ou dado pessoal será enviado.</p>
+        </div><img
+          src="/assets/demos/tavola27/tavola27-space-03.webp"
+          width="1200"
+          height="1500"
+          alt="Mesa para duas pessoas junto à janela em canto íntimo do restaurante Tavola 27."
+          fetchpriority="high"
+        />
+      </div>
+    </section>
+    <TavolaReservation />
+  </main>
+  <TavolaFooter />
+</BaseLayout>

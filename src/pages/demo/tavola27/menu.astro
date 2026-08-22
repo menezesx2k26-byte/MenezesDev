@@ -1,0 +1,74 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import TavolaHeader from "../../../components/TavolaHeader.astro";
+import TavolaFooter from "../../../components/TavolaFooter.astro";
+import { tavolaDishes } from "../../../data/tavola";
+import "../../../styles/tavola.css";
+---
+
+<BaseLayout
+  title="Menu — Tavola 27"
+  description="Menu demonstrativo do conceito fictício Tavola 27."
+  image="/assets/demos/tavola27/tavola27-detail-01.webp"
+  theme="tavola"
+  noindex
+  fonts={["--font-cormorant", "--font-manrope"]}
+  preloadFont="--font-cormorant"
+>
+  <TavolaHeader />
+  <main id="main-content">
+    <section class="tavola-page-hero">
+      <div class="container tavola-page-hero__grid">
+        <div>
+          <p class="eyebrow">MENU</p><h1>Três pratos.</h1><p class="lead">
+            Valores apenas demonstrativos.
+          </p>
+        </div><img
+          src="/assets/demos/tavola27/tavola27-detail-01.webp"
+          width="1536"
+          height="1024"
+          alt="Mãos cortando massa fresca em tiras sobre bancada enfarinhada na cozinha."
+          fetchpriority="high"
+        />
+      </div>
+    </section>
+    <section class="section--compact">
+      <div class="container tavola-menu">
+        {
+          tavolaDishes.map((dish) => (
+            <article class="tavola-dish">
+              <>
+                <div class="tavola-dish__image">
+                  <img
+                    src={dish.image.src}
+                    width={dish.image.width}
+                    height={dish.image.height}
+                    alt={dish.image.alt}
+                    loading="lazy"
+                  />
+                </div>
+                <h2>{dish.name}</h2>
+                <p>{dish.description}</p>
+              </>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+    <section class="section--compact">
+      <div class="container">
+        <img
+          class="tavola-interlude"
+          src="/assets/demos/tavola27/tavola27-food-04.webp"
+          width="1536"
+          height="1024"
+          alt="Peixe assado servido com feijões cannellini, tomates e ervas em prato de cerâmica."
+          loading="lazy"
+        /><div class="button-row" style="margin-top:2rem">
+          <a class="button" href="/demo/tavola27/contact#reservas">Reservar mesa</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <TavolaFooter />
+</BaseLayout>

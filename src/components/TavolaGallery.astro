@@ -1,0 +1,56 @@
+---
+import { tavolaImages } from "../data/tavola";
+type TavolaImage = (typeof tavolaImages)[number];
+interface Props {
+  images?: readonly TavolaImage[];
+  label?: string;
+}
+const { images = tavolaImages, label = "Galeria editorial Tavola 27" } = Astro.props;
+---
+
+<div class="tavola-gallery" tabindex="0" role="region" aria-label={label} data-tavola-track>
+  {
+    images.map((image) => (
+      <figure>
+        <img
+          src={image.src}
+          width={image.width}
+          height={image.height}
+          alt={image.alt}
+          loading="lazy"
+        />
+      </figure>
+    ))
+  }
+</div>
+
+<script>
+  const setupTracks = () => {
+    document.querySelectorAll<HTMLElement>("[data-tavola-track]").forEach((track) => {
+      if (track.dataset.ready === "true") return;
+      track.dataset.ready = "true";
+      track.addEventListener("keydown", (event) => {
+        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const behavior: ScrollBehavior = reduced ? "auto" : "smooth";
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          track.scrollBy({ left: track.clientWidth * 0.75, behavior });
+        }
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          track.scrollBy({ left: -track.clientWidth * 0.75, behavior });
+        }
+        if (event.key === "Home") {
+          event.preventDefault();
+          track.scrollTo({ left: 0, behavior });
+        }
+        if (event.key === "End") {
+          event.preventDefault();
+          track.scrollTo({ left: track.scrollWidth, behavior });
+        }
+      });
+    });
+  };
+  setupTracks();
+  document.addEventListener("astro:page-load", setupTracks);
+</script>

@@ -1,0 +1,29 @@
+---
+import { ArrowUpRight } from "lucide-astro";
+import { siteConfig } from "../config/site";
+
+interface Props {
+  label: string;
+  class?: string;
+  showPendingNote?: boolean;
+}
+
+const { label, class: className = "button", showPendingNote = false } = Astro.props;
+const href = siteConfig.commercial.whatsappUrl;
+---
+
+{
+  href ? (
+    <a class={className} href={href} rel="noopener noreferrer">
+      <span>{label}</span>
+      <ArrowUpRight aria-hidden="true" size={18} strokeWidth={2} />
+    </a>
+  ) : (
+    <span class="commercial-pending">
+      <span class={className} aria-disabled="true">
+        {label}
+      </span>
+      {showPendingNote && <small>Contato comercial aguardando URL aprovada.</small>}
+    </span>
+  )
+}

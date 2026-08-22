@@ -1,0 +1,140 @@
+---
+import { Menu, X } from "lucide-astro";
+
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  brandHref: string;
+  brandLabel: string;
+  logoSrc?: string;
+  logoWidth?: number;
+  logoHeight?: number;
+  nav: NavItem[];
+  currentPath?: string;
+  menuLabel?: string;
+}
+
+const {
+  brandHref,
+  brandLabel,
+  logoSrc,
+  logoWidth = 320,
+  logoHeight = 60,
+  nav,
+  currentPath = Astro.url.pathname,
+  menuLabel = "Abrir menu",
+} = Astro.props;
+const menuId = `mobile-menu-${brandLabel.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a
+      class:list={["site-header__brand", { "site-header__brand--text": !logoSrc }]}
+      href={brandHref}
+      aria-label={`${brandLabel} — início`}
+    >
+      {
+        logoSrc ? (
+          <img src={logoSrc} width={logoWidth} height={logoHeight} alt={brandLabel} />
+        ) : (
+          brandLabel
+        )
+      }
+    </a>
+    <nav class="site-header__nav" aria-label="Navegação principal">
+      {
+        nav.map((item) => (
+          <a
+            href={item.href}
+            aria-current={
+              currentPath === item.href || currentPath.startsWith(`${item.href}/`)
+                ? "page"
+                : undefined
+            }
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <slot name="desktop-action" />
+    </nav>
+    <button
+      class="mobile-menu-trigger"
+      type="button"
+      aria-label={menuLabel}
+      aria-haspopup="dialog"
+      aria-controls={menuId}
+    >
+      <Menu aria-hidden="true" size={22} />
+    </button>
+  </div>
+</header>
+
+<dialog class="mobile-menu" id={menuId} aria-labelledby={`${menuId}-title`}>
+  <div class="mobile-menu__inner">
+    <div class="mobile-menu__top">
+      <strong id={`${menuId}-title`}>{brandLabel}</strong>
+      <button class="mobile-menu__close" type="button" aria-label="Fechar menu">
+        <X aria-hidden="true" size={22} />
+      </button>
+    </div>
+    <nav class="mobile-menu__nav" aria-label="Navegação móvel">
+      {
+        nav.map((item) => (
+          <a
+            href={item.href}
+            aria-current={
+              currentPath === item.href || currentPath.startsWith(`${item.href}/`)
+                ? "page"
+                : undefined
+            }
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+    <div class="mobile-menu__action"><slot name="mobile-action" /></div>
+  </div>
+</dialog>
+
+<script>
+  const setupMenus = () => {
+    document.querySelectorAll<HTMLDialogElement>("dialog.mobile-menu").forEach((dialog) => {
+      if (dialog.dataset.ready === "true") return;
+      dialog.dataset.ready = "true";
+      const trigger = document.querySelector<HTMLButtonElement>(`[aria-controls="${dialog.id}"]`);
+      const close = dialog.querySelector<HTMLButtonElement>(".mobile-menu__close");
+      let restoreTo: HTMLElement | null = null;
+
+      const closeDialog = () => {
+        if (!dialog.open) return;
+        dialog.close();
+      };
+
+      trigger?.addEventListener("click", () => {
+        restoreTo =
+          document.activeElement instanceof HTMLElement ? document.activeElement : trigger;
+        document.body.classList.add("has-modal");
+        dialog.showModal();
+        close?.focus();
+      });
+
+      close?.addEventListener("click", closeDialog);
+      dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) closeDialog();
+      });
+      dialog.addEventListener("close", () => {
+        document.body.classList.remove("has-modal");
+        restoreTo?.focus();
+      });
+      dialog.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeDialog));
+    });
+  };
+  setupMenus();
+  document.addEventListener("astro:page-load", setupMenus);
+</script>

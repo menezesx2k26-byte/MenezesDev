@@ -19,6 +19,10 @@ node_modules/
 dist/
 build/
 .next/
+.astro/
+coverage/
+reports/
+tmp/
 
 # Python
 __pycache__/

@@ -1,0 +1,123 @@
+---
+import { Font } from "astro:assets";
+import "../styles/global.css";
+import { siteConfig, canonicalUrl } from "../config/site";
+
+type FontVariable =
+  "--font-manrope" | "--font-inter" | "--font-archivo" | "--font-cormorant" | "--font-jakarta";
+
+interface Props {
+  title: string;
+  description: string;
+  theme: "menezesdev" | "m47" | "tavola" | "prismae";
+  image?: string;
+  noindex?: boolean;
+  fonts: FontVariable[];
+  preloadFont?: FontVariable;
+}
+
+const { title, description, theme, image, noindex = false, fonts, preloadFont } = Astro.props;
+const pathname = Astro.url.pathname;
+const isDemo = pathname.startsWith("/demo/");
+const isCanonicalProduction =
+  siteConfig.deployEnvironment === "production" && siteConfig.canonicalConfigured;
+const shouldIndex = !noindex && !isDemo && isCanonicalProduction;
+const robots = shouldIndex ? "index, follow" : "noindex, nofollow, noarchive";
+const canonical = canonicalUrl(pathname);
+const socialImage = image ? canonicalUrl(image) : canonicalUrl("/assets/brand/brand-icon-512.png");
+const analyticsEnabled =
+  isCanonicalProduction && !isDemo && Boolean(siteConfig.analytics.cloudflareToken);
+---
+
+<!doctype html>
+<html lang="pt-BR" data-theme={theme}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteConfig.brandName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    {
+      fonts.map((cssVariable) => (
+        <Font cssVariable={cssVariable} preload={cssVariable === preloadFont} />
+      ))
+    }
+    <slot name="head" />
+    {
+      analyticsEnabled && (
+        <script
+          is:inline
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={JSON.stringify({ token: siteConfig.analytics.cloudflareToken })}
+        />
+      )
+    }
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
+    <slot />
+    <script>
+      const setupAnchorNavigation = () => {
+        if (document.documentElement.dataset.anchorReady === "true") return;
+        document.documentElement.dataset.anchorReady = "true";
+
+        const focusTarget = (hash: string) => {
+          if (!hash || hash === "#") return;
+          const target = document.querySelector<HTMLElement>(hash);
+          if (!target) return;
+          const heading = target.matches("h1,h2,h3")
+            ? target
+            : target.querySelector<HTMLElement>("h1,h2,h3");
+          if (!heading) return;
+          if (!heading.hasAttribute("tabindex")) heading.setAttribute("tabindex", "-1");
+          heading.focus({ preventScroll: true });
+        };
+
+        document.addEventListener("click", (event) => {
+          const anchor = (event.target as Element | null)?.closest<HTMLAnchorElement>(
+            "a[href*='#']",
+          );
+          if (!anchor) return;
+          const url = new URL(anchor.href, window.location.href);
+          if (
+            url.origin !== window.location.origin ||
+            url.pathname !== window.location.pathname ||
+            !url.hash
+          )
+            return;
+          const target = document.querySelector<HTMLElement>(url.hash);
+          if (!target) return;
+          event.preventDefault();
+          document
+            .querySelectorAll<HTMLDialogElement>("dialog[open]")
+            .forEach((dialog) => dialog.close());
+          const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          history.pushState(null, "", url.hash);
+          target.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+          window.setTimeout(() => focusTarget(url.hash), reduced ? 0 : 280);
+        });
+
+        window.addEventListener("hashchange", () => focusTarget(window.location.hash));
+        if (window.location.hash) window.setTimeout(() => focusTarget(window.location.hash), 0);
+      };
+      setupAnchorNavigation();
+      document.addEventListener("astro:page-load", setupAnchorNavigation);
+    </script>
+  </body>
+</html>

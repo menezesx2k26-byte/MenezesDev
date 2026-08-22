@@ -1,0 +1,33 @@
+---
+interface Props {
+  label: string;
+  message: string;
+  class?: string;
+}
+
+const { label, message, class: className = "button" } = Astro.props;
+---
+
+<button class={className} type="button" data-demo-action data-message={message}>{label}</button>
+
+<script>
+  const setupDemoActions = () => {
+    document.querySelectorAll<HTMLButtonElement>("[data-demo-action]").forEach((button) => {
+      if (button.dataset.ready === "true") return;
+      button.dataset.ready = "true";
+      button.addEventListener("click", () => {
+        const scope = button.closest<HTMLElement>("[data-demo-scope]");
+        const status =
+          scope?.querySelector<HTMLElement>("[data-demo-status]") ??
+          document.querySelector<HTMLElement>("[data-demo-global-status]") ??
+          document.querySelector<HTMLElement>("[data-demo-status]");
+        if (!status) return;
+        status.textContent = button.dataset.message ?? "Ação demonstrativa.";
+        status.hidden = false;
+        status.focus({ preventScroll: false });
+      });
+    });
+  };
+  setupDemoActions();
+  document.addEventListener("astro:page-load", setupDemoActions);
+</script>

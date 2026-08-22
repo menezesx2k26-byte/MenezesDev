@@ -1,0 +1,41 @@
+---
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  name: string;
+  logoSrc: string;
+  nav: NavItem[];
+}
+
+const { name, logoSrc, nav } = Astro.props;
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div>
+        <img
+          src={logoSrc}
+          width="320"
+          height="60"
+          alt={name}
+          style="width:auto;height:2.25rem"
+          loading="lazy"
+        />
+      </div>
+      <nav class="site-footer__links" aria-label={`Navegação ${name}`}>
+        {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+      </nav>
+      <p class="demo-disclosure">
+        Conceito demonstrativo criado pela MenezesDev. Esta empresa é fictícia.
+      </p>
+    </div>
+    <div class="site-footer__bottom">
+      <span>{name}</span>
+      <span>Experiência demonstrativa — nenhum contato é enviado.</span>
+    </div>
+  </div>
+</footer>

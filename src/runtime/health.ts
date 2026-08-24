@@ -32,9 +32,7 @@ export const createRuntimeHealthProbes = (
   },
 });
 
-export const buildRuntimeHealth = async (
-  probes: RuntimeHealthProbes,
-): Promise<RuntimeHealth> => {
+export const buildRuntimeHealth = async (probes: RuntimeHealthProbes): Promise<RuntimeHealth> => {
   const [databaseResult, mediaResult] = await Promise.allSettled([
     probes.database(),
     probes.media(),

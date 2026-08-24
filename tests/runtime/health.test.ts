@@ -101,10 +101,10 @@ describe("buildRuntimeHealth", () => {
     });
 
     const serialized = JSON.stringify(health);
-    expect(serialized).toBe(
-      '{"status":"degraded","checks":{"database":"error","media":"error"}}',
+    expect(serialized).toBe('{"status":"degraded","checks":{"database":"error","media":"error"}}');
+    expect(serialized).not.toMatch(
+      /SELECT|Authorization|Bearer|secret-token|customer|object-key|password|hunter2/i,
     );
-    expect(serialized).not.toMatch(/SELECT|Authorization|Bearer|secret-token|customer|object-key|password|hunter2/i);
   });
 });
 

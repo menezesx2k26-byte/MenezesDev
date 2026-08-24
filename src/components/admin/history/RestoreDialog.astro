@@ -1,0 +1,29 @@
+<dialog id="history-restore-dialog" class="admin-dialog" aria-labelledby="history-restore-title">
+  <form method="dialog" class="admin-dialog__panel">
+    <p class="admin-kicker">Histórico de publicação</p>
+    <h2 id="history-restore-title">Confirmar restauração</h2>
+    <p>
+      Você está prestes a carregar <strong data-history-dialog-version>uma versão anterior</strong>
+      no rascunho atual.
+    </p>
+    <p>
+      A restauração cria um rascunho e <strong>não publica nada</strong>. O conteúdo só ficará ao
+      vivo depois de uma publicação explícita.
+    </p>
+
+    <p data-history-restore-status aria-live="polite"></p>
+
+    <div class="admin-dialog__actions">
+      <button type="button" class="admin-button admin-button--quiet" data-history-cancel-restore>
+        Cancelar
+      </button>
+      <button
+        type="button"
+        class="admin-button"
+        data-history-confirm-restore
+      >
+        Confirmar restauração para rascunho
+      </button>
+    </div>
+  </form>
+</dialog>

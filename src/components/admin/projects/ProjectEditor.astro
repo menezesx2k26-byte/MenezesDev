@@ -1,0 +1,133 @@
+---
+import { STUDIO_LIMITS } from "../../../studio/validation";
+import type { StudioProject } from "../../../studio/types";
+
+interface Props {
+  project: StudioProject;
+  projectIndex: number;
+}
+
+const { project, projectIndex } = Astro.props;
+const path = (field: string) => `projects.${projectIndex}.${field}`;
+const lines = (items: string[]) => items.join("\n");
+---
+
+<section class="admin-panel admin-panel--full" data-project-editor data-project-id={project.id}>
+  <div class="admin-page-heading">
+    <p class="admin-kicker">Case</p>
+    <h2>{project.name}</h2>
+    <p>
+      Alterações ficam no rascunho. A identificação de conceito é obrigatória para cases ligados aos demos.
+    </p>
+  </div>
+
+  <div class="studio-fields-grid">
+    <label class="studio-field">
+      <span>Nome</span>
+      <input type="text" maxlength={STUDIO_LIMITS.longText} value={project.name} data-project-path={path("name")} />
+    </label>
+
+    <div class="studio-field studio-field--wide">
+      <label for="project-slug">Slug público</label>
+      <div class="admin-shortcuts">
+        <input id="project-slug" type="text" maxlength="160" value={project.slug} data-project-slug-input />
+        <button type="button" class="admin-button admin-button--secondary" data-project-action="request-slug-change">
+          Alterar slug
+        </button>
+      </div>
+      <small>A mudança altera a URL pública do case e exige confirmação explícita.</small>
+    </div>
+
+    <label class="studio-field">
+      <span>Categoria</span>
+      <input type="text" maxlength={STUDIO_LIMITS.longText} value={project.category} data-project-path={path("category")} />
+    </label>
+
+    <label class="studio-field">
+      <span>Plano / faixa</span>
+      <input type="text" maxlength={STUDIO_LIMITS.longText} value={project.planLabel} data-project-path={path("planLabel")} />
+    </label>
+
+    <label class="studio-field studio-field--wide">
+      <span>Headline</span>
+      <textarea maxlength={STUDIO_LIMITS.longText} rows="3" data-project-path={path("headline")}>{project.headline}</textarea>
+    </label>
+
+    <label class="studio-field studio-field--wide">
+      <span>Descrição</span>
+      <textarea maxlength={STUDIO_LIMITS.longText} rows="4" data-project-path={path("description")}>{project.description}</textarea>
+    </label>
+
+    <label class="studio-field studio-field--wide">
+      <span>Tags — uma por linha</span>
+      <textarea rows="4" maxlength={STUDIO_LIMITS.longText} data-project-path={path("tags")} data-project-value-type="lines">{lines(project.tags)}</textarea>
+    </label>
+
+    <label class="studio-field studio-field--wide">
+      <span>Contexto — um parágrafo por linha</span>
+      <textarea rows="5" maxlength={STUDIO_LIMITS.longText} data-project-path={path("context")} data-project-value-type="lines">{lines(project.context)}</textarea>
+    </label>
+
+    <label class="studio-field studio-field--wide">
+      <span>Abordagem — um parágrafo por linha</span>
+      <textarea rows="5" maxlength={STUDIO_LIMITS.longText} data-project-path={path("approach")} data-project-value-type="lines">{lines(project.approach)}</textarea>
+    </label>
+
+    <label class="studio-field studio-field--wide">
+      <span>Features — uma por linha</span>
+      <textarea rows="5" maxlength={STUDIO_LIMITS.longText} data-project-path={path("features")} data-project-value-type="lines">{lines(project.features)}</textarea>
+    </label>
+
+    <label class="studio-field">
+      <span>Demo</span>
+      <input type="text" maxlength={STUDIO_LIMITS.longText} value={project.demoHref} data-project-path={path("demoHref")} />
+    </label>
+
+    <label class="studio-field">
+      <span>Apresentação</span>
+      <select data-project-path={path("layout")}>
+        <option value="default" selected={project.layout === "default"}>Padrão</option>
+        <option value="split" selected={project.layout === "split"}>Dividido</option>
+        <option value="stacked" selected={project.layout === "stacked"}>Empilhado</option>
+      </select>
+    </label>
+
+    <label class="studio-field">
+      <span>Visibilidade na Home</span>
+      <input
+        type="checkbox"
+        checked={project.showOnHome}
+        disabled={!project.visible}
+        data-project-field="showOnHome"
+        data-project-id={project.id}
+      />
+    </label>
+
+    <label class="studio-field">
+      <span>Disclosure obrigatória</span>
+      <input type="text" value="Conceito demonstrativo" readonly aria-readonly="true" />
+    </label>
+
+    <label class="studio-field studio-field--wide">
+      <span>Título SEO</span>
+      <input type="text" maxlength={STUDIO_LIMITS.longText} value={project.seo.title} data-project-path={path("seo.title")} />
+    </label>
+
+    <label class="studio-field studio-field--wide">
+      <span>Descrição SEO</span>
+      <textarea maxlength={STUDIO_LIMITS.longText} rows="3" data-project-path={path("seo.description")}>{project.seo.description}</textarea>
+    </label>
+  </div>
+
+  <section class="admin-panel" aria-labelledby="project-media-heading">
+    <span class="admin-panel__label">Mídia atual</span>
+    <h3 id="project-media-heading">Referências visuais</h3>
+    <p class="admin-panel__detail">Substituição e upload entram pela biblioteca de Mídia; aqui você vê o que o case usa hoje.</p>
+    <ul>
+      <li>Capa: <code>{project.cover.src}</code></li>
+      {project.strip.map((image) => <li><code>{image.src}</code></li>)}
+    </ul>
+  </section>
+
+  <p class="studio-save-state" data-project-save-status aria-live="polite">Rascunho sincronizado.</p>
+</section>

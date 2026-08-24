@@ -28,7 +28,7 @@ Launch 50 is a public-release quality gate, not the permanent maximum size of th
 **Status:** accepted  
 **Date:** 2026-08-24
 
-Market Intelligence currently contains 172 candidate tool ideas. They are scored/researched before a shortlist and Launch 50 freeze; candidate count is not a commitment to ship all items.
+Market Intelligence Batch 1 created an initial universe of 172 candidate tool ideas. They are scored/researched before a shortlist and Launch 50 freeze; candidate count is not a commitment to ship all items.
 
 ## T-D005 — Browser-first is an economic hard gate
 **Status:** accepted  
@@ -131,3 +131,24 @@ The growth loop re-evaluates outcomes and may improve, consolidate, noindex, red
 **Date:** 2026-08-24
 
 Use Tools-specific `TOOLS_STATE.md`, `TOOLS_DECISIONS.md` and `TOOLS_HANDOFF.md` alongside the existing MenezesDev context files. This prevents the commercial site's historical Phase numbering/state from being confused with the Tools workflow.
+
+## T-D022 — Candidate universe can expand only through explicit dated admission
+**Status:** accepted  
+**Date:** 2026-08-24
+
+The 172 candidates in Batch 1 remain the historical initial universe. Later Phase-1 discoveries may be admitted when evidence shows an independent useful intent and realistic technical/economic path. Admissions are recorded in dated artifacts; agents must never silently rewrite the historical 172 count.
+
+The first explicit admissions are:
+
+- #173 Retirement Calculator;
+- #174 Budget Calculator.
+
+Current admitted working universe: **174**.
+
+## T-D023 — New strong discoveries must displace weak shortlist rows rather than inflate the pool by default
+**Status:** accepted  
+**Date:** 2026-08-24
+
+Once a bounded >50 shortlist exists, newly admitted high-quality candidates compete for slots. The current R2 shortlist remains at 80 after Retirement Calculator replaced Reading Time Calculator and Budget Calculator replaced Gzip Decompressor.
+
+This selection-pressure rule is a Phase-1 research practice, not a change to the immutable Launch-50 target.

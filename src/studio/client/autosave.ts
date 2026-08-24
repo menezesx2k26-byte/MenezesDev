@@ -122,9 +122,10 @@ export const createAutosaveController = (input: {
 
       if (disposed || sequence !== requestSequence) return false;
 
-      const payload = (await response.json().catch(() => null)) as
-        | { revision?: unknown; error?: { currentRevision?: unknown } }
-        | null;
+      const payload = (await response.json().catch(() => null)) as {
+        revision?: unknown;
+        error?: { currentRevision?: unknown };
+      } | null;
 
       if (response.status === 409) {
         const serverRevision = payload?.error?.currentRevision;

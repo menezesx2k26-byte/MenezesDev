@@ -153,25 +153,37 @@ describe("Studio autosave", () => {
       addEventListener: (_type: "beforeunload", listener: (event: BeforeUnloadEvent) => void) => {
         beforeUnload = listener;
       },
-      removeEventListener: (_type: "beforeunload", listener: (event: BeforeUnloadEvent) => void) => {
+      removeEventListener: (
+        _type: "beforeunload",
+        listener: (event: BeforeUnloadEvent) => void,
+      ) => {
         if (beforeUnload === listener) beforeUnload = null;
       },
     };
     const fetcher = vi.fn<typeof fetch>();
     const { store, controller } = setup({ fetcher, beforeUnloadTarget: target });
 
-    const cleanEvent = { preventDefault: vi.fn(), returnValue: undefined } as unknown as BeforeUnloadEvent;
+    const cleanEvent = {
+      preventDefault: vi.fn(),
+      returnValue: undefined,
+    } as unknown as BeforeUnloadEvent;
     beforeUnload?.(cleanEvent);
     expect(cleanEvent.preventDefault).not.toHaveBeenCalled();
 
     store.update({ path: "home.hero.title", value: "Pendente" });
-    const dirtyEvent = { preventDefault: vi.fn(), returnValue: undefined } as unknown as BeforeUnloadEvent;
+    const dirtyEvent = {
+      preventDefault: vi.fn(),
+      returnValue: undefined,
+    } as unknown as BeforeUnloadEvent;
     beforeUnload?.(dirtyEvent);
     expect(dirtyEvent.preventDefault).toHaveBeenCalledTimes(1);
     expect(dirtyEvent.returnValue).toBe("");
 
     store.acknowledgeSave(1);
-    const savedEvent = { preventDefault: vi.fn(), returnValue: undefined } as unknown as BeforeUnloadEvent;
+    const savedEvent = {
+      preventDefault: vi.fn(),
+      returnValue: undefined,
+    } as unknown as BeforeUnloadEvent;
     beforeUnload?.(savedEvent);
     expect(savedEvent.preventDefault).not.toHaveBeenCalled();
 

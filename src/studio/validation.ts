@@ -1,4 +1,5 @@
 import { formatPlanStartingPrice } from "./pricing";
+import { isAllowedSocialUrl, isApprovedWhatsappUrl } from "./url-policy";
 import { SITE_DOCUMENT_SCHEMA_VERSION } from "./types";
 import type { SiteDocument, StudioLayoutPreset } from "./types";
 
@@ -511,13 +512,35 @@ const validateProjects = (root: UnknownRecord, issues: StudioValidationIssue[]):
 const validateCommercial = (root: UnknownRecord, issues: StudioValidationIssue[]): void => {
   const commercial = recordAt(root, "commercial", "commercial", issues);
   if (!commercial) return;
-  validateHref(commercial, "whatsappUrl", "commercial.whatsappUrl", issues, { nullable: true });
+  const whatsappUrl = commercial.whatsappUrl;
+  if (whatsappUrl !== null && typeof whatsappUrl !== "string") {
+    addIssue(issues, "commercial.whatsappUrl", "type", "Expected a string or null.");
+  } else if (!isApprovedWhatsappUrl(whatsappUrl as string | null)) {
+    addIssue(
+      issues,
+      "commercial.whatsappUrl",
+      "whatsapp_url",
+      "WhatsApp must use an approved HTTPS wa.me or api.whatsapp.com destination.",
+    );
+  }
   requireString(commercial, "whatsappMessage", "commercial.whatsappMessage", issues);
   const links = arrayAt(commercial, "socialLinks", "commercial.socialLinks", issues);
   validateIdList(links, "commercial.socialLinks", issues);
   links.forEach((link, index) => {
     if (!isRecord(link)) return;
-    validateHref(link, "href", `commercial.socialLinks[${index}].href`, issues);
+    requireString(link, "label", `commercial.socialLinks[${index}].label`, issues, {
+      nonEmpty: true,
+      max: STUDIO_LIMITS.shortText,
+    });
+    const href = link.href;
+    if (typeof href !== "string" || !isAllowedSocialUrl(href)) {
+      addIssue(
+        issues,
+        `commercial.socialLinks[${index}].href`,
+        "social_url",
+        "Social links must be absolute HTTP or HTTPS URLs.",
+      );
+    }
   });
 };
 

@@ -77,8 +77,11 @@ try {
     method: "POST",
     redirect: "manual",
     headers: {
+      Origin: origin,
+      "Content-Type": "application/json",
       "X-MenezesDev-Local-Seed": "1",
     },
+    body: "{}",
   });
   const body = await response.text();
 

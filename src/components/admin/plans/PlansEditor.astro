@@ -1,0 +1,148 @@
+---
+import { STUDIO_LIMITS } from "../../../studio/validation";
+import type { StudioPlan } from "../../../studio/types";
+
+interface Props {
+  plans: StudioPlan[];
+}
+
+const { plans } = Astro.props;
+const lines = (items: string[]) => items.join("\n");
+---
+
+<section class="admin-panel admin-panel--full" aria-labelledby="plans-editor-heading">
+  <div class="admin-page-heading">
+    <p class="admin-kicker">Planos</p>
+    <h2 id="plans-editor-heading">Oferta comercial estruturada.</h2>
+    <p>Preço é salvo em centavos; o rótulo exibido é calculado automaticamente. Só um plano pode ser recomendado.</p>
+  </div>
+
+  <div class="studio-repeater">
+    {
+      plans.map((plan, index) => (
+        <article class="studio-repeater__item" data-plan-card={plan.id}>
+          <div class="admin-page-heading">
+            <p class="admin-kicker">{plan.visible ? "Visível" : "Oculto"}</p>
+            <h3>{plan.name}</h3>
+            <p>{plan.priceLabel}</p>
+          </div>
+
+          <div class="admin-shortcuts" aria-label={`Ordem de ${plan.name}`}>
+            <button
+              type="button"
+              class="admin-button admin-button--quiet"
+              data-business-action="plan-move-up"
+              data-business-id={plan.id}
+              disabled={index === 0}
+            >
+              Mover para cima
+            </button>
+            <button
+              type="button"
+              class="admin-button admin-button--quiet"
+              data-business-action="plan-move-down"
+              data-business-id={plan.id}
+              disabled={index === plans.length - 1}
+            >
+              Mover para baixo
+            </button>
+          </div>
+
+          <div class="studio-fields-grid">
+            <label class="studio-field">
+              <span>Nome</span>
+              <input
+                type="text"
+                maxlength={STUDIO_LIMITS.longText}
+                value={plan.name}
+                data-business-path={`home.plans.items.${index}.name`}
+              />
+            </label>
+
+            <label class="studio-field">
+              <span>Visibilidade</span>
+              <span>
+                <input
+                  type="checkbox"
+                  checked={plan.visible}
+                  data-plan-visible
+                  data-business-id={plan.id}
+                />
+                Visível no site
+              </span>
+            </label>
+
+            <label class="studio-field">
+              <span>Recomendado</span>
+              <span>
+                <input
+                  type="checkbox"
+                  checked={plan.recommended}
+                  disabled={!plan.visible}
+                  data-plan-recommended
+                  data-business-id={plan.id}
+                />
+                Destacar este plano
+              </span>
+            </label>
+
+            <label class="studio-field">
+              <span>Preço inicial em centavos</span>
+              <input
+                type="number"
+                min="0"
+                step="1"
+                value={plan.startingPriceCents ?? ""}
+                data-plan-price-cents
+                data-business-id={plan.id}
+              />
+              <small>Rótulo calculado: <strong data-plan-price-label={plan.id}>{plan.priceLabel}</strong></small>
+            </label>
+
+            <label class="studio-field studio-field--wide">
+              <span>Descrição</span>
+              <textarea
+                rows="4"
+                maxlength={STUDIO_LIMITS.longText}
+                data-business-path={`home.plans.items.${index}.description`}>{plan.description}</textarea
+              >
+            </label>
+
+            <label class="studio-field studio-field--wide">
+              <span>Destaque</span>
+              <input
+                type="text"
+                maxlength={STUDIO_LIMITS.longText}
+                value={plan.highlight}
+                data-business-path={`home.plans.items.${index}.highlight`}
+              />
+            </label>
+
+            <label class="studio-field studio-field--wide">
+              <span>Itens inclusos — um por linha</span>
+              <textarea
+                rows="8"
+                maxlength={STUDIO_LIMITS.longText}
+                data-business-path={`home.plans.items.${index}.includes`}
+                data-business-value-type="lines">{lines(plan.includes)}</textarea
+              >
+            </label>
+
+            <label class="studio-field studio-field--wide">
+              <span>CTA</span>
+              <input
+                type="text"
+                required={plan.visible}
+                maxlength={STUDIO_LIMITS.longText}
+                value={plan.ctaLabel}
+                data-business-path={`home.plans.items.${index}.ctaLabel`}
+              />
+            </label>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <p class="studio-save-state" data-business-save-status aria-live="polite">Rascunho sincronizado.</p>
+</section>

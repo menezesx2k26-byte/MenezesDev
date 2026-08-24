@@ -1,0 +1,29 @@
+---
+const sections = [
+  ["hero", "Hero"],
+  ["projects", "Projetos"],
+  ["services", "Serviços"],
+  ["process", "Processo"],
+  ["plans", "Planos"],
+  ["faq", "FAQ"],
+  ["contact", "Contato"],
+] as const;
+---
+
+<nav class="studio-section-nav" aria-label="Seções da página inicial">
+  <p class="admin-kicker">Página inicial</p>
+  <div class="studio-section-nav__list">
+    {
+      sections.map(([key, label], index) => (
+        <button
+          type="button"
+          class="studio-section-nav__item"
+          data-studio-section-target={key}
+          aria-current={index === 0 ? "page" : undefined}
+        >
+          <span>{label}</span>
+        </button>
+      ))
+    }
+  </div>
+</nav>

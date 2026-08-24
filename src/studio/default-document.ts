@@ -94,7 +94,8 @@ export const createDefaultSiteDocument = (): SiteDocument => {
         primaryCtaLabel: "Quero meu site",
         secondaryCtaLabel: "Ver projetos",
         secondaryCtaHref: "/#projetos",
-        microcopy: "Projetos a partir de R$600. Design profissional · Responsivo · SEO técnico · HTTPS",
+        microcopy:
+          "Projetos a partir de R$600. Design profissional · Responsivo · SEO técnico · HTTPS",
         media: [
           repositoryMedia("media-home-m47-hero", {
             src: "/assets/demos/m47/m47-hero.webp",
@@ -225,7 +226,8 @@ export const createDefaultSiteDocument = (): SiteDocument => {
           priceLabel: "Projetos personalizados a partir de R$2.500.",
           ctaLabel: "Contar sobre meu projeto",
         },
-        disclaimer: "Domínio, serviços pagos de terceiros e funcionalidades fora do escopo podem gerar custos adicionais. Nenhum serviço externo será contratado sem alinhamento prévio.",
+        disclaimer:
+          "Domínio, serviços pagos de terceiros e funcionalidades fora do escopo podem gerar custos adicionais. Nenhum serviço externo será contratado sem alinhamento prévio.",
       },
       faq: {
         visible: true,

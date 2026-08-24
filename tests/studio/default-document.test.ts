@@ -43,9 +43,13 @@ describe("createDefaultSiteDocument", () => {
     const document = createDefaultSiteDocument();
 
     expect(document.home.services.items).toHaveLength(services.length);
-    expect(document.home.services.items.map(({ title, text, microcopy }) => ({ title, text, microcopy }))).toEqual(
-      services.map(({ title, text, microcopy }) => ({ title, text, microcopy })),
-    );
+    expect(
+      document.home.services.items.map(({ title, text, microcopy }) => ({
+        title,
+        text,
+        microcopy,
+      })),
+    ).toEqual(services.map(({ title, text, microcopy }) => ({ title, text, microcopy })));
   });
 
   it("preserves plan names, labels, inclusions and structured BRL starting prices", () => {
@@ -87,9 +91,9 @@ describe("createDefaultSiteDocument", () => {
       const migrated = document.projects.find((project) => project.slug === source.slug);
       expect(migrated?.demoHref).toBe(source.demoHref);
       expect(migrated?.cover).toMatchObject(source.cover);
-      expect(migrated?.strip.map(({ src, width, height, alt }) => ({ src, width, height, alt }))).toEqual(
-        source.strip.map(({ src, width, height, alt }) => ({ src, width, height, alt })),
-      );
+      expect(
+        migrated?.strip.map(({ src, width, height, alt }) => ({ src, width, height, alt })),
+      ).toEqual(source.strip.map(({ src, width, height, alt }) => ({ src, width, height, alt })));
       expect(migrated?.context).toEqual([...source.context]);
       expect(migrated?.approach).toEqual([...source.approach]);
       expect(migrated?.features).toEqual([...source.features]);
@@ -128,10 +132,14 @@ describe("createDefaultSiteDocument", () => {
     expect(document.home.hero.eyebrow).toBe("DESENVOLVIMENTO WEB PARA NEGÓCIOS");
     expect(document.home.hero.title).toBe("Seu negócio merece um site à altura.");
     expect(document.home.hero.primaryCtaLabel).toBe("Quero meu site");
-    expect(document.home.projects.title).toBe("Sites que parecem caros. Sem precisar custar uma fortuna.");
+    expect(document.home.projects.title).toBe(
+      "Sites que parecem caros. Sem precisar custar uma fortuna.",
+    );
     expect(document.home.process.title).toBe("Seu novo site em quatro etapas.");
     expect(document.home.capabilities.title).toBe("Bonito por fora. Bem construído por dentro.");
-    expect(document.home.contact.title).toBe("Sua empresa já existe. Agora faça ela existir na internet.");
+    expect(document.home.contact.title).toBe(
+      "Sua empresa já existe. Agora faça ela existir na internet.",
+    );
     expect(JSON.stringify(document)).not.toMatch(/<script|<style|javascript:/i);
   });
 

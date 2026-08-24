@@ -9,13 +9,13 @@
       "database_name": "menezesdev-studio-local",
       "database_id": "menezesdev-studio-local",
       "preview_database_id": "menezesdev-studio-local",
-      "migrations_dir": "migrations"
-    }
+      "migrations_dir": "migrations",
+    },
   ],
   "r2_buckets": [
     {
       "binding": "MEDIA",
-      "bucket_name": "menezesdev-studio-media-local"
-    }
-  ]
+      "bucket_name": "menezesdev-studio-media-local",
+    },
+  ],
 }

@@ -8,7 +8,12 @@ interface StudioInitialState {
   revision: number;
 }
 
-type StudioControl = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
+type StudioControl = Element & {
+  value: string;
+  dataset: DOMStringMap;
+  checked?: boolean;
+  type?: string;
+};
 
 const sectionLabels = new Map([
   ["hero", "Hero"],
@@ -48,14 +53,14 @@ const parseInitialState = (): StudioInitialState | null => {
   }
 };
 
+const isStudioControl = (target: EventTarget | null): target is StudioControl =>
+  target instanceof Element &&
+  target.matches("input[data-studio-path], textarea[data-studio-path], select[data-studio-path]") &&
+  "value" in target;
+
 export const isEditableTarget = (target: EventTarget | null): boolean => {
   if (!(target instanceof HTMLElement)) return false;
-  return (
-    target.isContentEditable ||
-    target instanceof HTMLInputElement ||
-    target instanceof HTMLTextAreaElement ||
-    target instanceof HTMLSelectElement
-  );
+  return target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName);
 };
 
 export const setupStudioController = (): void => {
@@ -78,24 +83,22 @@ export const setupStudioController = (): void => {
   const previewSection = root.querySelector<HTMLElement>("[data-studio-preview-section]");
   const conflictDialog = document.querySelector<HTMLDialogElement>("#studio-conflict-dialog");
 
-  const controls = () => Array.from(root.querySelectorAll<StudioControl>("[data-studio-path]"));
+  const controls = (): StudioControl[] =>
+    Array.from(root.querySelectorAll("[data-studio-path]")).filter(isStudioControl);
 
   const syncControl = (control: StudioControl, documentState: SiteDocument): void => {
     const path = control.dataset.studioPath;
     if (!path) return;
     const current = readExistingPath(documentState, path);
 
-    if (
-      control.dataset.studioValueType === "string-array-member" &&
-      control instanceof HTMLInputElement
-    ) {
+    if (control.dataset.studioValueType === "string-array-member" && control.tagName === "INPUT") {
       control.checked = Array.isArray(current) && current.includes(control.value);
       return;
     }
 
     if (
       control.dataset.studioValueType === "boolean" &&
-      control instanceof HTMLInputElement &&
+      control.tagName === "INPUT" &&
       control.type === "checkbox"
     ) {
       control.checked = current === true;
@@ -125,10 +128,7 @@ export const setupStudioController = (): void => {
     const path = control.dataset.studioPath;
     if (!path) return;
 
-    if (
-      control.dataset.studioValueType === "string-array-member" &&
-      control instanceof HTMLInputElement
-    ) {
+    if (control.dataset.studioValueType === "string-array-member" && control.tagName === "INPUT") {
       const current = readExistingPath(store.getState().document, path);
       if (!Array.isArray(current)) return;
       const values = current.filter((item): item is string => typeof item === "string");
@@ -143,10 +143,10 @@ export const setupStudioController = (): void => {
 
     if (
       control.dataset.studioValueType === "boolean" &&
-      control instanceof HTMLInputElement &&
+      control.tagName === "INPUT" &&
       control.type === "checkbox"
     ) {
-      store.update({ path, value: control.checked });
+      store.update({ path, value: control.checked === true });
       return;
     }
 
@@ -154,14 +154,16 @@ export const setupStudioController = (): void => {
   };
 
   root.addEventListener("input", (event) => {
-    if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) {
+    if (isStudioControl(event.target) && event.target.tagName !== "SELECT") {
       applyControl(event.target);
     }
   });
 
   root.addEventListener("change", (event) => {
-    if (event.target instanceof HTMLSelectElement) applyControl(event.target);
-    if (event.target instanceof HTMLInputElement && event.target.type === "checkbox") {
+    if (
+      isStudioControl(event.target) &&
+      (event.target.tagName === "SELECT" || event.target.type === "checkbox")
+    ) {
       applyControl(event.target);
     }
   });

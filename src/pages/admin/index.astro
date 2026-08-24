@@ -158,19 +158,25 @@ const statusTone = draftDirty === true ? "warning" : draftDirty === false ? "suc
         <article class="admin-panel admin-panel--full">
           <span class="admin-panel__label">Próximas ações</span>
           <div class="admin-shortcuts" aria-label="Atalhos do Studio">
-            <span class="admin-button admin-button--secondary" aria-disabled="true">
+            <a class="admin-button admin-button--secondary" href="/admin/studio">
               Continuar edição
-            </span>
-            <span class="admin-button admin-button--quiet" aria-disabled="true">
+            </a>
+            <a
+              class="admin-button admin-button--quiet"
+              href="/admin/preview"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Abrir preview
-            </span>
+            </a>
+            <a class="admin-button admin-button--quiet" href="/admin/historico">Histórico</a>
             <button class="admin-button" type="button" disabled>
               Publicar
             </button>
           </div>
           <p class="admin-panel__detail">
-            Os atalhos serão habilitados conforme os editores, o preview e o fluxo de publicação da
-            interface forem conectados nas próximas etapas.
+            Edição, preview e histórico já usam o rascunho real. A publicação permanece uma ação
+            separada e explícita.
           </p>
         </article>
       </section>

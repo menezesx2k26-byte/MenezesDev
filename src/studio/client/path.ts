@@ -37,13 +37,15 @@ const parseDraftPath = (path: string): string[] => {
   return segments;
 };
 
-const own = (value: object, key: PropertyKey): boolean => Object.prototype.hasOwnProperty.call(value, key);
+const own = (value: object, key: PropertyKey): boolean =>
+  Object.prototype.hasOwnProperty.call(value, key);
 
 const resolveSegment = (container: JsonContainer, segment: string): string | number => {
   if (Array.isArray(container)) {
     if (!ARRAY_INDEX.test(segment)) throw new TypeError("Array paths must use numeric indexes.");
     const index = Number(segment);
-    if (index >= container.length) throw new RangeError("Draft array index is outside the document.");
+    if (index >= container.length)
+      throw new RangeError("Draft array index is outside the document.");
     return index;
   }
 
@@ -64,7 +66,11 @@ const asContainer = (value: unknown): JsonContainer => {
  * Replaces a value only at a path that already exists in the current SiteDocument.
  * The original document is never mutated and prototype-related segments are rejected.
  */
-export const setDraftPath = (document: SiteDocument, path: string, value: unknown): SiteDocument => {
+export const setDraftPath = (
+  document: SiteDocument,
+  path: string,
+  value: unknown,
+): SiteDocument => {
   const segments = parseDraftPath(path);
   const next = cloneDocument(document);
   let cursor: JsonContainer = next as unknown as JsonContainer;

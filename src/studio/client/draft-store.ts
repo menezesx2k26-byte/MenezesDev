@@ -20,8 +20,7 @@ export interface DraftStoreState {
 }
 
 export type ConflictResolution =
-  | "keep-local"
-  | { strategy: "replace-from-server"; document: SiteDocument; revision: number };
+  "keep-local" | { strategy: "replace-from-server"; document: SiteDocument; revision: number };
 
 const clone = (document: SiteDocument): SiteDocument => structuredClone(document);
 const equal = (left: SiteDocument, right: SiteDocument): boolean =>
@@ -123,7 +122,9 @@ export const createDraftStore = (input: {
     },
 
     resetSection(sectionKey: HomeSectionKey): boolean {
-      return commitDocument(setDraftPath(document, `home.${sectionKey}`, baseline.home[sectionKey]));
+      return commitDocument(
+        setDraftPath(document, `home.${sectionKey}`, baseline.home[sectionKey]),
+      );
     },
 
     markSaving(): boolean {

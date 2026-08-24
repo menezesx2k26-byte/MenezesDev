@@ -28,7 +28,10 @@ const requireStore = () => {
 };
 
 const requirePath = () => {
-  expect(pathModule, "src/studio/client/path.ts must implement bounded immutable paths").not.toBeNull();
+  expect(
+    pathModule,
+    "src/studio/client/path.ts must implement bounded immutable paths",
+  ).not.toBeNull();
   return pathModule as PathModule;
 };
 

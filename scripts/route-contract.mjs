@@ -19,7 +19,16 @@ export const staticRoutes = [
 
 export const canonicalRoutes = [...runtimeRoutes, ...staticRoutes];
 export const blockedRoutes = ["/demo/prismae/about"];
-export const privateRuntimeRoutes = ["/api/runtime-health", "/api/runtime-studio-seed"];
+export const privateRuntimeRoutes = [
+  "/api/runtime-health",
+  "/api/runtime-studio-seed",
+  "/api/admin/state",
+  "/api/admin/draft",
+  "/api/admin/publish",
+  "/api/admin/versions",
+  "/api/admin/versions/1",
+  "/api/admin/versions/1/restore",
+];
 
 export const staticRouteFile = (clientRoot, route) =>
   route === "/" ? join(clientRoot, "index.html") : join(clientRoot, `${route.slice(1)}.html`);

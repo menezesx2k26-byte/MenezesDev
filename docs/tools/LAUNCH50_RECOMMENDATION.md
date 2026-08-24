@@ -163,55 +163,28 @@ This is deliberate: Launch 50 demonstrates serious parser/file architecture with
 
 ---
 
-# 5. Why several attractive 68-pool candidates are reserves
+# 5. Canonical 18 reserves, in replacement priority order
 
-The 18 alternates are not failures. They are deliberately held behind stronger/current launch economics or anti-thin constraints.
-
-## Priority reserve order
-
-1. **Remove PDF Pages** — strongest direct alternate; current US ~33K / ~$1.48.
-2. **Image Metadata Viewer** — strong product evidence but adds ExifReader/MPL/parser admission.
-3. **WebP to PNG** — large demand but very low visible CPC and browser capability conditionality.
-4. **Markup Calculator** — strong business cluster, but Margin already provides nearby coverage.
-5. **Future Value Calculator** — legitimate finance intent; cluster already deep at launch.
-6. **Break-even Calculator** — commercial utility; can enter quickly post-launch if cluster performs.
-7. **Title Case Converter** — independent intent, but Case Converter gives initial text-transform coverage.
+1. **Remove PDF Pages** — strongest direct PDF alternate; current US ~33K / ~$1.48.
+2. **Image Metadata Viewer** — strong product evidence, but adds ExifReader/MPL/parser admission.
+3. **WebP to PNG** — large demand but low visible CPC and browser capability conditionality.
+4. **Markup Calculator** — strong business cluster; Margin already provides nearby launch coverage.
+5. **Future Value Calculator** — legitimate finance intent; launch finance cluster is already deep.
+6. **Break-even Calculator** — commercial utility; easy data-gated expansion if business cluster performs.
+7. **Title Case Converter** — independent intent; Case Converter gives initial transform coverage.
 8. **URL Decoder** — independent useful intent; Encoder chosen first on stronger economics.
-9. **Base64 Encoder** — counterpart to Decoder; easy post-launch expansion.
-10. **XML Formatter** — technically clear, but lower current portfolio priority than JSON/HTML/Markdown.
+9. **Base64 Encoder** — counterpart to Decoder; very cheap post-launch expansion.
+10. **XML Formatter** — technically clear; lower launch priority than JSON/HTML/Markdown.
 11. **CSV ↔ JSON Converter** — useful but retains PapaParse/export conditional gate.
-12. **Binary Translator** — strong market evidence but Number Base selected as the first binary cluster experiment.
-13. **Image Metadata Viewer** duplicate guard: if promoted, use only once; reserve ordering should treat this as #2 above.
-14. **SVG to PNG** — strong architectural value, but WASM/heavier path not necessary to prove Launch 50.
-15. **Gradient/Palette Generator** — large market but strong incumbent moat.
-16. **GCD/LCM Calculator** — large low-CPC educational traffic reserve.
-17. **Area Calculator** — easy evergreen math reserve.
-18. **Percentage Change Calculator** — useful sibling after Percentage Calculator proves cluster.
+12. **Binary Translator** — strong evidence; Number Base is the first binary-cluster launch experiment.
+13. **SVG to PNG** — strong architecture value, but heavier WASM path is unnecessary for Launch 50 proof.
+14. **Gradient/Palette Generator** — large market with strong incumbent moat.
+15. **GCD/LCM Calculator** — large low-CPC educational traffic reserve.
+16. **Area Calculator** — cheap evergreen math reserve.
+17. **Percentage Change Calculator** — useful sibling after Percentage Calculator proves the cluster.
+18. **Unix Timestamp Converter** — clear local developer/date reserve.
 
-### Canonical deduplicated 18 reserves
-
-Because the explanatory list above calls out Image Metadata once, the canonical reserve set is exactly:
-
-1. Remove PDF Pages
-2. Image Metadata Viewer
-3. WebP to PNG
-4. Markup Calculator
-5. Future Value Calculator
-6. Break-even Calculator
-7. Title Case Converter
-8. URL Decoder
-9. Base64 Encoder
-10. XML Formatter
-11. CSV ↔ JSON Converter
-12. Binary Translator
-13. SVG to PNG
-14. Gradient/Palette Generator
-15. GCD/LCM Calculator
-16. Area Calculator
-17. Percentage Change Calculator
-18. Unix Timestamp Converter
-
-These 18 plus the recommended 50 equal the final Phase-1 pool of 68.
+These 18 plus the recommended 50 exactly reconstruct the 68-candidate final Phase-1 pool.
 
 ---
 
@@ -228,13 +201,29 @@ Replacement order should prefer the closest high-confidence reserve that:
 
 Examples:
 
-- PDF conditional failure → Replace with Remove PDF Pages only if the shared engine itself remains admitted; otherwise use a clear/local non-PDF reserve.
+- PDF engine admission failure → do not substitute another unsafe PDF parser; promote a clear/local non-PDF reserve instead.
 - Image Compressor benchmark failure → promote a clear local image/math/developer reserve rather than uploading images to a server.
 - HTML Formatter dependency failure → promote XML Formatter or another clear developer reserve.
 
 ---
 
-# 7. Phase-4 gate status
+# 7. Self-review result
+
+Checked for:
+
+- duplicate candidates: none;
+- total count: exactly 50;
+- reserve reconstruction: exactly 18, producing the full 68 pool;
+- 70/20/10 allocation: exactly 35/10/5;
+- backend-required tools: none;
+- HOLD/UNRESOLVED dependencies: none;
+- thin directional pages: none intentionally introduced;
+- conditional tools: four, all with documented admission profiles;
+- category diversity: finance, math, image, text, developer/data, date, archive and PDF represented.
+
+---
+
+# 8. Phase-4 gate status
 
 The selection work, 70/20/10 verification, category-diversity check, anti-thin check, browser-first check and technical-path check are complete for this recommendation.
 

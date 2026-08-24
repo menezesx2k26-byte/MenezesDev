@@ -46,12 +46,7 @@ const { src = "/admin/preview", title = "Prévia responsiva do rascunho" } = Ast
     data-preview-viewport-shell
     style={`--preview-width:${PREVIEW_VIEWPORTS.desktop}px`}
   >
-    <iframe
-      src={src}
-      title={title}
-      data-preview-frame
-      loading="eager"
-      referrerpolicy="same-origin"
+    <iframe src={src} title={title} data-preview-frame loading="eager" referrerpolicy="same-origin"
     ></iframe>
   </div>
 

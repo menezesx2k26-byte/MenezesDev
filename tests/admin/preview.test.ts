@@ -38,7 +38,9 @@ describe("draft preview domain", () => {
     expect(preview.id).toBe(target.id);
     expect(preview.slug).toBe(target.slug);
     expect(preview.label).toBe("Conceito demonstrativo");
-    expect(() => module.toDraftProjectPreview(document, "missing-project")).toThrow(/projeto|project/i);
+    expect(() => module.toDraftProjectPreview(document, "missing-project")).toThrow(
+      /projeto|project/i,
+    );
   });
 });
 
@@ -81,7 +83,9 @@ describe("protected preview routes", () => {
       expect(source).not.toMatch(/getPublished\(|getPublishedSiteDocument/);
       expect(source).toMatch(/Cache-Control/);
       expect(source).toMatch(/PREVIEW_CACHE_CONTROL|private, no-store/);
-      expect(source).not.toMatch(/searchParams.*(?:draft|document|json)|JSON\.stringify\([^)]*Astro\.url/i);
+      expect(source).not.toMatch(
+        /searchParams.*(?:draft|document|json)|JSON\.stringify\([^)]*Astro\.url/i,
+      );
     }
   });
 

@@ -54,11 +54,13 @@ const heroMicrocopy = splitFirstSentence(view.hero.microcopy);
   preloadFont="--font-manrope"
   noindex={preview}
 >
-  {preview && (
-  <aside class="draft-preview-banner" role="status" aria-label="Prévia do rascunho">
-    Prévia do rascunho — não publicada
-  </aside>
-)}
+  {
+    preview && (
+      <aside class="draft-preview-banner" role="status" aria-label="Prévia do rascunho">
+        Prévia do rascunho — não publicada
+      </aside>
+    )
+  }
   <MenezesHeader
     navigation={navigation}
     whatsappUrl={commercialHref}
@@ -196,7 +198,14 @@ const heroMicrocopy = splitFirstSentence(view.hero.microcopy);
                       ))}
                     </ul>
                     <p class="md-project__meta">{project.plan}</p>
-                    <a class="button" href={preview ? `/admin/preview/projetos/${project.id}` : `/projetos/${project.slug}`}>
+                    <a
+                      class="button"
+                      href={
+                        preview
+                          ? `/admin/preview/projetos/${project.id}`
+                          : `/projetos/${project.slug}`
+                      }
+                    >
                       Ver projeto <ArrowRight aria-hidden="true" size={18} />
                     </a>
                   </div>

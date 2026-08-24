@@ -45,7 +45,7 @@ jobs:
             echo "Unexpected implicit binding type found."
             exit 1
           fi
-          actual=$(git diff --name-only | sort)
+          actual=$({ git diff --name-only; git ls-files --others --exclude-standard; } | sort -u)
           expected='worker-configuration.d.ts'
           diff -u <(printf '%s\n' "$expected") <(printf '%s\n' "$actual")
 

@@ -15,6 +15,23 @@ Read, in this order:
 
 Then inspect the repository and verify assumptions from code before editing.
 
+### MenezesDev Tools — mandatory workflow verification gate
+
+Before **any** MenezesDev Tools decision, research action, dependency selection, specification, plan, code change, review, merge, deployment, or status claim:
+
+1. Read `docs/tools/IMMUTABLE_WORKFLOW.md` in full from the branch/ref actually being worked on.
+2. Read all append-only workflow addenda that exist at that ref.
+3. Read the relevant binding supporting policy, at minimum `docs/tools/SECURITY_POLICY.md` when security, inputs, dependencies, runtime, traffic, Ads or compute cost are involved.
+4. Verify the current phase, its status, prerequisites and exit gate from the workflow itself.
+5. Verify the repository/branch state rather than relying on chat history, memory, previous summaries or assumptions.
+6. Check the proposed action against all higher-precedence workflow invariants before doing it.
+
+**No memory-only execution is permitted for MenezesDev Tools.** The workflow in Git is the source of truth. If it cannot be read or its current state is ambiguous, stop the conflicting/uncertain action and report the problem instead of guessing.
+
+A task may proceed only after the agent can identify which workflow phase/gate authorizes it. If the requested action belongs to a later phase whose prerequisites are not closed, do not silently skip ahead.
+
+This verification gate is additive and may not be removed, weakened or bypassed for convenience without explicit authorization from Gabriel Menezes.
+
 ## Operating rules
 
 - **Codex native is the default execution path.**

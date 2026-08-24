@@ -1,0 +1,63 @@
+---
+import type { HomeDocument, StudioLayoutPreset } from "../../../studio/types";
+
+type ApprovedSectionKey = Extract<
+  keyof HomeDocument,
+  "hero" | "projects" | "services" | "process" | "plans" | "faq" | "contact"
+>;
+
+interface Props {
+  sectionKey: ApprovedSectionKey;
+  visible: boolean;
+  layout: StudioLayoutPreset;
+  title: string;
+}
+
+const { sectionKey, visible, layout, title } = Astro.props;
+const visiblePath = `home.${sectionKey}.visible`;
+const layoutPath = `home.${sectionKey}.layout`;
+---
+
+<section class="studio-property-panel" data-studio-property-panel={sectionKey}>
+  <header class="studio-property-panel__header">
+    <div>
+      <p class="admin-kicker">Seção</p>
+      <h2>{title}</h2>
+    </div>
+    <button type="button" class="admin-button admin-button--ghost" data-studio-reset-section={sectionKey}>
+      Restaurar seção
+    </button>
+  </header>
+
+  <div class="studio-property-panel__controls" aria-label={`Apresentação da seção ${title}`}>
+    <label class="studio-control studio-control--toggle">
+      <span>
+        <strong>Visível no site</strong>
+        <small>Oculta ou exibe esta seção sem apagar o conteúdo.</small>
+      </span>
+      <input
+        type="checkbox"
+        checked={visible}
+        data-studio-section-visible
+        data-studio-value-type="boolean"
+        data-studio-path={visiblePath}
+      />
+    </label>
+
+    <label class="studio-control">
+      <span>
+        <strong>Layout</strong>
+        <small>Somente variações aprovadas da identidade MenezesDev.</small>
+      </span>
+      <select data-studio-path={layoutPath}>
+        <option value="default" selected={layout === "default"}>Padrão</option>
+        <option value="split" selected={layout === "split"}>Dividido</option>
+        <option value="stacked" selected={layout === "stacked"}>Empilhado</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="studio-property-panel__fields">
+    <slot />
+  </div>
+</section>

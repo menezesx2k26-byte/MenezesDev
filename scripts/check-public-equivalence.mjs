@@ -55,11 +55,14 @@ const decodeEntities = (value) =>
 const normalizeText = (value) => decodeEntities(value).replace(/\s+/g, " ").trim();
 
 const attribute = (tag, name) => {
-  const match = tag.match(new RegExp(`(?:^|\\s)${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)'|([^\\s>]+))`, "i"));
+  const match = tag.match(
+    new RegExp(`(?:^|\\s)${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)'|([^\\s>]+))`, "i"),
+  );
   return match ? decodeEntities(match[1] ?? match[2] ?? match[3] ?? "") : null;
 };
 
-const extractTitle = (html) => normalizeText(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] ?? "");
+const extractTitle = (html) =>
+  normalizeText(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] ?? "");
 
 const extractDescription = (html) => {
   for (const match of html.matchAll(/<meta\b[^>]*>/gi)) {
@@ -138,13 +141,17 @@ const captureStatic = (distRoot, outputPath) => {
   };
   mkdirSync(dirname(outputPath), { recursive: true });
   writeFileSync(outputPath, `${JSON.stringify(fixture, null, 2)}\n`);
-  console.log(`PASS public equivalence baseline — ${routes.length} rotas capturadas em ${outputPath}.`);
+  console.log(
+    `PASS public equivalence baseline — ${routes.length} rotas capturadas em ${outputPath}.`,
+  );
 };
 
-const delay = (milliseconds) => new Promise((resolveDelay) => setTimeout(resolveDelay, milliseconds));
+const delay = (milliseconds) =>
+  new Promise((resolveDelay) => setTimeout(resolveDelay, milliseconds));
 
 const firstDifference = (expected, actual) => {
-  if (expected.title !== actual.title) return `title: ${JSON.stringify(expected.title)} != ${JSON.stringify(actual.title)}`;
+  if (expected.title !== actual.title)
+    return `title: ${JSON.stringify(expected.title)} != ${JSON.stringify(actual.title)}`;
   if (expected.description !== actual.description) {
     return `description: ${JSON.stringify(expected.description)} != ${JSON.stringify(actual.description)}`;
   }
@@ -244,7 +251,9 @@ const checkRuntime = async () => {
     }
 
     if (failures.length) {
-      throw new Error(`equivalência pública falhou (${failures.length})\n- ${failures.join("\n- ")}`);
+      throw new Error(
+        `equivalência pública falhou (${failures.length})\n- ${failures.join("\n- ")}`,
+      );
     }
   } catch (error) {
     if (devLog.trim()) console.error(`\n--- astro dev log ---\n${devLog.trim()}`);
@@ -263,7 +272,9 @@ const [command, arg1, arg2] = process.argv.slice(2);
 try {
   if (command === "capture-static") {
     if (!arg1 || !arg2) {
-      throw new Error("Uso: node scripts/check-public-equivalence.mjs capture-static <dist-root> <output.json>");
+      throw new Error(
+        "Uso: node scripts/check-public-equivalence.mjs capture-static <dist-root> <output.json>",
+      );
     }
     captureStatic(resolve(arg1), resolve(arg2));
   } else if (command) {

@@ -14,6 +14,24 @@ export interface RuntimeHealthProbes {
   media: () => Promise<unknown>;
 }
 
+export interface RuntimeHealthBindings {
+  DB: Pick<D1Database, "prepare">;
+  MEDIA: Pick<R2Bucket, "head">;
+}
+
+const runtimeHealthSentinelKey = "__menezesdev_runtime_health__";
+
+export const createRuntimeHealthProbes = (
+  bindings: RuntimeHealthBindings,
+): RuntimeHealthProbes => ({
+  database: async () => {
+    await bindings.DB.prepare("SELECT 1").first();
+  },
+  media: async () => {
+    await bindings.MEDIA.head(runtimeHealthSentinelKey);
+  },
+});
+
 export const buildRuntimeHealth = async (
   probes: RuntimeHealthProbes,
 ): Promise<RuntimeHealth> => {

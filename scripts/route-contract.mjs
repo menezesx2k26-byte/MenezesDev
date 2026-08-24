@@ -1,11 +1,6 @@
 import { join } from "node:path";
 
-export const runtimeRoutes = [
-  "/",
-  "/projetos/m47",
-  "/projetos/tavola-27",
-  "/projetos/prismae",
-];
+export const runtimeRoutes = ["/", "/projetos/m47", "/projetos/tavola-27", "/projetos/prismae"];
 
 export const staticRoutes = [
   "/demo/m47",
@@ -26,6 +21,4 @@ export const canonicalRoutes = [...runtimeRoutes, ...staticRoutes];
 export const blockedRoutes = ["/demo/prismae/about"];
 
 export const staticRouteFile = (clientRoot, route) =>
-  route === "/"
-    ? join(clientRoot, "index.html")
-    : join(clientRoot, `${route.slice(1)}.html`);
+  route === "/" ? join(clientRoot, "index.html") : join(clientRoot, `${route.slice(1)}.html`);

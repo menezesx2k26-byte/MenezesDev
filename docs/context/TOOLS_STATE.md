@@ -8,12 +8,15 @@
 # Workflow status
 
 - Phase 0 — Product constitution: **CLOSED**.
-- Phase 1 — Global Market Intelligence: **ACTIVE / materially advanced; shortlist R5 exists**.
-- Phase 2 — OSS Capability Audit: **ACTIVE / broad local coverage established**.
-- Phase 3 — Capability Map: **NOT STARTED**.
-- Phase 4 — Freeze Launch 50: **NOT STARTED**.
-- Tools implementation: **NOT STARTED**.
+- Phase 1 — Global Market Intelligence: **CLOSED / gate passed** (`docs/tools/PHASE1_CLOSURE.md`).
+- Phase 2 — OSS Capability Audit: **CLOSED / gate passed** (`docs/tools/PHASE2_CLOSURE.md`).
+- Phase 3 — Capability Map: **CLOSED / gate passed** (`docs/tools/PHASE3_CLOSURE.md`).
+- Phase 4 — Freeze Launch 50: **ACTIVE / all pre-approval checks passed; exact matrix pending explicit approval**.
+- Phase 5 — Information architecture / international SEO: **BLOCKED by Phase-4 approval gate**.
+- Tools runtime implementation: **NOT STARTED**.
 - `main` must remain outside partial Tools implementation.
+
+The historical status text in `IMMUTABLE_WORKFLOW.md` remains untouched. Later phase progress is recorded through closure/preflight artifacts under the append-only governance model.
 
 ---
 
@@ -29,17 +32,17 @@
 - Rust justified, not mandatory;
 - zero unnecessary backend request per ordinary deterministic tool operation;
 - Launch 50 is a hard first-release gate, not a permanent ceiling;
-- Tool SDK required from MVP once implementation phases are reached;
+- Tool SDK required once implementation phases are reached;
 - no auth required for Launch 50;
-- future autonomous growth is Option-B policy gated, but implementation remains post-prerequisite.
+- autonomous growth remains Option-B policy gated and post-prerequisite.
 
 ---
 
-# Candidate universe
+# Candidate-universe state
 
 Historical Batch-1 universe: **172**.
 
-Explicit later admissions:
+Explicit dated admissions:
 
 - #173 Retirement Calculator;
 - #174 Budget Calculator;
@@ -49,179 +52,191 @@ Explicit later admissions:
 
 Current admitted research universe: **177**.
 
-Historical `172` references remain valid for Batch 1. New admissions are recorded through dated artifacts rather than silent count rewrites.
-
-Admission artifacts include:
-
-- `docs/tools/CANDIDATE_UNIVERSE_ADMISSION_2026-08-24.md`;
-- `docs/tools/CANDIDATE_UNIVERSE_ADMISSION_2026-08-24_02_NUMBER_BASE.md`;
-- `docs/tools/CANDIDATE_UNIVERSE_ADMISSION_2026-08-24_03_RANDOM_NUMBER.md`.
+Historical 172 references remain valid and are not rewritten.
 
 ---
 
-# Current working shortlist
+# Phase-1 final market pool
 
-Canonical current view:
+Canonical final pool:
 
-`docs/tools/MARKET_SHORTLIST_80_WORKING_R5.md`
+`docs/tools/MARKET_SHORTLIST_68_FINAL_PHASE1.md`
 
-The shortlist remains fixed at **80** so new/rediscovered strong candidates must displace weaker rows.
+Exact size: **68**.
 
-Replacement history:
+Closure rationale:
 
-- R2: Retirement Calculator replaced Reading Time Calculator;
-- R2: Budget Calculator replaced Gzip Decompressor;
-- R3: Number Base Converter replaced Gzip Compressor;
-- R3: Binary Translator replaced Slug Generator;
-- R4: Decimal to Fraction Calculator replaced File Type Detector;
-- R4: Random Number Generator replaced Remove Duplicate Lines;
-- R5: Fraction Calculator replaced Scientific Notation Calculator;
-- R5: Standard Deviation Calculator replaced Savings Goal Calculator.
+- `docs/tools/MARKET_INTELLIGENCE_BATCH10_CLOSURE_PASS.md`
+- `docs/tools/PHASE1_CLOSURE.md`
 
-R5 composition:
+Key final consolidation decisions include:
+
+- Simple Interest becomes a mode of Interest Calculator;
+- JSON Minifier becomes a mode of JSON Formatter;
+- File Hash becomes a bounded file mode of SHA-256 Hash Generator;
+- JSON → CSV becomes the reverse mode of one CSV ↔ JSON product;
+- numeric binary/octal/decimal/hex directions consolidate into Number Base Converter;
+- Binary Translator remains separate as UTF-8 text ↔ binary-byte intent;
+- weaker PDF operations were reduced so PDF does not dominate merely because the category is large.
+
+Final pool composition:
 
 - Finance/business: 17;
 - Math/statistics: 13;
-- Image/color: 11;
+- Image/color: 10;
 - Text/writing: 5;
-- Developer/data: 22;
+- Developer/data: 16;
 - Date/time: 3;
-- Archive/file: 2;
-- Structural PDF: 7;
-- total: **80**.
+- Archive/file: 1;
+- Structural PDF: 3;
+- total: **68**.
 
 ---
 
-# Key market / anti-thin decisions
+# Phase-2 final technical state
 
-Current high-value/strong-role candidates include Loan, Markdown Previewer, URL Encoder, Margin, Image Resizer, JSON Validator, Compound Interest, Regex Tester, Mortgage, Interest, Auto Loan, Amortization, Slope, Proportion, Base64 Decoder, Text Diff, Case Converter, Image Metadata Viewer, Number Base Converter, Binary Translator, Budget, Retirement, Decimal to Fraction, Fraction Calculator and Random Number Generator.
+Canonical final coverage:
 
-Current market evidence also supports keeping these separate despite shared implementation primitives:
+`docs/tools/PHASE2_FINAL_68_COVERAGE.md`
 
-- Case Converter / Title Case Converter;
-- Word Counter / Character Counter;
-- Compound Interest / Investment Growth / Future Value;
-- Discount Calculator / Percentage Calculator;
-- Fraction Calculator / Decimal to Fraction Calculator;
-- Number Base Converter / Binary Translator.
+Result:
 
-Notable current evidence from the latest passes:
+- **60/68** clear/internal/local-bounded;
+- **8/68** local-conditional with exact admission profiles;
+- **0/68** ordinary backend processing requirements;
+- **0/68** HOLD/UNRESOLVED capabilities;
+- **68/68** expected to use 0 MenezesDev backend-processing requests per ordinary operation.
 
-- Decimal to Fraction: ~673K US searches / ~$2.65 CPC;
-- Random Number Generator: ~1.22M / ~$1.66;
-- Fraction Calculator: ~368K / ~$0.82, with a moderate-authority AS42 site around position #6;
-- Standard Deviation Calculator: ~49.5K / ~$1.77;
-- Discount/percent-off cluster: ~22.2K / ~$5.19 for `percent off calculator` and ~12.1K / ~$5.19 for `percentage off calculator`;
-- GCD/LCM remains a deliberate high-volume/low-CPC traffic role;
-- Present Value is a legitimate reserve (~8.1K / ~$1.42), but does not currently displace R5 rows.
-
-Current reserve/demoted examples:
-
-- Scientific Notation Calculator;
-- Savings Goal Calculator;
-- Reading Time Calculator;
-- Slug Generator;
-- Remove Duplicate Lines;
-- File Type Detector;
-- Gzip Compressor / Decompressor;
-- Present Value Calculator;
-- Sort Lines;
-- YAML ↔ JSON;
-- JWT Decoder.
-
-Lower-evidence structural PDF operations remain under pressure despite the huge PDF category market because their hostile-input admission cost is materially higher.
-
----
-
-# Market research artifacts
-
-Current relevant artifacts now include Market Intelligence through Batch 9, the historical/working V1/V2 rankings, and shortlist revisions through R5.
-
-Newest files:
-
-- `docs/tools/MARKET_INTELLIGENCE_BATCH8_ANTI_THIN_AND_REPLACEMENT.md`;
-- `docs/tools/MARKET_INTELLIGENCE_BATCH9_R5_CHALLENGERS.md`;
-- `docs/tools/MARKET_SHORTLIST_80_WORKING_R4.md`;
-- `docs/tools/MARKET_SHORTLIST_80_WORKING_R5.md`.
-
----
-
-# Phase-2 technical state
-
-Newest technical artifacts:
-
-- `docs/tools/OSS_AUDIT_BATCH11_DECIMAL_FRACTION_RANDOM.md`;
-- `docs/tools/OSS_AUDIT_BATCH12_FRACTIONS_STATISTICS.md`;
-- `docs/tools/PHASE2_SHORTLIST_80_COVERAGE_R4.md`.
-
-R5 retains the R4 exact aggregate:
-
-- **64/80** clear/internal/local-bounded;
-- **16/80** local-conditional;
-- **0/80** ordinary backend processing required;
-- **0/80** HOLD/UNRESOLVED capabilities;
-- expected **0 MenezesDev backend-processing requests per ordinary operation for all 80**.
-
-This means the clear/local pool alone already exceeds the eventual Launch-50 count.
-
-New clear/internal paths:
-
-- Decimal to Fraction: exact decimal string -> BigInt rational + GCD;
-- Random Number Generator: Web Crypto + unbiased rejection sampling;
-- Fraction Calculator: integer/BigInt rational arithmetic + GCD;
-- Standard Deviation Calculator: Welford/two-pass descriptive statistics.
-
-Conditional technical risk is now concentrated in:
+Conditional survivors are concentrated in:
 
 - Image Compressor;
-- WebP runtime-capability path;
+- WebP to PNG browser capability gate;
 - Image Metadata Viewer / ExifReader;
-- Prettier-backed HTML/JS/CSS formatters;
-- CSV conversions / PapaParse and export policy;
-- ZIP Extractor security wrapper;
-- structural PDF engine family.
+- HTML Formatter / Prettier;
+- CSV ↔ JSON / PapaParse;
+- Split PDF / Merge PDF / Remove PDF Pages through one audited structural PDF engine family.
 
-No need to solve HEIC/AVIF/OCR/generic PDF compression to fill Launch 50.
+Capabilities intentionally not required for Launch selection include HEIC/AVIF universal conversion, OCR, generic PDF compression and arbitrary PDF text editing/extraction.
 
 ---
 
-# SEO / autonomous-growth state
+# Phase-3 Capability Map
 
-Strategic SEO is already active through Phase 1 market/intent/competition research.
+Canonical map:
 
-Later sequencing remains:
+`docs/tools/CAPABILITY_MAP.md`
 
-- Phase 5: formal information architecture + international technical SEO contract;
-- Phase 11–15: SDK/implementation carries SEO metadata, related-tool graph and tool pages;
-- Phase 16: English editorial QA;
-- Phase 17: PT-BR localization/hreflang;
-- Phase 18: Search Console/product analytics;
-- Phase 19: technical SEO preflight;
-- Phase 20: launch;
-- Phase 21: Autonomous Growth Engine / AI Editorial / Trend Radar / ethical crawler;
-- Phase 22: Tool Factory only after Launch 50 + SDK stability.
+All 68 candidates now declare:
+
+- stable id;
+- category/intent/locale;
+- native/browser/Worker/WASM execution decision;
+- selected engine or internal path;
+- license state;
+- bundle-impact class;
+- server requests/op;
+- expected marginal backend cost;
+- concrete security/input-limit profile;
+- privacy-safe telemetry profile;
+- monetization eligibility;
+- rationale.
+
+Economic headline:
+
+> ordinary server-processing requests per operation = 0 across the full 68-candidate pool.
+
+---
+
+# Phase-4 exact recommendation
+
+Canonical recommendation:
+
+`docs/tools/LAUNCH50_RECOMMENDATION.md`
+
+Status: **PENDING APPROVAL — NOT FROZEN**.
+
+Recommended allocation:
+
+- **35 SEO/AdSense-led tools (70%)**;
+- **10 architectural-coverage tools (20%)**;
+- **5 experiments (10%)**;
+- total **50**.
+
+Category distribution:
+
+- Finance/business: 14;
+- Math/statistics: 10;
+- Image/color: 6;
+- Text/writing: 4;
+- Developer/data: 11;
+- Date/time: 2;
+- Archive/file: 1;
+- PDF: 2.
+
+Technical distribution:
+
+- **46/50** clear/internal/local-bounded;
+- **4/50** local-conditional: Image Compressor, HTML Formatter, Merge PDF, Split PDF;
+- **0/50** backend-required.
+
+The 18 reserve candidates reconstruct the full 68 pool and provide substitution pressure if a conditional admission gate later fails.
+
+Phase-4 preflight:
+
+`docs/tools/PHASE4_PREFLIGHT.md`
+
+Every pre-approval requirement passes. The sole remaining Phase-4 gate is explicit approval of the exact matrix.
+
+---
+
+# SEO / autonomous-growth sequencing
+
+Strategic SEO research was completed through Phase 1.
+
+Once Phase 4 is explicitly approved:
+
+- Phase 5 defines route taxonomy, canonical/hreflang, sitemap, robots, structured data, category pages, titles/meta and internal search;
+- Phase 11–15 make the Tool SDK/pages carry the SEO contract;
+- Phase 16 performs English editorial QA;
+- Phase 17 localizes PT-BR;
+- Phase 18 connects Search Console/product analytics;
+- Phase 19 runs technical SEO preflight;
+- Phase 20 launches;
+- Phase 21 activates Autonomous Growth / AI Editorial / Trend Radar / ethical crawler;
+- Phase 22 Tool Factory waits for Launch 50 + SDK stability.
 
 No crawler, AI provider, Workflow, D1 resource or autonomous publisher has been implemented yet.
 
 ---
 
-# Deployment portability note
+# Deployment portability
 
-`docs/tools/addenda/2026-08-24_DEPLOYMENT_PORTABILITY_AND_FALLBACK.md` exists from a concurrent workstream and was reviewed. It is compatible with current work: Git is source of truth, public Tools remain provider-neutral/static where possible, Cloudflare Pages is primary, fallback readiness is additive. It does not change current Phase 1/2 authorization.
+Binding deployment addendum remains compatible:
+
+`docs/tools/addenda/2026-08-24_DEPLOYMENT_PORTABILITY_AND_FALLBACK.md`
+
+- Git is source of truth;
+- Cloudflare Pages primary;
+- provider-neutral static artifact required;
+- browser-capable tools cannot become Cloudflare-backend-dependent for convenience;
+- fallback must preserve canonical-domain and ad-safety behavior.
 
 ---
 
-# Next logical work
+# Current hard stop / next legal action
 
-Continue only Phase 1/2:
+Everything possible through Phase 4 preflight has been completed without fabricating approval.
 
-1. pressure the seven-row structural PDF block and retain only the operations whose market value justifies hostile-input admission work;
-2. validate independent intent for CSV/data formatter variants and File Hash vs text SHA-256;
-3. review current image conversion overlap;
-4. continue testing strong reserve challengers without inflating the shortlist;
-5. narrow R5 to a final evidence-backed pool still >50;
-6. finalize Phase-2 conditional gates only for survivors;
-7. begin Phase 3 only after both Phase-1 and Phase-2 exit gates are genuinely satisfied;
-8. do not implement Tool SDK, crawler, AI editorial backend or freeze Launch 50 prematurely.
+Current hard stop:
 
-Before every future Tools action, reread the actual ref workflow and binding addenda. Git remains the source of truth.
+> Phase-4 gate requires the exact Launch-50 matrix to be explicitly approved.
+
+Until that approval is recorded:
+
+- do not mark Phase 4 closed;
+- do not start Phase 5;
+- do not implement Tool SDK/runtime;
+- do not install conditional dependencies;
+- do not implement crawler/AI/autonomous growth.
+
+Before every future Tools action, reread the actual ref workflow, addenda and Tools-specific context. Git remains the source of truth.

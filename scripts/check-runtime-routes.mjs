@@ -2,8 +2,12 @@ import { spawn } from "node:child_process";
 import { once } from "node:events";
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
-import { blockedRoutes, canonicalRoutes } from "./route-contract.mjs";
-import { validateBlockedResponse, validateCanonicalResponse } from "./runtime-route-probe.mjs";
+import { blockedRoutes, canonicalRoutes, privateRuntimeRoutes } from "./route-contract.mjs";
+import {
+  validateBlockedResponse,
+  validateCanonicalResponse,
+  validatePrivateRuntimeResponse,
+} from "./runtime-route-probe.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 const host = "127.0.0.1";
@@ -104,6 +108,17 @@ try {
       );
     }
   }
+
+  for (const route of privateRuntimeRoutes) {
+    try {
+      const response = await fetch(`${origin}${route}`, { redirect: "manual" });
+      failures.push(...validatePrivateRuntimeResponse(route, response.status));
+    } catch (error) {
+      failures.push(
+        `${route}: falha de rede no probe (${error instanceof Error ? error.message : error}).`,
+      );
+    }
+  }
 } catch (error) {
   failures.push(`preview indisponível: ${error instanceof Error ? error.message : error}`);
 } finally {
@@ -118,5 +133,5 @@ if (failures.length) {
 }
 
 console.log(
-  `PASS check:runtime-routes — ${canonicalRoutes.length}/${canonicalRoutes.length} rotas canônicas responderam HTTP 200 e ${blockedRoutes.length}/${blockedRoutes.length} rota bloqueada respondeu 404 via workerd.`,
+  `PASS check:runtime-routes — ${canonicalRoutes.length}/${canonicalRoutes.length} rotas canônicas responderam HTTP 200, ${blockedRoutes.length}/${blockedRoutes.length} rota bloqueada respondeu 404 e ${privateRuntimeRoutes.length}/${privateRuntimeRoutes.length} rota privada respondeu 404 via workerd.`,
 );

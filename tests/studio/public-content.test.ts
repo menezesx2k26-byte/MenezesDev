@@ -25,16 +25,14 @@ class PublishedDb {
   readonly queries: string[] = [];
 
   constructor(
-    private readonly row:
-      | {
-          id: number;
-          version_number: number;
-          source_revision: number;
-          snapshot_json: string;
-          published_by: string | null;
-          published_at: string;
-        }
-      | null,
+    private readonly row: {
+      id: number;
+      version_number: number;
+      source_revision: number;
+      snapshot_json: string;
+      published_by: string | null;
+      published_at: string;
+    } | null,
     private readonly failure?: Error,
   ) {}
 
@@ -90,7 +88,9 @@ describe("published-only public content", () => {
     const publicContent = requirePublicContent();
     const db = new PublishedDb(null, new Error("D1 unavailable"));
 
-    await expect(publicContent.getPublishedSiteDocument(asD1(db))).rejects.toThrow("D1 unavailable");
+    await expect(publicContent.getPublishedSiteDocument(asD1(db))).rejects.toThrow(
+      "D1 unavailable",
+    );
   });
 
   it("fails closed when the published snapshot is malformed", async () => {
@@ -129,11 +129,7 @@ describe("published-only public content", () => {
   it("orders Home projects by published projectIds and excludes hidden/non-home records", () => {
     const publicContent = requirePublicContent();
     const document = createDefaultSiteDocument();
-    document.home.projects.projectIds = [
-      "project-prismae",
-      "project-m47",
-      "project-tavola-27",
-    ];
+    document.home.projects.projectIds = ["project-prismae", "project-m47", "project-tavola-27"];
     document.projects.find((project) => project.slug === "tavola-27")!.showOnHome = false;
 
     const view = publicContent.toPublicHomeView(document);
@@ -174,7 +170,9 @@ describe("published-only public content", () => {
       expect(source, `${path} must read the published SiteDocument`).toContain(
         "getPublishedSiteDocument",
       );
-      expect(source, `${path} must access the Cloudflare DB binding`).toContain("getRuntimeBindings");
+      expect(source, `${path} must access the Cloudflare DB binding`).toContain(
+        "getRuntimeBindings",
+      );
       expect(source, `${path} must not read legacy projects`).not.toContain("data/projects");
       expect(source, `${path} must not read legacy Home data`).not.toContain("data/home");
       expect(source, `${path} must not read static siteConfig`).not.toContain("config/site");

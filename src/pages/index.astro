@@ -71,10 +71,7 @@ const heroMicrocopy = splitFirstSentence(view.hero.microcopy);
                   showPendingNote
                   href={view.whatsappUrl}
                 />
-                <a
-                  class="button button--secondary"
-                  href={samePageHref(view.hero.secondaryCtaHref)}
-                >
+                <a class="button button--secondary" href={samePageHref(view.hero.secondaryCtaHref)}>
                   {view.hero.secondaryCtaLabel} <ArrowRight aria-hidden="true" size={18} />
                 </a>
               </div>
@@ -138,7 +135,11 @@ const heroMicrocopy = splitFirstSentence(view.hero.microcopy);
               {view.problem.comparisons.map((comparison) => (
                 <article class="surface-card">
                   <h3>{comparison.title}</h3>
-                  <ul>{comparison.items.map((item) => <li>{item}</li>)}</ul>
+                  <ul>
+                    {comparison.items.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
                 </article>
               ))}
             </div>

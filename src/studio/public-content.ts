@@ -137,7 +137,9 @@ const toProjectView = (project: StudioProject): PublicProjectView => ({
 });
 
 export const toPublicProjectView = (document: SiteDocument, slug: string): PublicProjectView => {
-  const project = document.projects.find((candidate) => candidate.slug === slug && candidate.visible);
+  const project = document.projects.find(
+    (candidate) => candidate.slug === slug && candidate.visible,
+  );
   if (!project) throw new PublicProjectNotFoundError(slug);
   return toProjectView(project);
 };
@@ -146,9 +148,7 @@ export const toPublicHomeView = (document: SiteDocument): PublicHomeView => {
   const projectsById = new Map(document.projects.map((project) => [project.id, project]));
   const homeProjects = document.home.projects.projectIds
     .map((id) => projectsById.get(id))
-    .filter(
-      (project): project is StudioProject => Boolean(project?.visible && project.showOnHome),
-    )
+    .filter((project): project is StudioProject => Boolean(project?.visible && project.showOnHome))
     .map(toProjectView);
 
   return {

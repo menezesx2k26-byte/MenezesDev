@@ -8,7 +8,10 @@ const configuredSite = process.env.PUBLIC_SITE_URL?.trim() || "http://localhost:
 export default defineConfig({
   site: configuredSite,
   output: "server",
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    imageService: "passthrough",
+  }),
+  session: false,
   outDir: "dist",
   trailingSlash: "never",
   build: {

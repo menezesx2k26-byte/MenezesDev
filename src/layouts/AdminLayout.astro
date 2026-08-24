@@ -1,0 +1,120 @@
+---
+import { Font } from "astro:assets";
+import AdminSidebar from "../components/admin/AdminSidebar.astro";
+import AdminStatus from "../components/admin/AdminStatus.astro";
+import AdminTopbar from "../components/admin/AdminTopbar.astro";
+import "../styles/global.css";
+import "../styles/admin.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  saveLabel?: string;
+  publicationLabel?: string;
+  statusTone?: "neutral" | "success" | "warning" | "error";
+}
+
+const {
+  title,
+  description = "Administração do MenezesDev Studio.",
+  saveLabel,
+  publicationLabel,
+  statusTone = "neutral",
+} = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="pt-BR" data-theme="menezesdev-admin">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta name="googlebot" content="noindex, nofollow, noarchive" />
+    <title>{title} | MenezesDev Studio</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" />
+    <Font cssVariable="--font-manrope" preload />
+    <Font cssVariable="--font-inter" />
+  </head>
+  <body class="admin-body">
+    <a class="skip-link" href="#admin-main">Pular para o conteúdo</a>
+
+    <div class="admin-shell">
+      <div class="admin-shell__sidebar">
+        <AdminSidebar currentPath={currentPath} />
+      </div>
+
+      <div class="admin-shell__workspace">
+        <AdminTopbar>
+          <slot name="title">
+            <div>
+              <p class="admin-kicker">MenezesDev Studio</p>
+              <h1>{title}</h1>
+            </div>
+          </slot>
+          <Fragment slot="actions">
+            <slot name="actions" />
+          </Fragment>
+        </AdminTopbar>
+
+        <AdminStatus
+          saveLabel={saveLabel}
+          publicationLabel={publicationLabel}
+          tone={statusTone}
+        />
+
+        <main id="admin-main" class="admin-main" tabindex="-1">
+          <slot />
+        </main>
+      </div>
+    </div>
+
+    <dialog id="admin-mobile-navigation" class="admin-drawer" aria-label="Navegação do Studio">
+      <div class="admin-drawer__panel">
+        <div class="admin-drawer__top">
+          <strong>Navegação</strong>
+          <button type="button" class="admin-drawer__close" aria-label="Fechar navegação">×</button>
+        </div>
+        <AdminSidebar currentPath={currentPath} mobile />
+      </div>
+    </dialog>
+
+    <script>
+      const setupAdminNavigation = () => {
+        const dialog = document.querySelector<HTMLDialogElement>("#admin-mobile-navigation");
+        const trigger = document.querySelector<HTMLButtonElement>(
+          '[aria-controls="admin-mobile-navigation"]',
+        );
+        const close = dialog?.querySelector<HTMLButtonElement>(".admin-drawer__close");
+        if (!dialog || !trigger || dialog.dataset.ready === "true") return;
+        dialog.dataset.ready = "true";
+        let restoreFocus: HTMLElement | null = null;
+
+        const closeDialog = () => {
+          if (dialog.open) dialog.close();
+        };
+
+        trigger.addEventListener("click", () => {
+          restoreFocus = document.activeElement instanceof HTMLElement ? document.activeElement : trigger;
+          dialog.showModal();
+          close?.focus();
+        });
+
+        close?.addEventListener("click", closeDialog);
+        dialog.addEventListener("click", (event) => {
+          if (event.target === dialog) closeDialog();
+        });
+        dialog.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") closeDialog();
+        });
+        dialog.addEventListener("close", () => restoreFocus?.focus());
+        dialog.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeDialog));
+      };
+
+      setupAdminNavigation();
+      document.addEventListener("astro:page-load", setupAdminNavigation);
+    </script>
+  </body>
+</html>

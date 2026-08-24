@@ -1,0 +1,36 @@
+name: MenezesDev Studio TDD
+
+on:
+  pull_request:
+    branches:
+      - feat/phase-10-implementation
+
+permissions:
+  contents: read
+
+concurrency:
+  group: menezesdev-studio-tdd-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  focused-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24.19.0
+          package-manager-cache: false
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install existing frozen dependencies
+        run: corepack pnpm install --frozen-lockfile
+
+      - name: Runtime binding contract
+        run: corepack pnpm dlx vitest@4.1.11 run tests/runtime/config.test.ts

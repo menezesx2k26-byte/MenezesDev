@@ -9,6 +9,7 @@
 .workmode/
 .omniroute/
 .headroom/
+.wrangler/
 
 # Local Codex / image pipeline
 .codex/config.toml

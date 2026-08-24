@@ -31,7 +31,16 @@ describe("hybrid route contract", () => {
   });
 
   it("keeps development-only runtime routes outside the canonical surface", () => {
-    expect(privateRuntimeRoutes).toEqual(["/api/runtime-health", "/api/runtime-studio-seed"]);
+    expect(privateRuntimeRoutes).toEqual([
+      "/api/runtime-health",
+      "/api/runtime-studio-seed",
+      "/api/admin/state",
+      "/api/admin/draft",
+      "/api/admin/publish",
+      "/api/admin/versions",
+      "/api/admin/versions/1",
+      "/api/admin/versions/1/restore",
+    ]);
     for (const route of privateRuntimeRoutes) expect(canonicalRoutes).not.toContain(route);
   });
 

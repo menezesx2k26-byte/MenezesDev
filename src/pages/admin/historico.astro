@@ -40,7 +40,9 @@ const ready = Boolean(adminContext && draftRevision !== null && !loadError);
       statusTone={ready ? "neutral" : "error"}
     >
       <Fragment slot="actions">
-        <a class="admin-button admin-button--quiet" href="/admin/studio">Voltar ao Studio</a>
+        <a class="admin-button admin-button--quiet" href="/admin/studio">
+          Voltar ao Studio
+        </a>
       </Fragment>
 
       <section class="admin-page-heading" aria-labelledby="history-heading">
@@ -57,9 +59,9 @@ const ready = Boolean(adminContext && draftRevision !== null && !loadError);
           <VersionList versions={versions} />
           <RestoreDialog />
           <script>
-            import { setupHistoryController } from "../../studio/client/history-controller";
-            setupHistoryController();
-            document.addEventListener("astro:page-load", setupHistoryController);
+            import {setupHistoryController} from "../../studio/client/history-controller";
+            setupHistoryController(); document.addEventListener("astro:page-load",
+            setupHistoryController);
           </script>
         </section>
       ) : (

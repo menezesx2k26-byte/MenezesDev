@@ -32,7 +32,8 @@ export const setupHistoryController = (): void => {
       const versionNumber = parseVersionNumber(button.dataset.versionNumber);
       if (versionNumber === null) return;
       selectedVersion = versionNumber;
-      if (versionLabel) versionLabel.textContent = button.dataset.versionLabel ?? `v${versionNumber}`;
+      if (versionLabel)
+        versionLabel.textContent = button.dataset.versionLabel ?? `v${versionNumber}`;
       if (status) status.textContent = "";
       dialog.showModal();
     });
@@ -66,7 +67,8 @@ export const setupHistoryController = (): void => {
       }
 
       if (!response.ok) {
-        if (status) status.textContent = "Não foi possível restaurar esta versão. Nada foi alterado.";
+        if (status)
+          status.textContent = "Não foi possível restaurar esta versão. Nada foi alterado.";
         return;
       }
 

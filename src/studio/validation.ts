@@ -42,12 +42,7 @@ const topLevelKeys = new Set([
 const isRecord = (value: unknown): value is UnknownRecord =>
   typeof value === "object" && value !== null && !Array.isArray(value);
 
-const addIssue = (
-  issues: StudioValidationIssue[],
-  path: string,
-  code: string,
-  message: string,
-) => {
+const addIssue = (issues: StudioValidationIssue[], path: string, code: string, message: string) => {
   if (issues.some((issue) => issue.path === path && issue.code === code)) return;
   issues.push({ path, code, message });
 };
@@ -162,24 +157,14 @@ const inspectBoundsAndExecutableFields = (
 ) => {
   if (typeof value === "string") {
     if (value.length > STUDIO_LIMITS.longText) {
-      addIssue(
-        issues,
-        path,
-        "too_large",
-        `String exceeds ${STUDIO_LIMITS.longText} characters.`,
-      );
+      addIssue(issues, path, "too_large", `String exceeds ${STUDIO_LIMITS.longText} characters.`);
     }
     return;
   }
 
   if (Array.isArray(value)) {
     if (value.length > STUDIO_LIMITS.listItems) {
-      addIssue(
-        issues,
-        path,
-        "too_many_items",
-        `List exceeds ${STUDIO_LIMITS.listItems} items.`,
-      );
+      addIssue(issues, path, "too_many_items", `List exceeds ${STUDIO_LIMITS.listItems} items.`);
     }
     value.forEach((item, index) =>
       inspectBoundsAndExecutableFields(item, `${path}[${index}]`, issues),
@@ -192,22 +177,26 @@ const inspectBoundsAndExecutableFields = (
   for (const [key, nested] of Object.entries(value)) {
     const nestedPath = path ? `${path}.${key}` : key;
     if (/(?:html|css|script|javascript)$/i.test(key) || /^on[A-Z]/.test(key)) {
-      addIssue(issues, nestedPath, "executable_field", "Executable content fields are not allowed.");
+      addIssue(
+        issues,
+        nestedPath,
+        "executable_field",
+        "Executable content fields are not allowed.",
+      );
     }
     inspectBoundsAndExecutableFields(nested, nestedPath, issues);
   }
 };
 
-const validateMedia = (
-  value: unknown,
-  path: string,
-  issues: StudioValidationIssue[],
-): void => {
+const validateMedia = (value: unknown, path: string, issues: StudioValidationIssue[]): void => {
   if (!isRecord(value)) {
     addIssue(issues, path, "type", "Expected media metadata.");
     return;
   }
-  requireString(value, "id", `${path}.id`, issues, { nonEmpty: true, max: STUDIO_LIMITS.shortText });
+  requireString(value, "id", `${path}.id`, issues, {
+    nonEmpty: true,
+    max: STUDIO_LIMITS.shortText,
+  });
   const kind = requireString(value, "kind", `${path}.kind`, issues, { nonEmpty: true });
   if (kind !== null && kind !== "repository" && kind !== "r2") {
     addIssue(issues, `${path}.kind`, "enum", "Unsupported media reference kind.");
@@ -253,10 +242,7 @@ const validateIdList = (
   });
 };
 
-const validateNavigation = (
-  root: UnknownRecord,
-  issues: StudioValidationIssue[],
-): void => {
+const validateNavigation = (root: UnknownRecord, issues: StudioValidationIssue[]): void => {
   const navigation = arrayAt(root, "navigation", "navigation", issues);
   if (navigation.length > STUDIO_LIMITS.navigationItems) {
     addIssue(issues, "navigation", "too_many_items", "Too many navigation items.");
@@ -408,7 +394,9 @@ const validateProjects = (root: UnknownRecord, issues: StudioValidationIssue[]):
     }
     if (typeof project.id === "string") projectIds.add(project.id);
     requireString(project, "name", `projects[${index}].name`, issues, { nonEmpty: true });
-    requireString(project, "disclosure", `projects[${index}].disclosure`, issues, { nonEmpty: true });
+    requireString(project, "disclosure", `projects[${index}].disclosure`, issues, {
+      nonEmpty: true,
+    });
     validateHref(project, "demoHref", `projects[${index}].demoHref`, issues);
     validateLayout(project, "layout", `projects[${index}].layout`, issues);
     const tags = arrayAt(project, "tags", `projects[${index}].tags`, issues);
@@ -513,7 +501,12 @@ export const validateSiteDocument = (
 
   for (const key of Object.keys(candidate)) {
     if (!topLevelKeys.has(key)) {
-      addIssue(issues, key, "unknown_field", "Field is not part of the bounded SiteDocument schema.");
+      addIssue(
+        issues,
+        key,
+        "unknown_field",
+        "Field is not part of the bounded SiteDocument schema.",
+      );
     }
   }
 

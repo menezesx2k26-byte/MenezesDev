@@ -226,7 +226,8 @@ const validDocument = () => ({
   ],
   commercial: {
     whatsappUrl: null,
-    whatsappMessage: "Olá! Vi o site da MenezesDev e gostaria de solicitar um orçamento para um site.",
+    whatsappMessage:
+      "Olá! Vi o site da MenezesDev e gostaria de solicitar um orçamento para um site.",
     socialLinks: [],
   },
   seo: {
@@ -251,8 +252,14 @@ const issuePaths = (result: { issues: Array<{ path: string }> }) =>
 describe("validateSiteDocument", () => {
   it("accepts a valid bounded Studio document in draft and publish modes", () => {
     const { validateSiteDocument } = requireValidation();
-    expect(validateSiteDocument(validDocument(), { mode: "draft" })).toEqual({ ok: true, issues: [] });
-    expect(validateSiteDocument(validDocument(), { mode: "publish" })).toEqual({ ok: true, issues: [] });
+    expect(validateSiteDocument(validDocument(), { mode: "draft" })).toEqual({
+      ok: true,
+      issues: [],
+    });
+    expect(validateSiteDocument(validDocument(), { mode: "publish" })).toEqual({
+      ok: true,
+      issues: [],
+    });
   });
 
   it("rejects a missing or unsupported schemaVersion", () => {
@@ -263,7 +270,9 @@ describe("validateSiteDocument", () => {
 
     const unsupported = validDocument();
     unsupported.schemaVersion = 99;
-    expect(issuePaths(validateSiteDocument(unsupported, { mode: "draft" }))).toContain("schemaVersion");
+    expect(issuePaths(validateSiteDocument(unsupported, { mode: "draft" }))).toContain(
+      "schemaVersion",
+    );
   });
 
   it("rejects duplicate project ids and slugs", () => {
@@ -325,8 +334,9 @@ describe("validateSiteDocument", () => {
     const { validateSiteDocument, STUDIO_LIMITS } = requireValidation();
     const candidate = validDocument();
     candidate.home.hero.title = "x".repeat(STUDIO_LIMITS.longText + 1);
-    candidate.projects[0].tags = Array.from({ length: STUDIO_LIMITS.listItems + 1 }, (_, index) =>
-      `tag-${index}`,
+    candidate.projects[0].tags = Array.from(
+      { length: STUDIO_LIMITS.listItems + 1 },
+      (_, index) => `tag-${index}`,
     );
     const paths = issuePaths(validateSiteDocument(candidate, { mode: "draft" }));
     expect(paths).toContain("home.hero.title");

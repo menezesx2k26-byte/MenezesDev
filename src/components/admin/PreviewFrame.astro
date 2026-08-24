@@ -1,0 +1,132 @@
+---
+import { PREVIEW_VIEWPORTS } from "../../studio/preview";
+
+interface Props {
+  src?: string;
+  title?: string;
+}
+
+const { src = "/admin/preview", title = "Prévia responsiva do rascunho" } = Astro.props;
+---
+
+<section class="studio-preview-frame" aria-label="Prévia responsiva">
+  <div class="studio-preview-frame__toolbar" aria-label="Viewport responsivo da prévia">
+    <span>Prévia responsiva</span>
+    <button
+      type="button"
+      class="admin-button admin-button--compact"
+      data-preview-viewport="desktop"
+      data-preview-width={PREVIEW_VIEWPORTS.desktop}
+      aria-pressed="true"
+    >
+      Desktop · 1440 px
+    </button>
+    <button
+      type="button"
+      class="admin-button admin-button--compact admin-button--ghost"
+      data-preview-viewport="tablet"
+      data-preview-width={PREVIEW_VIEWPORTS.tablet}
+      aria-pressed="false"
+    >
+      Tablet · 768 px
+    </button>
+    <button
+      type="button"
+      class="admin-button admin-button--compact admin-button--ghost"
+      data-preview-viewport="mobile"
+      data-preview-width={PREVIEW_VIEWPORTS.mobile}
+      aria-pressed="false"
+    >
+      Mobile · 390 px
+    </button>
+  </div>
+
+  <div
+    class="studio-preview-frame__viewport"
+    data-preview-viewport-shell
+    style={`--preview-width:${PREVIEW_VIEWPORTS.desktop}px`}
+  >
+    <iframe
+      src={src}
+      title={title}
+      data-preview-frame
+      loading="eager"
+      referrerpolicy="same-origin"
+    ></iframe>
+  </div>
+
+  <p class="studio-preview-frame__note">
+    A largura simula apenas o viewport responsivo. O navegador e o comportamento da página continuam
+    reais; nada é publicado por esta prévia.
+  </p>
+</section>
+
+<script>
+  const setupPreviewFrame = () => {
+    document.querySelectorAll<HTMLElement>(".studio-preview-frame").forEach((root) => {
+      if (root.dataset.previewReady === "true") return;
+      root.dataset.previewReady = "true";
+      const shell = root.querySelector<HTMLElement>("[data-preview-viewport-shell]");
+      const buttons = root.querySelectorAll<HTMLButtonElement>("[data-preview-viewport]");
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const width = Number(button.dataset.previewWidth);
+          if (!shell || !Number.isFinite(width) || width <= 0) return;
+          shell.style.setProperty("--preview-width", `${width}px`);
+          buttons.forEach((candidate) => {
+            candidate.setAttribute("aria-pressed", String(candidate === button));
+            candidate.classList.toggle("admin-button--ghost", candidate !== button);
+          });
+        });
+      });
+    });
+  };
+  setupPreviewFrame();
+  document.addEventListener("astro:page-load", setupPreviewFrame);
+</script>
+
+<style>
+  .studio-preview-frame {
+    display: grid;
+    gap: 0.75rem;
+    min-width: 0;
+  }
+
+  .studio-preview-frame__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .studio-preview-frame__toolbar > span {
+    margin-right: auto;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .studio-preview-frame__viewport {
+    width: min(100%, var(--preview-width));
+    max-width: 100%;
+    margin-inline: auto;
+    overflow: hidden;
+    border: 1px solid var(--admin-border, rgba(255, 255, 255, 0.12));
+    border-radius: 1rem;
+    background: #fff;
+    transition: width 180ms ease;
+  }
+
+  .studio-preview-frame iframe {
+    display: block;
+    width: 100%;
+    min-height: 720px;
+    border: 0;
+    background: #fff;
+  }
+
+  .studio-preview-frame__note {
+    margin: 0;
+    font-size: 0.78rem;
+    opacity: 0.72;
+  }
+</style>

@@ -26,6 +26,7 @@ interface StudioVersionRow {
   snapshot_json: string;
   published_by: string | null;
   published_at: string;
+  restored_from_version_id: number | null;
 }
 
 export interface StudioState {
@@ -48,6 +49,7 @@ export interface StudioVersion {
   sourceRevision: number;
   publishedBy: string | null;
   publishedAt: string;
+  restoredFromVersionId: number | null;
 }
 
 export interface StudioVersionSummary {
@@ -56,6 +58,7 @@ export interface StudioVersionSummary {
   sourceRevision: number;
   publishedBy: string | null;
   publishedAt: string;
+  restoredFromVersionId: number | null;
 }
 
 const stateSelect = `
@@ -108,6 +111,7 @@ const toVersion = (row: StudioVersionRow): StudioVersion => ({
   sourceRevision: row.source_revision,
   publishedBy: row.published_by,
   publishedAt: row.published_at,
+  restoredFromVersionId: row.restored_from_version_id ?? null,
 });
 
 export const getStudioState = async (db: D1Database): Promise<StudioState> => {
@@ -136,7 +140,14 @@ export const getPublished = async (db: D1Database): Promise<StudioVersion> => {
   const row = await db
     .prepare(
       `
-        SELECT v.id, v.version_number, v.source_revision, v.snapshot_json, v.published_by, v.published_at
+        SELECT
+          v.id,
+          v.version_number,
+          v.source_revision,
+          v.snapshot_json,
+          v.published_by,
+          v.published_at,
+          v.restored_from_version_id
         FROM studio_state s
         JOIN studio_versions v
           ON v.site_id = s.site_id
@@ -201,7 +212,13 @@ export const listVersions = async (
   const result = await db
     .prepare(
       `
-        SELECT id, version_number, source_revision, published_by, published_at
+        SELECT
+          id,
+          version_number,
+          source_revision,
+          published_by,
+          published_at,
+          restored_from_version_id
         FROM studio_versions
         WHERE site_id = ?
         ORDER BY version_number DESC
@@ -217,6 +234,7 @@ export const listVersions = async (
     sourceRevision: row.source_revision,
     publishedBy: row.published_by,
     publishedAt: row.published_at,
+    restoredFromVersionId: row.restored_from_version_id ?? null,
   }));
 };
 
@@ -229,7 +247,14 @@ export const getVersion = async (
   const row = await db
     .prepare(
       `
-        SELECT id, version_number, source_revision, snapshot_json, published_by, published_at
+        SELECT
+          id,
+          version_number,
+          source_revision,
+          snapshot_json,
+          published_by,
+          published_at,
+          restored_from_version_id
         FROM studio_versions
         WHERE site_id = ?
           AND version_number = ?

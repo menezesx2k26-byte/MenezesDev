@@ -38,6 +38,15 @@ jobs:
       - name: Astro and TypeScript check
         run: corepack pnpm check
 
+      - name: Apply local D1 migrations
+        run: corepack pnpm db:migrate:local
+
+      - name: Seed local Studio
+        run: corepack pnpm studio:seed:local
+
+      - name: Verify local Studio seed
+        run: corepack pnpm studio:check-seed
+
       - name: Production build
         run: corepack pnpm build
 

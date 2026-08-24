@@ -1,5 +1,6 @@
 ---
 import AdminLayout from "../../layouts/AdminLayout.astro";
+import PublicationDialog from "../../components/admin/publication/PublicationDialog.astro";
 import { getRuntimeBindings } from "../../runtime/bindings";
 import { buildRuntimeHealth, createRuntimeHealthProbes } from "../../runtime/health";
 import { requireStudioAdminContext } from "../../studio/http";
@@ -11,6 +12,7 @@ if (!adminContext) Astro.response.status = 404;
 let publishedVersion: number | null = null;
 let lastPublishedAt: string | null = null;
 let projectCount: number | null = null;
+let draftRevision: number | null = null;
 let draftDirty: boolean | null = null;
 let databaseHealth: "ok" | "error" | "unknown" = "unknown";
 let mediaHealth: "ok" | "error" | "unknown" = "unknown";
@@ -26,6 +28,7 @@ if (adminContext) {
     ]);
 
     if (draftResult.status === "fulfilled") {
+      draftRevision = draftResult.value.revision;
       projectCount = draftResult.value.document.projects.length;
     }
 
@@ -35,7 +38,8 @@ if (adminContext) {
     }
 
     if (draftResult.status === "fulfilled" && publishedResult.status === "fulfilled") {
-      draftDirty = draftResult.value.revision !== publishedResult.value.sourceRevision;
+      draftDirty =
+        JSON.stringify(draftResult.value.document) !== JSON.stringify(publishedResult.value.document);
     }
 
     if (healthResult.status === "fulfilled") {
@@ -155,7 +159,11 @@ const statusTone = draftDirty === true ? "warning" : draftDirty === false ? "suc
           </p>
         </article>
 
-        <article class="admin-panel admin-panel--full">
+        <article
+          class="admin-panel admin-panel--full"
+          data-publication-root
+          data-publication-revision={draftRevision === null ? undefined : draftRevision}
+        >
           <span class="admin-panel__label">Próximas ações</span>
           <div class="admin-shortcuts" aria-label="Atalhos do Studio">
             <a class="admin-button admin-button--secondary" href="/admin/studio">
@@ -172,14 +180,28 @@ const statusTone = draftDirty === true ? "warning" : draftDirty === false ? "suc
             <a class="admin-button admin-button--quiet" href="/admin/historico">
               Histórico
             </a>
-            <button class="admin-button" type="button" disabled>
+            <button
+              class="admin-button"
+              type="button"
+              data-publish-open
+              disabled={draftDirty !== true}
+            >
               Publicar
             </button>
           </div>
           <p class="admin-panel__detail">
-            Edição, preview e histórico já usam o rascunho real. A publicação permanece uma ação
-            separada e explícita.
+            {draftDirty === true
+              ? "Há alterações prontas para uma publicação explícita."
+              : draftDirty === false
+                ? "Não há diferenças entre o rascunho e o site publicado."
+                : "A publicação fica indisponível enquanto o estado do rascunho não puder ser confirmado."}
           </p>
+          <PublicationDialog />
+          <script>
+            import { setupPublicationController } from "../../studio/client/publication-controller";
+            setupPublicationController();
+            document.addEventListener("astro:page-load", setupPublicationController);
+          </script>
         </article>
       </section>
     </AdminLayout>

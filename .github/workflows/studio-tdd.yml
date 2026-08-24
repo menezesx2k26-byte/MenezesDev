@@ -116,5 +116,8 @@ jobs:
           fi
           corepack pnpm studio:check-seed
 
+      - name: Verify Phase 10 public equivalence
+        run: node scripts/check-public-equivalence.mjs
+
       - name: Smoke development runtime health
         run: corepack pnpm check:runtime-health:dev

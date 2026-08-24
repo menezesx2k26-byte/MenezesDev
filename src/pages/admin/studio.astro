@@ -61,19 +61,14 @@ const initialStateJson =
             </p>
           </section>
 
-          <script
-            id="studio-initial-state"
-            type="application/json"
-            set:html={initialStateJson}
-          />
+          <script id="studio-initial-state" type="application/json" set:html={initialStateJson} />
           <StudioShell document={draft.document} />
           <ConflictDialog />
 
           <script>
-            import { setupStudioController } from "../../studio/client/studio-controller";
-
-            setupStudioController();
-            document.addEventListener("astro:page-load", setupStudioController);
+            import {setupStudioController} from "../../studio/client/studio-controller";
+            setupStudioController(); document.addEventListener("astro:page-load",
+            setupStudioController);
           </script>
         </>
       ) : (

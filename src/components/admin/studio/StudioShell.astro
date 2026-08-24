@@ -16,13 +16,28 @@ interface Props {
 const { document } = Astro.props;
 ---
 
-<div class="studio-workspace" data-studio-root data-studio-active-section="hero" data-studio-active-mode="editor">
+<div
+  class="studio-workspace"
+  data-studio-root
+  data-studio-active-section="hero"
+  data-studio-active-mode="editor"
+>
   <div class="studio-toolbar" aria-label="Controles do Studio">
     <div class="studio-mode-switch" aria-label="Modo do Studio">
-      <button type="button" class="admin-button admin-button--compact" data-studio-mode="editor" aria-pressed="true">
+      <button
+        type="button"
+        class="admin-button admin-button--compact"
+        data-studio-mode="editor"
+        aria-pressed="true"
+      >
         Editor
       </button>
-      <button type="button" class="admin-button admin-button--compact admin-button--ghost" data-studio-mode="preview" aria-pressed="false">
+      <button
+        type="button"
+        class="admin-button admin-button--compact admin-button--ghost"
+        data-studio-mode="preview"
+        aria-pressed="false"
+      >
         Prévia
       </button>
     </div>
@@ -40,7 +55,9 @@ const { document } = Astro.props;
       Tentar salvar novamente
     </button>
 
-    <p class="studio-save-state" data-studio-save-status aria-live="polite">Rascunho sincronizado.</p>
+    <p class="studio-save-state" data-studio-save-status aria-live="polite">
+      Rascunho sincronizado.
+    </p>
   </div>
 
   <div class="studio-workspace__columns">
@@ -72,7 +89,11 @@ const { document } = Astro.props;
       </div>
     </div>
 
-    <aside class="studio-workspace__preview" data-studio-preview-panel aria-label="Prévia do rascunho">
+    <aside
+      class="studio-workspace__preview"
+      data-studio-preview-panel
+      aria-label="Prévia do rascunho"
+    >
       <div class="studio-preview-placeholder">
         <p class="admin-kicker">Rascunho local</p>
         <h2 data-studio-preview-title>{document.home.hero.title}</h2>
@@ -88,8 +109,8 @@ const { document } = Astro.props;
           </div>
         </dl>
         <p class="studio-preview-placeholder__note">
-          Este painel acompanha o rascunho sem publicar. A prévia visual com o mesmo renderer do site
-          público é adicionada na etapa dedicada de Preview.
+          Este painel acompanha o rascunho sem publicar. A prévia visual com o mesmo renderer do
+          site público é adicionada na etapa dedicada de Preview.
         </p>
       </div>
     </aside>

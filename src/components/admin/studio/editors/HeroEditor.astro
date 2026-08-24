@@ -24,12 +24,16 @@ const { section } = Astro.props;
 
     <label class="studio-field studio-field--wide">
       <span>Título</span>
-      <textarea maxlength={STUDIO_LIMITS.longText} rows="3" data-studio-path="home.hero.title">{section.title}</textarea>
+      <textarea maxlength={STUDIO_LIMITS.longText} rows="3" data-studio-path="home.hero.title"
+        >{section.title}</textarea
+      >
     </label>
 
     <label class="studio-field studio-field--wide">
       <span>Texto de apoio</span>
-      <textarea maxlength={STUDIO_LIMITS.longText} rows="4" data-studio-path="home.hero.lead">{section.lead}</textarea>
+      <textarea maxlength={STUDIO_LIMITS.longText} rows="4" data-studio-path="home.hero.lead"
+        >{section.lead}</textarea
+      >
     </label>
 
     <label class="studio-field">
@@ -64,7 +68,9 @@ const { section } = Astro.props;
 
     <label class="studio-field studio-field--wide">
       <span>Microcopy</span>
-      <textarea maxlength={STUDIO_LIMITS.longText} rows="2" data-studio-path="home.hero.microcopy">{section.microcopy}</textarea>
+      <textarea maxlength={STUDIO_LIMITS.longText} rows="2" data-studio-path="home.hero.microcopy"
+        >{section.microcopy}</textarea
+      >
     </label>
   </div>
 </PropertyPanel>

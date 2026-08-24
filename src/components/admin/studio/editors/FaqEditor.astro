@@ -14,11 +14,18 @@ const { section } = Astro.props;
   <div class="studio-fields-grid">
     <label class="studio-field">
       <span>Chamada curta</span>
-      <input type="text" maxlength={STUDIO_LIMITS.longText} value={section.eyebrow} data-studio-path="home.faq.eyebrow" />
+      <input
+        type="text"
+        maxlength={STUDIO_LIMITS.longText}
+        value={section.eyebrow}
+        data-studio-path="home.faq.eyebrow"
+      />
     </label>
     <label class="studio-field studio-field--wide">
       <span>Título</span>
-      <textarea maxlength={STUDIO_LIMITS.longText} rows="3" data-studio-path="home.faq.title">{section.title}</textarea>
+      <textarea maxlength={STUDIO_LIMITS.longText} rows="3" data-studio-path="home.faq.title"
+        >{section.title}</textarea
+      >
     </label>
   </div>
 
@@ -43,11 +50,15 @@ const { section } = Astro.props;
                   maxlength={STUDIO_LIMITS.longText}
                   rows="3"
                   data-studio-path={`home.faq.items.${index}.answer.${answerIndex}`}
-                >{paragraph}</textarea>
+                >
+                  {paragraph}
+                </textarea>
               </label>
             ))}
             <label class="studio-control studio-control--toggle">
-              <span><strong>Visível</strong></span>
+              <span>
+                <strong>Visível</strong>
+              </span>
               <input
                 type="checkbox"
                 checked={item.visible}

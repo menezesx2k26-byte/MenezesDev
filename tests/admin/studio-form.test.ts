@@ -31,11 +31,7 @@ const editorContracts = [
   },
   {
     file: "src/components/admin/studio/editors/PlansSectionEditor.astro",
-    paths: [
-      "home.plans.title",
-      "home.plans.items.${index}.priceLabel",
-      "home.plans.custom.title",
-    ],
+    paths: ["home.plans.title", "home.plans.items.${index}.priceLabel", "home.plans.custom.title"],
   },
   {
     file: "src/components/admin/studio/editors/FaqEditor.astro",

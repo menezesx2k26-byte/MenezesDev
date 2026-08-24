@@ -85,7 +85,10 @@ export const setupStudioController = (): void => {
     if (!path) return;
     const current = readExistingPath(documentState, path);
 
-    if (control.dataset.studioValueType === "string-array-member" && control instanceof HTMLInputElement) {
+    if (
+      control.dataset.studioValueType === "string-array-member" &&
+      control instanceof HTMLInputElement
+    ) {
       control.checked = Array.isArray(current) && current.includes(control.value);
       return;
     }
@@ -122,7 +125,10 @@ export const setupStudioController = (): void => {
     const path = control.dataset.studioPath;
     if (!path) return;
 
-    if (control.dataset.studioValueType === "string-array-member" && control instanceof HTMLInputElement) {
+    if (
+      control.dataset.studioValueType === "string-array-member" &&
+      control instanceof HTMLInputElement
+    ) {
       const current = readExistingPath(store.getState().document, path);
       if (!Array.isArray(current)) return;
       const values = current.filter((item): item is string => typeof item === "string");

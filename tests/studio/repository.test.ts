@@ -19,7 +19,10 @@ const requireRepository = () => {
     repositoryModule,
     "src/studio/repository.ts must implement the revision-safe D1 repository",
   ).not.toBeNull();
-  expect(errorsModule, "src/studio/errors.ts must expose typed Studio repository errors").not.toBeNull();
+  expect(
+    errorsModule,
+    "src/studio/errors.ts must expose typed Studio repository errors",
+  ).not.toBeNull();
   return {
     repository: repositoryModule as RepositoryModule,
     errors: errorsModule as ErrorsModule,
@@ -149,9 +152,7 @@ class FakeD1 {
 
     if (sql.startsWith("SELECT") && sql.includes("FROM STUDIO_STATE")) {
       const [siteId] = params as [string];
-      return this.result(
-        this.state && this.state.site_id === siteId ? [{ ...this.state }] : [],
-      );
+      return this.result(this.state && this.state.site_id === siteId ? [{ ...this.state }] : []);
     }
 
     if (sql.startsWith("SELECT") && sql.includes("FROM STUDIO_VERSIONS")) {

@@ -15,15 +15,16 @@
     "test:watch": "vitest",
     "build:site": "astro build",
     "check:routes": "node scripts/check-routes.mjs",
+    "check:runtime-routes": "node scripts/check-runtime-routes.mjs",
     "check:acceptance": "node scripts/check-acceptance.mjs",
     "check:release": "node scripts/check-release.mjs",
-    "build": "astro check && astro build && node scripts/check-routes.mjs",
+    "build": "astro check && astro build && node scripts/check-routes.mjs && node scripts/check-runtime-routes.mjs",
     "preview": "astro preview",
     "cf:types": "wrangler types",
     "cf:dev": "wrangler dev",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "validate": "prettier --check . && vitest run && astro check && astro build && node scripts/check-routes.mjs && node scripts/check-acceptance.mjs"
+    "validate": "prettier --check . && vitest run && astro check && astro build && node scripts/check-routes.mjs && node scripts/check-runtime-routes.mjs && node scripts/check-acceptance.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "14.2.3",

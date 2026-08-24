@@ -31,3 +31,8 @@ export const validateCanonicalResponse = (route, status, html) => {
 
 export const validateBlockedResponse = (route, status) =>
   status === 404 ? [] : [`${route}: rota bloqueada respondeu HTTP ${status}, esperado 404.`];
+
+export const validatePrivateRuntimeResponse = (route, status) =>
+  status === 404
+    ? []
+    : [`${route}: rota privada respondeu HTTP ${status}, esperado 404 fora de desenvolvimento.`];

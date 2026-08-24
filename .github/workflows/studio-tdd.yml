@@ -1,6 +1,6 @@
 name: MenezesDev Studio TDD
 
-on:
+"on":
   pull_request:
     branches:
       - feat/phase-10-implementation

@@ -9,9 +9,9 @@ const packageJson = JSON.parse(readFileSync(resolve(process.cwd(), "package.json
   scripts?: Record<string, string>;
 };
 
-const createdTables = [...normalized.matchAll(/CREATE TABLE IF NOT EXISTS\s+([a-z_][a-z0-9_]*)/gi)].map(
-  ([, table]) => table.toLowerCase(),
-);
+const createdTables = [
+  ...normalized.matchAll(/CREATE TABLE IF NOT EXISTS\s+([a-z_][a-z0-9_]*)/gi),
+].map(([, table]) => table.toLowerCase());
 
 describe("Studio D1 core migration contract", () => {
   it("creates exactly the four approved Studio tables", () => {
@@ -31,7 +31,9 @@ describe("Studio D1 core migration contract", () => {
   });
 
   it("makes published version numbers unique and immutable-history friendly", () => {
-    expect(normalized).toMatch(/studio_versions\s*\([^;]*version_number\s+INTEGER\s+NOT NULL\s+UNIQUE/i);
+    expect(normalized).toMatch(
+      /studio_versions\s*\([^;]*version_number\s+INTEGER\s+NOT NULL\s+UNIQUE/i,
+    );
     expect(normalized).toMatch(/snapshot_json\s+TEXT\s+NOT NULL/i);
     expect(normalized).toMatch(/published_at\s+TEXT\s+NOT NULL/i);
   });
@@ -58,7 +60,9 @@ describe("Studio D1 core migration contract", () => {
   it("is schema-only and contains no destructive or fake production material", () => {
     expect(normalized).not.toMatch(/\bDROP\s+TABLE\b/i);
     expect(normalized).not.toMatch(/\b(?:INSERT|UPDATE|DELETE)\s+(?:INTO|FROM)?\b/i);
-    expect(normalized).not.toMatch(/[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/i);
+    expect(normalized).not.toMatch(
+      /[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/i,
+    );
     expect(normalized).not.toMatch(/(?:api[_-]?token|secret|password)\s*=/i);
   });
 

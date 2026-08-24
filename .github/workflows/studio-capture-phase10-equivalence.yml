@@ -51,7 +51,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          actual=$(git status --short | awk '{print $2}' | sort)
+          actual=$(git status --short --untracked-files=all | awk '{print $2}' | sort)
           expected='tests/fixtures/public-equivalence-phase10.json'
           diff -u <(printf '%s\n' "$expected") <(printf '%s\n' "$actual")
           git config user.name "github-actions[bot]"

@@ -12,12 +12,12 @@
 - Phase 2 — OSS Capability Audit: **CLOSED** (`docs/tools/PHASE2_CLOSURE.md`).
 - Phase 3 — Capability Map: **CLOSED** (`docs/tools/PHASE3_CLOSURE.md`).
 - Phase 4 — Freeze Launch 50: **CLOSED / exact matrix approved and frozen** (`docs/tools/LAUNCH50_FROZEN.md`, `docs/tools/PHASE4_CLOSURE.md`).
-- Phase 5 — Information architecture / international SEO: **UNBLOCKED / architectural design proposal pending Superpowers approval**.
+- Phase 5 — Information architecture / international SEO: **WRITTEN SPEC COMMITTED + SELF-REVIEWED / USER REVIEW PENDING**.
 - Phase 6+ — not started under the Tools workflow.
 - Tools runtime implementation: **NOT STARTED**.
 - `main` remains outside partial Tools implementation.
 
-Historical status text in `IMMUTABLE_WORKFLOW.md` remains untouched; later progress is recorded through closure artifacts under append-only governance.
+Historical status text in `IMMUTABLE_WORKFLOW.md` remains untouched; later progress is recorded through closure/review artifacts under append-only governance.
 
 ---
 
@@ -132,30 +132,60 @@ An ordered reserve pool of 18 reconstructs the 68-pool and is used if a conditio
 
 # Phase-5 current state
 
-Phase 5 is now legally unblocked by the workflow.
-
 Superpowers classification: **architectural**.
 
-Completed before design approval:
+The in-chat Phase-5 design was approved by Gabriel with `segue` after the concrete SEO/IA design had been presented.
 
-- current repo/context inspection;
-- official Google Search Central revalidation for canonicalization, localized versions/hreflang, sitemap behavior and structured-data eligibility;
-- route/SEO approach comparison prepared for user review.
+Canonical written spec:
 
-Not yet allowed:
+`docs/superpowers/specs/2026-08-24-menezesdev-tools-phase5-seo-ia-design.md`
 
-- committing the canonical Phase-5 SEO/IA spec;
-- marking Phase 5 closed;
-- starting Phase 6 architecture;
-- implementation or package installation.
+Self-review record:
 
-Reason: Superpowers brainstorming requires the specific architectural design to be presented and approved before the written spec is committed.
+`docs/superpowers/specs/2026-08-24-menezesdev-tools-phase5-seo-ia-self-review.md`
+
+The written spec now defines:
+
+- stable shallow category taxonomy;
+- exact English Launch-50 routes;
+- exact PT-BR Launch-50 localized routes;
+- canonical origin and trailing-slash policy;
+- self-canonical locale behavior;
+- reciprocal `hreflang` rules;
+- sitemap/robots/index/noindex contract;
+- breadcrumb and related-tool graph rules;
+- guide routing;
+- internal-search non-indexing behavior;
+- title/H1/meta contract;
+- structured-data applicability;
+- performance/static-HTML SEO requirements;
+- anti-thin/cannibalization rules;
+- finance/YMYL editorial constraints;
+- fallback-host canonical protection.
+
+Self-review result:
+
+- no `TBD`/`TODO` placeholders;
+- no conflict with workflow/security/autonomy/deployment portability;
+- Phase-5 scope remains separate from Phase 6 implementation architecture;
+- one category-indexing ambiguity was clarified: automatic `index` eligibility requires at least 3 complete tools; sub-threshold category hubs stay `noindex,follow` unless a later explicit SEO/design review approves an exception.
+
+Official Google Search Central guidance was revalidated on 2026-08-24 before the spec was written, including the May 2026 FAQ-rich-result deprecation.
+
+The remaining Superpowers gate is **user review of the committed written spec package**.
+
+Until that review is approved:
+
+- do not mark Phase 5 closed;
+- do not start Phase 6;
+- do not invoke implementation `writing-plans`;
+- do not implement Tool SDK/runtime/packages.
 
 ---
 
 # SEO / autonomous-growth sequencing
 
-Strategic SEO evidence is complete from Phase 1; Phase 5 now formalizes the technical contract.
+Strategic SEO evidence is complete from Phase 1; Phase 5 formalizes the route/SEO contract.
 
 Later workflow remains:
 
@@ -190,15 +220,13 @@ Binding deployment addendum remains:
 
 # Current next legal action
 
-Present the concrete Phase-5 SEO/IA architecture under Superpowers brainstorming.
+User reviews the committed Phase-5 written spec package.
 
-Once that **specific presented design** is approved:
+If approved:
 
-1. write/commit the Phase-5 design spec;
-2. self-review it for placeholders, contradictions, ambiguity and scope;
-3. close Phase 5 only if its workflow gate is satisfied;
-4. proceed to Phase 6 under its own required architectural design process.
-
-Do not infer approval for unseen later phases from the Phase-4 approval.
+1. record the written-spec approval;
+2. close Phase 5 if its workflow gate remains satisfied;
+3. begin Phase 6 only through a new Superpowers architectural-design cycle;
+4. do not infer approval for unseen Phase-6 decisions from the Phase-5 review.
 
 Before every future Tools action, reread the actual ref workflow, addenda and Tools-specific context. Git remains the source of truth.

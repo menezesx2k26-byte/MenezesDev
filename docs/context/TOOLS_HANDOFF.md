@@ -3,170 +3,184 @@
 **Date:** 2026-08-24  
 **Branch:** `feat/tools-oss-catalog`
 
-## Mandatory verification completed
+---
 
-Before acting in this pass, re-read from the exact branch/ref:
+# Mandatory verification completed
+
+Before this pass, the exact branch/ref was checked against:
 
 - Superpowers `using-superpowers`;
 - `AGENTS.md`;
 - `TOOLS_STATE.md`;
 - `TOOLS_DECISIONS.md`;
-- `TOOLS_HANDOFF.md`;
+- prior `TOOLS_HANDOFF.md`;
 - `IMMUTABLE_WORKFLOW.md` in full;
 - binding workflow addenda;
 - `SECURITY_POLICY.md`;
 - `TOOLS_SCOPE.md`;
-- current R3 shortlist and Phase-2 shortlist coverage.
+- deployment-portability addendum;
+- current market/OSS/shortlist artifacts;
+- branch comparison against `main`.
 
-Confirmed work remains authorized only in active Phase 1/2. Phase 3/4 and implementation remain blocked by prerequisites.
+User instruction for this pass: proceed autonomously as far as the workflow permits and do not ask unnecessary questions.
+
+No workflow/security hard gate was weakened.
 
 ---
 
-# Work completed in this pass
+# Major work completed
+
+## Phase 1
 
 Created:
 
-- `docs/tools/MARKET_INTELLIGENCE_BATCH8_ANTI_THIN_AND_REPLACEMENT.md`;
-- `docs/tools/CANDIDATE_UNIVERSE_ADMISSION_2026-08-24_03_RANDOM_NUMBER.md`;
-- `docs/tools/OSS_AUDIT_BATCH11_DECIMAL_FRACTION_RANDOM.md`;
-- `docs/tools/MARKET_SHORTLIST_80_WORKING_R4.md`;
-- `docs/tools/PHASE2_SHORTLIST_80_COVERAGE_R4.md`;
-- `docs/tools/MARKET_INTELLIGENCE_BATCH9_R5_CHALLENGERS.md`;
-- `docs/tools/OSS_AUDIT_BATCH12_FRACTIONS_STATISTICS.md`;
-- `docs/tools/MARKET_SHORTLIST_80_WORKING_R5.md`.
+- `docs/tools/MARKET_INTELLIGENCE_BATCH10_CLOSURE_PASS.md`;
+- `docs/tools/MARKET_SHORTLIST_68_FINAL_PHASE1.md`;
+- `docs/tools/PHASE1_CLOSURE.md`.
 
-Updated:
+Result:
 
-- `docs/context/TOOLS_DECISIONS.md`;
-- `docs/context/TOOLS_STATE.md`;
-- this handoff.
+- historical initial universe remains 172;
+- five explicit admissions remain recorded, current research universe 177;
+- final Phase-1 pool = **68**;
+- Phase-1 gate = **PASS / CLOSED**.
 
-No Tools runtime implementation, dependency install, backend, crawler, AI provider, Workflow, D1 resource or deployment was started.
+Major closure cuts/consolidations:
 
----
+- PDF reduced from seven R5 rows to Split/Merge/Remove Pages in the 68 pool;
+- JSON Minifier folded into JSON Formatter;
+- File Hash folded into SHA-256 Hash Generator file mode;
+- JSON → CSV folded into one bidirectional CSV ↔ JSON product;
+- Simple Interest folded into Interest Calculator;
+- JS/CSS formatter standalone rows moved to reserve;
+- ZIP Extractor moved to reserve;
+- Remove Image Metadata moved to reserve;
+- Tip Calculator and Aspect Ratio Calculator promoted.
 
-# Candidate universe
+## Phase 2
 
-Historical Batch-1 universe: **172**.
+Created:
 
-Explicit admissions now:
+- `docs/tools/PHASE2_FINAL_68_COVERAGE.md`;
+- `docs/tools/PHASE2_CLOSURE.md`.
 
-- #173 Retirement Calculator;
-- #174 Budget Calculator;
-- #175 Number Base Converter;
-- #176 Binary Translator;
-- #177 Random Number Generator.
+Final coverage:
 
-Current admitted Phase-1 universe: **177**.
+- **60/68** clear/internal/local-bounded;
+- **8/68** local-conditional;
+- **0/68** backend-required;
+- **0/68** HOLD/UNRESOLVED;
+- **68/68** expected 0 MenezesDev backend-processing requests per ordinary operation.
 
-Admission remains explicit/dated; historical 172 is preserved.
+Conditional survivors:
 
----
+- Image Compressor;
+- WebP to PNG capability gate;
+- Image Metadata Viewer / ExifReader;
+- HTML Formatter / Prettier;
+- CSV ↔ JSON / PapaParse;
+- Split/Merge/Remove PDF through one @pdfme/pdf-lib structural engine family.
 
-# Current shortlist
+Phase-2 gate = **PASS / CLOSED**.
 
-Canonical current shortlist:
+## Phase 3
 
-`docs/tools/MARKET_SHORTLIST_80_WORKING_R5.md`
+Created:
 
-Still exactly **80**.
+- `docs/tools/CAPABILITY_MAP.md`;
+- `docs/tools/PHASE3_CLOSURE.md`.
 
-Cumulative replacement pressure:
+The Capability Map covers all 68 with:
 
-- R2: Retirement > Reading Time;
-- R2: Budget > Gzip Decompressor;
-- R3: Number Base > Gzip Compressor;
-- R3: Binary Translator > Slug Generator;
-- R4: Decimal to Fraction > File Type Detector;
-- R4: Random Number Generator > Remove Duplicate Lines;
-- R5: Fraction Calculator > Scientific Notation;
-- R5: Standard Deviation Calculator > Savings Goal.
+- stable id;
+- intent/category/locale;
+- runtime;
+- engine/license;
+- bundle class;
+- requests/op;
+- marginal backend cost;
+- concrete shared security/input-limit profiles;
+- telemetry;
+- Ads eligibility;
+- rationale.
 
----
+Phase-3 gate = **PASS / CLOSED**.
 
-# Key market decisions from this pass
+## Phase 4 preflight
 
-## Keep separate / anti-thin gate passed
+Created/reviewed:
 
-- Case Converter and Title Case Converter;
-- Word Counter and Character Counter;
-- Compound Interest, Investment Growth and Future Value;
-- Discount Calculator and Percentage Calculator;
-- Fraction Calculator and Decimal to Fraction Calculator;
-- Number Base Converter and Binary Translator.
+- `docs/tools/LAUNCH50_RECOMMENDATION.md`;
+- `docs/tools/PHASE4_PREFLIGHT.md`.
 
-Shared primitives are fine; independent search/user intent is what controls URLs.
+Recommendation:
 
-## New/strengthened winners
+- exactly **50**;
+- **35 SEO/AdSense (70%)**;
+- **10 architectural coverage (20%)**;
+- **5 experiments (10%)**;
+- category diversity across finance, math, image, text, developer/data, date, archive and PDF;
+- **46/50 clear/local**;
+- **4/50 conditional**: Image Compressor, HTML Formatter, Merge PDF, Split PDF;
+- **0/50 backend-required**;
+- 18 ordered reserves reconstruct the final 68 pool.
 
-- Decimal to Fraction: ~673K US / ~$2.65;
-- Random Number Generator: ~1.22M / ~$1.66;
-- Fraction Calculator: ~368K / ~$0.82, with AS42 competitor around #6;
-- Standard Deviation Calculator: ~49.5K / ~$1.77;
-- Discount retains separate commercial intent: `percent off calculator` ~22.2K / ~$5.19 and `percentage off calculator` ~12.1K / ~$5.19;
-- GCD/LCM stays as a high-volume/low-CPC traffic role.
+Self-review fixed a duplicate reserve-list artifact; current recommendation has 50 unique tools + 18 unique reserves.
 
-## Reserve / demotions
-
-- File Type Detector;
-- Remove Duplicate Lines;
-- Scientific Notation Calculator;
-- Savings Goal Calculator;
-- Reading Time Calculator;
-- Slug Generator;
-- Gzip Compressor/Decompressor.
-
-Present Value is a valid reserve (~8.1K / ~$1.42) but did not beat R5 challengers.
-
-Lower-tail PDF operations remain under pressure because category scale alone does not justify hostile-input admission work for every structural operation.
-
----
-
-# Phase-2 state after R5
-
-Exact aggregate remains:
-
-- **64/80** clear/internal/local-bounded;
-- **16/80** local-conditional;
-- **0/80** backend-required;
-- **0/80** HOLD/UNRESOLVED;
-- **80/80** expected to use 0 MenezesDev backend-processing requests per ordinary operation.
-
-The clear/local pool alone already exceeds the eventual Launch-50 count.
-
-New audit decisions:
-
-- Decimal to Fraction — INTERNAL / LOCAL-CLEAR; exact decimal-string -> BigInt rational + GCD;
-- Random Number Generator — INTERNAL / LOCAL-CLEAR; Web Crypto + unbiased rejection sampling;
-- Fraction Calculator — INTERNAL / LOCAL-CLEAR; exact rational arithmetic;
-- Standard Deviation Calculator — INTERNAL / LOCAL-CLEAR; Welford/two-pass stable statistics.
-
-Conditional families are concentrated in image compression/WebP/EXIF, Prettier formatters, CSV, ZIP extraction and structural PDF.
+Phase-4 preflight = **PASS except approval**.
 
 ---
 
-# Workflow state
+# Current workflow state
 
-- Phase 1 Market Intelligence: **ACTIVE / materially advanced; R5 exists**.
-- Phase 2 OSS Audit: **ACTIVE / 64 clear + 16 conditional**.
-- Phase 3 Capability Map: **NOT STARTED**.
-- Phase 4 Launch 50: **NOT STARTED / not frozen**.
-- Autonomous growth implementation: **NOT STARTED**.
+- Phase 0: CLOSED.
+- Phase 1: **CLOSED**.
+- Phase 2: **CLOSED**.
+- Phase 3: **CLOSED**.
+- Phase 4: **ACTIVE — exact matrix prepared, approval pending**.
+- Phase 5: **BLOCKED**.
+- Implementation phases: NOT STARTED.
+- Autonomous Growth implementation: NOT STARTED.
 
-SEO sequencing remains unchanged: Phase 5 formal SEO/IA; Phase 18 Search Console; Phase 21 autonomous editorial/Trend Radar/crawler; Phase 22 Tool Factory only after Launch 50 + SDK stability.
+The historical status wording in `IMMUTABLE_WORKFLOW.md` remains untouched; closure/preflight records document later progress.
 
 ---
 
-# Next logical work
+# Current hard stop
 
-1. pressure the seven structural-PDF rows and keep only market-justified operations;
-2. validate CSV/data formatter rows and File Hash vs text SHA-256 independent intent;
-3. review image conversion overlap;
-4. test reserve challengers against the weakest R5 rows;
-5. narrow from 80 toward a final pool still >50;
-6. finalize only Phase-2 conditional gates belonging to survivors;
-7. start Phase 3 only when the Phase-1 and Phase-2 gates are genuinely satisfied.
+The immutable workflow defines the Phase-4 gate as:
 
-## Governance reminder
+> Launch 50 matrix approved.
 
-Before any next Tools action, reread the exact branch/ref workflow, binding addenda and Tools-specific context. Do not execute from memory alone.
+Everything that can legally be done before this approval is complete.
+
+Do not infer approval from the earlier general instruction to work autonomously. The exact matrix was produced after that instruction, so fabricating approval would violate the workflow's explicit-authorization contract.
+
+Until approval is explicit:
+
+- do not mark Phase 4 closed;
+- do not start Phase 5 SEO/IA;
+- do not create the Tool SDK implementation plan;
+- do not create `feat/tools-platform` implementation work;
+- do not install conditional dependencies;
+- do not implement the crawler, AI Editorial Engine, Workflows/D1 or Tool Factory.
+
+---
+
+# Exact Launch-50 recommendation location
+
+`docs/tools/LAUNCH50_RECOMMENDATION.md`
+
+When explicit approval arrives, the next legal sequence is:
+
+1. record approval and close Phase 4;
+2. invoke Superpowers brainstorming for Phase-5/Phase-6 design work as required;
+3. write the Phase-5 international SEO/IA spec;
+4. continue through architecture/security/Traffic Guard gates in workflow order;
+5. only later reach implementation planning/worktrees/TDD.
+
+---
+
+# Governance reminder
+
+Before any future Tools action, re-read the actual branch/ref workflow, all binding addenda and Tools-specific context. Git is the source of truth; no memory-only execution.

@@ -1,0 +1,41 @@
+name: MenezesDev Studio Add Draft Store TDD
+
+on:
+  pull_request:
+    branches:
+      - feat/phase-10-implementation
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    if: github.event.pull_request.head.ref == 'feat/menezesdev-studio' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout Studio head
+        uses: actions/checkout@v7
+        with:
+          ref: feat/menezesdev-studio
+      - name: Add draft-store contract to read-only TDD
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('.github/workflows/studio-tdd.yml')
+          text = path.read_text()
+          old = 'tests/admin/navigation.test.ts'
+          new = 'tests/admin/navigation.test.ts tests/admin/draft-store.test.ts'
+          if text.count(old) != 1:
+              raise SystemExit(f'expected one navigation test token, found {text.count(old)}')
+          path.write_text(text.replace(old, new))
+          PY
+          test "$(git diff --name-only)" = ".github/workflows/studio-tdd.yml"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/workflows/studio-tdd.yml
+          test "$(git diff --cached --name-only)" = ".github/workflows/studio-tdd.yml"
+          git commit -m "test(studio): include draft store contract in TDD"
+          git push origin HEAD:feat/menezesdev-studio

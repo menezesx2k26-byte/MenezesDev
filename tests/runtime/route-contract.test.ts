@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   blockedRoutes,
   canonicalRoutes,
+  privateRuntimeRoutes,
   runtimeRoutes,
   staticRoutes,
   staticRouteFile,
@@ -27,6 +28,11 @@ describe("hybrid route contract", () => {
   it("keeps blocked routes outside the canonical surface", () => {
     expect(blockedRoutes).toContain("/demo/prismae/about");
     for (const route of blockedRoutes) expect(canonicalRoutes).not.toContain(route);
+  });
+
+  it("keeps development-only runtime routes outside the canonical surface", () => {
+    expect(privateRuntimeRoutes).toEqual(["/api/runtime-health"]);
+    for (const route of privateRuntimeRoutes) expect(canonicalRoutes).not.toContain(route);
   });
 
   it("maps prerendered routes to the Cloudflare client output", () => {

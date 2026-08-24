@@ -5,15 +5,19 @@
 
 ## Completed this session
 
-- Re-read the complete immutable Tools workflow before making architectural changes.
+- Re-read `AGENTS.md`, legacy context, Work Mode, `SECURITY_POLICY.md` and the complete immutable Tools workflow before making architectural changes.
 - Preserved Launch 50 and all pre-launch gates.
 - Recorded explicit approval for **Option B — policy-gated autonomy within pre-approved engines/rules**.
 - Recorded explicit approval for the **hybrid Trend Radar**: first-party signals and structured APIs/RSS first; ethical whitelist crawler only as fallback.
 - Created canonical Tools scope: `docs/tools/TOOLS_SCOPE.md`.
 - Added binding workflow addendum: `docs/tools/workflow-addenda/2026-08-24-autonomous-growth-autopilot.md`.
+- Added workflow-addenda index/reading rules: `docs/tools/workflow-addenda/README.md`.
 - Added autonomous-growth security contract: `docs/tools/AUTONOMOUS_GROWTH_SECURITY.md`.
 - Added Superpowers architectural design spec: `docs/superpowers/specs/2026-08-24-menezesdev-tools-autonomous-growth-design.md`.
+- Self-reviewed the spec for placeholders, workflow contradictions, authority ambiguity and scope; no implementation permission was introduced.
 - Added Tools-specific durable state and decision log so future agents do not confuse legacy commercial-site Phase numbering with Tools phases.
+- Updated `AGENTS.md` so all future Tools work must read Tools context, the immutable workflow, every binding addendum and relevant security/scope/spec documents before acting.
+- Verified the branch after the documentation update: `feat/tools-oss-catalog` is ahead of `main` and not behind; the Tools branch changes remain documentation/governance only.
 
 ## Current factual state
 

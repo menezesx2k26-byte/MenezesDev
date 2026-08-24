@@ -5,6 +5,9 @@ import { describe, expect, it } from "vitest";
 const migrationPath = resolve(process.cwd(), "migrations/0001_studio_core.sql");
 const sql = existsSync(migrationPath) ? readFileSync(migrationPath, "utf8") : "";
 const normalized = sql.replace(/--.*$/gm, " ").replace(/\s+/g, " ").trim();
+const packageJson = JSON.parse(readFileSync(resolve(process.cwd(), "package.json"), "utf8")) as {
+  scripts?: Record<string, string>;
+};
 
 const createdTables = [...normalized.matchAll(/CREATE TABLE IF NOT EXISTS\s+([a-z_][a-z0-9_]*)/gi)].map(
   ([, table]) => table.toLowerCase(),
@@ -57,5 +60,14 @@ describe("Studio D1 core migration contract", () => {
     expect(normalized).not.toMatch(/\b(?:INSERT|UPDATE|DELETE)\s+(?:INTO|FROM)?\b/i);
     expect(normalized).not.toMatch(/[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/i);
     expect(normalized).not.toMatch(/(?:api[_-]?token|secret|password)\s*=/i);
+  });
+
+  it("provides local-only Wrangler migration and query scripts", () => {
+    expect(packageJson.scripts?.["db:migrate:local"]).toBe(
+      "wrangler d1 migrations apply menezesdev-studio-local --local",
+    );
+    expect(packageJson.scripts?.["db:query:local"]).toBe(
+      "wrangler d1 execute menezesdev-studio-local --local --command",
+    );
   });
 });

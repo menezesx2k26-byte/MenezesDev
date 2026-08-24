@@ -1,0 +1,73 @@
+name: MenezesDev Studio Format History
+
+on:
+  push:
+    branches:
+      - feat/menezesdev-studio
+    paths:
+      - .github/workflows/studio-format-history.yml
+
+permissions:
+  contents: write
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          ref: feat/menezesdev-studio
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24.19.0
+          package-manager-cache: false
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install frozen dependencies
+        run: corepack pnpm install --frozen-lockfile
+
+      - name: Format exact history files
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./node_modules/.bin/prettier --write \
+            src/components/admin/history/RestoreDialog.astro \
+            src/pages/admin/historico.astro \
+            src/pages/admin/index.astro \
+            src/studio/client/history-controller.ts
+
+      - name: Guard file scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          actual=$(git diff --name-only | sort -u)
+          expected=$(printf '%s\n' \
+            'src/components/admin/history/RestoreDialog.astro' \
+            'src/pages/admin/historico.astro' \
+            'src/pages/admin/index.astro' \
+            'src/studio/client/history-controller.ts' | sort -u)
+          if [ "$actual" != "$expected" ]; then
+            echo "Unexpected changed files:"
+            printf '%s\n' "$actual"
+            exit 1
+          fi
+
+      - name: Commit formatting
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            src/components/admin/history/RestoreDialog.astro \
+            src/pages/admin/historico.astro \
+            src/pages/admin/index.astro \
+            src/studio/client/history-controller.ts
+          git commit -m "style(studio): format history interface"
+          git push origin HEAD:feat/menezesdev-studio

@@ -22,6 +22,8 @@
     "preview": "astro preview",
     "cf:types": "wrangler types",
     "cf:dev": "wrangler dev",
+    "db:migrate:local": "wrangler d1 migrations apply menezesdev-studio-local --local",
+    "db:query:local": "wrangler d1 execute menezesdev-studio-local --local --command",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "validate": "prettier --check . && vitest run && astro check && astro build && node scripts/check-routes.mjs && node scripts/check-runtime-routes.mjs && node scripts/check-acceptance.mjs"

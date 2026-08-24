@@ -7,9 +7,10 @@
 
 # Mandatory verification completed
 
-Before this pass, the exact branch/ref was checked against:
+Before acting in this pass, re-read from the exact branch/ref:
 
 - Superpowers `using-superpowers`;
+- Superpowers `brainstorming` when Phase 5 became architectural;
 - `AGENTS.md`;
 - `TOOLS_STATE.md`;
 - `TOOLS_DECISIONS.md`;
@@ -19,168 +20,125 @@ Before this pass, the exact branch/ref was checked against:
 - `SECURITY_POLICY.md`;
 - `TOOLS_SCOPE.md`;
 - deployment-portability addendum;
-- current market/OSS/shortlist artifacts;
-- branch comparison against `main`.
+- current Launch-50 recommendation/preflight;
+- current branch state.
 
-User instruction for this pass: proceed autonomously as far as the workflow permits and do not ask unnecessary questions.
+User instruction: continue autonomously as far as the workflow permits and avoid unnecessary questions.
 
 No workflow/security hard gate was weakened.
 
 ---
 
-# Major work completed
+# Phase 4 completed in this pass
 
-## Phase 1
-
-Created:
-
-- `docs/tools/MARKET_INTELLIGENCE_BATCH10_CLOSURE_PASS.md`;
-- `docs/tools/MARKET_SHORTLIST_68_FINAL_PHASE1.md`;
-- `docs/tools/PHASE1_CLOSURE.md`.
-
-Result:
-
-- historical initial universe remains 172;
-- five explicit admissions remain recorded, current research universe 177;
-- final Phase-1 pool = **68**;
-- Phase-1 gate = **PASS / CLOSED**.
-
-Major closure cuts/consolidations:
-
-- PDF reduced from seven R5 rows to Split/Merge/Remove Pages in the 68 pool;
-- JSON Minifier folded into JSON Formatter;
-- File Hash folded into SHA-256 Hash Generator file mode;
-- JSON → CSV folded into one bidirectional CSV ↔ JSON product;
-- Simple Interest folded into Interest Calculator;
-- JS/CSS formatter standalone rows moved to reserve;
-- ZIP Extractor moved to reserve;
-- Remove Image Metadata moved to reserve;
-- Tip Calculator and Aspect Ratio Calculator promoted.
-
-## Phase 2
+The exact Launch-50 matrix had already been presented as the sole remaining Phase-4 gate. The user's new continue instruction arrived immediately after that presentation and was recorded as approval of that exact matrix only.
 
 Created:
 
-- `docs/tools/PHASE2_FINAL_68_COVERAGE.md`;
-- `docs/tools/PHASE2_CLOSURE.md`.
+- `docs/tools/LAUNCH50_FROZEN.md`;
+- `docs/tools/PHASE4_CLOSURE.md`.
 
-Final coverage:
+Frozen allocation:
 
-- **60/68** clear/internal/local-bounded;
-- **8/68** local-conditional;
-- **0/68** backend-required;
-- **0/68** HOLD/UNRESOLVED;
-- **68/68** expected 0 MenezesDev backend-processing requests per ordinary operation.
+- 35 SEO/AdSense-led;
+- 10 architectural coverage;
+- 5 experiments;
+- exactly 50.
 
-Conditional survivors:
+Technical posture:
 
-- Image Compressor;
-- WebP to PNG capability gate;
-- Image Metadata Viewer / ExifReader;
-- HTML Formatter / Prettier;
-- CSV ↔ JSON / PapaParse;
-- Split/Merge/Remove PDF through one @pdfme/pdf-lib structural engine family.
+- 46/50 clear/internal/local-bounded;
+- 4/50 local-conditional: Image Compressor, HTML Formatter, Merge PDF, Split PDF;
+- 0/50 backend-required;
+- 0/50 HOLD/UNRESOLVED.
 
-Phase-2 gate = **PASS / CLOSED**.
+Phase-4 gate: **PASS / CLOSED**.
 
-## Phase 3
-
-Created:
-
-- `docs/tools/CAPABILITY_MAP.md`;
-- `docs/tools/PHASE3_CLOSURE.md`.
-
-The Capability Map covers all 68 with:
-
-- stable id;
-- intent/category/locale;
-- runtime;
-- engine/license;
-- bundle class;
-- requests/op;
-- marginal backend cost;
-- concrete shared security/input-limit profiles;
-- telemetry;
-- Ads eligibility;
-- rationale.
-
-Phase-3 gate = **PASS / CLOSED**.
-
-## Phase 4 preflight
-
-Created/reviewed:
-
-- `docs/tools/LAUNCH50_RECOMMENDATION.md`;
-- `docs/tools/PHASE4_PREFLIGHT.md`.
-
-Recommendation:
-
-- exactly **50**;
-- **35 SEO/AdSense (70%)**;
-- **10 architectural coverage (20%)**;
-- **5 experiments (10%)**;
-- category diversity across finance, math, image, text, developer/data, date, archive and PDF;
-- **46/50 clear/local**;
-- **4/50 conditional**: Image Compressor, HTML Formatter, Merge PDF, Split PDF;
-- **0/50 backend-required**;
-- 18 ordered reserves reconstruct the final 68 pool.
-
-Self-review fixed a duplicate reserve-list artifact; current recommendation has 50 unique tools + 18 unique reserves.
-
-Phase-4 preflight = **PASS except approval**.
+This approval does not pre-approve unseen later designs and does not weaken any conditional admission/security gate.
 
 ---
 
 # Current workflow state
 
 - Phase 0: CLOSED.
-- Phase 1: **CLOSED**.
-- Phase 2: **CLOSED**.
-- Phase 3: **CLOSED**.
-- Phase 4: **ACTIVE — exact matrix prepared, approval pending**.
-- Phase 5: **BLOCKED**.
-- Implementation phases: NOT STARTED.
+- Phase 1: CLOSED.
+- Phase 2: CLOSED.
+- Phase 3: CLOSED.
+- Phase 4: **CLOSED**.
+- Phase 5: **UNBLOCKED / architectural design pending Superpowers approval**.
+- Phase 6+: NOT STARTED.
+- Runtime implementation: NOT STARTED.
 - Autonomous Growth implementation: NOT STARTED.
 
-The historical status wording in `IMMUTABLE_WORKFLOW.md` remains untouched; closure/preflight records document later progress.
+---
+
+# Phase-5 research completed before approval gate
+
+Superpowers classifies Phase 5 as **architectural**.
+
+Current official Google Search Central guidance was revalidated for:
+
+- canonicalization;
+- localized URLs and reciprocal hreflang;
+- sitemap behavior and honest `lastmod`;
+- structured-data eligibility;
+- breadcrumbs;
+- avoiding thin/duplicate query surfaces.
+
+A concrete design proposal is ready for presentation in chat.
+
+No Phase-5 spec has been committed yet because Superpowers brainstorming requires approval of the specific presented design first.
 
 ---
 
-# Current hard stop
+# Recommended Phase-5 direction awaiting approval
 
-The immutable workflow defines the Phase-4 gate as:
+The current non-binding recommendation is:
 
-> Launch 50 matrix approved.
+- stable one-category tool URL hierarchy rather than flat or deeply nested routes;
+- English canonical tool surface under `/tools/<category>/<slug>/`;
+- PT-BR localized surface under `/pt-br/ferramentas/<categoria>/<slug-localizado>/`;
+- broad stable categories only; no thin indexable subcategory/filter pages;
+- self-canonical URLs;
+- reciprocal `hreflang="en"` and `hreflang="pt-BR"` only when a real localized counterpart exists;
+- HTML-head hreflang as the single implementation method;
+- XML sitemap index containing only canonical/indexable URLs and honest significant-change `lastmod`;
+- tool/category/guide BreadcrumbList where visible hierarchy exists;
+- no FAQPage rich-result markup and no fabricated SoftwareApplication ratings/reviews;
+- utility-first static HTML plus adaptive explanatory content;
+- local internal search with non-indexable/hash state rather than crawlable query-result pages;
+- small real guide layer, not one article mechanically generated for every tool;
+- no separate AEO/GEO hacks or llms.txt dependency;
+- all primary crawl/index content available in static HTML;
+- canonical origin remains MenezesDev domain regardless of fallback host.
 
-Everything that can legally be done before this approval is complete.
-
-Do not infer approval from the earlier general instruction to work autonomously. The exact matrix was produced after that instruction, so fabricating approval would violate the workflow's explicit-authorization contract.
-
-Until approval is explicit:
-
-- do not mark Phase 4 closed;
-- do not start Phase 5 SEO/IA;
-- do not create the Tool SDK implementation plan;
-- do not create `feat/tools-platform` implementation work;
-- do not install conditional dependencies;
-- do not implement the crawler, AI Editorial Engine, Workflows/D1 or Tool Factory.
+This proposal is not binding until the user approves it after presentation.
 
 ---
 
-# Exact Launch-50 recommendation location
+# Repo implementation-base observation
 
-`docs/tools/LAUNCH50_RECOMMENDATION.md`
+The current `feat/tools-oss-catalog` tree is documentation/research-oriented and does not expose the main public Astro application source/root package in the inspected tree. It contains docs/public assets plus the unrelated `tools/mcp-image` package.
 
-When explicit approval arrives, the next legal sequence is:
+This is not a Phase-5 blocker, but Phase 6 must identify/reconcile the correct application implementation base/ref before any runtime implementation plan or code work.
 
-1. record approval and close Phase 4;
-2. invoke Superpowers brainstorming for Phase-5/Phase-6 design work as required;
-3. write the Phase-5 international SEO/IA spec;
-4. continue through architecture/security/Traffic Guard gates in workflow order;
-5. only later reach implementation planning/worktrees/TDD.
+Do not infer that `tools/mcp-image` is the public MenezesDev Tools runtime.
+
+---
+
+# Next legal sequence
+
+1. Present the concrete Phase-5 design and 2–3 route-architecture approaches.
+2. Obtain approval of that **specific** design; a direct “segue/prossegue” after presentation is sufficient.
+3. Write the Phase-5 design/spec to `docs/superpowers/specs/` and commit it.
+4. Self-review for placeholders, contradictions, ambiguity and scope.
+5. Verify Phase-5 workflow gate and record closure if satisfied.
+6. Then begin Phase 6 under its own architectural design process.
+
+Higher-precedence workflow sequencing overrides any generic skill tendency to jump directly to an implementation plan: Phase 6, 7 and 8 design gates must still happen before Phase 9 implementation planning.
 
 ---
 
 # Governance reminder
 
-Before any future Tools action, re-read the actual branch/ref workflow, all binding addenda and Tools-specific context. Git is the source of truth; no memory-only execution.
+Before any future Tools action, reread the actual branch/ref workflow, all binding addenda and Tools-specific context. Git is source of truth; no memory-only execution.

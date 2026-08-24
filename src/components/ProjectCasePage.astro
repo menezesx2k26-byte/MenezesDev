@@ -3,27 +3,40 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import MenezesHeader from "./MenezesHeader.astro";
 import MenezesFooter from "./MenezesFooter.astro";
 import { ArrowLeft, ArrowUpRight, Check } from "lucide-astro";
-import type { Project } from "../types";
+import type { PublicProjectView } from "../studio/public-content";
 import "../styles/menezesdev.css";
 
-interface Props {
-  project: Project;
+interface NavigationItem {
+  label: string;
+  href: string;
 }
 
-const { project } = Astro.props;
-const title = `${project.name} — Projeto MenezesDev`;
-const description = `${project.headline} ${project.description}`;
+interface Props {
+  project: PublicProjectView;
+  navigation?: NavigationItem[];
+  whatsappUrl?: string | null;
+  brandName?: string;
+  tagline?: string;
+}
+
+const {
+  project,
+  navigation,
+  whatsappUrl,
+  brandName = "MenezesDev",
+  tagline = "Sites que impulsionam negócios.",
+} = Astro.props;
 ---
 
 <BaseLayout
-  title={title}
-  description={description}
+  title={project.title}
+  description={project.metaDescription}
   image={project.cover.src}
   theme="menezesdev"
   fonts={["--font-manrope", "--font-inter"]}
   preloadFont="--font-manrope"
 >
-  <MenezesHeader />
+  <MenezesHeader navigation={navigation} whatsappUrl={whatsappUrl} brandLabel={brandName} />
   <main id="main-content">
     <section class="md-case-hero">
       <div class="container md-case-hero__grid">
@@ -131,5 +144,5 @@ const description = `${project.headline} ${project.description}`;
       </div>
     </section>
   </main>
-  <MenezesFooter />
+  <MenezesFooter navigation={navigation} whatsappUrl={whatsappUrl} tagline={tagline} />
 </BaseLayout>

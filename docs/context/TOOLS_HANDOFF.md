@@ -5,140 +5,168 @@
 
 ## Mandatory verification completed
 
-Before this pass, re-read from the exact branch/ref:
+Before acting in this pass, re-read from the exact branch/ref:
 
+- Superpowers `using-superpowers`;
 - `AGENTS.md`;
 - `TOOLS_STATE.md`;
 - `TOOLS_DECISIONS.md`;
 - `TOOLS_HANDOFF.md`;
 - `IMMUTABLE_WORKFLOW.md` in full;
-- every binding workflow addendum;
+- binding workflow addenda;
 - `SECURITY_POLICY.md`;
 - `TOOLS_SCOPE.md`;
-- current ranking and Phase-2 coverage artifacts.
+- current R3 shortlist and Phase-2 shortlist coverage.
 
-Confirmed that work remains authorized only in active Phase 1/2. Phase 3/4 and implementation remain blocked by prerequisites.
+Confirmed work remains authorized only in active Phase 1/2. Phase 3/4 and implementation remain blocked by prerequisites.
 
-## Major work completed in this pass
+---
+
+# Work completed in this pass
 
 Created:
 
-- `docs/tools/MARKET_INTELLIGENCE_BATCH6.md`
-- `docs/tools/MARKET_SHORTLIST_80_WORKING.md`
-- `docs/tools/MARKET_PRIORITY_RANKING_V2_WORKING_B6.md`
-- `docs/tools/PHASE2_SHORTLIST_80_COVERAGE.md`
-- `docs/tools/MARKET_INTELLIGENCE_BATCH7_CUT_PASS.md`
-- `docs/tools/CANDIDATE_UNIVERSE_ADMISSION_2026-08-24.md`
-- `docs/tools/OSS_AUDIT_BATCH9_ADMITTED_FINANCE.md`
-- `docs/tools/MARKET_SHORTLIST_80_WORKING_R2.md`
-- `docs/tools/CANDIDATE_UNIVERSE_ADMISSION_2026-08-24_02_NUMBER_BASE.md`
-- `docs/tools/OSS_AUDIT_BATCH10_NUMBER_BASE_BINARY_TEXT.md`
-- `docs/tools/MARKET_SHORTLIST_80_WORKING_R3.md`
+- `docs/tools/MARKET_INTELLIGENCE_BATCH8_ANTI_THIN_AND_REPLACEMENT.md`;
+- `docs/tools/CANDIDATE_UNIVERSE_ADMISSION_2026-08-24_03_RANDOM_NUMBER.md`;
+- `docs/tools/OSS_AUDIT_BATCH11_DECIMAL_FRACTION_RANDOM.md`;
+- `docs/tools/MARKET_SHORTLIST_80_WORKING_R4.md`;
+- `docs/tools/PHASE2_SHORTLIST_80_COVERAGE_R4.md`;
+- `docs/tools/MARKET_INTELLIGENCE_BATCH9_R5_CHALLENGERS.md`;
+- `docs/tools/OSS_AUDIT_BATCH12_FRACTIONS_STATISTICS.md`;
+- `docs/tools/MARKET_SHORTLIST_80_WORKING_R5.md`.
 
 Updated:
 
-- `docs/context/TOOLS_DECISIONS.md`
-- `docs/context/TOOLS_STATE.md`
+- `docs/context/TOOLS_DECISIONS.md`;
+- `docs/context/TOOLS_STATE.md`;
 - this handoff.
 
-## Candidate-universe state
+No Tools runtime implementation, dependency install, backend, crawler, AI provider, Workflow, D1 resource or deployment was started.
+
+---
+
+# Candidate universe
 
 Historical Batch-1 universe: **172**.
 
-Explicit admissions:
+Explicit admissions now:
 
 - #173 Retirement Calculator;
 - #174 Budget Calculator;
 - #175 Number Base Converter;
-- #176 Binary Translator.
+- #176 Binary Translator;
+- #177 Random Number Generator.
 
-Current admitted universe: **176**.
+Current admitted Phase-1 universe: **177**.
 
-No historical “172” claim was silently rewritten; admissions are explicit and dated.
+Admission remains explicit/dated; historical 172 is preserved.
 
-## Current shortlist state
+---
 
-Current canonical working shortlist:
+# Current shortlist
 
-`docs/tools/MARKET_SHORTLIST_80_WORKING_R3.md`
+Canonical current shortlist:
 
-Still exactly **80** candidates.
+`docs/tools/MARKET_SHORTLIST_80_WORKING_R5.md`
 
-Replacement pressure applied:
+Still exactly **80**.
 
-- Retirement replaced Reading Time;
-- Budget replaced Gzip Decompressor;
-- Number Base Converter replaced Gzip Compressor;
-- Binary Translator replaced Slug Generator.
+Cumulative replacement pressure:
 
-Weak candidates do not keep slots merely because they are cheap to implement.
+- R2: Retirement > Reading Time;
+- R2: Budget > Gzip Decompressor;
+- R3: Number Base > Gzip Compressor;
+- R3: Binary Translator > Slug Generator;
+- R4: Decimal to Fraction > File Type Detector;
+- R4: Random Number Generator > Remove Duplicate Lines;
+- R5: Fraction Calculator > Scientific Notation;
+- R5: Standard Deviation Calculator > Savings Goal.
 
-## Key new market findings
+---
 
-- Case Converter materially strengthened: dedicated market ~5M monthly visits with high repeat/direct usage; A candidate.
-- Image Metadata Viewer materially strengthened: moderate-authority dedicated metadata/EXIF tools have substantial traffic; A-market, tech conditional.
-- Future Value strengthened: current same-intent US signal around 49.5K / ~$1.59.
-- Reading Time demoted: current US head term ~2.9K / $0.
-- Retirement admitted: ~301K / ~$2.26 current US signal.
-- Budget admitted: ~22.2K / ~$5.81; `budget tool` related term ~9.9K / ~$16.91.
-- Number-base intent resolved: numeric Binary/Hex conversion belongs in one Number Base Converter rather than many directional pages.
-- Binary Translator resolved as a separate text/UTF-8 ↔ binary-byte intent.
+# Key market decisions from this pass
 
-## Key new Phase-2 result
+## Keep separate / anti-thin gate passed
 
-For the shortlist pool:
+- Case Converter and Title Case Converter;
+- Word Counter and Character Counter;
+- Compound Interest, Investment Growth and Future Value;
+- Discount Calculator and Percentage Calculator;
+- Fraction Calculator and Decimal to Fraction Calculator;
+- Number Base Converter and Binary Translator.
 
-- ~63/80 clear/internal/local-bounded paths;
-- ~17/80 local-conditional paths;
-- 0/80 ordinary backend processing requirements;
-- 0/80 HOLD/UNRESOLVED capability dependencies;
-- all 80 are designed for zero MenezesDev backend-processing requests per ordinary operation.
+Shared primitives are fine; independent search/user intent is what controls URLs.
 
-New admissions create no dependency/backend burden:
+## New/strengthened winners
 
-- Retirement: INTERNAL / LOCAL-CLEAR;
-- Budget: INTERNAL / LOCAL-CLEAR;
-- Number Base: INTERNAL / LOCAL-CLEAR;
-- Binary Translator: native Encoding APIs / LOCAL-CLEAR.
+- Decimal to Fraction: ~673K US / ~$2.65;
+- Random Number Generator: ~1.22M / ~$1.66;
+- Fraction Calculator: ~368K / ~$0.82, with AS42 competitor around #6;
+- Standard Deviation Calculator: ~49.5K / ~$1.77;
+- Discount retains separate commercial intent: `percent off calculator` ~22.2K / ~$5.19 and `percentage off calculator` ~12.1K / ~$5.19;
+- GCD/LCM stays as a high-volume/low-CPC traffic role.
 
-## Concurrent branch artifact observed
+## Reserve / demotions
 
-During final branch verification, `docs/tools/addenda/2026-08-24_DEPLOYMENT_PORTABILITY_AND_FALLBACK.md` appeared on the same research branch from a concurrent project workstream.
+- File Type Detector;
+- Remove Duplicate Lines;
+- Scientific Notation Calculator;
+- Savings Goal Calculator;
+- Reading Time Calculator;
+- Slug Generator;
+- Gzip Compressor/Decompressor.
 
-It was read before closing this handoff. It is compatible with current work and strengthens later deployment phases by requiring:
+Present Value is a valid reserve (~8.1K / ~$1.42) but did not beat R5 challengers.
 
-- Git as source of truth;
-- provider-neutral static build output;
-- Cloudflare Pages as primary but not irreplaceable host;
-- fallback-host readiness;
-- browser-capable tool engines not coupled to provider-specific backend execution;
-- canonical-domain/ad-safety behavior during fallback.
+Lower-tail PDF operations remain under pressure because category scale alone does not justify hostile-input admission work for every structural operation.
 
-It does **not** change Phase 1/2 state and does not authorize implementation now. Read it during later architecture/deployment work in addition to the normal workflow/addenda set.
+---
 
-## Current workflow state
+# Phase-2 state after R5
 
-- Phase 1 Market Intelligence: **ACTIVE / materially advanced**.
-- Phase 2 OSS Capability Audit: **ACTIVE**.
+Exact aggregate remains:
+
+- **64/80** clear/internal/local-bounded;
+- **16/80** local-conditional;
+- **0/80** backend-required;
+- **0/80** HOLD/UNRESOLVED;
+- **80/80** expected to use 0 MenezesDev backend-processing requests per ordinary operation.
+
+The clear/local pool alone already exceeds the eventual Launch-50 count.
+
+New audit decisions:
+
+- Decimal to Fraction — INTERNAL / LOCAL-CLEAR; exact decimal-string -> BigInt rational + GCD;
+- Random Number Generator — INTERNAL / LOCAL-CLEAR; Web Crypto + unbiased rejection sampling;
+- Fraction Calculator — INTERNAL / LOCAL-CLEAR; exact rational arithmetic;
+- Standard Deviation Calculator — INTERNAL / LOCAL-CLEAR; Welford/two-pass stable statistics.
+
+Conditional families are concentrated in image compression/WebP/EXIF, Prettier formatters, CSV, ZIP extraction and structural PDF.
+
+---
+
+# Workflow state
+
+- Phase 1 Market Intelligence: **ACTIVE / materially advanced; R5 exists**.
+- Phase 2 OSS Audit: **ACTIVE / 64 clear + 16 conditional**.
 - Phase 3 Capability Map: **NOT STARTED**.
-- Phase 4 Launch 50 freeze: **NOT STARTED**.
-- No Tools implementation/dependency install/backend/crawler/AI/Workflow/D1/deploy was started.
+- Phase 4 Launch 50: **NOT STARTED / not frozen**.
+- Autonomous growth implementation: **NOT STARTED**.
 
-## Next logical work
+SEO sequencing remains unchanged: Phase 5 formal SEO/IA; Phase 18 Search Console; Phase 21 autonomous editorial/Trend Radar/crawler; Phase 22 Tool Factory only after Launch 50 + SDK stability.
 
-1. Continue replacement/cut pressure on weakest R3 rows.
-2. Gather current evidence for challengers and anti-thin comparisons.
-3. Resolve likely consolidations:
-   - Case Converter vs Title Case;
-   - Word Counter vs Character Counter;
-   - finance overlaps (Compound/Investment/Future Value/Savings);
-   - hash/text/file variants;
-   - formatter/data variants;
-   - PDF subset.
-4. Narrow to a final evidence-backed shortlist still >50.
-5. Finalize only the Phase-2 conditional admission gates needed by survivors.
-6. Start Phase 3 only when both Phase-1 and Phase-2 exit gates are truly satisfied.
+---
+
+# Next logical work
+
+1. pressure the seven structural-PDF rows and keep only market-justified operations;
+2. validate CSV/data formatter rows and File Hash vs text SHA-256 independent intent;
+3. review image conversion overlap;
+4. test reserve challengers against the weakest R5 rows;
+5. narrow from 80 toward a final pool still >50;
+6. finalize only Phase-2 conditional gates belonging to survivors;
+7. start Phase 3 only when the Phase-1 and Phase-2 gates are genuinely satisfied.
 
 ## Governance reminder
 
-Before any future Tools work, read the actual branch/ref workflow, all addenda and Tools-specific context again. Never execute Tools work from memory alone.
+Before any next Tools action, reread the exact branch/ref workflow, binding addenda and Tools-specific context. Do not execute from memory alone.

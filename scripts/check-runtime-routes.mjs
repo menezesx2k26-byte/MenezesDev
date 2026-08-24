@@ -3,10 +3,7 @@ import { once } from "node:events";
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { blockedRoutes, canonicalRoutes } from "./route-contract.mjs";
-import {
-  validateBlockedResponse,
-  validateCanonicalResponse,
-} from "./runtime-route-probe.mjs";
+import { validateBlockedResponse, validateCanonicalResponse } from "./runtime-route-probe.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 const host = "127.0.0.1";
@@ -21,13 +18,16 @@ const astroExecutable = resolve(
 const failures = [];
 let previewLog = "";
 
-const delay = (milliseconds) => new Promise((resolveDelay) => setTimeout(resolveDelay, milliseconds));
+const delay = (milliseconds) =>
+  new Promise((resolveDelay) => setTimeout(resolveDelay, milliseconds));
 const appendLog = (chunk) => {
   previewLog = `${previewLog}${chunk.toString()}`.slice(-20000);
 };
 
 if (!existsSync(resolve(root, "dist", "server", "entry.mjs"))) {
-  console.error("FAIL runtime routes — dist/server/entry.mjs ausente; execute a build antes do probe.");
+  console.error(
+    "FAIL runtime routes — dist/server/entry.mjs ausente; execute a build antes do probe.",
+  );
   process.exit(1);
 }
 
@@ -88,7 +88,9 @@ try {
       const html = await response.text();
       failures.push(...validateCanonicalResponse(route, response.status, html));
     } catch (error) {
-      failures.push(`${route}: falha de rede no probe (${error instanceof Error ? error.message : error}).`);
+      failures.push(
+        `${route}: falha de rede no probe (${error instanceof Error ? error.message : error}).`,
+      );
     }
   }
 
@@ -97,7 +99,9 @@ try {
       const response = await fetch(`${origin}${route}`, { redirect: "manual" });
       failures.push(...validateBlockedResponse(route, response.status));
     } catch (error) {
-      failures.push(`${route}: falha de rede no probe (${error instanceof Error ? error.message : error}).`);
+      failures.push(
+        `${route}: falha de rede no probe (${error instanceof Error ? error.message : error}).`,
+      );
     }
   }
 } catch (error) {

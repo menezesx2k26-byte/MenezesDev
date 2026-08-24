@@ -18,10 +18,7 @@ export const validateCanonicalResponse = (route, status, html) => {
     if (!html.includes(required)) failures.push(`${route}: metadata ausente (${required}).`);
   }
 
-  if (
-    route.startsWith("/demo/") &&
-    !html.includes('content="noindex, nofollow, noarchive"')
-  ) {
+  if (route.startsWith("/demo/") && !html.includes('content="noindex, nofollow, noarchive"')) {
     failures.push(`${route}: política noindex completa ausente.`);
   }
 
@@ -33,6 +30,4 @@ export const validateCanonicalResponse = (route, status, html) => {
 };
 
 export const validateBlockedResponse = (route, status) =>
-  status === 404
-    ? []
-    : [`${route}: rota bloqueada respondeu HTTP ${status}, esperado 404.`];
+  status === 404 ? [] : [`${route}: rota bloqueada respondeu HTTP ${status}, esperado 404.`];

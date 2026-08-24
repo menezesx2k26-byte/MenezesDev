@@ -31,10 +31,12 @@ jobs:
       - name: Install frozen dependencies
         run: corepack pnpm install --frozen-lockfile
 
-      - name: Format exact Task 7 files
+      - name: Show formatted TDD workflow
+        run: corepack pnpm exec prettier .github/workflows/studio-tdd.yml
+
+      - name: Format exact Task 7 source files
         run: >-
           corepack pnpm exec prettier --write
-          .github/workflows/studio-tdd.yml
           src/components/admin/seo/SeoEditor.astro
           src/components/admin/settings/SettingsEditor.astro
           src/pages/admin/configuracoes.astro
@@ -49,7 +51,6 @@ jobs:
           set -euo pipefail
           actual=$(git diff --name-only | sort)
           expected=$(printf '%s\n' \
-            .github/workflows/studio-tdd.yml \
             src/components/admin/seo/SeoEditor.astro \
             src/components/admin/settings/SettingsEditor.astro \
             src/pages/admin/configuracoes.astro \
@@ -61,7 +62,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add \
-            .github/workflows/studio-tdd.yml \
             src/components/admin/seo/SeoEditor.astro \
             src/components/admin/settings/SettingsEditor.astro \
             src/pages/admin/configuracoes.astro \

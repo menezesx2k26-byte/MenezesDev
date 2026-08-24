@@ -1,3 +1,4 @@
+import cloudflare from "@astrojs/cloudflare";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
@@ -6,7 +7,8 @@ const configuredSite = process.env.PUBLIC_SITE_URL?.trim() || "http://localhost:
 
 export default defineConfig({
   site: configuredSite,
-  output: "static",
+  output: "server",
+  adapter: cloudflare(),
   outDir: "dist",
   trailingSlash: "never",
   build: {

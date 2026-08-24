@@ -77,11 +77,9 @@ export const setupStudioController = (): void => {
   const redoButton = root.querySelector<HTMLButtonElement>("[data-studio-redo]");
   const retryButton = root.querySelector<HTMLButtonElement>("[data-studio-retry]");
   const statusNode = root.querySelector<HTMLElement>("[data-studio-save-status]");
-  const previewTitle = root.querySelector<HTMLElement>("[data-studio-preview-title]");
-  const previewLead = root.querySelector<HTMLElement>("[data-studio-preview-lead]");
-  const previewRevision = root.querySelector<HTMLElement>("[data-studio-preview-revision]");
-  const previewSection = root.querySelector<HTMLElement>("[data-studio-preview-section]");
+  const previewFrame = root.querySelector<HTMLIFrameElement>("[data-preview-frame]");
   const conflictDialog = document.querySelector<HTMLDialogElement>("#studio-conflict-dialog");
+  let lastPreviewRevision = store.getState().revision;
 
   const controls = (): StudioControl[] =>
     Array.from(root.querySelectorAll("[data-studio-path]")).filter(isStudioControl);
@@ -113,9 +111,6 @@ export const setupStudioController = (): void => {
     controls().forEach((control) => syncControl(control, state.document));
     if (undoButton) undoButton.disabled = !state.canUndo;
     if (redoButton) redoButton.disabled = !state.canRedo;
-    if (previewTitle) previewTitle.textContent = state.document.home.hero.title;
-    if (previewLead) previewLead.textContent = state.document.home.hero.lead;
-    if (previewRevision) previewRevision.textContent = String(state.revision);
 
     root.dispatchEvent(
       new CustomEvent("menezesdev:studio-draft", {
@@ -179,7 +174,6 @@ export const setupStudioController = (): void => {
       if (active) button.setAttribute("aria-current", "page");
       else button.removeAttribute("aria-current");
     });
-    if (previewSection) previewSection.textContent = sectionLabels.get(sectionKey) ?? sectionKey;
   };
 
   root.querySelectorAll<HTMLButtonElement>("[data-studio-section-target]").forEach((button) => {
@@ -228,6 +222,7 @@ export const setupStudioController = (): void => {
 
   store.subscribe(syncInterface);
   autosave.subscribe((next) => {
+    const draftState = store.getState();
     if (statusNode) {
       statusNode.textContent =
         next.phase === "saving"
@@ -238,11 +233,19 @@ export const setupStudioController = (): void => {
               ? "Falha ao salvar. Suas alterações continuam neste navegador."
               : next.phase === "conflict"
                 ? "Conflito detectado. Salvamento automático pausado."
-                : store.getState().status === "clean"
+                : draftState.status === "clean"
                   ? "Rascunho sincronizado."
                   : "Alterações locais.";
     }
     if (retryButton) retryButton.hidden = next.phase !== "retry";
+    if (
+      next.phase === "idle" &&
+      draftState.status === "clean" &&
+      draftState.revision !== lastPreviewRevision
+    ) {
+      lastPreviewRevision = draftState.revision;
+      previewFrame?.contentWindow?.location.reload();
+    }
     if (next.phase === "conflict" && conflictDialog && !conflictDialog.open) {
       conflictDialog.showModal();
     }

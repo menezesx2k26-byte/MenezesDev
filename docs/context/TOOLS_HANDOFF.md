@@ -101,6 +101,21 @@ New admissions create no dependency/backend burden:
 - Number Base: INTERNAL / LOCAL-CLEAR;
 - Binary Translator: native Encoding APIs / LOCAL-CLEAR.
 
+## Concurrent branch artifact observed
+
+During final branch verification, `docs/tools/addenda/2026-08-24_DEPLOYMENT_PORTABILITY_AND_FALLBACK.md` appeared on the same research branch from a concurrent project workstream.
+
+It was read before closing this handoff. It is compatible with current work and strengthens later deployment phases by requiring:
+
+- Git as source of truth;
+- provider-neutral static build output;
+- Cloudflare Pages as primary but not irreplaceable host;
+- fallback-host readiness;
+- browser-capable tool engines not coupled to provider-specific backend execution;
+- canonical-domain/ad-safety behavior during fallback.
+
+It does **not** change Phase 1/2 state and does not authorize implementation now. Read it during later architecture/deployment work in addition to the normal workflow/addenda set.
+
 ## Current workflow state
 
 - Phase 1 Market Intelligence: **ACTIVE / materially advanced**.

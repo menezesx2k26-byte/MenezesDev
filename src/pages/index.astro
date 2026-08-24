@@ -4,368 +4,444 @@ import MenezesHeader from "../components/MenezesHeader.astro";
 import MenezesFooter from "../components/MenezesFooter.astro";
 import CommercialAction from "../components/CommercialAction.astro";
 import { ArrowRight, Check } from "lucide-astro";
-import {
-  capabilities,
-  faqs,
-  plans,
-  processSteps,
-  services,
-  socialComparison,
-  trustItems,
-} from "../data/home";
-import { projects } from "../data/projects";
-import { siteConfig } from "../config/site";
+import { getRuntimeBindings } from "../runtime/bindings";
+import { getPublishedSiteDocument, toPublicHomeView } from "../studio/public-content";
 import "../styles/menezesdev.css";
+
+const { DB } = getRuntimeBindings();
+const document = await getPublishedSiteDocument(DB);
+const view = toPublicHomeView(document);
+const navigation = view.navigation.map(({ label, href }) => ({ label, href }));
+
+const splitFirstSentence = (value: string) => {
+  const separator = value.indexOf(". ");
+  if (separator < 0) return { first: value, second: "" };
+  return {
+    first: value.slice(0, separator + 1),
+    second: value.slice(separator + 2),
+  };
+};
+
+const splitAccentTail = (value: string) => {
+  const words = value.trim().split(/\s+/);
+  if (words.length < 3) return { leading: value, accent: "" };
+  return {
+    leading: `${words.slice(0, -2).join(" ")} `,
+    accent: words.slice(-2).join(" "),
+  };
+};
+
+const samePageHref = (href: string) => (href.startsWith("/#") ? href.slice(1) : href);
+
+const heroTitle = splitAccentTail(view.hero.title);
+const projectTitle = splitFirstSentence(view.projectsSection.title);
+const capabilitiesTitle = splitFirstSentence(view.capabilitiesSection.title);
+const contactTitle = splitFirstSentence(view.contact.title);
+const heroMicrocopy = splitFirstSentence(view.hero.microcopy);
 ---
 
 <BaseLayout
-  title={siteConfig.metadata.title}
-  description={siteConfig.metadata.description}
+  title={view.metadata.title}
+  description={view.metadata.description}
+  image={view.metadata.image ?? undefined}
   theme="menezesdev"
   fonts={["--font-manrope", "--font-inter"]}
   preloadFont="--font-manrope"
 >
-  <MenezesHeader />
+  <MenezesHeader
+    navigation={navigation}
+    whatsappUrl={view.whatsappUrl}
+    brandLabel={document.brand.name}
+  />
   <main id="main-content">
-    <section class="md-hero">
-      <div class="container md-hero__grid">
-        <div class="md-hero__copy">
-          <p class="eyebrow">DESENVOLVIMENTO WEB PARA NEGÓCIOS</p>
-          <h1>Seu negócio merece um site <span>à altura.</span></h1>
-          <p class="lead">
-            Sites rápidos, modernos e profissionais para empresas que querem transformar presença
-            digital em mais credibilidade, contatos e oportunidades.
-          </p>
-          <div class="button-row">
-            <CommercialAction label="Quero meu site" showPendingNote />
-            <a class="button button--secondary" href="#projetos"
-              >Ver projetos <ArrowRight aria-hidden="true" size={18} /></a
-            >
-          </div>
-          <div class="md-hero__microcopy">
-            <strong>Projetos a partir de R$600.</strong>
-            <span>Design profissional · Responsivo · SEO técnico · HTTPS</span>
-          </div>
-        </div>
-        <div class="md-mosaic" aria-label="Três conceitos visuais MenezesDev">
-          <div class="md-mosaic__item">
-            <img
-              src="/assets/demos/m47/m47-hero.webp"
-              width="1536"
-              height="960"
-              alt="Conceito M47 Barber"
-              fetchpriority="high"
-            />
-          </div>
-          <div class="md-mosaic__item">
-            <img
-              src="/assets/demos/tavola27/tavola27-hero.webp"
-              width="1536"
-              height="960"
-              alt="Conceito Tavola 27"
-              fetchpriority="low"
-            />
-          </div>
-          <div class="md-mosaic__item">
-            <img
-              src="/assets/demos/prismae/prismae-hero-graphic.svg"
-              width="960"
-              height="720"
-              alt="Conceito gráfico Prismae"
-              fetchpriority="low"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="md-trust" aria-label="Características dos projetos">
-      <div class="container md-trust__grid">
-        {
-          trustItems.map((item) => (
-            <div class="md-trust__item">
-              <>
-                <Check aria-hidden="true" size={22} />
-                <strong>{item.title}</strong>
-                <span>{item.text}</span>
-              </>
+    {
+      view.hero.visible && (
+        <section class="md-hero">
+          <div class="container md-hero__grid">
+            <div class="md-hero__copy">
+              <p class="eyebrow">{view.hero.eyebrow}</p>
+              <h1>
+                {heroTitle.leading}
+                {heroTitle.accent && <span>{heroTitle.accent}</span>}
+              </h1>
+              <p class="lead">{view.hero.lead}</p>
+              <div class="button-row">
+                <CommercialAction
+                  label={view.hero.primaryCtaLabel}
+                  showPendingNote
+                  href={view.whatsappUrl}
+                />
+                <a
+                  class="button button--secondary"
+                  href={samePageHref(view.hero.secondaryCtaHref)}
+                >
+                  {view.hero.secondaryCtaLabel} <ArrowRight aria-hidden="true" size={18} />
+                </a>
+              </div>
+              <div class="md-hero__microcopy">
+                <strong>{heroMicrocopy.first}</strong>
+                {heroMicrocopy.second && <span>{heroMicrocopy.second}</span>}
+              </div>
             </div>
-          ))
-        }
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="problema-title">
-      <div class="container md-problem__grid">
-        <div>
-          <p class="eyebrow">PRESENÇA DIGITAL</p>
-          <h2 id="problema-title">Ter Instagram não é ter presença digital completa.</h2>
-          <p class="lead">
-            Redes sociais são importantes, mas pertencem a plataformas de terceiros.
-          </p>
-          <p>
-            Um site próprio organiza sua marca, apresenta seus serviços e oferece ao cliente um
-            lugar profissional para encontrar tudo o que precisa.
-          </p>
-          <p><strong>Seu site funciona como a sede digital do seu negócio.</strong></p>
-        </div>
-        <div class="md-compare">
-          <article class="surface-card">
-            <h3>Apenas redes sociais</h3>
-            <ul>{socialComparison.social.map((item) => <li>{item}</li>)}</ul>
-          </article>
-          <article class="surface-card">
-            <h3>Com um site próprio</h3>
-            <ul>{socialComparison.website.map((item) => <li>{item}</li>)}</ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section--compact" id="projetos" aria-labelledby="projects-title">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">PROJETOS</p>
-          <h2 id="projects-title">
-            Sites que parecem caros.<br />Sem precisar custar uma fortuna.
-          </h2>
-          <p class="lead">Design profissional não deveria ser exclusividade de grandes empresas.</p>
-          <p>Cada projeto é desenvolvido para combinar identidade, clareza e desempenho.</p>
-        </div>
-        <div class="md-projects">
-          {
-            projects.map((project, index) => (
-              <article
-                class:list={[
-                  "md-project",
-                  `md-project--${project.slug === "tavola-27" ? "tavola" : project.slug}`,
-                ]}
-              >
-                <div class="md-project__copy">
-                  <p class="eyebrow">{project.category}</p>
-                  <p class="demo-disclosure">{project.label}</p>
-                  <h3>{project.headline}</h3>
-                  <p class="lead">{project.description}</p>
-                  <ul class="tag-list">
-                    {project.tags.map((tag) => (
-                      <li>{tag}</li>
-                    ))}
-                  </ul>
-                  <p class="md-project__meta">{project.plan}</p>
-                  <a class="button" href={`/projetos/${project.slug}`}>
-                    Ver projeto <ArrowRight aria-hidden="true" size={18} />
-                  </a>
-                </div>
-                <div class="md-project__media">
+            <div class="md-mosaic" aria-label="Três conceitos visuais MenezesDev">
+              {view.hero.media.map((media, index) => (
+                <div class="md-mosaic__item">
                   <img
-                    src={project.cover.src}
-                    width={project.cover.width}
-                    height={project.cover.height}
-                    alt={project.cover.alt}
-                    loading="lazy"
+                    src={media.src}
+                    width={media.width}
+                    height={media.height}
+                    alt={media.alt}
+                    fetchpriority={index === 0 ? "high" : "low"}
                   />
-                  {index === 1 && (
-                    <img
-                      src="/assets/demos/tavola27/tavola27-food-01.webp"
-                      width="1200"
-                      height="1500"
-                      alt="Tagliatelle ao ragu do conceito Tavola 27"
-                      loading="lazy"
-                    />
-                  )}
                 </div>
-              </article>
-            ))
-          }
-        </div>
-        <div class="surface-card md-portfolio-cta">
-          <h3>Quer um projeto com a identidade do seu negócio?</h3>
-          <CommercialAction label="Solicitar orçamento" showPendingNote />
-        </div>
-      </div>
-    </section>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
 
-    <section class="section" id="servicos" aria-labelledby="services-title">
-      <div class="container md-split">
-        <div class="section-heading">
-          <p class="eyebrow">SERVIÇOS</p>
-          <h2 id="services-title">Do primeiro clique ao site publicado.</h2>
-          <p class="lead">Desenvolvimento completo, da estrutura visual à publicação.</p>
-        </div>
-        <div class="md-services">
-          {
-            services.map((service, index) => (
-              <article class="md-service">
-                <>
-                  <span>0{index + 1}</span>
-                  <div>
-                    <>
-                      <h3>{service.title}</h3>
-                      <p>{service.text}</p>
-                    </>
-                  </div>
-                  <small>{service.microcopy}</small>
-                </>
-              </article>
-            ))
-          }
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="processo" aria-labelledby="process-title">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">COMO FUNCIONA</p>
-          <h2 id="process-title">Seu novo site em quatro etapas.</h2>
-          <p class="lead">Um processo simples, claro e organizado do início ao lançamento.</p>
-        </div>
-        <div class="md-process">
-          {
-            processSteps.map((step) => (
-              <article>
-                <>
-                  <span class="md-process__number">{step.number}</span>
-                  <h3>{step.title}</h3>
-                  <p>{step.text}</p>
-                </>
-              </article>
-            ))
-          }
-        </div>
-        <p class="md-process-note">
-          Você acompanha o projeto e possui até duas rodadas de revisão dentro do escopo contratado.
-        </p>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="capabilities-title">
-      <div class="container md-split">
-        <div class="section-heading">
-          <p class="eyebrow">POR DENTRO</p>
-          <h2 id="capabilities-title">Bonito por fora.<br />Bem construído por dentro.</h2>
-          <p class="lead">
-            Um site profissional precisa fazer mais do que simplesmente parecer bom.
-          </p>
-          <p>
-            A estrutura técnica também influencia velocidade, experiência, manutenção e presença nos
-            mecanismos de busca.
-          </p>
-          <strong>Desenvolvido para ser rápido.</strong>
-        </div>
-        <div class="md-capabilities">
-          {
-            capabilities.map((item) => (
-              <article class="surface-card">
+    {
+      document.home.trust.visible && (
+        <section class="md-trust" aria-label="Características dos projetos">
+          <div class="container md-trust__grid">
+            {view.trustItems.map((item) => (
+              <div class="md-trust__item">
                 <>
                   <Check aria-hidden="true" size={22} />
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
+                  <strong>{item.title}</strong>
+                  <span>{item.text}</span>
                 </>
-              </article>
-            ))
-          }
-        </div>
-      </div>
-    </section>
+              </div>
+            ))}
+          </div>
+        </section>
+      )
+    }
 
-    <section class="section" id="planos" aria-labelledby="plans-title">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">PLANOS</p>
-          <h2 id="plans-title">Um site para cada momento do seu negócio.</h2>
-          <p class="lead">
-            Comece com o que sua empresa precisa hoje e evolua quando fizer sentido.
-          </p>
-          <p>Todos os valores representam preços iniciais e podem variar conforme o escopo.</p>
-        </div>
-        <div class="md-plans">
-          {
-            plans.map((plan) => (
-              <article
-                class:list={["surface-card md-plan", { "md-plan--recommended": plan.recommended }]}
-              >
-                {plan.recommended && <span class="md-plan__badge">RECOMENDADO</span>}
-                <h3>{plan.name}</h3>
-                <p class="md-plan__price">{plan.price}</p>
-                <p>{plan.description}</p>
-                <strong>{plan.highlight}</strong>
-                <details>
+    {
+      view.problem.visible && (
+        <section class="section" aria-labelledby="problema-title">
+          <div class="container md-problem__grid">
+            <div>
+              <p class="eyebrow">{view.problem.eyebrow}</p>
+              <h2 id="problema-title">{view.problem.title}</h2>
+              <p class="lead">{view.problem.lead}</p>
+              {view.problem.paragraphs.map((paragraph) => (
+                <p>{paragraph}</p>
+              ))}
+              <p>
+                <strong>{view.problem.emphasis}</strong>
+              </p>
+            </div>
+            <div class="md-compare">
+              {view.problem.comparisons.map((comparison) => (
+                <article class="surface-card">
+                  <h3>{comparison.title}</h3>
+                  <ul>{comparison.items.map((item) => <li>{item}</li>)}</ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      view.projectsSection.visible && (
+        <section class="section--compact" id="projetos" aria-labelledby="projects-title">
+          <div class="container">
+            <div class="section-heading">
+              <p class="eyebrow">{view.projectsSection.eyebrow}</p>
+              <h2 id="projects-title">
+                {projectTitle.first}
+                {projectTitle.second && (
                   <>
-                    <summary>O que inclui</summary>
-                    <ul>
-                      {plan.includes.map((item) => (
-                        <li>{item}</li>
+                    <br />
+                    {projectTitle.second}
+                  </>
+                )}
+              </h2>
+              <p class="lead">{view.projectsSection.lead}</p>
+              <p>{view.projectsSection.body}</p>
+            </div>
+            <div class="md-projects">
+              {view.projects.map((project) => (
+                <article
+                  class:list={[
+                    "md-project",
+                    `md-project--${project.slug === "tavola-27" ? "tavola" : project.slug}`,
+                  ]}
+                >
+                  <div class="md-project__copy">
+                    <p class="eyebrow">{project.category}</p>
+                    <p class="demo-disclosure">{project.label}</p>
+                    <h3>{project.headline}</h3>
+                    <p class="lead">{project.description}</p>
+                    <ul class="tag-list">
+                      {project.tags.map((tag) => (
+                        <li>{tag}</li>
                       ))}
                     </ul>
+                    <p class="md-project__meta">{project.plan}</p>
+                    <a class="button" href={`/projetos/${project.slug}`}>
+                      Ver projeto <ArrowRight aria-hidden="true" size={18} />
+                    </a>
+                  </div>
+                  <div class="md-project__media">
+                    <img
+                      src={project.cover.src}
+                      width={project.cover.width}
+                      height={project.cover.height}
+                      alt={project.cover.alt}
+                      loading="lazy"
+                    />
+                    {project.slug === "tavola-27" && (
+                      <img
+                        src="/assets/demos/tavola27/tavola27-food-01.webp"
+                        width="1200"
+                        height="1500"
+                        alt="Tagliatelle ao ragu do conceito Tavola 27"
+                        loading="lazy"
+                      />
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
+            <div class="surface-card md-portfolio-cta">
+              <h3>{view.projectsSection.ctaTitle}</h3>
+              <CommercialAction
+                label={view.projectsSection.ctaLabel}
+                showPendingNote
+                href={view.whatsappUrl}
+              />
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      view.servicesSection.visible && (
+        <section class="section" id="servicos" aria-labelledby="services-title">
+          <div class="container md-split">
+            <div class="section-heading">
+              <p class="eyebrow">{view.servicesSection.eyebrow}</p>
+              <h2 id="services-title">{view.servicesSection.title}</h2>
+              <p class="lead">{view.servicesSection.lead}</p>
+            </div>
+            <div class="md-services">
+              {view.services.map((service, index) => (
+                <article class="md-service">
+                  <>
+                    <span>0{index + 1}</span>
+                    <div>
+                      <>
+                        <h3>{service.title}</h3>
+                        <p>{service.text}</p>
+                      </>
+                    </div>
+                    <small>{service.microcopy}</small>
+                  </>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      view.processSection.visible && (
+        <section class="section" id="processo" aria-labelledby="process-title">
+          <div class="container">
+            <div class="section-heading">
+              <p class="eyebrow">{view.processSection.eyebrow}</p>
+              <h2 id="process-title">{view.processSection.title}</h2>
+              <p class="lead">{view.processSection.lead}</p>
+            </div>
+            <div class="md-process">
+              {view.processSteps.map((step) => (
+                <article>
+                  <>
+                    <span class="md-process__number">{step.number}</span>
+                    <h3>{step.title}</h3>
+                    <p>{step.text}</p>
+                  </>
+                </article>
+              ))}
+            </div>
+            <p class="md-process-note">{view.processSection.note}</p>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      view.capabilitiesSection.visible && (
+        <section class="section" aria-labelledby="capabilities-title">
+          <div class="container md-split">
+            <div class="section-heading">
+              <p class="eyebrow">{view.capabilitiesSection.eyebrow}</p>
+              <h2 id="capabilities-title">
+                {capabilitiesTitle.first}
+                {capabilitiesTitle.second && (
+                  <>
+                    <br />
+                    {capabilitiesTitle.second}
+                  </>
+                )}
+              </h2>
+              <p class="lead">{view.capabilitiesSection.lead}</p>
+              <p>{view.capabilitiesSection.body}</p>
+              <strong>{view.capabilitiesSection.emphasis}</strong>
+            </div>
+            <div class="md-capabilities">
+              {view.capabilities.map((item) => (
+                <article class="surface-card">
+                  <>
+                    <Check aria-hidden="true" size={22} />
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      view.plansSection.visible && (
+        <section class="section" id="planos" aria-labelledby="plans-title">
+          <div class="container">
+            <div class="section-heading">
+              <p class="eyebrow">{view.plansSection.eyebrow}</p>
+              <h2 id="plans-title">{view.plansSection.title}</h2>
+              <p class="lead">{view.plansSection.lead}</p>
+              <p>{view.plansSection.note}</p>
+            </div>
+            <div class="md-plans">
+              {view.plans.map((plan) => (
+                <article
+                  class:list={[
+                    "surface-card md-plan",
+                    { "md-plan--recommended": plan.recommended },
+                  ]}
+                >
+                  {plan.recommended && <span class="md-plan__badge">RECOMENDADO</span>}
+                  <h3>{plan.name}</h3>
+                  <p class="md-plan__price">{plan.priceLabel}</p>
+                  <p>{plan.description}</p>
+                  <strong>{plan.highlight}</strong>
+                  <details>
+                    <>
+                      <summary>O que inclui</summary>
+                      <ul>
+                        {plan.includes.map((item) => (
+                          <li>{item}</li>
+                        ))}
+                      </ul>
+                    </>
+                  </details>
+                  <CommercialAction
+                    label={plan.ctaLabel}
+                    class="button button--wide"
+                    showPendingNote
+                    href={view.whatsappUrl}
+                  />
+                </article>
+              ))}
+            </div>
+            <article class="surface-card md-custom-plan">
+              <div>
+                <h3>{view.plansSection.custom.title}</h3>
+                <p>{view.plansSection.custom.text}</p>
+                <strong>{view.plansSection.custom.priceLabel}</strong>
+              </div>
+              <CommercialAction
+                label={view.plansSection.custom.ctaLabel}
+                showPendingNote
+                href={view.whatsappUrl}
+              />
+            </article>
+            <p class="md-process-note">{view.plansSection.disclaimer}</p>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      view.faqSection.visible && (
+        <section class="section" id="faq" aria-labelledby="faq-title">
+          <div class="container md-split">
+            <div class="section-heading">
+              <p class="eyebrow">{view.faqSection.eyebrow}</p>
+              <h2 id="faq-title">{view.faqSection.title}</h2>
+            </div>
+            <div class="md-faq">
+              {view.faqs.map((item) => (
+                <details>
+                  <>
+                    <summary>{item.question}</summary>
+                    <div class="md-faq__answer">
+                      {item.answer.map((paragraph) => (
+                        <p>{paragraph}</p>
+                      ))}
+                    </div>
                   </>
                 </details>
-                <CommercialAction label={plan.cta} class="button button--wide" showPendingNote />
-              </article>
-            ))
-          }
-        </div>
-        <article class="surface-card md-custom-plan">
-          <div>
-            <h3>Precisa de algo além de um site convencional?</h3><p>
-              Também desenvolvemos projetos com banco de dados, dashboards, áreas administrativas,
-              autenticação, integrações e outras funcionalidades específicas.
-            </p><strong>Projetos personalizados a partir de R$2.500.</strong>
+              ))}
+            </div>
           </div>
-          <CommercialAction label="Contar sobre meu projeto" showPendingNote />
-        </article>
-        <p class="md-process-note">
-          Domínio, serviços pagos de terceiros e funcionalidades fora do escopo podem gerar custos
-          adicionais. Nenhum serviço externo será contratado sem alinhamento prévio.
-        </p>
-      </div>
-    </section>
+        </section>
+      )
+    }
 
-    <section class="section" id="faq" aria-labelledby="faq-title">
-      <div class="container md-split">
-        <div class="section-heading">
-          <p class="eyebrow">DÚVIDAS FREQUENTES</p><h2 id="faq-title">
-            Antes de começar, talvez você queira saber.
-          </h2>
-        </div>
-        <div class="md-faq">
-          {
-            faqs.map((item) => (
-              <details>
-                <>
-                  <summary>{item.question}</summary>
-                  <div class="md-faq__answer">
-                    {item.answer.map((paragraph) => (
-                      <p>{paragraph}</p>
-                    ))}
-                  </div>
-                </>
-              </details>
-            ))
-          }
-        </div>
-      </div>
-    </section>
-
-    <section class="section--compact">
-      <div class="container surface-card md-final-cta">
-        <div>
-          <p class="eyebrow">VAMOS COMEÇAR?</p><h2>
-            Sua empresa já existe.<br />Agora faça ela existir na internet.
-          </h2><p class="lead">Conte um pouco sobre seu negócio e o que você precisa.</p><p>
-            A partir disso, analisamos o projeto e indicamos a solução mais adequada.
-          </p><strong>Orçamento sem compromisso.</strong>
-        </div>
-        <div class="button-row">
-          <CommercialAction label="Falar pelo WhatsApp" showPendingNote /><a
-            class="button button--secondary"
-            href="#planos">Ver planos</a
-          >
-        </div>
-      </div>
-    </section>
+    {
+      view.contact.visible && (
+        <section class="section--compact">
+          <div class="container surface-card md-final-cta">
+            <div>
+              <p class="eyebrow">{view.contact.eyebrow}</p>
+              <h2>
+                {contactTitle.first}
+                {contactTitle.second && (
+                  <>
+                    <br />
+                    {contactTitle.second}
+                  </>
+                )}
+              </h2>
+              <p class="lead">{view.contact.lead}</p>
+              <p>{view.contact.body}</p>
+              <strong>{view.contact.emphasis}</strong>
+            </div>
+            <div class="button-row">
+              <CommercialAction
+                label={view.contact.primaryCtaLabel}
+                showPendingNote
+                href={view.whatsappUrl}
+              />
+              <a
+                class="button button--secondary"
+                href={samePageHref(view.contact.secondaryCtaHref)}
+              >
+                {view.contact.secondaryCtaLabel}
+              </a>
+            </div>
+          </div>
+        </section>
+      )
+    }
   </main>
-  <MenezesFooter />
+  <MenezesFooter
+    navigation={navigation}
+    whatsappUrl={view.whatsappUrl}
+    tagline={document.brand.tagline}
+  />
   <script>
     const setupFaq = () => {
       const detailsItems = [...document.querySelectorAll<HTMLDetailsElement>(".md-faq details")];

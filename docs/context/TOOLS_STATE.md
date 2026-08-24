@@ -8,7 +8,7 @@
 # Current workflow state
 
 - Phase 0 — Product constitution: **CLOSED**.
-- Phase 1 — Global Market Intelligence: **ACTIVE / partially completed**.
+- Phase 1 — Global Market Intelligence: **ACTIVE / materially advanced, not closed**.
 - Phase 2 — OSS Capability Audit: **ACTIVE**.
 - Phase 3 — Capability Map: **NOT STARTED**.
 - Phase 4 — Freeze Launch 50: **NOT STARTED**.
@@ -42,13 +42,26 @@ Current artifacts:
 
 - `docs/tools/MARKET_INTELLIGENCE_BATCH1.md`
 - `docs/tools/MARKET_PRIORITY_RANKING_V1.md`
+- `docs/tools/MARKET_INTELLIGENCE_BATCH2.md`
+- `docs/tools/MARKET_INTELLIGENCE_BATCH2B.md`
+- `docs/tools/MARKET_PRIORITY_RANKING_V2_DRAFT.md`
 
 Known status:
 
 - competitor/category demand supports calculators, PDF, image/file conversion, text and developer utilities;
-- finance/math and developer intents currently show especially attractive combinations of commercial value and zero-backend execution;
-- Ranking V1 is provisional and contains confidence levels; it is not the Launch 50 freeze;
-- candidate-specific evidence still needs expansion before Phase 1 can close.
+- finance/math and developer intents show especially attractive combinations of commercial value and zero-backend execution;
+- direct 2026 evidence now strongly supports Margin Calculator, Image Resizer, Amortization Calculator and several previously A-confidence finance/math candidates;
+- Margin Calculator has direct US evidence around 110K monthly volume / ~$4 CPC but strong incumbents;
+- Image Resizer has repeated US evidence around 673K / ~$0.88 and dedicated lower-authority competitors, making it a probable shortlist anchor;
+- Amortization Calculator has direct US evidence around 246K / ~$0.79 and a page-one result from a materially lower-authority domain;
+- ROI Calculator now has a current Google-Ads-derived signal around 27.1K US / ~$2.86 and is promoted C -> B pending corroboration;
+- UUID and Hash Generator have promising secondary-source evidence and remain B pending stronger corroboration;
+- HTML/code formatting has smaller head volume than V1 assumed but strong ~$4–5 CPC signals and repeat developer value;
+- Image Compressor remains globally attractive but has large country/provider variance, so US-weighted demand was normalized down;
+- Merge PDF has enormous sampled volume but very low sampled CPC and extremely strong incumbents; it is no longer treated as a revenue flagship merely because of raw volume;
+- Split PDF has meaningful volume and somewhat better sampled CPC, but remains technically conditional;
+- Ranking V2 DRAFT covers the evidence-normalized subset only; it is not Launch 50 and does not imply Phase 1 closure;
+- remaining high-value evidence gaps include Markup, Break-even, Savings Goal, Secure Token, URL Encoder/Decoder and several data/text candidates.
 
 ---
 
@@ -77,7 +90,7 @@ Current direction:
 
 # Autonomous growth scope approved
 
-Approved future post-launch architecture now includes:
+Approved future post-launch architecture includes:
 
 - Autonomous Growth Engine;
 - Opportunity Engine;
@@ -91,7 +104,7 @@ Approved future post-launch architecture now includes:
 - measurement/pruning loop;
 - AI/crawler cost budgets and kill switches.
 
-Canonical new artifacts:
+Canonical artifacts:
 
 - `docs/tools/TOOLS_SCOPE.md`
 - `docs/tools/workflow-addenda/2026-08-24-autonomous-growth-autopilot.md`
@@ -102,7 +115,7 @@ Canonical new artifacts:
 
 # Important separation from legacy MenezesDev phases
 
-The repository already contains historical site-commercial phase state in `docs/context/STATE.md` and `HANDOFF.md`.
+The repository contains historical site-commercial phase state in `docs/context/STATE.md` and `HANDOFF.md`.
 
 Those phases are **not** the MenezesDev Tools workflow phases.
 
@@ -114,7 +127,7 @@ For any Tools task, use:
 4. `docs/context/TOOLS_HANDOFF.md`;
 5. `docs/tools/IMMUTABLE_WORKFLOW.md`;
 6. every binding file under `docs/tools/workflow-addenda/`;
-7. relevant Tools security/spec/audit documents.
+7. relevant Tools security/scope/spec/audit documents.
 
 Never infer Tools status from the commercial-site Phase 9/10 wording.
 
@@ -124,10 +137,11 @@ Never infer Tools status from the commercial-site Phase 9/10 wording.
 
 Continue Phase 1 and Phase 2 only:
 
-1. deepen candidate-specific market evidence for high-ranking B/C-confidence candidates;
-2. refine Ranking V2;
-3. close material OSS/capability gaps only for candidates likely to survive into the Launch shortlist;
-4. once Phase 1/2 gates are truly satisfied, start Phase 3 Capability Map;
-5. do not freeze Launch 50 or implement Tool SDK prematurely.
+1. corroborate Tier B-high candidates from `MARKET_PRIORITY_RANKING_V2_DRAFT.md`;
+2. obtain direct candidate evidence for the strongest remaining research-hold candidates, especially Markup, Break-even, Savings Goal, Secure Token, URL Encoder/Decoder and selected text/data tools;
+3. produce the full evidence-normalized Ranking V2 / >50 shortlist only when confidence depth is sufficient;
+4. close material OSS/capability gaps only for candidates likely to survive into that shortlist;
+5. once Phase 1/2 gates are truly satisfied, start Phase 3 Capability Map;
+6. do not freeze Launch 50 or implement Tool SDK prematurely.
 
 The Autonomous Growth Engine design is documented early but implementation remains post-prerequisite/future work under the immutable workflow.

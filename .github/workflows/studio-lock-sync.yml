@@ -1,0 +1,51 @@
+name: MenezesDev Studio Lockfile Sync
+
+on:
+  workflow_run:
+    workflows:
+      - MenezesDev Studio Lockfile Artifact
+    types:
+      - completed
+
+permissions:
+  contents: write
+
+jobs:
+  sync-lockfile:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch == 'feat/menezesdev-studio'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Studio branch
+        uses: actions/checkout@v7
+        with:
+          ref: feat/menezesdev-studio
+          persist-credentials: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24.19.0
+          package-manager-cache: false
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Regenerate lockfile only
+        run: corepack pnpm install --lockfile-only --no-frozen-lockfile
+
+      - name: Commit only the lockfile when changed
+        shell: bash
+        run: |
+          if git diff --quiet -- pnpm-lock.yaml; then
+            echo "pnpm-lock.yaml already synchronized"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pnpm-lock.yaml
+          test "$(git diff --cached --name-only)" = "pnpm-lock.yaml"
+          git commit -m "chore(studio): sync pnpm lockfile"
+          git push origin HEAD:feat/menezesdev-studio

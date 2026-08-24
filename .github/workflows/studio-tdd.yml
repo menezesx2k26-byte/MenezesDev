@@ -33,7 +33,7 @@ jobs:
         run: corepack pnpm install --frozen-lockfile
 
       - name: Runtime and Studio contracts
-        run: corepack pnpm test -- tests/runtime/config.test.ts tests/runtime/wrangler-config.test.ts tests/runtime/prerender-policy.test.ts tests/runtime/astro-config.test.ts tests/runtime/cloudflare-dev-optimizer.test.ts tests/runtime/route-contract.test.ts tests/runtime/runtime-route-probe.test.ts tests/runtime/check-runtime-routes-contract.test.ts tests/runtime/health-dev-smoke-contract.test.ts tests/runtime/worker-types.test.ts tests/runtime/migration-contract.test.ts tests/runtime/health.test.ts tests/runtime/bindings-contract.test.ts tests/runtime/health-endpoint-contract.test.ts tests/studio/validation.test.ts tests/studio/default-document.test.ts tests/studio/repository.test.ts
+        run: corepack pnpm test -- tests/runtime/config.test.ts tests/runtime/wrangler-config.test.ts tests/runtime/prerender-policy.test.ts tests/runtime/astro-config.test.ts tests/runtime/cloudflare-dev-optimizer.test.ts tests/runtime/route-contract.test.ts tests/runtime/runtime-route-probe.test.ts tests/runtime/check-runtime-routes-contract.test.ts tests/runtime/health-dev-smoke-contract.test.ts tests/runtime/worker-types.test.ts tests/runtime/migration-contract.test.ts tests/runtime/health.test.ts tests/runtime/bindings-contract.test.ts tests/runtime/health-endpoint-contract.test.ts tests/studio/validation.test.ts tests/studio/default-document.test.ts tests/studio/repository.test.ts tests/studio/seed-contract.test.ts
 
       - name: Apply local D1 migration
         run: corepack pnpm db:migrate:local
@@ -82,6 +82,25 @@ jobs:
 
           console.log("PASS local D1 — schema present and migration 0001 recorded exactly once.");
           NODE
+
+      - name: Seed local Studio
+        run: corepack pnpm studio:seed:local
+
+      - name: Verify local Studio seed
+        run: corepack pnpm studio:check-seed
+
+      - name: Refuse duplicate local seed
+        shell: bash
+        run: |
+          set +e
+          corepack pnpm studio:seed:local
+          status=$?
+          set -e
+          if [ "$status" -ne 2 ]; then
+            echo "Expected duplicate seed to exit 2, got $status."
+            exit 1
+          fi
+          corepack pnpm studio:check-seed
 
       - name: Smoke development runtime health
         run: corepack pnpm check:runtime-health:dev

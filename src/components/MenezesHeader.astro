@@ -2,22 +2,40 @@
 import CommercialAction from "./CommercialAction.astro";
 import SiteHeader from "./SiteHeader.astro";
 import { siteConfig } from "../config/site";
+
+interface NavigationItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  navigation?: NavigationItem[];
+  whatsappUrl?: string | null;
+  brandLabel?: string;
+}
+
+const {
+  navigation = [...siteConfig.navigation],
+  whatsappUrl = siteConfig.commercial.whatsappUrl,
+  brandLabel = siteConfig.brandName,
+} = Astro.props;
 ---
 
 <SiteHeader
   brandHref="/"
-  brandLabel="MenezesDev"
+  brandLabel={brandLabel}
   logoSrc="/assets/brand/brand-icon-512.png"
   logoWidth={512}
   logoHeight={512}
   showBrandText
-  nav={[...siteConfig.navigation]}
+  nav={navigation}
 >
-  <CommercialAction slot="desktop-action" label="Solicitar orçamento" />
+  <CommercialAction slot="desktop-action" label="Solicitar orçamento" href={whatsappUrl} />
   <CommercialAction
     slot="mobile-action"
     label="Falar pelo WhatsApp"
     class="button button--wide"
     showPendingNote
+    href={whatsappUrl}
   />
 </SiteHeader>

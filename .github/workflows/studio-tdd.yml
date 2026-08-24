@@ -45,8 +45,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          corepack pnpm exec wrangler d1 execute menezesdev-studio-local --local --json --command "SELECT type, name FROM sqlite_master WHERE (type = 'table' AND name IN ('studio_state', 'studio_versions', 'media_assets', 'audit_events')) OR (type = 'index' AND name IN ('idx_studio_versions_site_version', 'idx_media_assets_status', 'idx_audit_events_created_at')) ORDER BY type, name;" > /tmp/studio-schema.json
-          corepack pnpm exec wrangler d1 execute menezesdev-studio-local --local --json --command "SELECT COUNT(*) AS applied_count FROM d1_migrations WHERE name = '0001_studio_core.sql';" > /tmp/studio-migrations.json
+          ./node_modules/.bin/wrangler d1 execute menezesdev-studio-local --local --json --command "SELECT type, name FROM sqlite_master WHERE (type = 'table' AND name IN ('studio_state', 'studio_versions', 'media_assets', 'audit_events')) OR (type = 'index' AND name IN ('idx_studio_versions_site_version', 'idx_media_assets_status', 'idx_audit_events_created_at')) ORDER BY type, name;" > /tmp/studio-schema.json
+          ./node_modules/.bin/wrangler d1 execute menezesdev-studio-local --local --json --command "SELECT COUNT(*) AS applied_count FROM d1_migrations WHERE name = '0001_studio_core.sql';" > /tmp/studio-migrations.json
           node <<'NODE'
           const { readFileSync } = require("node:fs");
 

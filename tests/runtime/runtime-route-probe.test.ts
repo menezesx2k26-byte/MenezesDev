@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   validateBlockedResponse,
   validateCanonicalResponse,
+  validatePrivateRuntimeResponse,
 } from "../../scripts/runtime-route-probe.mjs";
 
 const page = (extra = "") => `<!doctype html>
@@ -49,6 +50,13 @@ describe("runtime HTTP route validation", () => {
     expect(validateBlockedResponse("/demo/prismae/about", 404)).toEqual([]);
     expect(validateBlockedResponse("/demo/prismae/about", 200)).toEqual([
       "/demo/prismae/about: rota bloqueada respondeu HTTP 200, esperado 404.",
+    ]);
+  });
+
+  it("requires development-only runtime routes to return 404 in production preview", () => {
+    expect(validatePrivateRuntimeResponse("/api/runtime-health", 404)).toEqual([]);
+    expect(validatePrivateRuntimeResponse("/api/runtime-health", 200)).toEqual([
+      "/api/runtime-health: rota privada respondeu HTTP 200, esperado 404 fora de desenvolvimento.",
     ]);
   });
 });

@@ -19,19 +19,19 @@ Optional proxies/routers must have separate launchers. The project's normal Code
 Use `AGENTS.md`, `STATE.md`, `DECISIONS.md`, and `HANDOFF.md` as the baseline cross-session memory. This avoids making project continuity depend on one plugin.
 
 ## D-004 — OmniRoute is optional
-**Status:** accepted  
+**Status:** accepted
 **Date:** 2026-08-22
 
 Use OmniRoute when free-tier/fallback routing is useful. Never describe it as free unlimited official Codex/OpenAI inference.
 
 ## D-005 — Headroom is an optimization, not a dependency
-**Status:** accepted  
+**Status:** accepted
 **Date:** 2026-08-22
 
 Headroom may be tested for compression/memory benefits but must not be required to develop or deploy the site.
 
 ## D-006 — Claude-Mem is deferred
-**Status:** accepted  
+**Status:** accepted
 **Date:** 2026-08-22
 
 Do not include Claude-Mem in the baseline until its Codex integration passes a clean test on the actual Windows environment.
@@ -195,3 +195,11 @@ Development and previews remain noindex. Indexable metadata requires both an exp
 **Date:** 2026-08-22
 
 The Phase 10 audit records Lighthouse Best Practices 92 on pages where Lighthouse's own inline-style instrumentation is blocked by the enforcing CSP, and LCP medians above 2.5 seconds on the two Tavola surfaces. These are investigated TARGET results, not permission to weaken CSP, alter approved assets or misreport the matrix. All 97 HARD GATES must remain passing.
+
+## D-033 — Studio runtime supersedes static-only backend constraints
+**Status:** accepted
+**Date:** 2026-08-24
+
+The approved MenezesDev Studio is the concrete runtime requirement anticipated by D-019: authenticated administration, D1 persistence, R2 media, runtime APIs, preview and publication history require Astro on Cloudflare Workers. On `feat/menezesdev-studio`, the static-only prohibition in D-019 and the no-backend portion of D-023 are therefore superseded for the real MenezesDev/Studio surface.
+
+This does **not** authorize demo submissions or turn fictitious demos into backend products. M47 and Tavola 27 commercial actions remain local demonstrative states, Prismae remains non-transmitting/non-persisting, and all `/demo/**` safety/indexing rules remain intact. Public editorial reads must use only the active immutable published snapshot; mutable draft data must never be a public fallback. This decision does not authorize merge to `main` or production deployment while release gates remain unresolved.

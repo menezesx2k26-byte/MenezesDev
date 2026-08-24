@@ -33,4 +33,4 @@ jobs:
         run: corepack pnpm install --frozen-lockfile
 
       - name: Runtime contracts
-        run: corepack pnpm test -- tests/runtime/config.test.ts tests/runtime/wrangler-config.test.ts tests/runtime/prerender-policy.test.ts tests/runtime/astro-config.test.ts
+        run: corepack pnpm test -- tests/runtime/config.test.ts tests/runtime/wrangler-config.test.ts tests/runtime/prerender-policy.test.ts tests/runtime/astro-config.test.ts tests/runtime/route-contract.test.ts

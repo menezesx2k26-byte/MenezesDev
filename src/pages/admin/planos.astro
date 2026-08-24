@@ -1,0 +1,88 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import ConflictDialog from "../../components/admin/ConflictDialog.astro";
+import PlansEditor from "../../components/admin/plans/PlansEditor.astro";
+import { getRuntimeBindings } from "../../runtime/bindings";
+import { requireStudioAdminContext } from "../../studio/http";
+import { getDraft, getPublished } from "../../studio/repository";
+
+const adminContext = requireStudioAdminContext({ isDev: import.meta.env.DEV });
+if (!adminContext) Astro.response.status = 404;
+
+let draft: Awaited<ReturnType<typeof getDraft>> | null = null;
+let baselineDocument: Awaited<ReturnType<typeof getPublished>>["document"] | null = null;
+let loadError = false;
+
+if (adminContext) {
+  try {
+    const { DB } = getRuntimeBindings();
+    const [loadedDraft, published] = await Promise.all([getDraft(DB), getPublished(DB)]);
+    draft = loadedDraft;
+    baselineDocument = published.document;
+  } catch {
+    loadError = true;
+  }
+}
+
+const ready = Boolean(adminContext && draft && baselineDocument && !loadError);
+const initialStateJson =
+  ready && draft && baselineDocument
+    ? JSON.stringify({ document: draft.document, baseline: baselineDocument, revision: draft.revision })
+        .replace(/&/g, "\\u0026")
+        .replace(/</g, "\\u003c")
+        .replace(/>/g, "\\u003e")
+        .replace(/\u2028/g, "\\u2028")
+        .replace(/\u2029/g, "\\u2029")
+    : "";
+---
+
+{
+  adminContext ? (
+    <AdminLayout
+      title="Planos"
+      description="Gerenciamento dos planos comerciais do MenezesDev Studio."
+      saveLabel={ready ? "Rascunho carregado" : "Planos indisponíveis"}
+      publicationLabel="Publicação separada do rascunho"
+      statusTone={ready ? "neutral" : "error"}
+    >
+      {ready && draft ? (
+        <>
+          <section class="admin-page-heading" aria-labelledby="plans-heading">
+            <p class="admin-kicker">Comercial</p>
+            <h2 id="plans-heading">Planos e preços.</h2>
+            <p>
+              Os preços são estruturados em centavos, o rótulo exibido é calculado e somente um plano pode ser recomendado.
+            </p>
+          </section>
+
+          <div data-services-plans-root>
+            <script id="studio-initial-state" type="application/json" is:inline set:html={initialStateJson} />
+            <PlansEditor plans={draft.document.home.plans.items} />
+          </div>
+          <ConflictDialog />
+
+          <script>
+            import { setupServicesPlansController } from "../../studio/client/services-plans-controller";
+            setupServicesPlansController();
+            document.addEventListener("astro:page-load", setupServicesPlansController);
+          </script>
+        </>
+      ) : (
+        <section class="admin-panel admin-panel--full" role="alert">
+          <span class="admin-panel__label">Planos indisponíveis</span>
+          <strong class="admin-panel__value">O rascunho não pôde ser carregado.</strong>
+          <p class="admin-panel__detail">Nenhuma alteração foi feita. Verifique o estado do banco de dados.</p>
+        </section>
+      )}
+    </AdminLayout>
+  ) : (
+    <html lang="pt-BR">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="noindex, nofollow, noarchive" />
+        <title>Página não encontrada</title>
+      </head>
+      <body />
+    </html>
+  )
+}

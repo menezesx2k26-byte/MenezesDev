@@ -5,6 +5,11 @@ import { describe, expect, it } from "vitest";
 const migrationPath = resolve(process.cwd(), "migrations/0001_studio_core.sql");
 const sql = existsSync(migrationPath) ? readFileSync(migrationPath, "utf8") : "";
 const normalized = sql.replace(/--.*$/gm, " ").replace(/\s+/g, " ").trim();
+const restoreMigrationPath = resolve(process.cwd(), "migrations/0002_studio_restore_lineage.sql");
+const restoreSql = existsSync(restoreMigrationPath)
+  ? readFileSync(restoreMigrationPath, "utf8")
+  : "";
+const normalizedRestore = restoreSql.replace(/--.*$/gm, " ").replace(/\s+/g, " ").trim();
 const packageJson = JSON.parse(readFileSync(resolve(process.cwd(), "package.json"), "utf8")) as {
   scripts?: Record<string, string>;
 };
@@ -36,6 +41,18 @@ describe("Studio D1 core migration contract", () => {
     );
     expect(normalized).toMatch(/snapshot_json\s+TEXT\s+NOT NULL/i);
     expect(normalized).toMatch(/published_at\s+TEXT\s+NOT NULL/i);
+  });
+
+  it("adds restore lineage in a forward-only second migration", () => {
+    expect(existsSync(restoreMigrationPath)).toBe(true);
+    expect(normalizedRestore).toMatch(
+      /ALTER TABLE\s+studio_state\s+ADD COLUMN\s+draft_restored_from_version_id\s+INTEGER/i,
+    );
+    expect(normalizedRestore).toMatch(
+      /ALTER TABLE\s+studio_versions\s+ADD COLUMN\s+restored_from_version_id\s+INTEGER/i,
+    );
+    expect(normalizedRestore).not.toMatch(/\bDROP\s+TABLE\b/i);
+    expect(normalizedRestore).not.toMatch(/\b(?:INSERT|UPDATE|DELETE)\b/i);
   });
 
   it("makes R2 keys unique and constrains media lifecycle status", () => {

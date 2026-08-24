@@ -33,7 +33,7 @@ jobs:
         run: corepack pnpm install --frozen-lockfile
 
       - name: Runtime contracts
-        run: corepack pnpm test -- tests/runtime/config.test.ts tests/runtime/wrangler-config.test.ts tests/runtime/prerender-policy.test.ts tests/runtime/astro-config.test.ts tests/runtime/route-contract.test.ts tests/runtime/runtime-route-probe.test.ts tests/runtime/worker-types.test.ts tests/runtime/migration-contract.test.ts
+        run: corepack pnpm test -- tests/runtime/config.test.ts tests/runtime/wrangler-config.test.ts tests/runtime/prerender-policy.test.ts tests/runtime/astro-config.test.ts tests/runtime/route-contract.test.ts tests/runtime/runtime-route-probe.test.ts tests/runtime/worker-types.test.ts tests/runtime/migration-contract.test.ts tests/runtime/health.test.ts
 
       - name: Apply local D1 migration
         run: corepack pnpm db:migrate:local

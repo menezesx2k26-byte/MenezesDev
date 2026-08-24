@@ -37,15 +37,7 @@ const query = `
 
 const result = spawnSync(
   wranglerExecutable,
-  [
-    "d1",
-    "execute",
-    "menezesdev-studio-local",
-    "--local",
-    "--json",
-    "--command",
-    query,
-  ],
+  ["d1", "execute", "menezesdev-studio-local", "--local", "--json", "--command", query],
   {
     cwd: root,
     encoding: "utf8",
@@ -89,7 +81,10 @@ if (!row) {
   failures.push("consulta não retornou estado do Studio.");
 } else {
   for (const [key, value] of Object.entries(expected)) {
-    if (row[key] !== value) failures.push(`${key}: recebido ${JSON.stringify(row[key])}, esperado ${JSON.stringify(value)}.`);
+    if (row[key] !== value)
+      failures.push(
+        `${key}: recebido ${JSON.stringify(row[key])}, esperado ${JSON.stringify(value)}.`,
+      );
   }
 }
 

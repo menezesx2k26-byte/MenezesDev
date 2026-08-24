@@ -53,7 +53,7 @@ describe("local Studio seed contract", () => {
   it("runs only against local Astro and local Wrangler state", () => {
     expect(seedScript).toContain('const host = "127.0.0.1"');
     expect(seedScript).toContain('"dev"');
-    expect(seedScript).toContain('/api/runtime-studio-seed');
+    expect(seedScript).toContain("/api/runtime-studio-seed");
     expect(seedScript).not.toMatch(/--remote|https:\/\//);
     expect(checkScript).toContain("wrangler");
     expect(checkScript).toContain("d1");

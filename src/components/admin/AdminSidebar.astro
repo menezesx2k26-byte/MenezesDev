@@ -29,7 +29,9 @@ const navigation = [
 ] as const;
 
 const isCurrent = (href: string) =>
-  href === "/admin" ? currentPath === href : currentPath === href || currentPath.startsWith(`${href}/`);
+  href === "/admin"
+    ? currentPath === href
+    : currentPath === href || currentPath.startsWith(`${href}/`);
 ---
 
 <aside class:list={["admin-sidebar", { "admin-sidebar--mobile": mobile }]} aria-label="Studio">

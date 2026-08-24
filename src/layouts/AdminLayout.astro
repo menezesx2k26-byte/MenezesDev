@@ -59,11 +59,7 @@ const currentPath = Astro.url.pathname;
           </Fragment>
         </AdminTopbar>
 
-        <AdminStatus
-          saveLabel={saveLabel}
-          publicationLabel={publicationLabel}
-          tone={statusTone}
-        />
+        <AdminStatus saveLabel={saveLabel} publicationLabel={publicationLabel} tone={statusTone} />
 
         <main id="admin-main" class="admin-main" tabindex="-1">
           <slot />
@@ -97,7 +93,8 @@ const currentPath = Astro.url.pathname;
         };
 
         trigger.addEventListener("click", () => {
-          restoreFocus = document.activeElement instanceof HTMLElement ? document.activeElement : trigger;
+          restoreFocus =
+            document.activeElement instanceof HTMLElement ? document.activeElement : trigger;
           dialog.showModal();
           close?.focus();
         });

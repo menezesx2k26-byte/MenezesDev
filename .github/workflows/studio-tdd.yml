@@ -82,3 +82,6 @@ jobs:
 
           console.log("PASS local D1 — schema present and migration 0001 recorded exactly once.");
           NODE
+
+      - name: Smoke development runtime health
+        run: corepack pnpm check:runtime-health:dev

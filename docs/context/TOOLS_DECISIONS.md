@@ -148,50 +148,85 @@ Explicit admissions so far:
 
 Current admitted working universe: **177**.
 
-## T-D023 — New strong discoveries must displace weak shortlist rows rather than inflate the pool by default
+## T-D023 — New strong discoveries displace weak shortlist rows rather than inflate the pool by default
 **Status:** accepted  
 **Date:** 2026-08-24
 
-Once a bounded >50 shortlist exists, newly admitted high-quality candidates compete for slots.
-
-Working replacements to date:
-
-- R2: Retirement Calculator replaced Reading Time Calculator; Budget Calculator replaced Gzip Decompressor.
-- R3: Number Base Converter replaced Gzip Compressor; Binary Translator replaced Slug Generator.
-- R4: Decimal to Fraction Calculator replaced File Type Detector; Random Number Generator replaced Remove Duplicate Lines.
-- R5: Fraction Calculator replaced Scientific Notation Calculator; Standard Deviation Calculator replaced Savings Goal Calculator.
-
-The current shortlist remains **80** candidates. This selection-pressure rule is a Phase-1 research practice, not a change to the immutable Launch-50 target.
+Once a bounded >50 shortlist exists, newly admitted high-quality candidates compete for slots. Historical replacement passes R2–R5 remain preserved in their shortlist artifacts.
 
 ## T-D024 — Numeric base conversion and text/binary translation are separate product intents
 **Status:** accepted  
 **Date:** 2026-08-24
 
-Use one `Number Base Converter` for numeric binary/octal/decimal/hex/base conversion rather than creating a route for every direction. Use a distinct `Binary Translator` for UTF-8 text ↔ binary-byte representation. This is an anti-thin-content consolidation decision based on current SERP/product semantics.
+Use one `Number Base Converter` for numeric binary/octal/decimal/hex/base conversion rather than creating a route for every direction. Use a distinct `Binary Translator` for UTF-8 text ↔ binary-byte representation.
 
 ## T-D025 — Random Number Generator is an admitted independent intent
 **Status:** accepted  
 **Date:** 2026-08-24
 
-General random-number generation is distinct from passwords, secure tokens and UUIDs. One configurable Random Number Generator should handle numeric ranges/counts/repeat policy rather than creating indexed pages for specific ranges such as 1–10 or 1–100. The default implementation uses browser Web Crypto with unbiased bounded-integer sampling and zero backend requests.
+General random-number generation is distinct from passwords, secure tokens and UUIDs. One configurable Random Number Generator handles ranges/count/repeat policy rather than indexed pages for specific ranges. Web Crypto with unbiased bounded sampling is the default engine.
 
 ## T-D026 — Shared engine does not imply shared SEO intent
 **Status:** accepted  
 **Date:** 2026-08-24
 
-Current market evidence supports retaining these as separate candidate URLs despite shared primitives:
+Current evidence supports retaining separate candidate intents where SERPs/users distinguish them, including Case vs Title Case, Word vs Character, Compound Interest vs Investment Growth/Future Value, Discount vs Percentage, Fraction vs Decimal-to-Fraction, and Number Base vs Binary Translator.
 
-- Case Converter vs Title Case Converter;
-- Word Counter vs Character Counter;
-- Compound Interest vs Investment Growth vs Future Value;
-- Discount Calculator vs Percentage Calculator;
-- Fraction Calculator vs Decimal to Fraction Calculator;
-- Number Base Converter vs Binary Translator.
+## T-D027 — R5 was the final 80-candidate working buffer
+**Status:** historical / superseded by final Phase-1 pool  
+**Date:** 2026-08-24
 
-Phase-5 IA/content must make functional differences explicit and avoid duplicate/thin copy.
+`MARKET_SHORTLIST_80_WORKING_R5.md` remains as the final 80-candidate working snapshot before closure pressure. It is preserved for history and is no longer the current selection pool.
 
-## T-D027 — Current R5 shortlist is the canonical Phase-1 working pool
+## T-D028 — Phase 1 closes on a final 68-candidate market pool
+**Status:** accepted / gate passed  
+**Date:** 2026-08-24
+
+`docs/tools/MARKET_SHORTLIST_68_FINAL_PHASE1.md` is the final Phase-1 candidate pool. `PHASE1_CLOSURE.md` records the gate pass. The 68 remain larger than Launch 50 and are the input to Phase 3/4 rather than a commitment to ship all 68.
+
+## T-D029 — Consolidate weak sibling URLs into stronger tools before Launch 50
 **Status:** accepted  
 **Date:** 2026-08-24
 
-`docs/tools/MARKET_SHORTLIST_80_WORKING_R5.md` is the current working shortlist. It remains 80 so Phase 1 can continue cut/replacement pressure before creating the final >50 evidence-backed pool. It is not Launch 50 and does not authorize Phase 3 or implementation.
+Final Phase-1 consolidation decisions include:
+
+- Simple Interest as a mode of Interest Calculator;
+- JSON Minifier as a mode of JSON Formatter;
+- File Hash as a bounded file-input mode of SHA-256 Hash Generator;
+- JSON → CSV as reverse mode of one CSV ↔ JSON product;
+- JS/CSS formatter standalone candidates demoted behind the stronger HTML/general formatter market;
+- lower-evidence structural PDF siblings moved to reserve.
+
+## T-D030 — Phase 2 closes with 68/68 concrete local paths
+**Status:** accepted / gate passed  
+**Date:** 2026-08-24
+
+Final Phase-2 coverage is 60 clear/internal/local-bounded + 8 local-conditional, 0 backend-required and 0 HOLD/UNRESOLVED. All 68 ordinary operations are designed for zero MenezesDev backend-processing requests. Conditional dependencies remain conditional until their exact admission gates pass.
+
+## T-D031 — Phase 3 Capability Map covers the full 68, not just a guessed 50
+**Status:** accepted / gate passed  
+**Date:** 2026-08-24
+
+`docs/tools/CAPABILITY_MAP.md` records runtime, engine/license, bundle class, requests/op, marginal backend cost, concrete security/limit profiles, telemetry and Ads eligibility for every final Phase-1 candidate. `PHASE3_CLOSURE.md` records the gate pass.
+
+## T-D032 — Exact Launch-50 recommendation is 35/10/5 but remains unapproved
+**Status:** recommendation complete / approval pending  
+**Date:** 2026-08-24
+
+`docs/tools/LAUNCH50_RECOMMENDATION.md` contains exactly:
+
+- 35 SEO/AdSense-led tools;
+- 10 architectural-coverage tools;
+- 5 experiments;
+- 50 total;
+- 18 ordered reserves reconstructing the full 68 pool.
+
+The recommendation has 46 clear/local tools and four local-conditional tools (Image Compressor, HTML Formatter, Merge PDF, Split PDF), with 0 backend-required operations.
+
+This is not the frozen Launch 50 until explicit approval is recorded.
+
+## T-D033 — Phase 4 may not self-approve
+**Status:** accepted / governance clarification  
+**Date:** 2026-08-24
+
+`PHASE4_PREFLIGHT.md` records that every pre-approval check passes. The remaining workflow gate is explicit approval of the exact matrix. A general instruction to keep working autonomously does not authorize an agent to fabricate approval of a matrix that did not yet exist when that instruction was given. Phase 5 remains blocked until the approval is explicit.

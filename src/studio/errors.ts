@@ -39,3 +39,10 @@ export class StudioDocumentValidationError extends Error {
     this.name = "StudioDocumentValidationError";
   }
 }
+
+export class StudioVersionNotFoundError extends Error {
+  constructor(readonly versionNumber: number) {
+    super(`Studio version ${versionNumber} was not found.`);
+    this.name = "StudioVersionNotFoundError";
+  }
+}

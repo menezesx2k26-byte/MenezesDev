@@ -14,7 +14,10 @@ const lines = (items: string[]) => items.join("\n");
   <div class="admin-page-heading">
     <p class="admin-kicker">Planos</p>
     <h2 id="plans-editor-heading">Oferta comercial estruturada.</h2>
-    <p>Preço é salvo em centavos; o rótulo exibido é calculado automaticamente. Só um plano pode ser recomendado.</p>
+    <p>
+      Preço é salvo em centavos; o rótulo exibido é calculado automaticamente. Só um plano pode ser
+      recomendado.
+    </p>
   </div>
 
   <div class="studio-repeater">
@@ -96,7 +99,9 @@ const lines = (items: string[]) => items.join("\n");
                 data-plan-price-cents
                 data-business-id={plan.id}
               />
-              <small>Rótulo calculado: <strong data-plan-price-label={plan.id}>{plan.priceLabel}</strong></small>
+              <small>
+                Rótulo calculado: <strong data-plan-price-label={plan.id}>{plan.priceLabel}</strong>
+              </small>
             </label>
 
             <label class="studio-field studio-field--wide">
@@ -104,8 +109,10 @@ const lines = (items: string[]) => items.join("\n");
               <textarea
                 rows="4"
                 maxlength={STUDIO_LIMITS.longText}
-                data-business-path={`home.plans.items.${index}.description`}>{plan.description}</textarea
+                data-business-path={`home.plans.items.${index}.description`}
               >
+                {plan.description}
+              </textarea>
             </label>
 
             <label class="studio-field studio-field--wide">
@@ -124,8 +131,10 @@ const lines = (items: string[]) => items.join("\n");
                 rows="8"
                 maxlength={STUDIO_LIMITS.longText}
                 data-business-path={`home.plans.items.${index}.includes`}
-                data-business-value-type="lines">{lines(plan.includes)}</textarea
+                data-business-value-type="lines"
               >
+                {lines(plan.includes)}
+              </textarea>
             </label>
 
             <label class="studio-field studio-field--wide">
@@ -144,5 +153,7 @@ const lines = (items: string[]) => items.join("\n");
     }
   </div>
 
-  <p class="studio-save-state" data-business-save-status aria-live="polite">Rascunho sincronizado.</p>
+  <p class="studio-save-state" data-business-save-status aria-live="polite">
+    Rascunho sincronizado.
+  </p>
 </section>

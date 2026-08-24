@@ -28,7 +28,9 @@ describe("services and plans business rules", () => {
     expect(initial.home.services.items.every((service) => service.visible === true)).toBe(true);
     const target = initial.home.services.items[0]!;
     const hidden = module.setServiceVisibility(initial, target.id, false);
-    expect(toPublicHomeView(hidden).services.some((service) => service.id === target.id)).toBe(false);
+    expect(toPublicHomeView(hidden).services.some((service) => service.id === target.id)).toBe(
+      false,
+    );
   });
 
   it("moves services and plans with bounded up/down operations", async () => {
@@ -63,9 +65,9 @@ describe("services and plans business rules", () => {
     for (const plan of document.home.plans.items.slice(1)) {
       document = module.setPlanVisibility(document, plan.id, false);
     }
-    expect(() => module.setPlanVisibility(document, document.home.plans.items[0]!.id, false)).toThrow(
-      /último|last|visível|visible/i,
-    );
+    expect(() =>
+      module.setPlanVisibility(document, document.home.plans.items[0]!.id, false),
+    ).toThrow(/último|last|visível|visible/i);
   });
 
   it("stores starting prices as cents and derives the display label deliberately", async () => {
@@ -82,7 +84,9 @@ describe("services and plans business rules", () => {
     expect(updated.priceLabel).toBe("A partir de R$1.234,50");
     expect(module.formatPlanStartingPrice(60000)).toBe("A partir de R$600");
     expect(() => module.setPlanStartingPrice(initial, target.id, -1)).toThrow(/preço|price|cent/i);
-    expect(() => module.setPlanStartingPrice(initial, target.id, 10.5)).toThrow(/preço|price|cent/i);
+    expect(() => module.setPlanStartingPrice(initial, target.id, 10.5)).toThrow(
+      /preço|price|cent/i,
+    );
   });
 
   it("allows at most one recommended plan by replacing the previous recommendation", async () => {
@@ -146,8 +150,8 @@ describe("Services and Plans admin UI contract", () => {
       expect(source).toMatch(/Visível|Visibilidade/);
       expect(source).not.toMatch(/contenteditable|data-freeform-style|type="color"/i);
     }
-    expect(plans).toContain('data-plan-price-cents');
-    expect(plans).toContain('data-plan-recommended');
+    expect(plans).toContain("data-plan-price-cents");
+    expect(plans).toContain("data-plan-recommended");
     expect(plans).toMatch(/Rótulo calculado|calculado/i);
   });
 

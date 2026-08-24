@@ -101,7 +101,9 @@ export const setupServicesPlansController = (): void => {
         const next = setPlanStartingPrice(store.getState().document, id, cents);
         commit(next);
         const label = next.home.plans.items.find((plan) => plan.id === id)?.priceLabel;
-        const labelNode = root.querySelector<HTMLElement>(`[data-plan-price-label="${CSS.escape(id)}"]`);
+        const labelNode = root.querySelector<HTMLElement>(
+          `[data-plan-price-label="${CSS.escape(id)}"]`,
+        );
         if (labelNode && label) labelNode.textContent = label;
         target.setCustomValidity("");
       }
@@ -126,8 +128,11 @@ export const setupServicesPlansController = (): void => {
     const id = button.dataset.businessId;
     if (!id) return;
 
-    const direction: ListMoveDirection | null =
-      action?.endsWith("move-up") ? "up" : action?.endsWith("move-down") ? "down" : null;
+    const direction: ListMoveDirection | null = action?.endsWith("move-up")
+      ? "up"
+      : action?.endsWith("move-down")
+        ? "down"
+        : null;
     if (!direction) return;
 
     if (action?.startsWith("service-")) {

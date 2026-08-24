@@ -358,24 +358,13 @@ const validateHome = (
       addIssue(issues, `home.plans.items[${index}]`, "type", "Expected a plan.");
       return;
     }
-    const visible = requireBoolean(
-      item,
-      "visible",
-      `home.plans.items[${index}].visible`,
-      issues,
-    );
-    requireBoolean(
-      item,
-      "recommended",
-      `home.plans.items[${index}].recommended`,
-      issues,
-    );
+    const visible = requireBoolean(item, "visible", `home.plans.items[${index}].visible`, issues);
+    requireBoolean(item, "recommended", `home.plans.items[${index}].recommended`, issues);
     requireString(item, "ctaLabel", `home.plans.items[${index}].ctaLabel`, issues, {
       nonEmpty: visible === true,
     });
     const price = item.startingPriceCents;
-    const validPrice =
-      price === null || (Number.isInteger(price) && Number(price) >= 0);
+    const validPrice = price === null || (Number.isInteger(price) && Number(price) >= 0);
     if (!validPrice) {
       addIssue(
         issues,
@@ -414,9 +403,7 @@ const validateHome = (
       "A visible plans section requires at least one visible plan.",
     );
   }
-  if (
-    planItems.filter((item) => isRecord(item) && item.recommended === true).length > 1
-  ) {
+  if (planItems.filter((item) => isRecord(item) && item.recommended === true).length > 1) {
     addIssue(
       issues,
       "home.plans.items",

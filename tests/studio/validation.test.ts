@@ -99,6 +99,7 @@ const validDocument = () => ({
           title: "Sites institucionais",
           text: "Apresente sua empresa e seus serviços.",
           microcopy: "Ideal para empresas e profissionais.",
+          visible: true,
         },
       ],
     },

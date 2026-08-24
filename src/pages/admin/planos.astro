@@ -27,7 +27,11 @@ if (adminContext) {
 const ready = Boolean(adminContext && draft && baselineDocument && !loadError);
 const initialStateJson =
   ready && draft && baselineDocument
-    ? JSON.stringify({ document: draft.document, baseline: baselineDocument, revision: draft.revision })
+    ? JSON.stringify({
+        document: draft.document,
+        baseline: baselineDocument,
+        revision: draft.revision,
+      })
         .replace(/&/g, "\\u0026")
         .replace(/</g, "\\u003c")
         .replace(/>/g, "\\u003e")
@@ -51,19 +55,25 @@ const initialStateJson =
             <p class="admin-kicker">Comercial</p>
             <h2 id="plans-heading">Planos e preços.</h2>
             <p>
-              Os preços são estruturados em centavos, o rótulo exibido é calculado e somente um plano pode ser recomendado.
+              Os preços são estruturados em centavos, o rótulo exibido é calculado e somente um
+              plano pode ser recomendado.
             </p>
           </section>
 
           <div data-services-plans-root>
-            <script id="studio-initial-state" type="application/json" is:inline set:html={initialStateJson} />
+            <script
+              id="studio-initial-state"
+              type="application/json"
+              is:inline
+              set:html={initialStateJson}
+            />
             <PlansEditor plans={draft.document.home.plans.items} />
           </div>
           <ConflictDialog />
 
           <script>
-            import { setupServicesPlansController } from "../../studio/client/services-plans-controller";
-            setupServicesPlansController();
+            import {setupServicesPlansController} from
+            "../../studio/client/services-plans-controller"; setupServicesPlansController();
             document.addEventListener("astro:page-load", setupServicesPlansController);
           </script>
         </>
@@ -71,7 +81,9 @@ const initialStateJson =
         <section class="admin-panel admin-panel--full" role="alert">
           <span class="admin-panel__label">Planos indisponíveis</span>
           <strong class="admin-panel__value">O rascunho não pôde ser carregado.</strong>
-          <p class="admin-panel__detail">Nenhuma alteração foi feita. Verifique o estado do banco de dados.</p>
+          <p class="admin-panel__detail">
+            Nenhuma alteração foi feita. Verifique o estado do banco de dados.
+          </p>
         </section>
       )}
     </AdminLayout>

@@ -13,7 +13,9 @@ const { services } = Astro.props;
   <div class="admin-page-heading">
     <p class="admin-kicker">Serviços</p>
     <h2 id="services-editor-heading">O que você oferece.</h2>
-    <p>Reordene, edite e controle a visibilidade. Pelo menos um serviço precisa permanecer visível.</p>
+    <p>
+      Reordene, edite e controle a visibilidade. Pelo menos um serviço precisa permanecer visível.
+    </p>
   </div>
 
   <div class="studio-repeater">
@@ -75,28 +77,30 @@ const { services } = Astro.props;
               <textarea
                 rows="4"
                 maxlength={STUDIO_LIMITS.longText}
-                data-business-path={`home.services.items.${index}.text`}>{service.text}</textarea
+                data-business-path={`home.services.items.${index}.text`}
               >
+                {service.text}
+              </textarea>
             </label>
 
-            {
-              service.microcopy !== undefined ? (
-                <label class="studio-field studio-field--wide">
-                  <span>Microcopy</span>
-                  <input
-                    type="text"
-                    maxlength={STUDIO_LIMITS.longText}
-                    value={service.microcopy}
-                    data-business-path={`home.services.items.${index}.microcopy`}
-                  />
-                </label>
-              ) : null
-            }
+            {service.microcopy !== undefined ? (
+              <label class="studio-field studio-field--wide">
+                <span>Microcopy</span>
+                <input
+                  type="text"
+                  maxlength={STUDIO_LIMITS.longText}
+                  value={service.microcopy}
+                  data-business-path={`home.services.items.${index}.microcopy`}
+                />
+              </label>
+            ) : null}
           </div>
         </article>
       ))
     }
   </div>
 
-  <p class="studio-save-state" data-business-save-status aria-live="polite">Rascunho sincronizado.</p>
+  <p class="studio-save-state" data-business-save-status aria-live="polite">
+    Rascunho sincronizado.
+  </p>
 </section>

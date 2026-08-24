@@ -10,7 +10,7 @@ import {
 } from "../data/home";
 import { projects } from "../data/projects";
 import { SITE_DOCUMENT_SCHEMA_VERSION } from "./types";
-import type { MediaReference, SiteDocument } from "./types";
+import type { MediaReference, SiteDocument, StudioSocialLink } from "./types";
 
 const slugify = (value: string): string =>
   value
@@ -37,6 +37,15 @@ const startingPriceCents = (priceLabel: string): number | null => {
   if (!match?.[1]) return null;
   return Number(match[1].replace(/\./g, "")) * 100;
 };
+
+const studioSocialLinks = (
+  links: ReadonlyArray<{ label: string; href: string }>,
+): StudioSocialLink[] =>
+  links.map((link) => ({
+    id: `social-${slugify(link.label)}`,
+    label: link.label,
+    href: link.href,
+  }));
 
 export const createDefaultSiteDocument = (): SiteDocument => {
   const studioProjects = projects.map((project) => {
@@ -258,11 +267,7 @@ export const createDefaultSiteDocument = (): SiteDocument => {
     commercial: {
       whatsappUrl: siteConfig.commercial.whatsappUrl,
       whatsappMessage: siteConfig.commercial.whatsappMessage,
-      socialLinks: siteConfig.socialLinks.map((link) => ({
-        id: `social-${slugify(link.label)}`,
-        label: link.label,
-        href: link.href,
-      })),
+      socialLinks: studioSocialLinks(siteConfig.socialLinks),
     },
     seo: {
       titleTemplate: "%s",

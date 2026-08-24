@@ -21,7 +21,9 @@ describe("hybrid route contract", () => {
       "/projetos/prismae",
     ]);
     expect(staticRoutes).toHaveLength(12);
-    expect(staticRoutes.every((route: string) => route.startsWith("/demo/"))).toBe(true);
+    expect(staticRoutes.every((route: string) => route.startsWith("/demo/"))).toBe(
+      true,
+    );
   });
 
   it("keeps blocked routes outside the canonical surface", () => {

@@ -1,3 +1,4 @@
+import { formatPlanStartingPrice } from "./pricing";
 import { SITE_DOCUMENT_SCHEMA_VERSION } from "./types";
 import type { SiteDocument, StudioLayoutPreset } from "./types";
 
@@ -313,6 +314,21 @@ const validateHome = (
   }
   const serviceItems = arrayAt(services, "items", "home.services.items", issues);
   validateIdList(serviceItems, "home.services.items", issues);
+  serviceItems.forEach((item, index) => {
+    if (!isRecord(item)) return;
+    requireBoolean(item, "visible", `home.services.items[${index}].visible`, issues);
+  });
+  if (
+    services?.visible === true &&
+    !serviceItems.some((item) => isRecord(item) && item.visible === true)
+  ) {
+    addIssue(
+      issues,
+      "home.services.items",
+      "empty_visible_section",
+      "A visible services section requires at least one visible service.",
+    );
+  }
 
   const process = recordAt(home, "process", "home.process", issues);
   validateSectionBase(process, "home.process", issues);
@@ -342,8 +358,25 @@ const validateHome = (
       addIssue(issues, `home.plans.items[${index}]`, "type", "Expected a plan.");
       return;
     }
+    const visible = requireBoolean(
+      item,
+      "visible",
+      `home.plans.items[${index}].visible`,
+      issues,
+    );
+    requireBoolean(
+      item,
+      "recommended",
+      `home.plans.items[${index}].recommended`,
+      issues,
+    );
+    requireString(item, "ctaLabel", `home.plans.items[${index}].ctaLabel`, issues, {
+      nonEmpty: visible === true,
+    });
     const price = item.startingPriceCents;
-    if (price !== null && (!Number.isInteger(price) || Number(price) < 0)) {
+    const validPrice =
+      price === null || (Number.isInteger(price) && Number(price) >= 0);
+    if (!validPrice) {
       addIssue(
         issues,
         `home.plans.items[${index}].startingPriceCents`,
@@ -351,8 +384,46 @@ const validateHome = (
         "Price must be null or a non-negative integer in cents.",
       );
     }
-    requireString(item, "priceLabel", `home.plans.items[${index}].priceLabel`, issues);
+    const priceLabel = requireString(
+      item,
+      "priceLabel",
+      `home.plans.items[${index}].priceLabel`,
+      issues,
+    );
+    if (
+      validPrice &&
+      priceLabel !== null &&
+      priceLabel !== formatPlanStartingPrice(price as number | null)
+    ) {
+      addIssue(
+        issues,
+        `home.plans.items[${index}].priceLabel`,
+        "price_label",
+        "Price label must match the structured starting price.",
+      );
+    }
   });
+  if (
+    plans?.visible === true &&
+    !planItems.some((item) => isRecord(item) && item.visible === true)
+  ) {
+    addIssue(
+      issues,
+      "home.plans.items",
+      "empty_visible_section",
+      "A visible plans section requires at least one visible plan.",
+    );
+  }
+  if (
+    planItems.filter((item) => isRecord(item) && item.recommended === true).length > 1
+  ) {
+    addIssue(
+      issues,
+      "home.plans.items",
+      "recommended_limit",
+      "At most one plan can be recommended.",
+    );
+  }
   recordAt(plans, "custom", "home.plans.custom", issues);
 
   const faq = recordAt(home, "faq", "home.faq", issues);

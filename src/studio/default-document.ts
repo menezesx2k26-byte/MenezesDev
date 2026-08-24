@@ -180,6 +180,7 @@ export const createDefaultSiteDocument = (): SiteDocument => {
           title: service.title,
           text: service.text,
           ...(service.microcopy ? { microcopy: service.microcopy } : {}),
+          visible: true,
         })),
       },
       process: {

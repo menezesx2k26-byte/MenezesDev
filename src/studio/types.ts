@@ -49,6 +49,7 @@ export interface StudioService {
   title: string;
   text: string;
   microcopy?: string;
+  visible: boolean;
 }
 
 export interface StudioProcessStep {

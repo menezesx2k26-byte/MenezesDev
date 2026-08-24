@@ -164,7 +164,7 @@ export const toPublicHomeView = (document: SiteDocument): PublicHomeView => {
     projectsSection: document.home.projects,
     projects: homeProjects,
     servicesSection: document.home.services,
-    services: document.home.services.items,
+    services: document.home.services.items.filter((service) => service.visible),
     processSection: document.home.process,
     processSteps: document.home.process.steps,
     capabilitiesSection: document.home.capabilities,

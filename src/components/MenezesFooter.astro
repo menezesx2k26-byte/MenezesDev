@@ -1,6 +1,23 @@
 ---
 import CommercialAction from "./CommercialAction.astro";
 import { siteConfig } from "../config/site";
+
+interface NavigationItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  navigation?: NavigationItem[];
+  whatsappUrl?: string | null;
+  tagline?: string;
+}
+
+const {
+  navigation = [...siteConfig.navigation],
+  whatsappUrl = siteConfig.commercial.whatsappUrl,
+  tagline = siteConfig.tagline,
+} = Astro.props;
 ---
 
 <footer class="site-footer">
@@ -15,7 +32,7 @@ import { siteConfig } from "../config/site";
           alt="MenezesDev"
           loading="lazy"
         />
-        <p><strong>Sites que impulsionam negócios.</strong></p>
+        <p><strong>{tagline}</strong></p>
         <p class="lead">
           Design e desenvolvimento web para empresas e profissionais que querem uma presença digital
           mais profissional.
@@ -23,7 +40,7 @@ import { siteConfig } from "../config/site";
       </div>
       <nav class="site-footer__links" aria-label="Navegação do rodapé">
         <strong>Navegação</strong>
-        {siteConfig.navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+        {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
       </nav>
       <div class="site-footer__links">
         <strong>Serviços</strong>
@@ -32,12 +49,12 @@ import { siteConfig } from "../config/site";
         <span>Catálogos</span>
         <span>Integrações</span>
         <span>Projetos personalizados</span>
-        <CommercialAction label="Solicitar orçamento" showPendingNote />
+        <CommercialAction label="Solicitar orçamento" showPendingNote href={whatsappUrl} />
       </div>
     </div>
     <div class="site-footer__bottom">
       <span>© 2026 MenezesDev. Todos os direitos reservados.</span>
-      <span>Sites que impulsionam negócios.</span>
+      <span>{tagline}</span>
     </div>
   </div>
 </footer>

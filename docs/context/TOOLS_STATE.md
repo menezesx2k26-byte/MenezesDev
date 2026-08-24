@@ -8,12 +8,12 @@
 # Current workflow state
 
 - Phase 0 — Product constitution: **CLOSED**.
-- Phase 1 — Global Market Intelligence: **ACTIVE / materially advanced, not closed**.
-- Phase 2 — OSS Capability Audit: **ACTIVE**.
+- Phase 1 — Global Market Intelligence: **ACTIVE / materially advanced, first bounded >50 shortlist exists**.
+- Phase 2 — OSS Capability Audit: **ACTIVE / broad shortlist coverage established**.
 - Phase 3 — Capability Map: **NOT STARTED**.
 - Phase 4 — Freeze Launch 50: **NOT STARTED**.
 - Tools implementation under this workflow: **NOT STARTED**.
-- `main` must remain free of partial Tools implementation before the approved launch/integration gates.
+- `main` must remain free of partial Tools implementation before approved launch/integration gates.
 
 ---
 
@@ -31,31 +31,76 @@
 - no auth requirement for Launch 50;
 - 50 complete tools required for first public Tools launch;
 - Launch 50 is a gate, not a two-year ceiling;
-- initial Market Intelligence universe: 172 named candidate ideas/capabilities;
 - post-launch scale is data-gated rather than count/calendar-gated;
-- out-of-universe discoveries are recorded separately and do not silently rewrite the 172 count.
+- new strong discoveries should create selection pressure rather than automatically expand publication count.
 
 ---
 
-# Market intelligence
+# Candidate-universe accounting
 
-Current artifacts:
+Historical initial universe:
+
+- `MARKET_INTELLIGENCE_BATCH1.md`: **172 named candidates/capabilities**.
+
+Explicit later admissions:
+
+- #173 Retirement Calculator;
+- #174 Budget Calculator.
+
+Current admitted research universe: **174 candidates**.
+
+The historical 172 count remains true for Batch 1. New admissions must be recorded explicitly rather than silently editing history.
+
+Current semantic-hold discoveries not yet admitted:
+
+- Binary Converter;
+- Hex Converter;
+- Binary Translator.
+
+Their observed economics are strong, but actual SERP/product semantics need consolidation work first.
+
+---
+
+# Market intelligence artifacts
+
+Current major artifacts:
 
 - `docs/tools/MARKET_INTELLIGENCE_BATCH1.md`
-- `docs/tools/MARKET_PRIORITY_RANKING_V1.md`
 - `docs/tools/MARKET_INTELLIGENCE_BATCH2.md`
 - `docs/tools/MARKET_INTELLIGENCE_BATCH2B.md`
-- `docs/tools/MARKET_PRIORITY_RANKING_V2_DRAFT.md`
 - `docs/tools/MARKET_INTELLIGENCE_BATCH3.md`
 - `docs/tools/MARKET_INTELLIGENCE_BATCH4.md`
 - `docs/tools/MARKET_INTELLIGENCE_BATCH5.md`
+- `docs/tools/MARKET_INTELLIGENCE_BATCH6.md`
+- `docs/tools/MARKET_INTELLIGENCE_BATCH7_CUT_PASS.md`
+- `docs/tools/MARKET_PRIORITY_RANKING_V1.md`
+- `docs/tools/MARKET_PRIORITY_RANKING_V2_DRAFT.md`
 - `docs/tools/MARKET_PRIORITY_RANKING_V2_WORKING.md`
+- `docs/tools/MARKET_PRIORITY_RANKING_V2_WORKING_B6.md`
+- `docs/tools/MARKET_SHORTLIST_80_WORKING.md`
+- `docs/tools/MARKET_SHORTLIST_80_WORKING_R2.md`
+- `docs/tools/CANDIDATE_UNIVERSE_ADMISSION_2026-08-24.md`
 
-## Current evidence-normalized findings
+---
 
-The working V2 now contains 28 scored candidates/clusters with materially better evidence depth than V1.
+# Current working shortlist
 
-Strong A / likely-shortlist anchors currently include:
+Canonical current shortlist view:
+
+`docs/tools/MARKET_SHORTLIST_80_WORKING_R2.md`
+
+It contains **80 candidates** and is deliberately larger than Launch 50.
+
+R2 replacement decisions:
+
+- Retirement Calculator entered and Reading Time Calculator moved to reserve;
+- Budget Calculator entered and Gzip Decompressor moved to reserve.
+
+The shortlist remains at 80 rather than expanding to 82.
+
+## Current high-confidence / high-value anchors
+
+Strong current candidates include:
 
 - Loan Calculator;
 - Markdown Previewer;
@@ -73,54 +118,90 @@ Strong A / likely-shortlist anchors currently include:
 - Proportion Calculator;
 - Base64 Decoder;
 - Text Diff / Compare Text;
-- Age Calculator as a high-volume/low-CPC traffic anchor.
+- Case Converter;
+- Image Metadata Viewer;
+- Word Counter as a mass low-cost traffic role;
+- Password Generator as a large low-CPC repeat role;
+- Age Calculator as a mass low-CPC date role.
 
-Key evidence added in Batches 3–5:
+## Newly strengthened evidence
 
-- **URL Encoder:** dedicated competitor ~186K monthly visits, strong direct use and multiple current US exact-intent terms around ~$5.44 CPC; now A and near the top of the working ranking.
-- **JSON Validator:** jsonlint ~473K monthly visits; US `json validator` ~22.2K / ~$4.36; native JSON path already approved; now A.
-- **Text Diff:** Diffchecker ~2.18M monthly visits, ~61% Direct; `diff checker` ~27.1K / ~$3.57 and `text compare` ~27.1K / ~$1.26; now A.
-- **Markdown Previewer:** dedicated preview site ~1.56M monthly visits in July 2026 with strong Google/direct mix; latest exposed US `markdown viewer`/`md viewer` rows around ~$6.27 CPC; now A and a probable shortlist anchor.
-- **Palette Generator candidate:** Coolors ~5.2M monthly visits; current US `color palette generator` ~74K / ~$2.09; market A but incumbent moat and Palette-vs-Gradient semantics remain caveats.
-- **Age Calculator:** ~1M US head-term volume / ~$0.29 CPC; A as a traffic-role candidate, not a revenue flagship.
-- **physical unit converters:** enormous directional-query volume (e.g. cm→inches, kg→lbs) but generally weak CPC; useful traffic stabilizers, with future IA required to avoid thin directional pages.
-- **Slug Generator:** dedicated low-AS site ~283K visits but ~76% Direct and small/zero-CPC visible organic terms; proven useful product, weakly evidenced SEO/AdSense flagship; intentionally downranked.
-- **ZIP create/extract:** real mid-scale organic utility market and local privacy advantage, but modest exposed exact keyword economics; coverage/privacy candidate, not flagship.
-- **Date Difference / Date Calculator:** attractive older direct keyword signal but insufficient 2026 freshness for A confidence; remains B-high.
+### Case Converter
 
-## Out-of-universe discovery queue
+Current dedicated market evidence shows roughly:
 
-Current RapidTables evidence exposed unusually strong economics for capabilities not explicitly named in the original 172:
+- ~5M monthly visits on convertcase.net;
+- strong US traffic;
+- high Direct share;
+- exact US `case converter` demand around 22K with moderate CPC.
 
-- `binary converter` ~550K / ~$7.65;
-- `hex converter` ~165K / ~$9.75;
-- `binary translator` ~135K / ~$9.35.
+Now A-confidence / INTERNAL.
 
-These are research discoveries only. They are not silently counted as candidates or Launch commitments. A later explicit consolidation/intent decision must determine whether they become new candidates, replace weaker overlaps, or belong in one number-base utility.
+### Image Metadata Viewer
 
-## Important current research holds
+Current moderate-authority competitors demonstrate hundreds of thousands to >1M monthly visits across metadata/EXIF tools, with current US metadata-viewer/EXIF keyword rows including meaningful CPC.
 
-- Markup Calculator;
-- Break-even Calculator;
-- Savings Goal Calculator;
-- Secure Token Generator versus consolidation with random-string/password tooling;
-- Loan Payment Calculator versus Loan Calculator;
-- Investment Growth Calculator;
-- File Hash versus generic Hash Generator;
-- Color Contrast Checker;
-- Remove Image Metadata;
-- current CSV ↔ JSON evidence;
-- YAML ↔ JSON;
-- SVG Optimizer;
-- selected converter families.
+Now A-market / LOCAL-CONDITIONAL.
 
-Do not fill missing scores from intuition merely because implementation is easy.
+### Future Value Calculator
+
+Current US same-intent evidence includes roughly:
+
+- `future value calculator` ~49.5K / ~$1.59 CPC.
+
+Upgraded to A/B+ working candidate, still subject to overlap testing with Investment Growth/Compound Interest.
+
+### Retirement Calculator — admitted #173
+
+Current US signal:
+
+- ~301K monthly searches;
+- ~$2.26 CPC;
+- related planning terms with higher CPC.
+
+LOCAL-CLEAR / INTERNAL, with YMYL editorial caution.
+
+### Budget Calculator — admitted #174
+
+Current US signal:
+
+- ~22.2K / ~$5.81 CPC;
+- `budget tool` ~9.9K / ~$16.91;
+- multiple same-intent commercial terms.
+
+LOCAL-CLEAR / INTERNAL, with private financial input excluded from telemetry.
+
+## Current deliberate demotions / pressure
+
+- Reading Time Calculator — moved to reserve after current ~2.9K / $0 US head-term evidence.
+- Gzip Decompressor — moved to reserve; great local primitive but not enough market evidence to defend a top-80 slot when archive coverage remains elsewhere.
+- Slug Generator — useful/repeat, weak visible acquisition economics.
+- File Type Detector — useful coverage, weak current market normalization.
+- Gzip Compressor — cheap coverage, weak candidate-specific economics.
+- Remove Duplicate Lines — cheap utility, weak direct market evidence.
+- Savings Goal — broader savings market strong, exact goal-intent under-proven.
+- lower-evidence structural PDF operations remain under pressure.
 
 ---
 
-# OSS / capability audit
+# Market role conclusions
 
-Current artifacts:
+Current portfolio evidence continues to support:
+
+1. **Finance/business** — strongest commercial-value zero-backend cluster.
+2. **Developer** — high CPC/repeat intent and extremely low marginal cost.
+3. **Image** — mass demand while mostly remaining local/private.
+4. **Math/general** — durable search traffic and internal-link depth.
+5. **Text** — low-cost traffic/repeat stabilizers.
+6. **Date/time** — mass utility traffic with low compute cost.
+7. **PDF** — selective representation only; huge demand does not override parser risk/competition/weak CPC.
+8. **Archive/file** — useful privacy/coverage cluster but not current revenue flagship.
+
+---
+
+# Phase-2 / technical coverage
+
+Current technical artifacts include:
 
 - `docs/tools/OSS_CATALOG.md`
 - `docs/tools/RUST_OSS_AUDIT.md`
@@ -130,40 +211,52 @@ Current artifacts:
 - `docs/tools/OSS_AUDIT_BATCH6_ZERO_BACKEND_DATA_DEV.md`
 - `docs/tools/OSS_AUDIT_BATCH7_PDF_SVG_FINANCE_PRIVACY.md`
 - `docs/tools/OSS_AUDIT_BATCH8_SHORTLIST_PRIMITIVES.md`
+- `docs/tools/OSS_AUDIT_BATCH9_ADMITTED_FINANCE.md`
 - `docs/tools/PHASE2_CAPABILITY_COVERAGE.md`
+- `docs/tools/PHASE2_SHORTLIST_80_COVERAGE.md`
 - `docs/tools/SECURITY_POLICY.md`
 
-Current technical direction:
+## Headline technical result for shortlist
 
-- many calculator/text/dev/image/structured-data capabilities already have zero-backend paths;
-- URL Encode/Decode uses native browser primitives with explicit component/query/full-URL semantics;
-- JSON syntax validation uses bounded native `JSON.parse()`; never imply JSON Schema validation;
-- Text Diff uses `jsdiff` locally with Worker/input/time/result bounds;
-- Markdown Previewer uses the already-approved restricted `markdown-it >=15` + DOMPurify profile;
-- physical units use internal typed deterministic conversion tables/formulas;
-- date/time uses Date/Intl and Temporal/lazy polyfill only where semantics require it;
-- ZIP uses audited browser-local archive engines behind entry/path/bomb limits;
-- PDFs are viable for a bounded subset but remain more hostile-input-sensitive;
-- HEIC/AVIF universal conversion, OCR and some advanced PDF operations remain research-gated/conditional;
-- dependency popularity never overrides security/license findings.
+For the working 80 pool before/after the two clear-for-clear replacements:
+
+- **63/80** clear/internal/local-bounded path;
+- **17/80** local-conditional;
+- **0/80** ordinary backend processing required;
+- **0/80** current HOLD/UNRESOLVED capabilities;
+- expected **0 MenezesDev backend processing requests per ordinary operation for all 80** if their current local path survives implementation admission.
+
+The R2 replacements preserve this risk profile because Retirement and Budget are both LOCAL-CLEAR and replaced two technically clear candidates.
+
+## Conditional technical risk is concentrated in few families
+
+- image compression / WebP capability checks;
+- EXIF metadata reading;
+- Prettier-backed formatters;
+- PapaParse CSV transforms;
+- broad file-type detection;
+- ZIP extraction wrapper;
+- structural PDF engine family.
+
+No need to solve HEIC/AVIF/OCR/generic PDF compression merely to fill Launch 50.
 
 ---
 
 # Autonomous growth scope approved
 
-Approved future post-launch architecture includes:
+Future post-launch architecture remains approved:
 
 - Autonomous Growth Engine;
 - Opportunity Engine;
 - AI Editorial Engine invoked only for qualified opportunities;
 - Trend Radar using first-party signals + APIs/RSS/trend/news indexes;
 - ethical whitelist-only crawler fallback;
-- policy-gated autonomy Option B;
-- autonomous low-risk editorial improvements/publication;
-- future low-risk autonomous Tool Factory only after Launch 50/SDK prerequisites;
-- hard stops for new dependencies, parsers, backend paths, recurring costs, providers, secrets, licenses, crawler domains, privacy/YMYL expansions and workflow/security changes;
+- Option B policy-gated autonomy;
+- autonomous low-risk publication/improvement;
+- future low-risk Tool Factory after Launch 50/SDK prerequisites;
+- hard stops for new dependencies/parsers/backend paths/recurring costs/providers/secrets/licenses/crawler domains/privacy/YMYL/security/workflow changes;
 - measurement/pruning loop;
-- AI/crawler cost budgets and kill switches.
+- AI/crawler budgets and kill switches.
 
 Canonical artifacts:
 
@@ -172,28 +265,32 @@ Canonical artifacts:
 - `docs/tools/AUTONOMOUS_GROWTH_SECURITY.md`
 - `docs/superpowers/specs/2026-08-24-menezesdev-tools-autonomous-growth-design.md`
 
+No autonomous-growth implementation is authorized yet.
+
 ---
 
-# Important separation from legacy MenezesDev phases
+# Important workflow separation
 
-The repository contains historical site-commercial phase state in `docs/context/STATE.md` and `HANDOFF.md`. Those phases are **not** the MenezesDev Tools workflow phases.
+For any Tools task, read and obey from the actual ref:
 
-For any Tools task, read and obey `AGENTS.md`, Tools-specific context, the immutable workflow in full, every binding workflow addendum and relevant Tools security/scope/spec/audit documents from the actual branch/ref.
+1. `AGENTS.md`;
+2. Tools-specific context;
+3. `IMMUTABLE_WORKFLOW.md` in full;
+4. every binding workflow addendum;
+5. relevant security/scope/spec/audit docs.
 
-Never infer Tools status from the commercial-site Phase 9/10 wording.
+Never infer Tools status from the legacy commercial-site phase numbering.
 
 ---
 
 # Next logical work
 
-Continue Phase 1 and Phase 2 only:
+Continue Phase 1/2 only:
 
-1. keep expanding current evidence across likely top-70 LOCAL-CLEAR candidates until a >50 shortlist is defensible;
-2. prioritize unresolved finance, developer/data, converter and privacy/image candidates that can plausibly beat current supporting tools;
-3. use negative/weak findings to prune rather than inflate the shortlist;
-4. re-audit only technical gaps belonging to candidates likely to survive market selection;
-5. produce full evidence-normalized Ranking V2 / shortlist only when breadth is sufficient;
-6. once Phase 1/2 gates are genuinely satisfied, start Phase 3 Capability Map;
+1. run further replacement/cut passes on the weakest R2 rows;
+2. resolve Binary/Hex/Binary-Translator semantics before possible admission;
+3. obtain current evidence for candidates capable of replacing low-value rows;
+4. preserve a final evidence-backed shortlist >50 with enough reserve depth;
+5. map final survivors against Phase-2 coverage and satisfy only their remaining conditional admission gates;
+6. only when Phase 1 and Phase 2 exit gates are genuinely satisfied, begin Phase 3 Capability Map;
 7. do not freeze Launch 50 or implement Tool SDK prematurely.
-
-The Autonomous Growth Engine design is documented early but implementation remains post-prerequisite/future work under the immutable workflow.

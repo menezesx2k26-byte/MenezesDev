@@ -1,0 +1,38 @@
+name: MenezesDev Studio Lockfile
+
+on:
+  pull_request:
+    branches:
+      - feat/phase-10-implementation
+
+permissions:
+  contents: read
+
+concurrency:
+  group: menezesdev-studio-lock-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  lockfile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24.19.0
+          package-manager-cache: false
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Generate lockfile
+        run: corepack pnpm install --lockfile-only --no-frozen-lockfile
+
+      - name: Emit compressed lockfile for audited connector sync
+        shell: bash
+        run: |
+          gzip -c pnpm-lock.yaml | base64 -w 0 | fold -w 7000 | awk '{print "LOCKCHUNK:" $0}'

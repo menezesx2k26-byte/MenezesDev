@@ -238,8 +238,25 @@ class FakeD1 {
     }
 
     if (sql.startsWith("INSERT INTO AUDIT_EVENTS") && sql.includes(" SELECT ")) {
-      const [siteId, eventType, actorSubject, entityType, entityId, detailsJson, stateSiteId, revision] =
-        params as [string, string, string | null, string, string | null, string | null, string, number];
+      const [
+        siteId,
+        eventType,
+        actorSubject,
+        entityType,
+        entityId,
+        detailsJson,
+        stateSiteId,
+        revision,
+      ] = params as [
+        string,
+        string,
+        string | null,
+        string,
+        string | null,
+        string | null,
+        string,
+        number,
+      ];
       if (
         !this.state ||
         this.state.site_id !== stateSiteId ||
@@ -525,7 +542,9 @@ describe("Studio atomic publication and restore", () => {
       }),
     ).rejects.toBeInstanceOf(errors.StudioRevisionConflictError);
 
-    expect(JSON.stringify({ state: db.state, versions: db.versions, audits: db.audits })).toBe(before);
+    expect(JSON.stringify({ state: db.state, versions: db.versions, audits: db.audits })).toBe(
+      before,
+    );
   });
 
   it("fails explicitly when the requested restore version does not exist", async () => {

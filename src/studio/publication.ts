@@ -47,10 +47,7 @@ const readPublicationState = async (db: D1Database): Promise<PublicationStateRow
   return row;
 };
 
-const requireExpectedRevision = (
-  expectedRevision: number,
-  currentRevision: number,
-): void => {
+const requireExpectedRevision = (expectedRevision: number, currentRevision: number): void => {
   if (
     !Number.isInteger(expectedRevision) ||
     expectedRevision < 0 ||

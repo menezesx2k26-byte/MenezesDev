@@ -26,4 +26,6 @@ export const canonicalRoutes = [...runtimeRoutes, ...staticRoutes];
 export const blockedRoutes = ["/demo/prismae/about"];
 
 export const staticRouteFile = (clientRoot, route) =>
-  route === "/" ? join(clientRoot, "index.html") : join(clientRoot, `${route.slice(1)}.html`);
+  route === "/"
+    ? join(clientRoot, "index.html")
+    : join(clientRoot, `${route.slice(1)}.html`);

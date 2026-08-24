@@ -1,0 +1,248 @@
+---
+import type { SiteDocument } from "../../../studio/types";
+import { STUDIO_LIMITS } from "../../../studio/validation";
+
+interface Props {
+  document: SiteDocument;
+}
+
+const { document } = Astro.props;
+---
+
+<section class="admin-panel admin-panel--full" aria-labelledby="settings-editor-heading">
+  <div class="admin-page-heading">
+    <p class="admin-kicker">Configurações</p>
+    <h2 id="settings-editor-heading">Contato, navegação e apresentação.</h2>
+    <p>
+      Ajustes comuns ficam aqui. Diagnósticos do sistema permanecem separados e somente leitura.
+    </p>
+  </div>
+
+  <section class="admin-panel" aria-labelledby="commercial-heading">
+    <span class="admin-panel__label">Comercial</span>
+    <h3 id="commercial-heading">WhatsApp e mensagem</h3>
+    <div class="studio-fields-grid">
+      <label class="studio-field studio-field--wide">
+        <span>Destino do WhatsApp</span>
+        <input
+          type="url"
+          inputmode="url"
+          placeholder="https://wa.me/55..."
+          value={document.commercial.whatsappUrl ?? ""}
+          data-whatsapp-url
+        />
+        <small>Somente HTTPS em wa.me ou api.whatsapp.com. Pode permanecer vazio.</small>
+      </label>
+
+      <label class="studio-field studio-field--wide">
+        <span>Mensagem inicial</span>
+        <textarea
+          rows="4"
+          maxlength={STUDIO_LIMITS.longText}
+          data-settings-path="commercial.whatsappMessage"
+        >{document.commercial.whatsappMessage}</textarea>
+      </label>
+    </div>
+  </section>
+
+  <section class="admin-panel" aria-labelledby="social-heading">
+    <span class="admin-panel__label">Redes sociais</span>
+    <h3 id="social-heading">Links externos</h3>
+    <p class="admin-panel__detail">Apenas URLs absolutas HTTP ou HTTPS.</p>
+
+    <div class="studio-repeater">
+      {document.commercial.socialLinks.map((link, index) => (
+        <article class="admin-panel" data-social-row data-social-id={link.id}>
+          <div class="admin-shortcuts">
+            <strong>{link.label}</strong>
+            <button
+              type="button"
+              class="admin-button admin-button--quiet"
+              data-settings-action="social-move-up"
+              data-settings-id={link.id}
+              disabled={index === 0}
+            >
+              Subir
+            </button>
+            <button
+              type="button"
+              class="admin-button admin-button--quiet"
+              data-settings-action="social-move-down"
+              data-settings-id={link.id}
+              disabled={index === document.commercial.socialLinks.length - 1}
+            >
+              Descer
+            </button>
+            <button
+              type="button"
+              class="admin-button admin-button--secondary"
+              data-settings-action="social-remove"
+              data-settings-id={link.id}
+            >
+              Remover
+            </button>
+          </div>
+          <div class="studio-fields-grid">
+            <label class="studio-field">
+              <span>Nome</span>
+              <input
+                type="text"
+                maxlength={STUDIO_LIMITS.shortText}
+                value={link.label}
+                data-settings-path={`commercial.socialLinks.${index}.label`}
+              />
+            </label>
+            <label class="studio-field studio-field--wide">
+              <span>URL</span>
+              <input
+                type="url"
+                inputmode="url"
+                value={link.href}
+                data-social-href
+                data-social-index={index}
+              />
+            </label>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="studio-fields-grid">
+      <label class="studio-field">
+        <span>Nova rede social</span>
+        <input type="text" maxlength={STUDIO_LIMITS.shortText} data-new-social-label />
+      </label>
+      <label class="studio-field studio-field--wide">
+        <span>URL da nova rede</span>
+        <input type="url" inputmode="url" placeholder="https://" data-new-social-href />
+      </label>
+    </div>
+    <button type="button" class="admin-button" data-settings-action="social-add">
+      Adicionar rede social
+    </button>
+  </section>
+
+  <section class="admin-panel" aria-labelledby="navigation-heading">
+    <span class="admin-panel__label">Navegação</span>
+    <h3 id="navigation-heading">Rótulos e ordem</h3>
+    <div class="studio-repeater">
+      {document.navigation.map((item, index) => (
+        <article class="admin-panel">
+          <div class="admin-shortcuts">
+            <strong>{item.label}</strong>
+            <button
+              type="button"
+              class="admin-button admin-button--quiet"
+              data-settings-action="nav-move-up"
+              data-settings-id={item.id}
+              disabled={index === 0}
+            >
+              Subir
+            </button>
+            <button
+              type="button"
+              class="admin-button admin-button--quiet"
+              data-settings-action="nav-move-down"
+              data-settings-id={item.id}
+              disabled={index === document.navigation.length - 1}
+            >
+              Descer
+            </button>
+          </div>
+          <div class="studio-fields-grid">
+            <label class="studio-field">
+              <span>Rótulo</span>
+              <input
+                type="text"
+                maxlength={STUDIO_LIMITS.shortText}
+                value={item.label}
+                data-settings-path={`navigation.${index}.label`}
+              />
+            </label>
+            <div class="studio-field studio-field--wide">
+              <span>Destino · somente leitura</span>
+              <code>{item.href}</code>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="admin-panel" aria-labelledby="contact-heading">
+    <span class="admin-panel__label">Contato</span>
+    <h3 id="contact-heading">Texto da seção final</h3>
+    <div class="studio-fields-grid">
+      <label class="studio-field studio-field--wide">
+        <span>Título</span>
+        <input
+          type="text"
+          maxlength={STUDIO_LIMITS.longText}
+          value={document.home.contact.title}
+          data-settings-path="home.contact.title"
+        />
+      </label>
+      <label class="studio-field studio-field--wide">
+        <span>Introdução</span>
+        <textarea rows="3" maxlength={STUDIO_LIMITS.longText} data-settings-path="home.contact.lead">{document.home.contact.lead}</textarea>
+      </label>
+      <label class="studio-field studio-field--wide">
+        <span>Corpo</span>
+        <textarea rows="3" maxlength={STUDIO_LIMITS.longText} data-settings-path="home.contact.body">{document.home.contact.body}</textarea>
+      </label>
+      <label class="studio-field studio-field--wide">
+        <span>Ênfase</span>
+        <input
+          type="text"
+          maxlength={STUDIO_LIMITS.longText}
+          value={document.home.contact.emphasis}
+          data-settings-path="home.contact.emphasis"
+        />
+      </label>
+    </div>
+  </section>
+
+  <section class="admin-panel" aria-labelledby="presentation-heading">
+    <span class="admin-panel__label">Apresentação</span>
+    <h3 id="presentation-heading">Presets seguros</h3>
+    <div class="studio-fields-grid">
+      <label class="studio-field">
+        <span>Densidade</span>
+        <select data-settings-path="presentation.density">
+          <option value="compact" selected={document.presentation.density === "compact"}>Compacta</option>
+          <option value="comfortable" selected={document.presentation.density === "comfortable"}>Confortável</option>
+          <option value="spacious" selected={document.presentation.density === "spacious"}>Espaçosa</option>
+        </select>
+      </label>
+      <label class="studio-field">
+        <span>Layout de seção</span>
+        <select data-settings-path="presentation.sectionLayout">
+          <option value="default" selected={document.presentation.sectionLayout === "default"}>Padrão</option>
+          <option value="split" selected={document.presentation.sectionLayout === "split"}>Dividido</option>
+          <option value="stacked" selected={document.presentation.sectionLayout === "stacked"}>Empilhado</option>
+        </select>
+      </label>
+      <label class="studio-field">
+        <span>Tratamento de imagem</span>
+        <select data-settings-path="presentation.imageTreatment">
+          <option value="natural" selected={document.presentation.imageTreatment === "natural"}>Natural</option>
+          <option value="soft" selected={document.presentation.imageTreatment === "soft"}>Suave</option>
+          <option value="contrast" selected={document.presentation.imageTreatment === "contrast"}>Contraste</option>
+        </select>
+      </label>
+    </div>
+  </section>
+
+  <section class="admin-panel" aria-labelledby="system-heading">
+    <span class="admin-panel__label">Avançado · Sistema</span>
+    <h3 id="system-heading">Diagnóstico somente leitura</h3>
+    <p class="admin-panel__detail">
+      Estado de runtime, banco e publicação não são editáveis nesta tela.
+    </p>
+    <a class="admin-button admin-button--quiet" href="/admin">Ver diagnóstico do sistema</a>
+  </section>
+
+  <p class="studio-save-state" data-seo-settings-save-status aria-live="polite">
+    Rascunho sincronizado.
+  </p>
+</section>

@@ -1,0 +1,66 @@
+---
+import PropertyPanel from "../PropertyPanel.astro";
+import { STUDIO_LIMITS } from "../../../../studio/validation";
+import type { HomeProcessSection } from "../../../../studio/types";
+
+interface Props {
+  section: HomeProcessSection;
+}
+
+const { section } = Astro.props;
+---
+
+<PropertyPanel sectionKey="process" title="Processo" visible={section.visible} layout={section.layout}>
+  <div class="studio-fields-grid">
+    <label class="studio-field">
+      <span>Chamada curta</span>
+      <input type="text" maxlength={STUDIO_LIMITS.longText} value={section.eyebrow} data-studio-path="home.process.eyebrow" />
+    </label>
+    <label class="studio-field studio-field--wide">
+      <span>Título</span>
+      <textarea maxlength={STUDIO_LIMITS.longText} rows="3" data-studio-path="home.process.title">{section.title}</textarea>
+    </label>
+    <label class="studio-field studio-field--wide">
+      <span>Texto de apoio</span>
+      <textarea maxlength={STUDIO_LIMITS.longText} rows="3" data-studio-path="home.process.lead">{section.lead}</textarea>
+    </label>
+    <label class="studio-field studio-field--wide">
+      <span>Nota final</span>
+      <textarea maxlength={STUDIO_LIMITS.longText} rows="3" data-studio-path="home.process.note">{section.note}</textarea>
+    </label>
+  </div>
+
+  <div class="studio-repeater" aria-label="Etapas do processo">
+    {
+      section.steps.map((step, index) => (
+        <section class="studio-repeater__item">
+          <h3>Etapa {index + 1}</h3>
+          <div class="studio-fields-grid">
+            <label class="studio-field">
+              <span>Número</span>
+              <input
+                type="text"
+                maxlength={STUDIO_LIMITS.longText}
+                value={step.number}
+                data-studio-path={`home.process.steps.${index}.number`}
+              />
+            </label>
+            <label class="studio-field">
+              <span>Título</span>
+              <input
+                type="text"
+                maxlength={STUDIO_LIMITS.longText}
+                value={step.title}
+                data-studio-path={`home.process.steps.${index}.title`}
+              />
+            </label>
+            <label class="studio-field studio-field--wide">
+              <span>Descrição</span>
+              <textarea maxlength={STUDIO_LIMITS.longText} rows="3" data-studio-path={`home.process.steps.${index}.text`}>{step.text}</textarea>
+            </label>
+          </div>
+        </section>
+      ))
+    }
+  </div>
+</PropertyPanel>

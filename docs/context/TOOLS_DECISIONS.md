@@ -138,17 +138,30 @@ Use Tools-specific `TOOLS_STATE.md`, `TOOLS_DECISIONS.md` and `TOOLS_HANDOFF.md`
 
 The 172 candidates in Batch 1 remain the historical initial universe. Later Phase-1 discoveries may be admitted when evidence shows an independent useful intent and realistic technical/economic path. Admissions are recorded in dated artifacts; agents must never silently rewrite the historical 172 count.
 
-The first explicit admissions are:
+Explicit admissions so far:
 
 - #173 Retirement Calculator;
-- #174 Budget Calculator.
+- #174 Budget Calculator;
+- #175 Number Base Converter;
+- #176 Binary Translator.
 
-Current admitted working universe: **174**.
+Current admitted working universe: **176**.
 
 ## T-D023 — New strong discoveries must displace weak shortlist rows rather than inflate the pool by default
 **Status:** accepted  
 **Date:** 2026-08-24
 
-Once a bounded >50 shortlist exists, newly admitted high-quality candidates compete for slots. The current R2 shortlist remains at 80 after Retirement Calculator replaced Reading Time Calculator and Budget Calculator replaced Gzip Decompressor.
+Once a bounded >50 shortlist exists, newly admitted high-quality candidates compete for slots.
 
-This selection-pressure rule is a Phase-1 research practice, not a change to the immutable Launch-50 target.
+Working replacements to date:
+
+- R2: Retirement Calculator replaced Reading Time Calculator; Budget Calculator replaced Gzip Decompressor.
+- R3: Number Base Converter replaced Gzip Compressor; Binary Translator replaced Slug Generator.
+
+The current shortlist remains **80** candidates. This selection-pressure rule is a Phase-1 research practice, not a change to the immutable Launch-50 target.
+
+## T-D024 — Numeric base conversion and text/binary translation are separate product intents
+**Status:** accepted  
+**Date:** 2026-08-24
+
+Use one `Number Base Converter` for numeric binary/octal/decimal/hex/base conversion rather than creating a route for every direction. Use a distinct `Binary Translator` for UTF-8 text ↔ binary-byte representation. This is an anti-thin-content consolidation decision based on current SERP/product semantics.

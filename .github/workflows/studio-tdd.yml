@@ -29,8 +29,8 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
 
-      - name: Install existing frozen dependencies
+      - name: Install frozen dependencies
         run: corepack pnpm install --frozen-lockfile
 
-      - name: Runtime binding contract
-        run: corepack pnpm dlx vitest@4.1.11 run tests/runtime/config.test.ts
+      - name: Runtime contracts
+        run: corepack pnpm test -- tests/runtime/config.test.ts tests/runtime/wrangler-config.test.ts

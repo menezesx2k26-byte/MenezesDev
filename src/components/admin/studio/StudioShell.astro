@@ -1,5 +1,6 @@
 ---
 import type { SiteDocument } from "../../../studio/types";
+import PreviewFrame from "../PreviewFrame.astro";
 import SectionNavigator from "./SectionNavigator.astro";
 import HeroEditor from "./editors/HeroEditor.astro";
 import ProjectsSectionEditor from "./editors/ProjectsSectionEditor.astro";
@@ -94,25 +95,7 @@ const { document } = Astro.props;
       data-studio-preview-panel
       aria-label="Prévia do rascunho"
     >
-      <div class="studio-preview-placeholder">
-        <p class="admin-kicker">Rascunho local</p>
-        <h2 data-studio-preview-title>{document.home.hero.title}</h2>
-        <p data-studio-preview-lead>{document.home.hero.lead}</p>
-        <dl>
-          <div>
-            <dt>Seção ativa</dt>
-            <dd data-studio-preview-section>Hero</dd>
-          </div>
-          <div>
-            <dt>Revisão</dt>
-            <dd data-studio-preview-revision>—</dd>
-          </div>
-        </dl>
-        <p class="studio-preview-placeholder__note">
-          Este painel acompanha o rascunho sem publicar. A prévia visual com o mesmo renderer do
-          site público é adicionada na etapa dedicada de Preview.
-        </p>
-      </div>
+      <PreviewFrame src="/admin/preview" />
     </aside>
   </div>
 </div>

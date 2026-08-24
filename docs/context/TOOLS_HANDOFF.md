@@ -5,69 +5,44 @@
 
 ## Completed this session
 
-- Re-read `AGENTS.md`, legacy context, Work Mode, `SECURITY_POLICY.md` and the complete immutable Tools workflow before making architectural changes.
-- Preserved Launch 50 and all pre-launch gates.
-- Recorded explicit approval for **Option B — policy-gated autonomy within pre-approved engines/rules**.
-- Recorded explicit approval for the **hybrid Trend Radar**: first-party signals and structured APIs/RSS first; ethical whitelist crawler only as fallback.
-- Created canonical Tools scope: `docs/tools/TOOLS_SCOPE.md`.
-- Added binding workflow addendum: `docs/tools/workflow-addenda/2026-08-24-autonomous-growth-autopilot.md`.
-- Added workflow-addenda index/reading rules: `docs/tools/workflow-addenda/README.md`.
-- Added autonomous-growth security contract: `docs/tools/AUTONOMOUS_GROWTH_SECURITY.md`.
-- Added Superpowers architectural design spec: `docs/superpowers/specs/2026-08-24-menezesdev-tools-autonomous-growth-design.md`.
-- Self-reviewed the spec for placeholders, workflow contradictions, authority ambiguity and scope; no implementation permission was introduced.
-- Added Tools-specific durable state and decision log so future agents do not confuse legacy commercial-site Phase numbering with Tools phases.
-- Updated `AGENTS.md` so all future Tools work must read Tools context, the immutable workflow, every binding addendum and relevant security/scope/spec documents before acting.
-- Verified the branch after the documentation update: `feat/tools-oss-catalog` is ahead of `main` and not behind; the Tools branch changes remain documentation/governance only.
+- Re-read `AGENTS.md`, Tools-specific context, the complete immutable workflow, the binding autonomous-growth addendum, `SECURITY_POLICY.md` and `TOOLS_SCOPE.md` before acting.
+- Confirmed the requested work belongs to active Phase 1/2 and does not authorize implementation.
+- Deepened current candidate-specific market evidence rather than jumping to Capability Map.
+- Created `docs/tools/MARKET_INTELLIGENCE_BATCH2.md`.
+- Created `docs/tools/MARKET_INTELLIGENCE_BATCH2B.md`.
+- Created `docs/tools/MARKET_PRIORITY_RANKING_V2_DRAFT.md`.
+- Updated `docs/context/TOOLS_STATE.md` with the normalized findings and next research priorities.
+
+## Key market findings added
+
+- Margin Calculator: direct US evidence ~110K monthly volume / ~$4 CPC; confidence C -> A; strong economics but strong incumbent competition.
+- Image Resizer: repeated US evidence ~673K / ~$0.88; confidence B -> A; probable shortlist anchor with browser-local runtime.
+- Amortization Calculator: direct US evidence ~246K / ~$0.79; confidence C -> A; strong local-finance candidate.
+- ROI Calculator: current Google-Ads-derived evidence ~27.1K / ~$2.86; confidence C -> B pending corroboration.
+- HTML/code formatting: lower head volume than V1 assumed but strong ~$4–5 CPC; remains valuable as developer cluster rather than mass-volume anchor.
+- Image Compressor: US intent normalized lower than V1 while international demand remains large; confidence B -> A, tech still conditional.
+- UUID/Hash: promising secondary-source direct-intent evidence; remain B pending stronger corroboration.
+- Merge PDF: massive sampled volume but ~$0.03 CPC and AS80–90+ incumbents; market confidence A, but economics/rankability/hostile-input cost reduce priority.
+- Split PDF: substantial sampled demand and lower-authority competitor evidence; market confidence A, tech conditional.
 
 ## Current factual state
 
-- Phase 1 Market Intelligence: ACTIVE.
-- Phase 2 OSS Capability Audit: ACTIVE.
-- Phase 3 Capability Map: NOT STARTED.
-- Phase 4 Launch 50 freeze: NOT STARTED.
-- No Tools code implementation was started by this architectural update.
-- No crawler, AI provider, Cloudflare Workflow, Worker, D1 database, secret or recurring paid resource was created.
-- `main` remains outside partial Tools implementation.
+- Phase 1 Market Intelligence: **ACTIVE / materially advanced, not closed**.
+- Phase 2 OSS Capability Audit: **ACTIVE**.
+- Phase 3 Capability Map: **NOT STARTED**.
+- Phase 4 Launch 50 freeze: **NOT STARTED**.
+- No Tools implementation, dependency installation, backend, crawler, AI provider, Workflow, D1 resource or deployment was started in this pass.
+- `MARKET_PRIORITY_RANKING_V2_DRAFT.md` is a targeted evidence-normalized subset, not the final V2 and not Launch 50.
 
-## Approved future architecture
+## Next research priorities
 
-Post-launch/future scope includes:
+1. corroborate Tier B-high candidates: ROI, UUID, Hash, CAGR;
+2. obtain direct candidate evidence for Markup, Break-even, Savings Goal, Secure Token and URL Encoder/Decoder;
+3. validate selected text/data candidates needed to form a >50 evidence-based shortlist;
+4. continue Phase-2 auditing only where a likely shortlist candidate still lacks a safe concrete path;
+5. produce full Ranking V2 / shortlist only when evidence depth is comparable enough;
+6. start Phase 3 only after Phase 1/2 gates are genuinely satisfied.
 
-- Search Console/product/revenue signal ingestion;
-- Trend Radar;
-- Opportunity Engine;
-- structured fact/brief generation;
-- on-demand AI Editorial Engine;
-- whitelist crawler fallback;
-- policy gate with `ALLOW_AUTONOMOUS`, `HARD_STOP_REVIEW`, `REJECT` semantics;
-- Git/CI autopublish for low-risk whitelisted work;
-- measurement and pruning loop;
-- future approved-engine-only autonomous Tool Factory.
+## Governance reminder
 
-## Hard stops
-
-Do not autonomously introduce:
-
-- new dependencies/parsers;
-- new user-processing backend paths;
-- new recurring paid cost classes;
-- new provider/data contracts;
-- new secrets;
-- unclear licenses;
-- new crawler domains;
-- paywall/CAPTCHA/WAF bypass;
-- material privacy/YMYL expansion;
-- security/workflow changes.
-
-## Next logical step
-
-Return to the currently active workflow rather than implementing the future autopilot:
-
-1. deepen candidate-specific market evidence for Ranking V1 B/C items;
-2. produce Ranking V2 when evidence is sufficient;
-3. continue OSS/capability auditing only for likely shortlist candidates;
-4. then enter Phase 3 Capability Map when Phase 1/2 gates are satisfied.
-
-## Important governance
-
-Before any Tools work, read `AGENTS.md`, Tools-specific context, the immutable workflow, all workflow addenda and relevant security documents from the actual branch/ref. Never execute Tools work from memory alone.
+Before any further Tools work, read the actual branch/ref workflow and all addenda again. Do not execute from chat memory alone.

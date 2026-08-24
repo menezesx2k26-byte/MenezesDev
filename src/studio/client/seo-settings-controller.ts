@@ -46,9 +46,11 @@ const replaceDocument = (store: Store, next: SiteDocument): boolean =>
   });
 
 const updatePreview = (root: HTMLElement, field: string, value: string): void => {
-  root.querySelectorAll<HTMLElement>(`[data-seo-preview="${CSS.escape(field)}"]`).forEach((node) => {
-    node.textContent = value;
-  });
+  root
+    .querySelectorAll<HTMLElement>(`[data-seo-preview="${CSS.escape(field)}"]`)
+    .forEach((node) => {
+      node.textContent = value;
+    });
   const count = root.querySelector<HTMLElement>(`[data-seo-count="${CSS.escape(field)}"]`);
   if (count) count.textContent = String(value.length);
 };
@@ -161,7 +163,8 @@ export const setupSeoSettingsController = (): void => {
         return;
       }
       if (action?.startsWith("nav-")) {
-        if (commit(moveNavigationItem(store.getState().document, id, direction))) pendingReload = true;
+        if (commit(moveNavigationItem(store.getState().document, id, direction)))
+          pendingReload = true;
       }
     } catch (error) {
       const message = error instanceof Error ? error.message : "Configuração inválida.";

@@ -29,10 +29,7 @@ export const isApprovedWhatsappUrl = (value: string | null): boolean => {
 
   if (url.hostname === "api.whatsapp.com" && /^\/send\/?$/.test(url.pathname)) {
     const phone = url.searchParams.get("phone") ?? "";
-    return (
-      E164_DIGITS.test(phone) &&
-      hasOnlyParams(url, new Set(["phone", "text", "app_absent"]))
-    );
+    return E164_DIGITS.test(phone) && hasOnlyParams(url, new Set(["phone", "text", "app_absent"]));
   }
 
   return false;
@@ -42,8 +39,8 @@ export const isAllowedSocialUrl = (value: string): boolean => {
   const url = parseAbsoluteUrl(value);
   return Boolean(
     url &&
-      (url.protocol === "https:" || url.protocol === "http:") &&
-      !url.username &&
-      !url.password,
+    (url.protocol === "https:" || url.protocol === "http:") &&
+    !url.username &&
+    !url.password,
   );
 };

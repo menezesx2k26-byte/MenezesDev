@@ -65,7 +65,9 @@ const { seo, canonicalUrl, canonicalConfigured, deployEnvironment } = Astro.prop
         data-preview-field="title"
       />
       <small>
-        Referência visual: 50–60 caracteres. Atual: <strong data-seo-count="title">{seo.defaultTitle.length}</strong>.
+        Referência visual: 50–60 caracteres. Atual: <strong data-seo-count="title"
+          >{seo.defaultTitle.length}</strong
+        >.
       </small>
     </label>
 
@@ -75,10 +77,12 @@ const { seo, canonicalUrl, canonicalConfigured, deployEnvironment } = Astro.prop
         rows="4"
         maxlength={STUDIO_LIMITS.shortText}
         data-settings-path="seo.defaultDescription"
-        data-preview-field="description"
-      >{seo.defaultDescription}</textarea>
+        data-preview-field="description">{seo.defaultDescription}</textarea
+      >
       <small>
-        Referência visual: 140–160 caracteres. Atual: <strong data-seo-count="description">{seo.defaultDescription.length}</strong>.
+        Referência visual: 140–160 caracteres. Atual: <strong data-seo-count="description"
+          >{seo.defaultDescription.length}</strong
+        >.
       </small>
     </label>
 
@@ -99,8 +103,8 @@ const { seo, canonicalUrl, canonicalConfigured, deployEnvironment } = Astro.prop
         rows="4"
         maxlength={STUDIO_LIMITS.shortText}
         data-settings-path="seo.ogDescription"
-        data-preview-field="social-description"
-      >{seo.ogDescription}</textarea>
+        data-preview-field="social-description">{seo.ogDescription}</textarea
+      >
     </label>
   </div>
 
@@ -119,9 +123,7 @@ const { seo, canonicalUrl, canonicalConfigured, deployEnvironment } = Astro.prop
       <span class="admin-panel__label">Prévia aproximada · social</span>
       <h3 id="social-preview-heading" data-seo-preview="social-title">{seo.ogTitle}</h3>
       <p data-seo-preview="social-description">{seo.ogDescription}</p>
-      <p class="admin-panel__detail">
-        Plataformas podem variar layout, corte e imagem exibida.
-      </p>
+      <p class="admin-panel__detail">Plataformas podem variar layout, corte e imagem exibida.</p>
     </section>
   </div>
 

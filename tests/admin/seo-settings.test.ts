@@ -63,9 +63,7 @@ describe("SEO and commercial URL policy", () => {
     );
 
     const social = createDefaultSiteDocument();
-    social.commercial.socialLinks = [
-      { id: "social-local", label: "Local", href: "/#contato" },
-    ];
+    social.commercial.socialLinks = [{ id: "social-local", label: "Local", href: "/#contato" }];
     expect(validateSiteDocument(social, { mode: "draft" }).issues).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ path: "commercial.socialLinks[0].href", code: "social_url" }),
@@ -147,7 +145,14 @@ describe("SEO and Settings admin presentation", () => {
   it("exposes bounded commercial, navigation, contact and presentation settings without arbitrary code controls", () => {
     const source = read("src/components/admin/settings/SettingsEditor.astro");
     expect(source, "SettingsEditor.astro must exist").not.toBe("");
-    for (const label of ["WhatsApp", "mensagem", "redes sociais", "navegação", "contato", "apresentação"]) {
+    for (const label of [
+      "WhatsApp",
+      "mensagem",
+      "redes sociais",
+      "navegação",
+      "contato",
+      "apresentação",
+    ]) {
       expect(source.toLowerCase()).toContain(label.toLowerCase());
     }
     expect(source).toMatch(/data-settings-path/);
@@ -172,6 +177,8 @@ describe("SEO and Settings admin presentation", () => {
     expect(seo).toMatch(/siteConfig/);
     expect(controller).toMatch(/createDraftStore/);
     expect(controller).toMatch(/createAutosaveController/);
-    expect(controller).toMatch(/setWhatsappDestination|addSocialLink|removeSocialLink|moveNavigationItem/);
+    expect(controller).toMatch(
+      /setWhatsappDestination|addSocialLink|removeSocialLink|moveNavigationItem/,
+    );
   });
 });

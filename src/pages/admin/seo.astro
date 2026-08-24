@@ -28,7 +28,11 @@ if (adminContext) {
 const ready = Boolean(adminContext && draft && baselineDocument && !loadError);
 const initialStateJson =
   ready && draft && baselineDocument
-    ? JSON.stringify({ document: draft.document, baseline: baselineDocument, revision: draft.revision })
+    ? JSON.stringify({
+        document: draft.document,
+        baseline: baselineDocument,
+        revision: draft.revision,
+      })
         .replace(/&/g, "\\u0026")
         .replace(/</g, "\\u003c")
         .replace(/>/g, "\\u003e")
@@ -52,12 +56,18 @@ const initialStateJson =
             <p class="admin-kicker">Descoberta</p>
             <h2 id="seo-heading">SEO sem promessas mágicas.</h2>
             <p>
-              Edite metadados com referências editoriais claras. O ambiente canônico permanece somente leitura.
+              Edite metadados com referências editoriais claras. O ambiente canônico permanece
+              somente leitura.
             </p>
           </section>
 
           <div data-seo-settings-root>
-            <script id="studio-initial-state" type="application/json" is:inline set:html={initialStateJson} />
+            <script
+              id="studio-initial-state"
+              type="application/json"
+              is:inline
+              set:html={initialStateJson}
+            />
             <SeoEditor
               seo={draft.document.seo}
               canonicalUrl={siteConfig.baseUrl.toString()}
@@ -68,9 +78,9 @@ const initialStateJson =
           <ConflictDialog />
 
           <script>
-            import { setupSeoSettingsController } from "../../studio/client/seo-settings-controller";
-            setupSeoSettingsController();
-            document.addEventListener("astro:page-load", setupSeoSettingsController);
+            import {setupSeoSettingsController} from "../../studio/client/seo-settings-controller";
+            setupSeoSettingsController(); document.addEventListener("astro:page-load",
+            setupSeoSettingsController);
           </script>
         </>
       ) : (

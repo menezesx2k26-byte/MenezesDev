@@ -40,7 +40,8 @@ const { document } = Astro.props;
           rows="4"
           maxlength={STUDIO_LIMITS.longText}
           data-settings-path="commercial.whatsappMessage"
-        >{document.commercial.whatsappMessage}</textarea>
+          >{document.commercial.whatsappMessage}</textarea
+        >
       </label>
     </div>
   </section>
@@ -51,60 +52,62 @@ const { document } = Astro.props;
     <p class="admin-panel__detail">Apenas URLs absolutas HTTP ou HTTPS.</p>
 
     <div class="studio-repeater">
-      {document.commercial.socialLinks.map((link, index) => (
-        <article class="admin-panel" data-social-row data-social-id={link.id}>
-          <div class="admin-shortcuts">
-            <strong>{link.label}</strong>
-            <button
-              type="button"
-              class="admin-button admin-button--quiet"
-              data-settings-action="social-move-up"
-              data-settings-id={link.id}
-              disabled={index === 0}
-            >
-              Subir
-            </button>
-            <button
-              type="button"
-              class="admin-button admin-button--quiet"
-              data-settings-action="social-move-down"
-              data-settings-id={link.id}
-              disabled={index === document.commercial.socialLinks.length - 1}
-            >
-              Descer
-            </button>
-            <button
-              type="button"
-              class="admin-button admin-button--secondary"
-              data-settings-action="social-remove"
-              data-settings-id={link.id}
-            >
-              Remover
-            </button>
-          </div>
-          <div class="studio-fields-grid">
-            <label class="studio-field">
-              <span>Nome</span>
-              <input
-                type="text"
-                maxlength={STUDIO_LIMITS.shortText}
-                value={link.label}
-                data-settings-path={`commercial.socialLinks.${index}.label`}
-              />
-            </label>
-            <label class="studio-field studio-field--wide">
-              <span>URL</span>
-              <input
-                type="url"
-                inputmode="url"
-                value={link.href}
-                data-social-href
-                data-social-index={index}
-              />
-            </label>
-          </div>
-        </article>
-      ))}
+      {
+        document.commercial.socialLinks.map((link, index) => (
+          <article class="admin-panel" data-social-row data-social-id={link.id}>
+            <div class="admin-shortcuts">
+              <strong>{link.label}</strong>
+              <button
+                type="button"
+                class="admin-button admin-button--quiet"
+                data-settings-action="social-move-up"
+                data-settings-id={link.id}
+                disabled={index === 0}
+              >
+                Subir
+              </button>
+              <button
+                type="button"
+                class="admin-button admin-button--quiet"
+                data-settings-action="social-move-down"
+                data-settings-id={link.id}
+                disabled={index === document.commercial.socialLinks.length - 1}
+              >
+                Descer
+              </button>
+              <button
+                type="button"
+                class="admin-button admin-button--secondary"
+                data-settings-action="social-remove"
+                data-settings-id={link.id}
+              >
+                Remover
+              </button>
+            </div>
+            <div class="studio-fields-grid">
+              <label class="studio-field">
+                <span>Nome</span>
+                <input
+                  type="text"
+                  maxlength={STUDIO_LIMITS.shortText}
+                  value={link.label}
+                  data-settings-path={`commercial.socialLinks.${index}.label`}
+                />
+              </label>
+              <label class="studio-field studio-field--wide">
+                <span>URL</span>
+                <input
+                  type="url"
+                  inputmode="url"
+                  value={link.href}
+                  data-social-href
+                  data-social-index={index}
+                />
+              </label>
+            </div>
+          </article>
+        ))
+      }
     </div>
 
     <div class="studio-fields-grid">
@@ -126,46 +129,48 @@ const { document } = Astro.props;
     <span class="admin-panel__label">Navegação</span>
     <h3 id="navigation-heading">Rótulos e ordem</h3>
     <div class="studio-repeater">
-      {document.navigation.map((item, index) => (
-        <article class="admin-panel">
-          <div class="admin-shortcuts">
-            <strong>{item.label}</strong>
-            <button
-              type="button"
-              class="admin-button admin-button--quiet"
-              data-settings-action="nav-move-up"
-              data-settings-id={item.id}
-              disabled={index === 0}
-            >
-              Subir
-            </button>
-            <button
-              type="button"
-              class="admin-button admin-button--quiet"
-              data-settings-action="nav-move-down"
-              data-settings-id={item.id}
-              disabled={index === document.navigation.length - 1}
-            >
-              Descer
-            </button>
-          </div>
-          <div class="studio-fields-grid">
-            <label class="studio-field">
-              <span>Rótulo</span>
-              <input
-                type="text"
-                maxlength={STUDIO_LIMITS.shortText}
-                value={item.label}
-                data-settings-path={`navigation.${index}.label`}
-              />
-            </label>
-            <div class="studio-field studio-field--wide">
-              <span>Destino · somente leitura</span>
-              <code>{item.href}</code>
+      {
+        document.navigation.map((item, index) => (
+          <article class="admin-panel">
+            <div class="admin-shortcuts">
+              <strong>{item.label}</strong>
+              <button
+                type="button"
+                class="admin-button admin-button--quiet"
+                data-settings-action="nav-move-up"
+                data-settings-id={item.id}
+                disabled={index === 0}
+              >
+                Subir
+              </button>
+              <button
+                type="button"
+                class="admin-button admin-button--quiet"
+                data-settings-action="nav-move-down"
+                data-settings-id={item.id}
+                disabled={index === document.navigation.length - 1}
+              >
+                Descer
+              </button>
             </div>
-          </div>
-        </article>
-      ))}
+            <div class="studio-fields-grid">
+              <label class="studio-field">
+                <span>Rótulo</span>
+                <input
+                  type="text"
+                  maxlength={STUDIO_LIMITS.shortText}
+                  value={item.label}
+                  data-settings-path={`navigation.${index}.label`}
+                />
+              </label>
+              <div class="studio-field studio-field--wide">
+                <span>Destino · somente leitura</span>
+                <code>{item.href}</code>
+              </div>
+            </div>
+          </article>
+        ))
+      }
     </div>
   </section>
 
@@ -184,11 +189,15 @@ const { document } = Astro.props;
       </label>
       <label class="studio-field studio-field--wide">
         <span>Introdução</span>
-        <textarea rows="3" maxlength={STUDIO_LIMITS.longText} data-settings-path="home.contact.lead">{document.home.contact.lead}</textarea>
+        <textarea rows="3" maxlength={STUDIO_LIMITS.longText} data-settings-path="home.contact.lead"
+          >{document.home.contact.lead}</textarea
+        >
       </label>
       <label class="studio-field studio-field--wide">
         <span>Corpo</span>
-        <textarea rows="3" maxlength={STUDIO_LIMITS.longText} data-settings-path="home.contact.body">{document.home.contact.body}</textarea>
+        <textarea rows="3" maxlength={STUDIO_LIMITS.longText} data-settings-path="home.contact.body"
+          >{document.home.contact.body}</textarea
+        >
       </label>
       <label class="studio-field studio-field--wide">
         <span>Ênfase</span>
@@ -209,25 +218,43 @@ const { document } = Astro.props;
       <label class="studio-field">
         <span>Densidade</span>
         <select data-settings-path="presentation.density">
-          <option value="compact" selected={document.presentation.density === "compact"}>Compacta</option>
-          <option value="comfortable" selected={document.presentation.density === "comfortable"}>Confortável</option>
-          <option value="spacious" selected={document.presentation.density === "spacious"}>Espaçosa</option>
+          <option value="compact" selected={document.presentation.density === "compact"}
+            >Compacta</option
+          >
+          <option value="comfortable" selected={document.presentation.density === "comfortable"}
+            >Confortável</option
+          >
+          <option value="spacious" selected={document.presentation.density === "spacious"}
+            >Espaçosa</option
+          >
         </select>
       </label>
       <label class="studio-field">
         <span>Layout de seção</span>
         <select data-settings-path="presentation.sectionLayout">
-          <option value="default" selected={document.presentation.sectionLayout === "default"}>Padrão</option>
-          <option value="split" selected={document.presentation.sectionLayout === "split"}>Dividido</option>
-          <option value="stacked" selected={document.presentation.sectionLayout === "stacked"}>Empilhado</option>
+          <option value="default" selected={document.presentation.sectionLayout === "default"}
+            >Padrão</option
+          >
+          <option value="split" selected={document.presentation.sectionLayout === "split"}
+            >Dividido</option
+          >
+          <option value="stacked" selected={document.presentation.sectionLayout === "stacked"}
+            >Empilhado</option
+          >
         </select>
       </label>
       <label class="studio-field">
         <span>Tratamento de imagem</span>
         <select data-settings-path="presentation.imageTreatment">
-          <option value="natural" selected={document.presentation.imageTreatment === "natural"}>Natural</option>
-          <option value="soft" selected={document.presentation.imageTreatment === "soft"}>Suave</option>
-          <option value="contrast" selected={document.presentation.imageTreatment === "contrast"}>Contraste</option>
+          <option value="natural" selected={document.presentation.imageTreatment === "natural"}
+            >Natural</option
+          >
+          <option value="soft" selected={document.presentation.imageTreatment === "soft"}
+            >Suave</option
+          >
+          <option value="contrast" selected={document.presentation.imageTreatment === "contrast"}
+            >Contraste</option
+          >
         </select>
       </label>
     </div>

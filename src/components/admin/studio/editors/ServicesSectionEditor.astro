@@ -47,15 +47,17 @@ const { section } = Astro.props;
               <span>Descrição</span>
               <textarea maxlength={STUDIO_LIMITS.longText} rows="3" data-studio-path={`home.services.items.${index}.text`}>{item.text}</textarea>
             </label>
-            <label class="studio-field studio-field--wide">
-              <span>Microcopy</span>
-              <input
-                type="text"
-                maxlength={STUDIO_LIMITS.longText}
-                value={item.microcopy ?? ""}
-                data-studio-path={`home.services.items.${index}.microcopy`}
-              />
-            </label>
+            {item.microcopy !== undefined && (
+              <label class="studio-field studio-field--wide">
+                <span>Microcopy</span>
+                <input
+                  type="text"
+                  maxlength={STUDIO_LIMITS.longText}
+                  value={item.microcopy}
+                  data-studio-path={`home.services.items.${index}.microcopy`}
+                />
+              </label>
+            )}
           </div>
         </section>
       ))

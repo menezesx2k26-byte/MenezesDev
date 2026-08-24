@@ -31,9 +31,8 @@ const baseHeaders = (): Headers => {
   return headers;
 };
 
-export const requireStudioAdminContext = (input: {
-  isDev: boolean;
-}): StudioAdminContext | null => (input.isDev ? { actor: "local-admin" } : null);
+export const requireStudioAdminContext = (input: { isDev: boolean }): StudioAdminContext | null =>
+  input.isDev ? { actor: "local-admin" } : null;
 
 export const privateAdminNotFoundResponse = (): Response =>
   new Response(null, {

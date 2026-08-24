@@ -17,7 +17,10 @@ try {
 }
 
 const requireHttp = () => {
-  expect(httpModule, "src/studio/http.ts must implement the bounded admin HTTP boundary").not.toBeNull();
+  expect(
+    httpModule,
+    "src/studio/http.ts must implement the bounded admin HTTP boundary",
+  ).not.toBeNull();
   return httpModule as HttpModule;
 };
 

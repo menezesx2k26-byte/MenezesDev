@@ -38,7 +38,9 @@ const assertValidDraft = (document: SiteDocument): void => {
 const alignHomeProjectOrder = (document: SiteDocument): void => {
   const position = new Map(document.projects.map((project, index) => [project.id, index]));
   document.home.projects.projectIds.sort(
-    (left, right) => (position.get(left) ?? Number.MAX_SAFE_INTEGER) - (position.get(right) ?? Number.MAX_SAFE_INTEGER),
+    (left, right) =>
+      (position.get(left) ?? Number.MAX_SAFE_INTEGER) -
+      (position.get(right) ?? Number.MAX_SAFE_INTEGER),
   );
 };
 

@@ -29,11 +29,15 @@ if (adminContext) {
   }
 }
 
-const project = draft && projectIndex >= 0 ? draft.document.projects[projectIndex] ?? null : null;
+const project = draft && projectIndex >= 0 ? (draft.document.projects[projectIndex] ?? null) : null;
 const ready = Boolean(adminContext && draft && baselineDocument && project && !loadError);
 const initialStateJson =
   ready && draft && baselineDocument
-    ? JSON.stringify({ document: draft.document, baseline: baselineDocument, revision: draft.revision })
+    ? JSON.stringify({
+        document: draft.document,
+        baseline: baselineDocument,
+        revision: draft.revision,
+      })
         .replace(/&/g, "\\u0026")
         .replace(/</g, "\\u003c")
         .replace(/>/g, "\\u003e")
@@ -57,32 +61,44 @@ const initialStateJson =
             <p class="admin-kicker">Projetos</p>
             <h2 id="project-heading">{project.name}</h2>
             <p>
-              O case continua marcado como conceito demonstrativo enquanto estiver ligado a um demo. Alterar o slug exige confirmação porque muda a URL pública.
+              O case continua marcado como conceito demonstrativo enquanto estiver ligado a um demo.
+              Alterar o slug exige confirmação porque muda a URL pública.
             </p>
-            <a class="admin-button admin-button--quiet" href="/admin/projetos">Voltar para projetos</a>
+            <a class="admin-button admin-button--quiet" href="/admin/projetos">
+              Voltar para projetos
+            </a>
           </section>
 
           <div data-projects-root>
-            <script id="studio-initial-state" type="application/json" is:inline set:html={initialStateJson} />
+            <script
+              id="studio-initial-state"
+              type="application/json"
+              is:inline
+              set:html={initialStateJson}
+            />
             <ProjectEditor project={project} projectIndex={projectIndex} />
           </div>
           <SlugChangeDialog />
           <ConflictDialog />
 
           <script>
-            import { setupProjectsController } from "../../../studio/client/projects-controller";
-            setupProjectsController();
-            document.addEventListener("astro:page-load", setupProjectsController);
+            import {setupProjectsController} from "../../../studio/client/projects-controller";
+            setupProjectsController(); document.addEventListener("astro:page-load",
+            setupProjectsController);
           </script>
         </>
       ) : (
         <section class="admin-panel admin-panel--full" role="alert">
           <span class="admin-panel__label">Projeto indisponível</span>
           <strong class="admin-panel__value">
-            {projectIndex < 0 && !loadError ? "Projeto não encontrado." : "O rascunho não pôde ser carregado."}
+            {projectIndex < 0 && !loadError
+              ? "Projeto não encontrado."
+              : "O rascunho não pôde ser carregado."}
           </strong>
           <p class="admin-panel__detail">Nenhuma alteração foi feita.</p>
-          <a class="admin-button admin-button--quiet" href="/admin/projetos">Voltar para projetos</a>
+          <a class="admin-button admin-button--quiet" href="/admin/projetos">
+            Voltar para projetos
+          </a>
         </section>
       )}
     </AdminLayout>

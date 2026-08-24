@@ -14,8 +14,7 @@ const read = (path: string): string => {
   }
 };
 
-const loadProjectModule = async () =>
-  import("../../src/studio/client/projects").catch(() => null);
+const loadProjectModule = async () => import("../../src/studio/client/projects").catch(() => null);
 
 const documentWithProjects = (): SiteDocument => createDefaultSiteDocument();
 
@@ -120,7 +119,9 @@ describe("project management domain", () => {
 
     const initial = documentWithProjects();
     const target = initial.projects[0]!;
-    expect(() => module.changeProjectSlug(initial, target.id, "m47-novo", false)).toThrow(/confirm/i);
+    expect(() => module.changeProjectSlug(initial, target.id, "m47-novo", false)).toThrow(
+      /confirm/i,
+    );
     expect(() =>
       module.changeProjectSlug(initial, target.id, initial.projects[1]!.slug, true),
     ).toThrow(/slug/i);

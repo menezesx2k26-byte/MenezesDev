@@ -17,21 +17,37 @@ const lines = (items: string[]) => items.join("\n");
     <p class="admin-kicker">Case</p>
     <h2>{project.name}</h2>
     <p>
-      Alterações ficam no rascunho. A identificação de conceito é obrigatória para cases ligados aos demos.
+      Alterações ficam no rascunho. A identificação de conceito é obrigatória para cases ligados aos
+      demos.
     </p>
   </div>
 
   <div class="studio-fields-grid">
     <label class="studio-field">
       <span>Nome</span>
-      <input type="text" maxlength={STUDIO_LIMITS.longText} value={project.name} data-project-path={path("name")} />
+      <input
+        type="text"
+        maxlength={STUDIO_LIMITS.longText}
+        value={project.name}
+        data-project-path={path("name")}
+      />
     </label>
 
     <div class="studio-field studio-field--wide">
       <label for="project-slug">Slug público</label>
       <div class="admin-shortcuts">
-        <input id="project-slug" type="text" maxlength="160" value={project.slug} data-project-slug-input />
-        <button type="button" class="admin-button admin-button--secondary" data-project-action="request-slug-change">
+        <input
+          id="project-slug"
+          type="text"
+          maxlength="160"
+          value={project.slug}
+          data-project-slug-input
+        />
+        <button
+          type="button"
+          class="admin-button admin-button--secondary"
+          data-project-action="request-slug-change"
+        >
           Alterar slug
         </button>
       </div>
@@ -40,47 +56,86 @@ const lines = (items: string[]) => items.join("\n");
 
     <label class="studio-field">
       <span>Categoria</span>
-      <input type="text" maxlength={STUDIO_LIMITS.longText} value={project.category} data-project-path={path("category")} />
+      <input
+        type="text"
+        maxlength={STUDIO_LIMITS.longText}
+        value={project.category}
+        data-project-path={path("category")}
+      />
     </label>
 
     <label class="studio-field">
       <span>Plano / faixa</span>
-      <input type="text" maxlength={STUDIO_LIMITS.longText} value={project.planLabel} data-project-path={path("planLabel")} />
+      <input
+        type="text"
+        maxlength={STUDIO_LIMITS.longText}
+        value={project.planLabel}
+        data-project-path={path("planLabel")}
+      />
     </label>
 
     <label class="studio-field studio-field--wide">
       <span>Headline</span>
-      <textarea maxlength={STUDIO_LIMITS.longText} rows="3" data-project-path={path("headline")}>{project.headline}</textarea>
+      <textarea maxlength={STUDIO_LIMITS.longText} rows="3" data-project-path={path("headline")}
+        >{project.headline}</textarea
+      >
     </label>
 
     <label class="studio-field studio-field--wide">
       <span>Descrição</span>
-      <textarea maxlength={STUDIO_LIMITS.longText} rows="4" data-project-path={path("description")}>{project.description}</textarea>
+      <textarea maxlength={STUDIO_LIMITS.longText} rows="4" data-project-path={path("description")}
+        >{project.description}</textarea
+      >
     </label>
 
     <label class="studio-field studio-field--wide">
       <span>Tags — uma por linha</span>
-      <textarea rows="4" maxlength={STUDIO_LIMITS.longText} data-project-path={path("tags")} data-project-value-type="lines">{lines(project.tags)}</textarea>
+      <textarea
+        rows="4"
+        maxlength={STUDIO_LIMITS.longText}
+        data-project-path={path("tags")}
+        data-project-value-type="lines">{lines(project.tags)}</textarea
+      >
     </label>
 
     <label class="studio-field studio-field--wide">
       <span>Contexto — um parágrafo por linha</span>
-      <textarea rows="5" maxlength={STUDIO_LIMITS.longText} data-project-path={path("context")} data-project-value-type="lines">{lines(project.context)}</textarea>
+      <textarea
+        rows="5"
+        maxlength={STUDIO_LIMITS.longText}
+        data-project-path={path("context")}
+        data-project-value-type="lines">{lines(project.context)}</textarea
+      >
     </label>
 
     <label class="studio-field studio-field--wide">
       <span>Abordagem — um parágrafo por linha</span>
-      <textarea rows="5" maxlength={STUDIO_LIMITS.longText} data-project-path={path("approach")} data-project-value-type="lines">{lines(project.approach)}</textarea>
+      <textarea
+        rows="5"
+        maxlength={STUDIO_LIMITS.longText}
+        data-project-path={path("approach")}
+        data-project-value-type="lines">{lines(project.approach)}</textarea
+      >
     </label>
 
     <label class="studio-field studio-field--wide">
       <span>Features — uma por linha</span>
-      <textarea rows="5" maxlength={STUDIO_LIMITS.longText} data-project-path={path("features")} data-project-value-type="lines">{lines(project.features)}</textarea>
+      <textarea
+        rows="5"
+        maxlength={STUDIO_LIMITS.longText}
+        data-project-path={path("features")}
+        data-project-value-type="lines">{lines(project.features)}</textarea
+      >
     </label>
 
     <label class="studio-field">
       <span>Demo</span>
-      <input type="text" maxlength={STUDIO_LIMITS.longText} value={project.demoHref} data-project-path={path("demoHref")} />
+      <input
+        type="text"
+        maxlength={STUDIO_LIMITS.longText}
+        value={project.demoHref}
+        data-project-path={path("demoHref")}
+      />
     </label>
 
     <label class="studio-field">
@@ -110,24 +165,43 @@ const lines = (items: string[]) => items.join("\n");
 
     <label class="studio-field studio-field--wide">
       <span>Título SEO</span>
-      <input type="text" maxlength={STUDIO_LIMITS.longText} value={project.seo.title} data-project-path={path("seo.title")} />
+      <input
+        type="text"
+        maxlength={STUDIO_LIMITS.longText}
+        value={project.seo.title}
+        data-project-path={path("seo.title")}
+      />
     </label>
 
     <label class="studio-field studio-field--wide">
       <span>Descrição SEO</span>
-      <textarea maxlength={STUDIO_LIMITS.longText} rows="3" data-project-path={path("seo.description")}>{project.seo.description}</textarea>
+      <textarea
+        maxlength={STUDIO_LIMITS.longText}
+        rows="3"
+        data-project-path={path("seo.description")}>{project.seo.description}</textarea
+      >
     </label>
   </div>
 
   <section class="admin-panel" aria-labelledby="project-media-heading">
     <span class="admin-panel__label">Mídia atual</span>
     <h3 id="project-media-heading">Referências visuais</h3>
-    <p class="admin-panel__detail">Substituição e upload entram pela biblioteca de Mídia; aqui você vê o que o case usa hoje.</p>
+    <p class="admin-panel__detail">
+      Substituição e upload entram pela biblioteca de Mídia; aqui você vê o que o case usa hoje.
+    </p>
     <ul>
       <li>Capa: <code>{project.cover.src}</code></li>
-      {project.strip.map((image) => <li><code>{image.src}</code></li>)}
+      {
+        project.strip.map((image) => (
+          <li>
+            <code>{image.src}</code>
+          </li>
+        ))
+      }
     </ul>
   </section>
 
-  <p class="studio-save-state" data-project-save-status aria-live="polite">Rascunho sincronizado.</p>
+  <p class="studio-save-state" data-project-save-status aria-live="polite">
+    Rascunho sincronizado.
+  </p>
 </section>

@@ -116,7 +116,10 @@ export const setupProjectsController = (): void => {
   });
 
   root.addEventListener("click", (event) => {
-    const target = event.target instanceof Element ? event.target.closest<HTMLButtonElement>("button[data-project-action]") : null;
+    const target =
+      event.target instanceof Element
+        ? event.target.closest<HTMLButtonElement>("button[data-project-action]")
+        : null;
     if (!target) return;
     const action = target.dataset.projectAction;
     const projectId = target.dataset.projectId ?? editor?.dataset.projectId;
@@ -124,7 +127,8 @@ export const setupProjectsController = (): void => {
 
     if (action === "move-up" || action === "move-down") {
       const direction: ProjectMoveDirection = action === "move-up" ? "up" : "down";
-      if (commit(moveProject(store.getState().document, projectId, direction))) pendingReload = true;
+      if (commit(moveProject(store.getState().document, projectId, direction)))
+        pendingReload = true;
       return;
     }
 
@@ -142,7 +146,9 @@ export const setupProjectsController = (): void => {
     }
 
     if (action === "request-slug-change" && slugInput && slugDialog) {
-      const current = store.getState().document.projects.find((project) => project.id === projectId);
+      const current = store
+        .getState()
+        .document.projects.find((project) => project.id === projectId);
       if (!current) return;
       const nextSlug = slugInput.value.trim();
       if (nextSlug === current.slug) return;
@@ -165,32 +171,36 @@ export const setupProjectsController = (): void => {
     }
   });
 
-  slugDialog?.querySelector<HTMLButtonElement>("[data-project-slug-cancel]")?.addEventListener("click", () => {
-    pendingSlug = null;
-    const projectId = editor?.dataset.projectId;
-    const current = projectId
-      ? store.getState().document.projects.find((project) => project.id === projectId)
-      : null;
-    if (slugInput && current) slugInput.value = current.slug;
-    slugDialog.close();
-  });
-
-  slugDialog?.querySelector<HTMLButtonElement>("[data-project-slug-confirm]")?.addEventListener("click", () => {
-    const projectId = editor?.dataset.projectId;
-    if (!projectId || !pendingSlug) return;
-    try {
-      const next = changeProjectSlug(store.getState().document, projectId, pendingSlug, true);
-      commit(next);
-      if (slugInput) slugInput.value = pendingSlug;
+  slugDialog
+    ?.querySelector<HTMLButtonElement>("[data-project-slug-cancel]")
+    ?.addEventListener("click", () => {
       pendingSlug = null;
+      const projectId = editor?.dataset.projectId;
+      const current = projectId
+        ? store.getState().document.projects.find((project) => project.id === projectId)
+        : null;
+      if (slugInput && current) slugInput.value = current.slug;
       slugDialog.close();
-    } catch (error) {
-      if (slugInput) {
-        slugInput.setCustomValidity(error instanceof Error ? error.message : "Slug inválido.");
-        slugInput.reportValidity();
+    });
+
+  slugDialog
+    ?.querySelector<HTMLButtonElement>("[data-project-slug-confirm]")
+    ?.addEventListener("click", () => {
+      const projectId = editor?.dataset.projectId;
+      if (!projectId || !pendingSlug) return;
+      try {
+        const next = changeProjectSlug(store.getState().document, projectId, pendingSlug, true);
+        commit(next);
+        if (slugInput) slugInput.value = pendingSlug;
+        pendingSlug = null;
+        slugDialog.close();
+      } catch (error) {
+        if (slugInput) {
+          slugInput.setCustomValidity(error instanceof Error ? error.message : "Slug inválido.");
+          slugInput.reportValidity();
+        }
       }
-    }
-  });
+    });
 
   autosave.subscribe((state) => {
     if (statusNode) {

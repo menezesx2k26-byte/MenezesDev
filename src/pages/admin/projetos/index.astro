@@ -27,7 +27,11 @@ if (adminContext) {
 const ready = Boolean(adminContext && draft && baselineDocument && !loadError);
 const initialStateJson =
   ready && draft && baselineDocument
-    ? JSON.stringify({ document: draft.document, baseline: baselineDocument, revision: draft.revision })
+    ? JSON.stringify({
+        document: draft.document,
+        baseline: baselineDocument,
+        revision: draft.revision,
+      })
         .replace(/&/g, "\\u0026")
         .replace(/</g, "\\u003c")
         .replace(/>/g, "\\u003e")
@@ -51,27 +55,35 @@ const initialStateJson =
             <p class="admin-kicker">Portfólio</p>
             <h2 id="projects-heading">Cases e conceitos.</h2>
             <p>
-              Edite a ordem e a visibilidade sem apagar histórico. Para criar um novo case antes da biblioteca de mídia, duplique um conceito existente e personalize o rascunho oculto.
+              Edite a ordem e a visibilidade sem apagar histórico. Para criar um novo case antes da
+              biblioteca de mídia, duplique um conceito existente e personalize o rascunho oculto.
             </p>
           </section>
 
           <div data-projects-root>
-            <script id="studio-initial-state" type="application/json" is:inline set:html={initialStateJson} />
+            <script
+              id="studio-initial-state"
+              type="application/json"
+              is:inline
+              set:html={initialStateJson}
+            />
             <ProjectList projects={draft.document.projects} />
           </div>
           <ConflictDialog />
 
           <script>
-            import { setupProjectsController } from "../../../studio/client/projects-controller";
-            setupProjectsController();
-            document.addEventListener("astro:page-load", setupProjectsController);
+            import {setupProjectsController} from "../../../studio/client/projects-controller";
+            setupProjectsController(); document.addEventListener("astro:page-load",
+            setupProjectsController);
           </script>
         </>
       ) : (
         <section class="admin-panel admin-panel--full" role="alert">
           <span class="admin-panel__label">Projetos indisponíveis</span>
           <strong class="admin-panel__value">O rascunho não pôde ser carregado.</strong>
-          <p class="admin-panel__detail">Nenhuma alteração foi feita. Verifique o estado do banco de dados.</p>
+          <p class="admin-panel__detail">
+            Nenhuma alteração foi feita. Verifique o estado do banco de dados.
+          </p>
         </section>
       )}
     </AdminLayout>

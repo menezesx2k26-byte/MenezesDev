@@ -157,7 +157,7 @@ export const createAutosaveController = (input: {
         activeAbort = null;
         const shouldSchedule = followupAfterRequest;
         followupAfterRequest = false;
-        if (shouldSchedule && state.phase !== "retry" && state.phase !== "conflict") schedule();
+        if (shouldSchedule && state.phase !== "retry") schedule();
       }
     }
   };

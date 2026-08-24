@@ -35,7 +35,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          corepack pnpm exec prettier .github/workflows/studio-tdd.yml > /tmp/studio-tdd.formatted.yml
+          ./node_modules/.bin/prettier .github/workflows/studio-tdd.yml > /tmp/studio-tdd.formatted.yml
           echo 'FORMATTED_BASE64_BEGIN'
           base64 -w0 /tmp/studio-tdd.formatted.yml
           echo

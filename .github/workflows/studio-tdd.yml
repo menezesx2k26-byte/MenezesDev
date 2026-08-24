@@ -34,3 +34,51 @@ jobs:
 
       - name: Runtime contracts
         run: corepack pnpm test -- tests/runtime/config.test.ts tests/runtime/wrangler-config.test.ts tests/runtime/prerender-policy.test.ts tests/runtime/astro-config.test.ts tests/runtime/route-contract.test.ts tests/runtime/runtime-route-probe.test.ts tests/runtime/worker-types.test.ts tests/runtime/migration-contract.test.ts
+
+      - name: Apply local D1 migration
+        run: corepack pnpm db:migrate:local
+
+      - name: Re-apply local D1 migration
+        run: corepack pnpm db:migrate:local
+
+      - name: Verify local D1 schema
+        shell: bash
+        run: |
+          set -euo pipefail
+          corepack pnpm exec wrangler d1 execute menezesdev-studio-local --local --json --command "SELECT type, name FROM sqlite_master WHERE (type = 'table' AND name IN ('studio_state', 'studio_versions', 'media_assets', 'audit_events')) OR (type = 'index' AND name IN ('idx_studio_versions_site_version', 'idx_media_assets_status', 'idx_audit_events_created_at')) ORDER BY type, name;" > /tmp/studio-schema.json
+          corepack pnpm exec wrangler d1 execute menezesdev-studio-local --local --json --command "SELECT COUNT(*) AS applied_count FROM d1_migrations WHERE name = '0001_studio_core.sql';" > /tmp/studio-migrations.json
+          node <<'NODE'
+          const { readFileSync } = require("node:fs");
+
+          const rowsFrom = (path) => {
+            const payload = JSON.parse(readFileSync(path, "utf8"));
+            const entries = Array.isArray(payload) ? payload : [payload];
+            return entries.flatMap((entry) => entry.results ?? []);
+          };
+
+          const schemaNames = rowsFrom("/tmp/studio-schema.json")
+            .map((row) => row.name)
+            .sort();
+          const expectedNames = [
+            "audit_events",
+            "idx_audit_events_created_at",
+            "idx_media_assets_status",
+            "idx_studio_versions_site_version",
+            "media_assets",
+            "studio_state",
+            "studio_versions",
+          ].sort();
+
+          if (JSON.stringify(schemaNames) !== JSON.stringify(expectedNames)) {
+            console.error("Unexpected local D1 schema:", schemaNames);
+            process.exit(1);
+          }
+
+          const migrationRows = rowsFrom("/tmp/studio-migrations.json");
+          if (Number(migrationRows[0]?.applied_count) !== 1) {
+            console.error("Migration 0001 was not recorded exactly once:", migrationRows);
+            process.exit(1);
+          }
+
+          console.log("PASS local D1 — schema present and migration 0001 recorded exactly once.");
+          NODE

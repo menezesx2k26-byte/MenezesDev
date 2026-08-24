@@ -143,9 +143,10 @@ Explicit admissions so far:
 - #173 Retirement Calculator;
 - #174 Budget Calculator;
 - #175 Number Base Converter;
-- #176 Binary Translator.
+- #176 Binary Translator;
+- #177 Random Number Generator.
 
-Current admitted working universe: **176**.
+Current admitted working universe: **177**.
 
 ## T-D023 — New strong discoveries must displace weak shortlist rows rather than inflate the pool by default
 **Status:** accepted  
@@ -157,6 +158,8 @@ Working replacements to date:
 
 - R2: Retirement Calculator replaced Reading Time Calculator; Budget Calculator replaced Gzip Decompressor.
 - R3: Number Base Converter replaced Gzip Compressor; Binary Translator replaced Slug Generator.
+- R4: Decimal to Fraction Calculator replaced File Type Detector; Random Number Generator replaced Remove Duplicate Lines.
+- R5: Fraction Calculator replaced Scientific Notation Calculator; Standard Deviation Calculator replaced Savings Goal Calculator.
 
 The current shortlist remains **80** candidates. This selection-pressure rule is a Phase-1 research practice, not a change to the immutable Launch-50 target.
 
@@ -165,3 +168,30 @@ The current shortlist remains **80** candidates. This selection-pressure rule is
 **Date:** 2026-08-24
 
 Use one `Number Base Converter` for numeric binary/octal/decimal/hex/base conversion rather than creating a route for every direction. Use a distinct `Binary Translator` for UTF-8 text ↔ binary-byte representation. This is an anti-thin-content consolidation decision based on current SERP/product semantics.
+
+## T-D025 — Random Number Generator is an admitted independent intent
+**Status:** accepted  
+**Date:** 2026-08-24
+
+General random-number generation is distinct from passwords, secure tokens and UUIDs. One configurable Random Number Generator should handle numeric ranges/counts/repeat policy rather than creating indexed pages for specific ranges such as 1–10 or 1–100. The default implementation uses browser Web Crypto with unbiased bounded-integer sampling and zero backend requests.
+
+## T-D026 — Shared engine does not imply shared SEO intent
+**Status:** accepted  
+**Date:** 2026-08-24
+
+Current market evidence supports retaining these as separate candidate URLs despite shared primitives:
+
+- Case Converter vs Title Case Converter;
+- Word Counter vs Character Counter;
+- Compound Interest vs Investment Growth vs Future Value;
+- Discount Calculator vs Percentage Calculator;
+- Fraction Calculator vs Decimal to Fraction Calculator;
+- Number Base Converter vs Binary Translator.
+
+Phase-5 IA/content must make functional differences explicit and avoid duplicate/thin copy.
+
+## T-D027 — Current R5 shortlist is the canonical Phase-1 working pool
+**Status:** accepted  
+**Date:** 2026-08-24
+
+`docs/tools/MARKET_SHORTLIST_80_WORKING_R5.md` is the current working shortlist. It remains 80 so Phase 1 can continue cut/replacement pressure before creating the final >50 evidence-backed pool. It is not Launch 50 and does not authorize Phase 3 or implementation.

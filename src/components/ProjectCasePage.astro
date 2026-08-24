@@ -17,6 +17,7 @@ interface Props {
   whatsappUrl?: string | null;
   brandName?: string;
   tagline?: string;
+  preview?: boolean;
 }
 
 const {
@@ -25,7 +26,10 @@ const {
   whatsappUrl,
   brandName = "MenezesDev",
   tagline = "Sites que impulsionam negócios.",
+  preview = false,
 } = Astro.props;
+const commercialHref = preview ? null : whatsappUrl;
+const backHref = preview ? "/admin/preview" : "/#projetos";
 ---
 
 <BaseLayout
@@ -35,13 +39,21 @@ const {
   theme="menezesdev"
   fonts={["--font-manrope", "--font-inter"]}
   preloadFont="--font-manrope"
+  noindex={preview}
 >
-  <MenezesHeader navigation={navigation} whatsappUrl={whatsappUrl} brandLabel={brandName} />
+  {
+    preview && (
+      <aside class="draft-preview-banner" role="status" aria-label="Prévia do rascunho">
+        Prévia do rascunho — não publicada
+      </aside>
+    )
+  }
+  <MenezesHeader navigation={navigation} whatsappUrl={commercialHref} brandLabel={brandName} />
   <main id="main-content">
     <section class="md-case-hero">
       <div class="container md-case-hero__grid">
         <div>
-          <a href="/#projetos"><ArrowLeft aria-hidden="true" size={18} /> Voltar aos projetos</a>
+          <a href={backHref}><ArrowLeft aria-hidden="true" size={18} /> Voltar aos projetos</a>
           <p class="eyebrow" style="margin-top:2rem">{project.category}</p>
           <p class="demo-disclosure">{project.label}</p>
           <h1>{project.name}</h1>
@@ -144,5 +156,5 @@ const {
       </div>
     </section>
   </main>
-  <MenezesFooter navigation={navigation} whatsappUrl={whatsappUrl} tagline={tagline} />
+  <MenezesFooter navigation={navigation} whatsappUrl={commercialHref} tagline={tagline} />
 </BaseLayout>

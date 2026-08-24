@@ -8,15 +8,16 @@
 # Workflow status
 
 - Phase 0 — Product constitution: **CLOSED**.
-- Phase 1 — Global Market Intelligence: **CLOSED / gate passed** (`docs/tools/PHASE1_CLOSURE.md`).
-- Phase 2 — OSS Capability Audit: **CLOSED / gate passed** (`docs/tools/PHASE2_CLOSURE.md`).
-- Phase 3 — Capability Map: **CLOSED / gate passed** (`docs/tools/PHASE3_CLOSURE.md`).
-- Phase 4 — Freeze Launch 50: **ACTIVE / all pre-approval checks passed; exact matrix pending explicit approval**.
-- Phase 5 — Information architecture / international SEO: **BLOCKED by Phase-4 approval gate**.
+- Phase 1 — Global Market Intelligence: **CLOSED** (`docs/tools/PHASE1_CLOSURE.md`).
+- Phase 2 — OSS Capability Audit: **CLOSED** (`docs/tools/PHASE2_CLOSURE.md`).
+- Phase 3 — Capability Map: **CLOSED** (`docs/tools/PHASE3_CLOSURE.md`).
+- Phase 4 — Freeze Launch 50: **CLOSED / exact matrix approved and frozen** (`docs/tools/LAUNCH50_FROZEN.md`, `docs/tools/PHASE4_CLOSURE.md`).
+- Phase 5 — Information architecture / international SEO: **UNBLOCKED / architectural design proposal pending Superpowers approval**.
+- Phase 6+ — not started under the Tools workflow.
 - Tools runtime implementation: **NOT STARTED**.
-- `main` must remain outside partial Tools implementation.
+- `main` remains outside partial Tools implementation.
 
-The historical status text in `IMMUTABLE_WORKFLOW.md` remains untouched. Later phase progress is recorded through closure/preflight artifacts under the append-only governance model.
+Historical status text in `IMMUTABLE_WORKFLOW.md` remains untouched; later progress is recorded through closure artifacts under append-only governance.
 
 ---
 
@@ -38,11 +39,11 @@ The historical status text in `IMMUTABLE_WORKFLOW.md` remains untouched. Later p
 
 ---
 
-# Candidate-universe state
+# Candidate universe and Phase-1 pool
 
 Historical Batch-1 universe: **172**.
 
-Explicit dated admissions:
+Explicit later admissions:
 
 - #173 Retirement Calculator;
 - #174 Budget Calculator;
@@ -52,48 +53,25 @@ Explicit dated admissions:
 
 Current admitted research universe: **177**.
 
-Historical 172 references remain valid and are not rewritten.
-
----
-
-# Phase-1 final market pool
-
-Canonical final pool:
+Canonical final Phase-1 pool:
 
 `docs/tools/MARKET_SHORTLIST_68_FINAL_PHASE1.md`
 
 Exact size: **68**.
 
-Closure rationale:
+Major consolidation rules include:
 
-- `docs/tools/MARKET_INTELLIGENCE_BATCH10_CLOSURE_PASS.md`
-- `docs/tools/PHASE1_CLOSURE.md`
-
-Key final consolidation decisions include:
-
-- Simple Interest becomes a mode of Interest Calculator;
-- JSON Minifier becomes a mode of JSON Formatter;
-- File Hash becomes a bounded file mode of SHA-256 Hash Generator;
-- JSON → CSV becomes the reverse mode of one CSV ↔ JSON product;
-- numeric binary/octal/decimal/hex directions consolidate into Number Base Converter;
-- Binary Translator remains separate as UTF-8 text ↔ binary-byte intent;
-- weaker PDF operations were reduced so PDF does not dominate merely because the category is large.
-
-Final pool composition:
-
-- Finance/business: 17;
-- Math/statistics: 13;
-- Image/color: 10;
-- Text/writing: 5;
-- Developer/data: 16;
-- Date/time: 3;
-- Archive/file: 1;
-- Structural PDF: 3;
-- total: **68**.
+- Simple Interest → mode of Interest Calculator;
+- JSON Minifier → mode of JSON Formatter;
+- File Hash → bounded file mode of SHA-256 Hash Generator;
+- JSON → CSV → reverse mode of one CSV ↔ JSON product;
+- numeric base directions → Number Base Converter;
+- Binary Translator remains separate as text/binary intent;
+- lower-value PDF siblings reduced rather than preserving category volume artificially.
 
 ---
 
-# Phase-2 final technical state
+# Phase-2 technical state
 
 Canonical final coverage:
 
@@ -102,21 +80,12 @@ Canonical final coverage:
 Result:
 
 - **60/68** clear/internal/local-bounded;
-- **8/68** local-conditional with exact admission profiles;
+- **8/68** local-conditional with explicit admission profiles;
 - **0/68** ordinary backend processing requirements;
 - **0/68** HOLD/UNRESOLVED capabilities;
 - **68/68** expected to use 0 MenezesDev backend-processing requests per ordinary operation.
 
-Conditional survivors are concentrated in:
-
-- Image Compressor;
-- WebP to PNG browser capability gate;
-- Image Metadata Viewer / ExifReader;
-- HTML Formatter / Prettier;
-- CSV ↔ JSON / PapaParse;
-- Split PDF / Merge PDF / Remove PDF Pages through one audited structural PDF engine family.
-
-Capabilities intentionally not required for Launch selection include HEIC/AVIF universal conversion, OCR, generic PDF compression and arbitrary PDF text editing/extraction.
+Conditional survivor families remain Image Compressor, WebP capability, ExifReader metadata, Prettier HTML formatting, PapaParse CSV, and the @pdfme/pdf-lib structural PDF family.
 
 ---
 
@@ -126,20 +95,7 @@ Canonical map:
 
 `docs/tools/CAPABILITY_MAP.md`
 
-All 68 candidates now declare:
-
-- stable id;
-- category/intent/locale;
-- native/browser/Worker/WASM execution decision;
-- selected engine or internal path;
-- license state;
-- bundle-impact class;
-- server requests/op;
-- expected marginal backend cost;
-- concrete security/input-limit profile;
-- privacy-safe telemetry profile;
-- monetization eligibility;
-- rationale.
+All 68 declare stable id, category/intent/locale, runtime, engine/license, bundle class, requests/op, marginal backend cost, concrete security/input limits, privacy-safe telemetry, monetization eligibility and rationale.
 
 Economic headline:
 
@@ -147,31 +103,22 @@ Economic headline:
 
 ---
 
-# Phase-4 exact recommendation
+# Frozen Launch 50
 
-Canonical recommendation:
+Canonical frozen matrix:
 
-`docs/tools/LAUNCH50_RECOMMENDATION.md`
+`docs/tools/LAUNCH50_FROZEN.md`
 
-Status: **PENDING APPROVAL — NOT FROZEN**.
+Approval/closure:
 
-Recommended allocation:
+`docs/tools/PHASE4_CLOSURE.md`
+
+Allocation:
 
 - **35 SEO/AdSense-led tools (70%)**;
 - **10 architectural-coverage tools (20%)**;
 - **5 experiments (10%)**;
-- total **50**.
-
-Category distribution:
-
-- Finance/business: 14;
-- Math/statistics: 10;
-- Image/color: 6;
-- Text/writing: 4;
-- Developer/data: 11;
-- Date/time: 2;
-- Archive/file: 1;
-- PDF: 2.
+- exactly **50**.
 
 Technical distribution:
 
@@ -179,31 +126,49 @@ Technical distribution:
 - **4/50** local-conditional: Image Compressor, HTML Formatter, Merge PDF, Split PDF;
 - **0/50** backend-required.
 
-The 18 reserve candidates reconstruct the full 68 pool and provide substitution pressure if a conditional admission gate later fails.
+An ordered reserve pool of 18 reconstructs the 68-pool and is used if a conditional admission later fails. Security/dependency gates are never weakened to preserve a frozen slot.
 
-Phase-4 preflight:
+---
 
-`docs/tools/PHASE4_PREFLIGHT.md`
+# Phase-5 current state
 
-Every pre-approval requirement passes. The sole remaining Phase-4 gate is explicit approval of the exact matrix.
+Phase 5 is now legally unblocked by the workflow.
+
+Superpowers classification: **architectural**.
+
+Completed before design approval:
+
+- current repo/context inspection;
+- official Google Search Central revalidation for canonicalization, localized versions/hreflang, sitemap behavior and structured-data eligibility;
+- route/SEO approach comparison prepared for user review.
+
+Not yet allowed:
+
+- committing the canonical Phase-5 SEO/IA spec;
+- marking Phase 5 closed;
+- starting Phase 6 architecture;
+- implementation or package installation.
+
+Reason: Superpowers brainstorming requires the specific architectural design to be presented and approved before the written spec is committed.
 
 ---
 
 # SEO / autonomous-growth sequencing
 
-Strategic SEO research was completed through Phase 1.
+Strategic SEO evidence is complete from Phase 1; Phase 5 now formalizes the technical contract.
 
-Once Phase 4 is explicitly approved:
+Later workflow remains:
 
-- Phase 5 defines route taxonomy, canonical/hreflang, sitemap, robots, structured data, category pages, titles/meta and internal search;
-- Phase 11–15 make the Tool SDK/pages carry the SEO contract;
-- Phase 16 performs English editorial QA;
-- Phase 17 localizes PT-BR;
-- Phase 18 connects Search Console/product analytics;
-- Phase 19 runs technical SEO preflight;
-- Phase 20 launches;
-- Phase 21 activates Autonomous Growth / AI Editorial / Trend Radar / ethical crawler;
-- Phase 22 Tool Factory waits for Launch 50 + SDK stability.
+- Phase 5: route/SEO contract;
+- Phase 6: Tools architecture design;
+- Phase 7: security design/threat-model consolidation;
+- Phase 8: Traffic Guard / Cost Guard design;
+- Phase 9: implementation plan;
+- Phase 10+: isolated implementation;
+- Phase 18: Search Console/product analytics;
+- Phase 20: launch;
+- Phase 21: Autonomous Growth / AI Editorial / Trend Radar / ethical crawler;
+- Phase 22: Tool Factory only after Launch 50 + SDK stability.
 
 No crawler, AI provider, Workflow, D1 resource or autonomous publisher has been implemented yet.
 
@@ -211,7 +176,7 @@ No crawler, AI provider, Workflow, D1 resource or autonomous publisher has been 
 
 # Deployment portability
 
-Binding deployment addendum remains compatible:
+Binding deployment addendum remains:
 
 `docs/tools/addenda/2026-08-24_DEPLOYMENT_PORTABILITY_AND_FALLBACK.md`
 
@@ -223,20 +188,17 @@ Binding deployment addendum remains compatible:
 
 ---
 
-# Current hard stop / next legal action
+# Current next legal action
 
-Everything possible through Phase 4 preflight has been completed without fabricating approval.
+Present the concrete Phase-5 SEO/IA architecture under Superpowers brainstorming.
 
-Current hard stop:
+Once that **specific presented design** is approved:
 
-> Phase-4 gate requires the exact Launch-50 matrix to be explicitly approved.
+1. write/commit the Phase-5 design spec;
+2. self-review it for placeholders, contradictions, ambiguity and scope;
+3. close Phase 5 only if its workflow gate is satisfied;
+4. proceed to Phase 6 under its own required architectural design process.
 
-Until that approval is recorded:
-
-- do not mark Phase 4 closed;
-- do not start Phase 5;
-- do not implement Tool SDK/runtime;
-- do not install conditional dependencies;
-- do not implement crawler/AI/autonomous growth.
+Do not infer approval for unseen later phases from the Phase-4 approval.
 
 Before every future Tools action, reread the actual ref workflow, addenda and Tools-specific context. Git remains the source of truth.

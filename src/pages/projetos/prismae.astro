@@ -1,6 +1,20 @@
 ---
 import ProjectCasePage from "../../components/ProjectCasePage.astro";
-import { getProject } from "../../data/projects";
+import { getRuntimeBindings } from "../../runtime/bindings";
+import { getPublishedSiteDocument, toPublicProjectView } from "../../studio/public-content";
+
+const { DB } = getRuntimeBindings();
+const document = await getPublishedSiteDocument(DB);
+const project = toPublicProjectView(document, "prismae");
+const navigation = document.navigation
+  .filter((item) => item.visible)
+  .map(({ label, href }) => ({ label, href }));
 ---
 
-<ProjectCasePage project={getProject("prismae")} />
+<ProjectCasePage
+  project={project}
+  navigation={navigation}
+  whatsappUrl={document.commercial.whatsappUrl}
+  brandName={document.brand.name}
+  tagline={document.brand.tagline}
+/>

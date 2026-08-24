@@ -394,9 +394,25 @@ const validateProjects = (root: UnknownRecord, issues: StudioValidationIssue[]):
     }
     if (typeof project.id === "string") projectIds.add(project.id);
     requireString(project, "name", `projects[${index}].name`, issues, { nonEmpty: true });
-    requireString(project, "disclosure", `projects[${index}].disclosure`, issues, {
-      nonEmpty: true,
-    });
+    const disclosure = requireString(
+      project,
+      "disclosure",
+      `projects[${index}].disclosure`,
+      issues,
+      { nonEmpty: true },
+    );
+    if (
+      typeof project.demoHref === "string" &&
+      project.demoHref.startsWith("/demo/") &&
+      disclosure !== "Conceito demonstrativo"
+    ) {
+      addIssue(
+        issues,
+        `projects[${index}].disclosure`,
+        "demo_disclosure",
+        "Demo-linked cases must remain labeled as Conceito demonstrativo.",
+      );
+    }
     validateHref(project, "demoHref", `projects[${index}].demoHref`, issues);
     validateLayout(project, "layout", `projects[${index}].layout`, issues);
     const tags = arrayAt(project, "tags", `projects[${index}].tags`, issues);

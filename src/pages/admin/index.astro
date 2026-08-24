@@ -1,0 +1,184 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import { getRuntimeBindings } from "../../runtime/bindings";
+import { buildRuntimeHealth, createRuntimeHealthProbes } from "../../runtime/health";
+import { requireStudioAdminContext } from "../../studio/http";
+import { getDraft, getPublished } from "../../studio/repository";
+
+const adminContext = requireStudioAdminContext({ isDev: import.meta.env.DEV });
+if (!adminContext) Astro.response.status = 404;
+
+let publishedVersion: number | null = null;
+let lastPublishedAt: string | null = null;
+let projectCount: number | null = null;
+let draftDirty: boolean | null = null;
+let databaseHealth: "ok" | "error" | "unknown" = "unknown";
+let mediaHealth: "ok" | "error" | "unknown" = "unknown";
+let healthLabel = "Indisponível";
+
+if (adminContext) {
+  try {
+    const { DB, MEDIA } = getRuntimeBindings();
+    const [draftResult, publishedResult, healthResult] = await Promise.allSettled([
+      getDraft(DB),
+      getPublished(DB),
+      buildRuntimeHealth(createRuntimeHealthProbes({ DB, MEDIA })),
+    ]);
+
+    if (draftResult.status === "fulfilled") {
+      projectCount = draftResult.value.document.projects.length;
+    }
+
+    if (publishedResult.status === "fulfilled") {
+      publishedVersion = publishedResult.value.versionNumber;
+      lastPublishedAt = publishedResult.value.publishedAt;
+    }
+
+    if (draftResult.status === "fulfilled" && publishedResult.status === "fulfilled") {
+      draftDirty = draftResult.value.revision !== publishedResult.value.sourceRevision;
+    }
+
+    if (healthResult.status === "fulfilled") {
+      databaseHealth = healthResult.value.checks.database;
+      mediaHealth = healthResult.value.checks.media;
+      healthLabel = healthResult.value.status === "healthy" ? "Saudável" : "Atenção necessária";
+    }
+  } catch {
+    // Falha fechada: cada valor permanece explicitamente indisponível.
+  }
+}
+
+const formatDate = (value: string | null) => {
+  if (!value) return "Indisponível";
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return "Indisponível";
+  return new Intl.DateTimeFormat("pt-BR", {
+    dateStyle: "medium",
+    timeStyle: "short",
+    timeZone: "America/Sao_Paulo",
+  }).format(parsed);
+};
+
+const saveLabel =
+  draftDirty === null
+    ? "Estado indisponível"
+    : draftDirty
+      ? "Alterações não publicadas"
+      : "Rascunho sincronizado";
+const publicationLabel =
+  publishedVersion === null ? "Versão indisponível" : `Versão ${publishedVersion} publicada`;
+const statusTone = draftDirty === true ? "warning" : draftDirty === false ? "success" : "neutral";
+---
+
+{
+  adminContext ? (
+    <AdminLayout
+      title="Visão geral"
+      description="Resumo operacional do MenezesDev Studio."
+      saveLabel={saveLabel}
+      publicationLabel={publicationLabel}
+      statusTone={statusTone}
+    >
+      <section class="admin-page-heading" aria-labelledby="dashboard-heading">
+        <p class="admin-kicker">Operação</p>
+        <h2 id="dashboard-heading">Seu site, sem ruído.</h2>
+        <p>
+          Veja o que está publicado, o que mudou no rascunho e se a infraestrutura necessária para
+          editar o site está disponível.
+        </p>
+      </section>
+
+      <section class="admin-dashboard-grid" aria-label="Resumo do Studio">
+        <article class="admin-panel">
+          <span class="admin-panel__label">Versão publicada</span>
+          <strong class="admin-panel__value">
+            {publishedVersion === null ? "Indisponível" : `v${publishedVersion}`}
+          </strong>
+          <p class="admin-panel__detail">Última publicação: {formatDate(lastPublishedAt)}</p>
+        </article>
+
+        <article class="admin-panel">
+          <span class="admin-panel__label">Rascunho</span>
+          <strong class="admin-panel__value">
+            {draftDirty === null ? "Indisponível" : draftDirty ? "Com alterações" : "Sincronizado"}
+          </strong>
+          <p class="admin-panel__detail">
+            {draftDirty === true
+              ? "Há mudanças locais aguardando uma nova publicação."
+              : draftDirty === false
+                ? "O rascunho corresponde à versão publicada."
+                : "Não foi possível confirmar o estado do rascunho."}
+          </p>
+        </article>
+
+        <article class="admin-panel">
+          <span class="admin-panel__label">Projetos</span>
+          <strong class="admin-panel__value">
+            {projectCount === null ? "Indisponível" : String(projectCount)}
+          </strong>
+          <p class="admin-panel__detail">Quantidade real no documento editorial atual.</p>
+        </article>
+
+        <article class="admin-panel admin-panel--wide">
+          <span class="admin-panel__label">Saúde do sistema</span>
+          <strong class="admin-panel__value">{healthLabel}</strong>
+          <ul class="admin-health-list">
+            <li>
+              <span>Banco de dados</span>
+              <strong data-state={databaseHealth}>
+                {databaseHealth === "ok"
+                  ? "Disponível"
+                  : databaseHealth === "error"
+                    ? "Falha"
+                    : "Indisponível"}
+              </strong>
+            </li>
+            <li>
+              <span>Armazenamento de mídia</span>
+              <strong data-state={mediaHealth}>
+                {mediaHealth === "ok"
+                  ? "Disponível"
+                  : mediaHealth === "error"
+                    ? "Falha"
+                    : "Indisponível"}
+              </strong>
+            </li>
+          </ul>
+        </article>
+
+        <article class="admin-panel">
+          <span class="admin-panel__label">Biblioteca de mídia</span>
+          <strong class="admin-panel__value">Indisponível</strong>
+          <p class="admin-panel__detail">
+            Contagem e armazenamento serão exibidos quando a camada de biblioteca de mídia estiver
+            ativa. Nenhum zero é presumido.
+          </p>
+        </article>
+
+        <article class="admin-panel admin-panel--full">
+          <span class="admin-panel__label">Próximas ações</span>
+          <div class="admin-shortcuts" aria-label="Atalhos do Studio">
+            <span class="admin-button admin-button--secondary" aria-disabled="true">
+              Continuar edição
+            </span>
+            <span class="admin-button admin-button--quiet" aria-disabled="true">Abrir preview</span>
+            <button class="admin-button" type="button" disabled>Publicar</button>
+          </div>
+          <p class="admin-panel__detail">
+            Os atalhos serão habilitados conforme os editores, o preview e o fluxo de publicação da
+            interface forem conectados nas próximas etapas.
+          </p>
+        </article>
+      </section>
+    </AdminLayout>
+  ) : (
+    <html lang="pt-BR">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="noindex, nofollow, noarchive" />
+        <title>Página não encontrada</title>
+      </head>
+      <body></body>
+    </html>
+  )
+}

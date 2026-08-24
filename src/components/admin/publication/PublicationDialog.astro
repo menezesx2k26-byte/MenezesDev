@@ -1,0 +1,25 @@
+<dialog id="publication-dialog" class="admin-dialog" aria-labelledby="publication-dialog-title">
+  <form method="dialog" class="admin-dialog__panel">
+    <p class="admin-kicker">Publicação</p>
+    <h2 id="publication-dialog-title">Confirmar publicação</h2>
+    <p>
+      Esta ação cria uma nova versão publicada e coloca o conteúdo atual do rascunho no
+      <strong>site ao vivo</strong>.
+    </p>
+    <p>
+      O histórico anterior permanece imutável. Se algo mudar em outra sessão antes da confirmação,
+      a publicação será bloqueada em vez de sobrescrever silenciosamente.
+    </p>
+
+    <p data-publication-status aria-live="polite"></p>
+
+    <div class="admin-dialog__actions">
+      <button type="button" class="admin-button admin-button--quiet" data-publication-cancel>
+        Cancelar
+      </button>
+      <button type="button" class="admin-button" data-publication-confirm>
+        Publicar nova versão
+      </button>
+    </div>
+  </form>
+</dialog>

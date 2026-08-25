@@ -24,17 +24,17 @@ This design specifies:
 - how the existing Astro app is reconciled with Tools;
 - module boundaries;
 - Tool SDK semantics;
-- registry and content boundaries;
+- registry and content ownership;
 - runtime adapters;
 - browser/Worker/WASM boundaries;
-- security interface boundaries;
+- shared security interfaces;
 - locale and SEO interfaces;
-- analytics and advertising adapters;
-- error handling;
+- analytics and advertising seams;
+- result/error handling;
 - dependency isolation and lazy loading;
 - testing layers;
 - provider-neutral build boundaries;
-- the implementation-base relationship used later by Phase 10.
+- integration-branch expectations for later implementation.
 
 This phase does **not** implement those modules. Phase 7 and Phase 8 still refine security and traffic/cost policy before Phase 9 implementation planning.
 
@@ -62,7 +62,7 @@ At the time of this design that branch contains:
 - minimal vanilla browser JavaScript;
 - no React/Vue/Svelte runtime requirement.
 
-Important current constraints:
+Important current reconciliation facts:
 
 - `BaseLayout.astro` is PT-BR/commercial-site oriented;
 - `siteConfig.locale` is fixed to `pt-BR`;
@@ -73,134 +73,97 @@ Important current constraints:
 - `/demo/**` remains deliberately non-indexed;
 - commercial/portfolio/demo surfaces must remain logically isolated from monetized Tools.
 
-These are reconciliation inputs, not defects to patch during Phase 6.
+These are architecture inputs, not permission to patch code during Phase 6.
 
 ---
 
-# 3. Considered architecture approaches
+# 3. Considered approaches
 
-## Option A — fully schema-generated universal renderer
+## Option A — universal schema renderer
 
-One generic renderer interprets every field, input, result and interaction from schema.
+A single generic renderer interprets every field, result and interaction from schema.
 
-### Rejected as the primary architecture
+**Rejected as the primary architecture.** It looks scalable for simple calculators but turns image crop, PDF merge/split, regex and editor-like tools into a large UI programming language with accessibility and maintenance special cases.
 
-Advantages:
+## Option B — bespoke page per tool
 
-- maximum apparent reuse;
-- easy creation of simple calculators.
+Each tool owns its own page, validation, engine binding and UI.
 
-Problems:
+**Rejected.** It duplicates SEO, security, localization, analytics, ads and runtime plumbing across 50 tools and makes 100/200+ growth expensive.
 
-- image crop, PDF merge/split, regex, Markdown preview and other rich tools would force the schema into a UI programming language;
-- generic renderer complexity would become harder to test than focused components;
-- accessibility and interaction behavior would accumulate special cases;
-- future Tool Factory automation could generate schema complexity rather than maintainable tools.
+## Option C — hybrid typed Tool SDK
 
-## Option B — bespoke page/component per tool
+Use a typed build-time catalog plus shared runtime contracts, generic UI primitives for ordinary calculators/text utilities, and specialized renderers only where interaction genuinely differs.
 
-Every tool receives a custom Astro page and custom client module.
-
-### Rejected
-
-Advantages:
-
-- direct control;
-- low abstraction cost for the first few tools.
-
-Problems:
-
-- duplicates SEO, validation, analytics, ads, localization and error plumbing across 50 tools;
-- makes 100/200+ growth expensive;
-- weakens automated correctness and policy enforcement;
-- encourages drift between tools.
-
-## Option C — hybrid typed Tool SDK — SELECTED
-
-Use a typed registry and shared runtime for common contracts, generic UI primitives for common tools, and specialized renderers only where the interaction genuinely requires them.
-
-This gives:
-
-- one source of truth for identity/routes/SEO/search/relations;
-- pure reusable engines;
-- explicit boundaries and limits;
-- tiny common runtime;
-- lazy heavy dependencies;
-- enough escape hatches for image/PDF/editor-like tools;
-- a stable future interface for Tool Factory automation.
-
-**Decision:** Option C is canonical.
+**Selected.** It preserves strong common gates without forcing rich tools into a universal renderer.
 
 ---
 
-# 4. Core architectural principles
+# 4. Core principles
 
-Phase 6 adopts these principles:
-
-1. **Registry is metadata, not executable business logic.**
-2. **Tool identity is stable and independent from locale routes.**
-3. **Engines do not know Astro, DOM, ads, analytics or locale.**
-4. **Raw user input never bypasses an applicable boundary.**
-5. **Ordinary Launch-50 execution remains local.**
-6. **A Web Worker is browser isolation, not backend execution.**
-7. **Heavy code is lazy and route/engine scoped.**
-8. **Tool correctness never depends on ads or analytics.**
-9. **Locale content is build-time/static, not a large runtime i18n payload.**
-10. **SEO/search/related-tool data derives from the registry rather than duplicate lists.**
-11. **Commercial/demo architecture stays separate from Tools-specific concerns.**
-12. **Git + reproducible static build remain the product source of truth.**
-13. **Cloudflare-specific APIs do not enter browser-capable engine logic.**
-14. **Phase 7/8 policy can strengthen runtime gates without changing engine APIs.**
+1. Registry/catalog is metadata, not executable business logic.
+2. Tool identity is stable and independent from locale routes.
+3. Engines do not know Astro, DOM, Ads, analytics or locale copy.
+4. Raw user input never bypasses an applicable boundary.
+5. Ordinary Launch-50 execution remains local.
+6. A browser Web Worker is isolation, not backend execution.
+7. Heavy code is lazy and engine scoped.
+8. Tool correctness never depends on Ads or analytics.
+9. Locale content is build-time/static, not a large runtime i18n payload.
+10. SEO/search/related-tool data derives from authoritative catalog data rather than duplicate lists.
+11. Commercial/demo architecture stays separate from Tools concerns.
+12. Git + reproducible static build remain source of truth.
+13. Cloudflare-specific APIs do not enter browser-capable engine logic.
+14. Phase 7/8 policy may strengthen runtime gates without changing pure engine semantics.
 
 ---
 
 # 5. High-level architecture
 
 ```text
-                         Tool Catalog
-                    (build-time metadata)
-                              │
-             ┌────────────────┼────────────────┐
-             │                │                │
-             ▼                ▼                ▼
-      locale content      SEO/routes       relations/search
-             │                │                │
-             └────────────────┼────────────────┘
-                              ▼
-                       Astro static SSG
-                              │
-                              ▼
-                        ToolLayout HTML
-                              │
-                    user interaction only
-                              ▼
-                     Tool Runtime Controller
-                              │
-                              ▼
-                  validate / bound / canonicalize
-                              │
-                              ▼
+                       Tool Catalog
+                  build-time serializable data
+                            │
+          ┌─────────────────┼─────────────────┐
+          ▼                 ▼                 ▼
+     locale content      routes/SEO      relations/search
+          │                 │                 │
+          └─────────────────┼─────────────────┘
+                            ▼
+                     Astro static SSG
+                            │
+                            ▼
+                     ToolLayout HTML
+                            │
+                    interaction only
+                            ▼
+                  Tool Runtime Controller
+                            │
+                            ▼
+             validate → bound → canonicalize
+                            │
+                            ▼
                     typed canonical input
-                              │
-           ┌──────────────────┼──────────────────┐
-           ▼                  ▼                  ▼
-      main thread        Web Worker         WASM Worker
-           │                  │                  │
-           └──────────────────┼──────────────────┘
-                              ▼
-                         typed result
-                              │
-                              ▼
-                      safe result renderer
+                            │
+          ┌─────────────────┼─────────────────┐
+          ▼                 ▼                 ▼
+      main thread       Web Worker        WASM Worker
+          │                 │                 │
+          └─────────────────┼─────────────────┘
+                            ▼
+                       typed result
+                            │
+                            ▼
+                    safe output renderer
 ```
 
-No Launch-50 ordinary operation crosses into a MenezesDev backend-processing endpoint.
+No frozen Launch-50 ordinary operation crosses into a MenezesDev backend-processing endpoint.
 
 ---
 
-# 6. Proposed source/module boundaries
+# 6. Module boundaries
 
-The intended module structure is conceptually:
+Conceptual structure:
 
 ```text
 src/
@@ -212,11 +175,7 @@ src/
 │   └── ToolLayout.astro
 ├── tools/
 │   ├── core/
-│   │   ├── types.ts
-│   │   ├── result.ts
-│   │   └── invariants.ts
 │   ├── registry/
-│   │   ├── index.ts
 │   │   └── definitions/
 │   ├── content/
 │   │   ├── en/
@@ -228,6 +187,7 @@ src/
 │   │   ├── main-thread.ts
 │   │   ├── worker.ts
 │   │   ├── wasm-worker.ts
+│   │   ├── boundary-loaders.client.ts
 │   │   └── engine-loaders.client.ts
 │   ├── workers/
 │   ├── ui/
@@ -249,63 +209,15 @@ src/
         └── [category]/[slug]/index.astro
 ```
 
-Exact filenames may be refined by the Phase-9 implementation plan, but responsibility boundaries are binding.
+Exact filenames may be refined by the Phase-9 plan, but the responsibility boundaries are binding.
 
-## 6.1 `core/`
-
-Contains only contracts and reusable domain-independent Tool SDK types.
-
-It does not import Astro, browser DOM APIs, analytics providers or ad providers.
-
-## 6.2 `registry/`
-
-Contains the canonical machine-readable tool catalog.
-
-It is safe to import at build time.
-
-It must not statically import heavy engine dependencies.
-
-## 6.3 `content/`
-
-Contains localized human-readable tool content keyed by stable tool id and locale.
-
-Executable formulas/parsers do not live here.
-
-## 6.4 `boundaries/`
-
-Owns raw-input parsing, validation, resource limits, canonicalization and safe typed input creation.
-
-## 6.5 `engines/`
-
-Contains pure or near-pure tool computation.
-
-An engine does not render UI and does not read provider-specific environment state.
-
-## 6.6 `runtime/`
-
-Selects and invokes the approved execution adapter for a tool.
-
-It owns cancellation and normalization of runtime failures.
-
-## 6.7 `workers/`
-
-Contains browser Worker entry points for tools/engine families that require isolation or responsiveness protection.
-
-## 6.8 `ui/`
-
-Contains shared UI primitives and specialized renderers.
-
-## 6.9 `seo/`, `search/`, `analytics/`, `ads/`
-
-These are adapters/build helpers that consume registry metadata without contaminating engines.
+`core/` contains contracts only. `registry/` is build-safe data. `content/` owns human-readable locale copy. `boundaries/` convert untrusted UI input into canonical engine input. `engines/` contain computation. `runtime/` selects execution and cancellation. `workers/` isolate expensive/untrusted work. `ui/` owns presentation. SEO/search/analytics/ads consume metadata without entering engines.
 
 ---
 
 # 7. Stable Tool identity
 
-Every tool has one stable machine id.
-
-Examples:
+Every tool has one stable machine id such as:
 
 ```text
 loan-calculator
@@ -314,49 +226,39 @@ merge-pdf
 image-compressor
 ```
 
-The stable id is not the English slug, not the PT-BR slug and not a translated label.
+The id is not a translated slug and does not change when a public route changes.
 
-A tool may therefore map to:
+Example:
 
 ```text
 id: loan-calculator
 
-en:
-  /tools/calculators/loan-calculator/
-
-pt-BR:
-  /pt-br/ferramentas/calculadoras/calculadora-de-emprestimo/
+en:    /tools/calculators/loan-calculator/
+pt-BR: /pt-br/ferramentas/calculadoras/calculadora-de-emprestimo/
 ```
 
-Stable ids are used for:
-
-- engine binding;
-- relations;
-- telemetry;
-- tests;
-- Tool Factory references;
-- internal configuration.
-
-Changing a public slug does not create a new tool id.
+Stable ids are used for engine binding, boundaries, relations, telemetry, tests, Tool Factory references and internal configuration.
 
 ---
 
-# 8. ToolDefinition contract
+# 8. ToolDefinition is data-only
 
-The Tool SDK must support semantics equivalent to:
+The canonical catalog must be serializable ordinary data where practical.
+
+Semantics equivalent to:
 
 ```ts
-interface ToolDefinition<Input, Output> {
+interface ToolDefinition {
   id: ToolId
   category: ToolCategory
   routes: ToolRouteMap
   ui: ToolUiDefinition
   execution: ToolExecutionProfile
-  boundary: ToolBoundaryDefinition<Input>
+  boundary: ToolBoundaryBinding
   engineId: EngineId
-  output: ToolOutputDefinition<Output>
+  output: ToolOutputDefinition
   security: ToolSecurityProfile
-  seo: ToolSeoDefinition
+  seoPolicy: ToolSeoPolicy
   relations: ToolRelations
   analytics: ToolAnalyticsDefinition
   ads: ToolAdsDefinition
@@ -364,31 +266,24 @@ interface ToolDefinition<Input, Output> {
 }
 ```
 
-The exact TypeScript syntax may change in Phase 9/11, but these semantic fields are required where applicable.
+The catalog must **not** store:
 
-## 8.1 Definition remains serializable where practical
+- imported engine functions;
+- executable boundary functions;
+- DOM nodes;
+- provider clients;
+- arbitrary module paths;
+- localized title/description duplicate copies.
 
-The build-time catalog must remain ordinary data as much as possible.
+Executable boundaries and engines resolve through allowlisted ids/manifests.
 
-Do not store imported engine functions, DOM nodes or provider objects inside `ToolDefinition`.
-
-Executable bindings are resolved through ids/manifests.
-
-This separation is required for:
-
-- static generation;
-- validation scripts;
-- future autonomous generation;
-- testing;
-- bundle isolation.
+Localized SEO copy is authored once in locale content and resolved into page metadata at build time.
 
 ---
 
 # 9. Route model
 
-Tool route metadata must represent the exact approved Phase-5 paths.
-
-Conceptual type:
+Tool route metadata represents the exact approved Phase-5 paths.
 
 ```ts
 interface ToolRouteEntry {
@@ -402,48 +297,34 @@ interface ToolRouteEntry {
 type ToolRouteMap = Partial<Record<"en" | "pt-BR", ToolRouteEntry>>
 ```
 
-The canonical path is explicit data.
+Canonical path is explicit data and is **not** derived from `Astro.url.pathname`.
 
-It is **not** derived from `Astro.url.pathname`.
-
-This matters because:
-
-- fallback provider hostnames are not canonical origins;
-- Astro `build.format: "preserve"` changes build-time `Astro.url.pathname` semantics for non-index source files;
-- locale slugs differ;
-- canonical route governance belongs to Phase 5, not filesystem guessing.
+This is required because locale slugs differ, fallback hosts are not canonical origins, and `build.format: "preserve"` changes build-time path semantics for non-index source files.
 
 ---
 
-# 10. Astro static-generation integration
+# 10. Static generation
 
-Tools use static generation.
+Tools remain static-generated.
 
-The two localized dynamic route templates use `getStaticPaths()` to enumerate registry-approved route entries at build time.
-
-Conceptual English page:
+Canonical page templates:
 
 ```text
 src/pages/tools/[category]/[slug]/index.astro
-```
-
-Conceptual PT-BR page:
-
-```text
 src/pages/pt-br/ferramentas/[category]/[slug]/index.astro
 ```
 
-`getStaticPaths()` receives data only from the approved registry/content layer.
+Both use `getStaticPaths()` to enumerate only registry-approved routes at build time.
 
-No user-controlled runtime path causes an arbitrary tool page to render.
+No user-controlled runtime path creates arbitrary tool pages.
 
-Astro static mode therefore knows the complete tool route set during build.
+Category/root pages also derive published tools from the same catalog.
 
 ---
 
 # 11. Build-format reconciliation
 
-The approved target is:
+Approved target:
 
 ```text
 output: "static"
@@ -451,58 +332,42 @@ build.format: "preserve"
 trailingSlash: "ignore"
 ```
 
-## 11.1 Why `preserve`
+## 11.1 `preserve`
 
-Current commercial pages such as:
+Current commercial source files such as `src/pages/projetos/m47.astro` can remain flat output files, while Tools use nested `index.astro` source routes that materialize directory `index.html` artifacts.
 
-```text
-src/pages/projetos/m47.astro
-```
+Current Astro documentation confirms `build.format: "preserve"` preserves source-file form.
 
-remain flat output files.
+## 11.2 `trailingSlash: "ignore"`
 
-Tools pages are intentionally represented as nested `index.astro` files, producing directory `index.html` artifacts.
+Astro's trailing-slash setting controls development/on-demand matching. For prerendered pages, production hosting behavior controls actual slash normalization.
 
-This lets the source tree express the desired distinction without globally migrating commercial route structure merely to support Tools.
+Therefore:
 
-Current Astro documentation explicitly defines `preserve` as preserving source-file form:
+- Phase-5 Tools canonicals remain trailing-slash URLs;
+- deploy-layer rules must normalize non-slash Tools requests to canonical slash URLs where the provider supports it;
+- Phase 19 verifies one-hop behavior;
+- no engine depends on routing behavior.
 
-- `about.astro` → `/about.html` artifact;
-- `about/index.astro` → `/about/index.html` artifact.
+## 11.3 Never infer canonical from output filename
 
-## 11.2 Why `trailingSlash: "ignore"`
+With `preserve`, build-time `Astro.url` can include `.html` for flat pages. After integration, neither commercial nor Tools canonical metadata may blindly use `Astro.url.pathname` as canonical source.
 
-Astro's `trailingSlash` option controls development/on-demand route matching, not prerendered hosting normalization.
+The neutral metadata layer receives explicit canonical paths.
 
-Tools canonical paths still require trailing slashes under Phase 5.
-
-Production normalization for prerendered content therefore belongs to provider routing/redirect configuration and Phase-19 preflight.
-
-## 11.3 Canonical paths never come from output filenames
-
-Because `build.format: "preserve"` can expose `.html` in build-time `Astro.url` for non-index pages, neither commercial nor Tools canonical metadata may depend blindly on `Astro.url.pathname` after integration.
-
-The architecture introduces an explicit canonical-path input to neutral document metadata helpers.
-
-## 11.4 Provider compatibility
+## 11.4 Fallback compatibility
 
 `preserve` does not guarantee identical clean-URL behavior on every static host.
 
-The provider-neutral gate therefore means:
-
-- the static artifact is not coupled to Cloudflare APIs;
-- at least one approved fallback host must be demonstrated to serve required canonical routes correctly;
-- GitHub Pages remains preferred only where its route behavior is compatible;
-- Netlify/Vercel-style static fallback is acceptable if GitHub Pages cannot preserve required clean URLs safely;
-- host-specific redirects/config remain deploy-layer concerns, not engine logic.
+Provider neutrality therefore requires at least one approved fallback host to be verified against the canonical route contract. GitHub Pages is preferred only when compatible; another approved free/static fallback may be the verified fallback if clean-route behavior differs.
 
 ---
 
-# 12. Neutral document metadata layer
+# 12. Neutral document metadata
 
-The existing `BaseLayout.astro` must not become the universal Tools layout.
+Do not turn the current commercial `BaseLayout.astro` into a Tools monolith.
 
-Instead, the implementation should extract/share a neutral document-head primitive with semantics equivalent to:
+Extract/share a neutral head primitive with semantics equivalent to:
 
 ```ts
 interface DocumentMetadata {
@@ -517,77 +382,43 @@ interface DocumentMetadata {
 }
 ```
 
-A neutral component such as `DocumentHead.astro` can then be consumed by:
+A component such as `DocumentHead.astro` may be used by commercial `BaseLayout`, `ToolLayout` and future guide layouts.
 
-- commercial `BaseLayout`;
-- `ToolLayout`;
-- future guide layout.
-
-It must not impose Tools navigation, Ads or theme on commercial/demo pages.
+It must not impose Tools navigation, Ads or theme onto commercial/demo surfaces.
 
 ---
 
-# 13. ToolLayout boundary
+# 13. ToolLayout
 
-`ToolLayout.astro` owns Tools page chrome and semantic structure, including:
+`ToolLayout.astro` owns Tools page chrome and semantic structure:
 
-- correct locale on `<html lang>`;
+- correct `<html lang>`;
 - Tools navigation shell;
 - utility-first content order;
-- breadcrumb slot/data;
-- related-tool presentation boundary;
-- reserved future ad-slot regions;
+- breadcrumb presentation;
+- related-tool presentation;
+- future reserved ad-slot regions;
 - privacy/status message areas;
-- localized error/status presentation slots;
-- no dependency on commercial CTA/WhatsApp behavior.
+- localized error/status regions.
 
-`ToolLayout` does not execute tool engines itself.
-
-The interactive runtime attaches only to the tool surface.
+It does not execute engines and has no dependency on commercial WhatsApp/CTA behavior.
 
 ---
 
-# 14. Generic UI primitives vs specialized renderers
+# 14. UI model: generic primitives + specialized renderers
 
-The architecture deliberately avoids both extremes of a universal renderer and 50 bespoke pages.
+Shared primitives cover ordinary controls/results, for example:
 
-## 14.1 Shared primitives
-
-Common primitives may include:
-
-- numeric input;
-- text input;
-- date input;
-- select/radio controls;
-- bounded list input;
-- file picker/drop surface;
-- submit/calculate control;
-- reset control;
-- copy control;
-- download control;
-- scalar result;
-- table result;
-- text result;
+- number/text/date/select/list/file inputs;
+- submit/reset/cancel;
+- copy/download;
+- scalar/table/text result;
 - progress/status region;
 - accessible inline validation.
 
-## 14.2 Generic renderer
+Simple calculators may use generic composition.
 
-Simple calculator/converter tools may declare enough input/output metadata to render through shared form/result composition.
-
-Examples:
-
-- Margin Calculator;
-- Percentage Calculator;
-- Ratio Calculator;
-- CAGR Calculator;
-- Tip Calculator.
-
-## 14.3 Specialized renderers
-
-A tool may declare a specialized renderer id when interaction is materially different.
-
-Examples:
+Specialized renderer ids are allowed for genuine interaction differences such as:
 
 - Image Cropper;
 - Merge PDF;
@@ -595,13 +426,9 @@ Examples:
 - Markdown Previewer;
 - Regex Tester.
 
-Specialization is not permission to bypass boundary/runtime/security contracts.
+Specialized rendering never bypasses boundary/runtime/security contracts.
 
----
-
-# 15. UI definition contract
-
-Conceptual UI metadata:
+Conceptual metadata:
 
 ```ts
 interface ToolUiDefinition {
@@ -615,13 +442,30 @@ interface ToolUiDefinition {
 }
 ```
 
-UI metadata describes presentation affordances.
-
-It must not encode executable formulas.
+UI metadata contains presentation declarations, not formulas.
 
 ---
 
-# 16. Boundary architecture
+# 15. Boundary binding is metadata, execution is allowlisted
+
+Catalog binding:
+
+```ts
+interface ToolBoundaryBinding {
+  boundaryId: BoundaryId
+  profileId: SecurityProfileId
+}
+```
+
+The boundary implementation lives in code and resolves through an allowlisted boundary registry/loader.
+
+User input never chooses arbitrary boundary modules.
+
+This keeps ToolDefinition serializable while preserving a strict executable boundary.
+
+---
+
+# 16. Mandatory input pipeline
 
 Every applicable tool follows:
 
@@ -643,15 +487,15 @@ typed result
 safe output encoding/rendering
 ```
 
-The boundary layer owns the transition from untrusted input to engine input.
+The boundary owns transition from untrusted input to engine input.
 
-The engine may assume that its declared boundary contract has already run, but engine-internal defensive assertions are still allowed.
+The engine may rely on the declared boundary contract having run but may also perform defensive assertions.
 
 ---
 
-# 17. Boundary interface
+# 17. Executable boundary interface
 
-Conceptual interface:
+Conceptual implementation contract:
 
 ```ts
 interface ToolBoundary<Input> {
@@ -659,30 +503,17 @@ interface ToolBoundary<Input> {
 }
 ```
 
-`BoundaryResult` must be a typed success/error result, not an uncaught exception contract.
+`BoundaryResult` is a typed result, not an exception-only contract.
 
-The boundary profile derives from the Capability Map and Phase-7 security classes.
+Security metadata derives from Capability Map / Phase-7 security classes and supports applicable limits such as bytes, chars, fields, rows, pages, pixels, depth, accepted formats, timeout/work, active-content policy and output bounds.
 
-Required semantics include, when applicable:
-
-- maximum input bytes/chars;
-- number token limits;
-- file count/size;
-- accepted formats/protocols;
-- rows/columns/depth;
-- pages/pixels;
-- time/work budget class;
-- active-content policy;
-- canonicalization strategy;
-- output limit.
-
-Phase 6 exposes these fields; Phase 7 finalizes the concrete enforcement model and hostile-fixture matrix.
+Phase 6 defines the interface. Phase 7 finalizes enforcement details and hostile-fixture mapping.
 
 ---
 
-# 18. Security metadata in ToolDefinition
+# 18. Security metadata
 
-Every input-accepting tool must expose semantics equivalent to the binding policy:
+Every input-accepting tool must expose semantics equivalent to:
 
 ```ts
 interface ToolSecurityProfile {
@@ -699,17 +530,15 @@ interface ToolSecurityProfile {
 }
 ```
 
-Additional class-specific fields are required where relevant.
+Additional fields are required for pages/pixels/rows/depth/archive entries/etc. where relevant.
 
-A definition missing applicable limits must fail registry validation once implemented.
+Missing applicable limits must fail catalog validation once implemented.
 
 ---
 
-# 19. Engine architecture
+# 19. Engine contract
 
 An engine is computation, not product chrome.
-
-Conceptual contract:
 
 ```ts
 interface ToolEngine<Input, Output> {
@@ -717,34 +546,26 @@ interface ToolEngine<Input, Output> {
 }
 ```
 
-`EngineContext` may include only execution concerns such as:
+`EngineContext` may include execution concerns such as:
 
 - `AbortSignal`;
 - bounded clock/work hooks;
-- capability flags needed for deterministic local execution.
+- local capability flags needed for deterministic execution.
 
-It does not include:
+It does **not** include DOM elements, Ads, analytics, locale copy, Cloudflare bindings or a generic network client.
 
-- DOM elements;
-- ad provider;
-- analytics provider;
-- route object;
-- locale copy;
-- Cloudflare bindings;
-- arbitrary network client.
-
-Synchronous engines may be adapted to the Promise contract by the runtime.
+Synchronous engines may be adapted to the Promise contract.
 
 ---
 
 # 20. Engine-family reuse
 
-Multiple tools may share an engine family without sharing a URL or user intent.
+Different user/search intents may share engine primitives.
 
 Examples:
 
 ```text
-finance engine primitives
+finance primitives
 ├── loan-calculator
 ├── mortgage-calculator
 ├── amortization-calculator
@@ -765,13 +586,13 @@ Canvas image primitives
 └── png-to-jpg
 ```
 
-Engine reuse never overrides the Phase-5 distinct-intent URL contract.
+Shared engine does not collapse approved Phase-5 URLs.
 
 ---
 
 # 21. Execution profile
 
-Every tool definition must preserve the immutable runtime semantics:
+Every tool preserves immutable runtime semantics:
 
 ```ts
 interface ToolExecutionProfile {
@@ -789,121 +610,91 @@ For the frozen Launch 50:
 serverRequired = false
 ```
 
-for all ordinary operations.
+for ordinary operations.
 
-The extra `isolation` field distinguishes browser location from thread/isolation strategy.
-
----
-
-# 22. Main-thread adapter
-
-Use main-thread execution for bounded operations that are demonstrably fast enough not to harm responsiveness.
-
-Typical candidates:
-
-- scalar finance/math;
-- URL encoding;
-- UUID/password generation;
-- small text transforms;
-- small JSON parse/format below threshold;
-- simple color math.
-
-The runtime may still abort/cancel between work steps when an engine supports it.
-
-Do not move trivial work into Workers solely for architectural symmetry.
+The extra `isolation` field distinguishes browser location from thread strategy without weakening the parent workflow semantics.
 
 ---
 
-# 23. Web Worker adapter
+# 22. Main-thread execution
 
-Workers are used when one or more apply:
+Use main thread for bounded work that is demonstrably fast enough not to hurt responsiveness, such as scalar finance/math, URL encoding, UUID/password generation, small text transforms, simple color math and small structured-data operations below threshold.
 
-- untrusted input could trigger long computation;
-- parser/formatter work can block interaction;
-- explicit timeout/termination is a security control;
-- file processing is non-trivial;
-- capability map already calls for Worker isolation.
+Do not move trivial work into Workers for symmetry.
 
-Representative Launch-50 uses include:
+---
+
+# 23. Web Worker execution
+
+Use Workers when untrusted/heavy work can block UI or when termination is a security control.
+
+Representative Launch-50 classes include:
 
 - Regex Tester;
 - Text Diff;
 - HTML Formatter;
 - PDF structural operations;
 - large statistics input above threshold;
-- Markdown parsing/render preparation where configured.
+- Markdown parse/render preparation where configured.
 
-The Worker adapter must support:
+Worker adapters support:
 
 - typed request/response messages;
 - operation id;
 - cancellation;
 - hard termination on timeout where required;
-- safe normalization of worker exceptions;
+- safe exception normalization;
 - no implicit network calls.
 
 ---
 
-# 24. Worker construction model
+# 24. Worker construction and dependency isolation
 
-Heavy worker dependencies must not be imported by the global registry or global page bundle.
-
-Preferred model:
+Preferred flow:
 
 ```text
-Tool definition
-    ↓ engineId
-client loader manifest
-    ↓ dynamic import / Worker factory
-specific worker entry
-    ↓
-engine/dependency for that family only
+ToolDefinition
+  ↓ engineId
+allowlisted client loader
+  ↓
+specific Worker factory / dynamic chunk
+  ↓
+engine-family dependency only
 ```
 
-Worker entries should be specific enough to preserve dependency isolation but may be shared by a coherent engine family.
+Avoid one giant Worker that imports every parser/codec.
 
-Avoid one giant Worker bundle containing every parser/codec.
+A PDF tool must not cause PDF code to enter calculator/text bundles.
 
 ---
 
 # 25. WASM boundary
 
-WASM is local execution, not a backend.
+WASM remains local execution.
 
-Use WASM only when an audited capability materially benefits from:
+Use it only when an audited engine materially improves safety, performance, parser behavior or resource control.
 
-- safety;
-- performance;
-- parser behavior;
-- deterministic resource control.
-
-Launch 50 does not require a speculative generic WASM framework.
-
-The SDK must be able to describe `wasm-worker`, but implementation is required only if a frozen Launch-50 capability actually resolves to an approved WASM engine by its admission gate.
-
-WASM modules remain lazy and isolated.
+The SDK supports `wasm-worker` as a declared runtime class, but Launch 50 does not receive a speculative generic WASM framework if none of the frozen capabilities actually needs one after admission review.
 
 ---
 
-# 26. No normal backend execution for Launch 50
+# 26. No ordinary backend processing for Launch 50
 
-The public runtime architecture must not expose a normal per-operation backend-processing path for the frozen 50.
+The frozen 50 expose no normal per-operation MenezesDev processing endpoint.
 
-Tests later must prove that an ordinary tool operation does not invoke MenezesDev processing endpoints.
+Later tests must prove ordinary operations do not invoke a MenezesDev compute API.
 
-Network activity from optional analytics/ads is not tool processing and cannot be required for correctness.
+Optional Ads/analytics network activity is separate and cannot be required for correctness.
 
-If a future tool genuinely needs backend execution, that is a new capability-map/cost/security decision and must use an explicit server adapter outside the current Launch-50 path.
+A future server-required tool is a new capability/security/cost decision.
 
 ---
 
 # 27. Engine loader manifest
 
-Build-time tool metadata stores only `engineId`.
+Build-time catalog stores only `engineId`.
 
-Client executable resolution lives in an allowlisted client-only loader map.
-
-Conceptually:
+Client executable resolution is an allowlisted map such as:
 
 ```ts
 const engineLoaders = {
@@ -914,86 +705,65 @@ const engineLoaders = {
 } satisfies EngineLoaderMap
 ```
 
-The actual map is statically declared and type checked.
-
-User input never selects an arbitrary module path.
+The exact names may change, but arbitrary dynamic module strings from user input are forbidden.
 
 ---
 
-# 28. Dependency isolation rule
+# 28. Dependency policy
 
-A heavy/conditional dependency may only enter the chunk(s) of tools that need it.
+A heavy/conditional dependency enters only chunks that need it.
 
-Examples:
+Conditional dependencies remain uninstalled/unintegrated until their exact admission gates pass.
 
-- PDF dependency does not enter calculator bundles;
-- Prettier does not enter JSON/finance bundles;
-- image helper does not enter text tools;
-- future WASM does not enter every Tool page.
+Phase 6 reserves architecture slots; it does not approve dependencies.
 
-Conditional dependencies remain **uninstalled/unintegrated** until their admission gates are satisfied in the appropriate later implementation phase.
+The frozen conditional tools remain:
 
-Phase 6 defines the slot, not dependency approval.
+- Image Compressor;
+- HTML Formatter;
+- Merge PDF;
+- Split PDF.
+
+If a conditional gate fails, use the approved reserve/substitution process rather than weaken security.
 
 ---
 
 # 29. Lazy-loading policy
 
-Default policy:
+- shared tiny runtime may load with the tool surface;
+- heavy engines load only when their tool needs them;
+- file/parser engines may wait until operation start;
+- static SEO/content/navigation never waits for a heavy engine;
+- search index is not required in every tool page bundle.
 
-- shared tiny runtime may load with the interactive tool;
-- heavy engines/dependencies load only when the tool surface needs them;
-- file/parser engines may wait until the user begins an operation;
-- content, SEO, breadcrumbs and related links never wait for a heavy engine.
-
-Search crawlers and users reading tool explanations must not download a PDF/parser/codec merely to render the static page meaning.
+Crawler-visible meaning must not depend on downloading PDF/image/formatter engines.
 
 ---
 
-# 30. Tool runtime controller
-
-The Tool Runtime Controller coordinates interaction without owning tool-specific formulas.
+# 30. Runtime controller
 
 Responsibilities:
 
-1. collect raw input from the renderer;
-2. call the declared boundary;
-3. reject invalid/bounded input before engine execution;
-4. load the declared engine/runtime adapter;
+1. collect raw input from renderer;
+2. invoke declared boundary;
+3. reject invalid/bounded input before engine load where possible;
+4. load approved engine/runtime adapter;
 5. execute with cancellation/timeout context;
 6. normalize result/error;
 7. render through approved output sinks;
-8. emit privacy-safe lifecycle telemetry through the adapter if enabled.
+8. emit privacy-safe lifecycle telemetry if an adapter is enabled.
 
-It never:
-
-- sends user data to Ads/analytics;
-- uploads local files for browser-capable tools;
-- chooses unapproved dependencies dynamically;
-- changes SEO routes;
-- decides traffic/ad policy.
+It never sends user data to Ads/analytics, uploads local files for browser-capable tools, chooses arbitrary dependencies, changes SEO routes or decides traffic policy.
 
 ---
 
-# 31. Result contract
-
-Tool results use explicit discriminated results.
-
-Conceptually:
+# 31. Result/error model
 
 ```ts
 type ToolExecutionResult<T> =
   | { ok: true; value: T; meta?: SafeResultMeta }
   | { ok: false; error: ToolError }
 ```
-
-Expected validation/runtime failures are represented as values rather than uncaught exceptions.
-
-Unexpected exceptions are caught at the adapter boundary and converted to a safe `ENGINE_FAILURE` error.
-
----
-
-# 32. Error model
 
 Canonical error classes include:
 
@@ -1007,50 +777,34 @@ ABORTED
 ENGINE_FAILURE
 ```
 
-Additional safe domain codes may be added when a real Launch-50 need exists, such as explicit encrypted/unsupported PDF handling.
+Additional safe domain codes may be added only for real needs, such as encrypted/unsupported PDF states.
 
-`ToolError` may contain:
+A `ToolError` may expose stable code, localized message key, safe field reference and retry/cancel state. It must never expose stack trace, filesystem path, secret, raw private input or private parser payload.
 
-- stable code;
-- locale message key;
-- safe field reference;
-- retryability/cancel state;
-- coarse safe diagnostic class.
-
-It must not expose:
-
-- stack trace;
-- filesystem path;
-- secret;
-- raw private input;
-- parser-internal private payload.
+Unexpected exceptions are caught at runtime boundaries and normalized to safe errors.
 
 ---
 
-# 33. Output rendering
-
-Output rendering follows the security class.
+# 32. Safe output rendering
 
 Default sinks:
 
 - text → escaped/text-safe output;
 - number → formatted text;
 - table → escaped cells;
-- generated file → Blob/Object URL created locally;
-- HTML preview → only through the explicitly approved sanitizer/render path;
-- PDF/image output → local Blob/Object URL, no automatic upload.
+- generated file → local Blob/Object URL;
+- HTML preview → only through approved sanitizer/render path;
+- PDF/image output → local Blob/Object URL.
 
 Object URLs are revoked when no longer needed.
 
-No engine result is considered trusted HTML merely because it came from our own code.
+Engine output is not trusted HTML merely because it came from internal code.
 
 ---
 
-# 34. Locale/content architecture
+# 33. Locale content owns localized copy exactly once
 
-Tool content is separated from executable engines.
-
-Conceptual content contract:
+Localized human-readable content is stored separately from executable engines and is the **single authoring source** for localized title/description/H1/labels/errors/explanations.
 
 ```ts
 interface ToolLocaleContent {
@@ -1070,33 +824,57 @@ interface ToolLocaleContent {
 }
 ```
 
-English and PT-BR are statically generated separately.
+The catalog does not duplicate localized `title` or `description`.
 
-The browser does not download the entire second locale merely to render one tool.
-
----
-
-# 35. Locale rules
-
-- English content is the canonical authored primary language.
-- PT-BR is a deliberate localization, not string replacement at runtime.
-- Locale affects labels, copy, numeric/date/currency display where appropriate.
-- Engine input/output remains locale-neutral whenever possible.
-- Parsing localized user numeric inputs must be explicit and deterministic; do not silently infer ambiguous separators without a declared policy.
-- Locale content cannot change formulas or security limits.
-
-Phase 17 remains responsible for final PT-BR linguistic/cultural QA.
+English and PT-BR pages are statically generated separately. A page does not download all translations at runtime.
 
 ---
 
-# 36. SEO integration
+# 34. Locale semantics
 
-The Tool SDK must be able to satisfy every Phase-5 SEO semantic.
+- English is canonical authored primary content.
+- PT-BR is deliberate localization, not runtime string replacement.
+- Locale affects visible copy and formatting conventions where appropriate.
+- Engine computation remains locale-neutral whenever possible.
+- Ambiguous localized numeric parsing must follow an explicit policy; do not guess separators silently.
+- Locale content cannot change formulas, security limits or execution class.
+- Phase 17 owns final PT-BR linguistic/cultural QA.
 
-Conceptual SEO contract includes:
+---
+
+# 35. SEO ownership: structural policy + resolved locale metadata
+
+To avoid drift, Phase 6 separates **structural SEO policy** from **localized SEO copy**.
+
+Catalog-level structural policy may contain:
 
 ```ts
-interface ToolSeoDefinition {
+interface ToolSeoPolicy {
+  structuredData: StructuredDataKind[]
+  socialImagePolicy?: SocialImagePolicy
+}
+```
+
+Localized `title`/`description` live only in `ToolLocaleContent`.
+
+At build time, the SEO resolver combines:
+
+```text
+ToolDefinition structural policy
++
+ToolRouteEntry canonical/index data
++
+ToolLocaleContent localized copy
++
+related/breadcrumb registry data
+=
+ResolvedToolSeo
+```
+
+Conceptually:
+
+```ts
+interface ResolvedToolSeo {
   canonicalPath: string
   indexPolicy: "index" | "noindex"
   title: string
@@ -1107,51 +885,40 @@ interface ToolSeoDefinition {
 }
 ```
 
-SEO output is generated at build time.
+This is a derived build object, not a second authoring source.
 
-The interactive client runtime must not mutate canonical/hreflang/title into conflicting values.
+The client runtime must not mutate canonical/hreflang/title into conflicting values.
 
 ---
 
-# 37. Canonical-origin configuration boundary
+# 36. Canonical-origin configuration
 
-The canonical product origin is configuration, not request-host inference.
+Canonical product origin is configuration, not request-host inference.
 
-The existing `PUBLIC_SITE_URL` concept may continue to serve as the canonical origin if implementation keeps the semantics explicit.
+The existing `PUBLIC_SITE_URL` concept may continue if semantics remain explicit:
 
-Requirements:
-
-- production canonical origin points to the approved MenezesDev domain;
-- preview/fallback provider hostname does not replace it automatically;
-- sitemap/hreflang/canonical builders consume the same canonical origin;
-- no engine reads canonical-origin configuration.
+- production value is the approved MenezesDev canonical origin;
+- preview/fallback provider hostname does not overwrite it automatically;
+- sitemap/hreflang/canonical builders consume the same origin;
+- engines never read canonical-origin config.
 
 Deploy-host identity and canonical product identity are separate concepts.
 
 ---
 
-# 38. Category and root generation
+# 37. Category/root generation
 
-Category/root pages derive published tools from registry state.
+Category/root pages derive from published catalog data.
 
-The registry provides enough metadata to determine:
+Catalog + locale content must provide enough metadata for category membership, localized label/description, publication/index state and canonical route resolution.
 
-- locale route;
-- publication status;
-- category membership;
-- localized title/description;
-- search aliases;
-- index policy.
-
-Phase-5 category index thresholds remain binding.
-
-A category with insufficient complete tools can still render for users while remaining `noindex,follow` according to the approved SEO contract.
+Phase-5 category indexing thresholds remain binding.
 
 ---
 
-# 39. Related-tool graph
+# 38. Related-tool graph
 
-Relations are stored by stable tool id:
+Relations are stored by stable ids:
 
 ```ts
 interface ToolRelations {
@@ -1161,34 +928,17 @@ interface ToolRelations {
 }
 ```
 
-Build helpers resolve those ids into localized URLs.
+Build helpers resolve ids into locale-specific URLs.
 
-Registry validation must reject:
+Validation rejects missing ids, duplicate ids, unjustified self-links and locale references to unpublished routes.
 
-- missing ids;
-- self-links unless explicitly justified;
-- duplicate ids;
-- references to unpublished locale routes when rendering that locale.
-
-The future autonomous system may update low-risk relation edges only under the approved Option-B policy.
+Future Option-B autonomy may adjust low-risk relation edges only inside approved policy.
 
 ---
 
-# 40. Search-index architecture
+# 39. Search-index architecture
 
-Launch search remains local/client-side.
-
-The registry/content pipeline emits one compact public metadata index per locale.
-
-Conceptually:
-
-```text
-generated search index
-├── en
-└── pt-BR
-```
-
-Each entry may contain only public metadata:
+The catalog/content pipeline emits one compact public metadata index per locale containing only:
 
 - tool id;
 - localized title;
@@ -1198,76 +948,39 @@ Each entry may contain only public metadata:
 - canonical route;
 - short description.
 
-Do not include tool user data, engine output or private state.
+Search remains client-side/local and the index is loaded only where search is used.
 
-The search index should be loaded only by surfaces that need search; it is not required in every tool bundle.
+No user tool data or private state enters this index.
 
----
-
-# 41. Search route/index ownership
-
-No second hand-maintained list of tool routes is allowed for search.
-
-The registry is authoritative.
-
-Similarly:
-
-- sitemap derives from registry/build manifests;
-- hreflang derives from route mappings;
-- category listings derive from registry;
-- related-tool URL resolution derives from registry.
-
-This does not mean commercial routes must be moved into the Tool registry.
+No second hand-maintained route list is allowed for search.
 
 ---
 
-# 42. Commercial route separation
+# 40. Commercial route separation and site manifest
 
-Existing commercial/demo route definitions remain a separate domain model.
+Commercial/demo routes remain their own domain model and are not forced into `ToolDefinition`.
 
-A later build-validation layer may compose:
+A build-validation layer composes:
 
 ```text
 commercial route manifest
 +
-Tools-generated route manifest
+Tools generated route manifest
 =
-site release route manifest
+site release manifest
 ```
 
-Do not force commercial/demo pages to become fake `ToolDefinition` entries.
+The release manifest must distinguish at least route id, expected output artifact, canonical path, locale, indexability, surface class and expected alternates.
 
-Do not let Tools code alter `/demo/**` index policy.
+Validation scripts consume authoritative manifests instead of hard-coding every future localized route.
 
----
-
-# 43. Build validation manifest
-
-The existing route-check script cannot remain a hand-written list once Tools generates 100+ localized routes.
-
-The architecture requires a machine-readable expected-route/build manifest generated from authoritative route sources.
-
-It must distinguish at least:
-
-- route id;
-- expected output artifact;
-- canonical path;
-- locale;
-- indexability;
-- surface class (`commercial`, `portfolio`, `demo`, `tool`, `category`, `guide`);
-- expected alternate locales where applicable.
-
-Validation scripts consume this manifest instead of duplicating every route string.
-
-The exact generated file path is decided by the implementation plan.
+The exact generated file path belongs to Phase 9 planning.
 
 ---
 
-# 44. Analytics adapter
+# 41. Analytics adapter
 
-Tool functionality must work with analytics completely disabled.
-
-Conceptual adapter:
+Tool functionality works with analytics disabled.
 
 ```ts
 interface ToolAnalyticsAdapter {
@@ -1275,47 +988,21 @@ interface ToolAnalyticsAdapter {
 }
 ```
 
-Launch implementation starts with a no-op adapter until Phase 18 enables product telemetry.
+Phase 11 may begin with a no-op adapter; Phase 18 owns actual transport/storage.
 
-The event type is narrow and typed.
+The event type is narrow and typed. It may represent tool start/success/safe error/duration bucket/runtime/tool id/category.
 
-Allowed event semantics remain:
+Do **not** expose a generic arbitrary property bag that makes private content easy to log.
 
-- tool start;
-- success;
-- safe error class;
-- duration bucket;
-- runtime used;
-- tool/category id.
-
-Do not expose a generic `Record<string, unknown>` bag that makes private input easy to log accidentally.
+Telemetry types must not contain raw input, file bytes, pasted text, financial values, generated secrets, extracted metadata or private outputs.
 
 ---
 
-# 45. Analytics privacy-by-type
+# 42. Ads interface
 
-The telemetry model must make prohibited content structurally difficult to send.
+Phase 6 defines a seam, not AdSense implementation/policy.
 
-For example, event types must not contain fields such as:
-
-- raw input;
-- filename unless separately proven non-sensitive and explicitly approved;
-- file bytes;
-- pasted text;
-- financial values;
-- generated password/token/hash source;
-- extracted metadata;
-- private output.
-
-Phase 18 defines actual storage/transport.
-
----
-
-# 46. Ads interface
-
-Phase 6 defines an interface boundary, not AdSense implementation or policy.
-
-Tool metadata can expose a class such as:
+Tool metadata may declare a monetization class such as:
 
 ```text
 eligible
@@ -1324,9 +1011,7 @@ eligible-private
 ad-free
 ```
 
-The eventual ad layer receives eligibility from the future Traffic Guard/Ad policy.
-
-Conceptual interface:
+Conceptual provider:
 
 ```ts
 interface AdProvider {
@@ -1335,32 +1020,19 @@ interface AdProvider {
 }
 ```
 
-The default/no-op provider performs no network request.
+Default/no-op provider makes no network request.
+
+Ads may fail, be blocked or be disabled without affecting validation, engine load, result, download/copy, SEO or navigation.
+
+Phase 14 owns placements/provider behavior.
 
 ---
 
-# 47. Ads cannot affect correctness
+# 43. Traffic Guard seam
 
-An ad provider may fail, be blocked or be disabled without affecting:
+Phase 8 owns classification and `adsEligible` policy.
 
-- input validation;
-- engine load;
-- tool result;
-- download/copy actions;
-- SEO content;
-- navigation.
-
-Ads are an optional monetization side effect.
-
-Phase 14 defines placements and provider behavior.
-
----
-
-# 48. Traffic Guard interface seam
-
-Phase 8 owns bot classification and `adsEligible` policy.
-
-Phase 6 reserves only a narrow seam such as:
+Phase 6 reserves only a narrow data seam such as:
 
 ```ts
 interface TrafficDecision {
@@ -1370,491 +1042,334 @@ interface TrafficDecision {
 }
 ```
 
-Launch-50 local tools do not need a traffic decision to perform local computation.
+Frozen local tools do not require a traffic decision to compute locally.
 
-A suspicious visitor may have ads disabled while still being able to use safe local tools, subject to future abuse policy.
-
----
-
-# 49. Privacy message model
-
-Privacy/local-processing messaging is tool metadata/content, not runtime guesswork.
-
-File/secret tools can truthfully state local processing only if their approved execution path actually remains local.
-
-If a future tool gains a server-required mode, privacy copy must become mode-aware and cannot continue claiming fully local execution.
+A suspicious visitor may have Ads disabled while safe local computation remains available, subject to Phase-8 abuse policy.
 
 ---
 
-# 50. Dependency admission boundary
+# 44. Privacy/local-processing messaging
 
-The architecture can reference a dependency slot only after the dependency's audit state permits it.
+Privacy claims are declared content/metadata, not inferred from implementation accidents.
 
-Rules:
+A file/secret tool may claim local processing only when the approved execution path is actually local.
 
-- `APPROVED` may be integrated according to its audited conditions;
-- `CONDITIONAL` remains blocked until every listed condition is proven;
-- `HOLD`/`REJECT` cannot be imported into production code;
-- exact version/range pinning belongs in implementation plan/lockfile;
-- transitive dependency/license notices are verified before release.
-
-Phase 6 does not promote conditional dependencies.
+If a future mode introduces server processing, privacy messaging must become mode-aware.
 
 ---
 
-# 51. Conditional Launch-50 engines
+# 45. Dependency admission boundary
 
-The frozen four conditional tools remain conditional:
+- `APPROVED` dependencies may be integrated according to audited conditions.
+- `CONDITIONAL` dependencies remain blocked until all listed conditions pass.
+- `HOLD`/`REJECT` may not enter production code.
+- exact pinning/NOTICE work belongs to later implementation/release steps.
 
-- Image Compressor;
-- HTML Formatter;
-- Merge PDF;
-- Split PDF.
+Phase 6 does not promote dependency state.
 
-The architecture must permit reserve substitution without changing SDK fundamentals if one admission gate fails.
-
-No conditional engine receives a special bypass because the Launch matrix is frozen.
+The architecture must allow reserve substitution if a frozen conditional capability fails.
 
 ---
 
-# 52. PWA/offline decision
+# 46. PWA/offline decision
 
-Launch 50 architecture is **PWA-compatible but does not require a service worker**.
+Launch 50 is **PWA-compatible but service-worker-free by default**.
 
-Decision:
+- do not add a service worker merely for symmetry;
+- local deterministic engines remain compatible with future offline caching;
+- user-generated input/output is never a default cache target;
+- Ads/analytics are not correctness dependencies;
+- future offline eligibility may be declared per tool.
 
-- no service worker is introduced merely for Phase 6 symmetry;
-- local deterministic engines should remain compatible with future offline caching;
-- user-generated tool input/output is never a default cache target;
-- analytics/ad code is not required for offline correctness;
-- if PWA is later enabled, each tool can declare offline eligibility.
-
-This satisfies portability requirements without adding stale-cache/update risk prematurely.
+This preserves cheap future optionality without stale-cache/update risk now.
 
 ---
 
-# 53. Provider-neutral application boundary
+# 47. Provider-neutral boundary
 
-Core browser code may depend on:
+Core browser code may depend on browser standards, bundled approved JS/WASM and static assets.
 
-- standards-based browser APIs;
-- bundled approved JS/WASM;
-- static assets.
+Ordinary Launch-50 engines may not depend on Cloudflare-specific globals, Pages Functions, provider request metadata or secret runtime bindings.
 
-It may not depend on:
+Provider configuration belongs to deployment/edge adapters introduced later.
 
-- Cloudflare Pages Functions;
-- Cloudflare-specific globals;
-- deployment-provider request metadata;
-- secret runtime bindings;
+On fallback hosts:
 
-for ordinary Launch-50 operation.
-
-Provider-specific configuration belongs under deployment/edge adapters introduced in later phases.
-
----
-
-# 54. Fallback behavior
-
-Because Launch 50 processing is local:
-
-- a fallback static host should retain tool computation if static assets/routes work;
-- analytics/ads may be disabled safely;
-- provider-specific edge protections may degrade only to the safe policy defined in Phase 8/19;
+- local computation should remain functional;
+- Ads/analytics may be disabled safely;
 - canonical origin remains MenezesDev;
-- no fallback host may rewrite tool ids/routes internally.
-
-The release architecture must be smoke-testable on at least one approved fallback target.
-
----
-
-# 55. Client framework decision
-
-Do **not** add React, Vue, Svelte or another client UI framework for Launch 50 by default.
-
-The existing app is Astro + TypeScript + minimal vanilla JavaScript.
-
-The frozen tools do not currently demonstrate a need that justifies a client framework as a dependency and bundle/runtime cost.
-
-Use:
-
-- Astro for static structure;
-- semantic HTML;
-- focused TypeScript modules/custom-element-style controllers where useful;
-- Web Workers for isolated computation;
-- CSS/Tailwind for presentation.
-
-A future framework introduction would require evidence and a dedicated dependency/architecture decision.
+- tool ids/routes do not change;
+- at least one fallback path must be smoke-tested before release.
 
 ---
 
-# 56. Progressive enhancement
+# 48. Client framework decision
 
-Tool pages must expose their meaning, labels, privacy information, explanation and related navigation in static HTML.
+Do **not** add React, Vue, Svelte or another client UI framework by default for Launch 50.
 
-The interactive calculation/conversion requires client JavaScript where appropriate.
+Use the existing Astro + TypeScript + semantic HTML + focused vanilla client modules baseline.
 
-Failure to load optional analytics/ads never blocks the tool.
+Workers isolate heavy computation; CSS/Tailwind handles presentation.
 
-If JavaScript itself fails, the page should still remain a valid informational/navigation page rather than a blank application shell.
-
----
-
-# 57. Testing architecture
-
-Phase 6 defines the following layers.
-
-## 57.1 Registry/invariant tests
-
-Verify:
-
-- stable ids are unique;
-- exact Launch route mappings are unique;
-- locale routes match Phase 5;
-- related ids exist;
-- engine ids exist in the allowlisted manifest;
-- no conditional dependency is accidentally admitted;
-- required security/SEO metadata exists.
-
-## 57.2 Engine unit tests
-
-Verify deterministic formulas/transforms directly without DOM.
-
-Finance/math engines require deterministic fixtures and edge cases.
-
-Property tests are preferred where algebraic invariants make them useful.
-
-## 57.3 Boundary tests
-
-Verify:
-
-- min/max inputs;
-- malformed tokens;
-- byte/row/page/pixel limits;
-- canonicalization;
-- output size limits;
-- unsupported formats;
-- locale parsing behavior.
-
-## 57.4 Worker/runtime tests
-
-Verify:
-
-- typed message flow;
-- cancellation;
-- hard timeout/termination where required;
-- Worker exception normalization;
-- repeated operations do not leak active workers/object URLs.
-
-## 57.5 Security/hostile fixture tests
-
-Phase 7 defines exact fixture corpora and gates.
-
-The test architecture must support:
-
-- malformed PDF/image/archive/HTML;
-- catastrophic regex;
-- decompression/resource bombs;
-- active-content fixtures;
-- invalid encodings;
-- oversized structures.
-
-## 57.6 Route/SEO build tests
-
-Verify generated output for:
-
-- exact route presence;
-- canonical path;
-- hreflang reciprocity;
-- locale/lang;
-- index/noindex;
-- sitemap inclusion/exclusion;
-- breadcrumbs;
-- no demo indexing regression;
-- no provider hostname as canonical.
-
-## 57.7 Browser interaction tests
-
-Representative tools must be exercised through real browser interaction for:
-
-- keyboard operation;
-- reset/cancel;
-- copy/download;
-- async progress/error state;
-- file selection where applicable.
-
-## 57.8 Accessibility tests
-
-Use semantic inputs/labels/status regions and automated accessibility audits, with manual keyboard checks for specialized renderers.
-
-## 57.9 Bundle-isolation tests
-
-Prove that common calculator/text pages do not load heavy unrelated dependencies.
-
-Examples:
-
-- Percentage Calculator must not ship/load PDF code;
-- Loan Calculator must not load Prettier;
-- Word Counter must not load image codecs.
-
-## 57.10 Economic/network tests
-
-For representative and ultimately all Launch-50 operation classes, assert that ordinary execution does not call a MenezesDev processing API.
-
-Optional ad/analytics requests are evaluated separately and cannot be required for success.
-
-## 57.11 Provider-neutral build smoke
-
-Verify the generated artifact on Cloudflare-compatible primary behavior and at least one approved fallback path before release.
+A future UI framework requires evidence and a dedicated dependency/architecture decision.
 
 ---
 
-# 58. Test data and fixtures boundary
+# 49. Progressive enhancement
 
-Tests may contain synthetic/malformed fixtures committed for security/correctness purposes.
+Tool meaning, labels, privacy information, explanations and related navigation are static HTML.
 
-They must not contain real user/private files or secrets.
+Interactive calculation/conversion uses client JavaScript as needed.
 
-Hostile fixtures must be small where possible and designed to exercise resource guards without making CI itself unsafe or expensive.
+If optional Ads/analytics fail, tool function continues.
 
----
-
-# 59. Build/release validation evolution
-
-The existing `check-routes.mjs` remains useful history but cannot scale as a static list of 16 paths.
-
-Implementation must evolve validation so route expectations come from authoritative manifests.
-
-Release checks must still preserve legacy commercial assertions while adding Tools assertions.
-
-The existing acceptance contract is not deleted merely because Tools adds another validation layer.
+If JavaScript itself fails, the page remains a meaningful informational/navigation page rather than a blank app shell.
 
 ---
 
-# 60. Integration branch strategy
+# 50. CSP and network boundaries
 
-Phase 10 will create `feat/tools-platform` only after Phase 9 planning.
+Tools remain compatible with a strict CSP.
 
-The intended integration relationship is:
+- no `unsafe-eval` for convenience;
+- no arbitrary remote script dependency for engines;
+- Worker/WASM CSP needs are finalized in Phase 7;
+- Ads/analytics CSP additions belong to later phases;
+- CSP changes cannot silently weaken commercial/demo security.
+
+Ordinary engines receive no generic network adapter and perform no hidden fetch/XHR.
+
+---
+
+# 51. Testing architecture
+
+## 51.1 Catalog/invariant tests
+
+Verify unique ids/routes, exact Phase-5 route mapping, locale ownership, relations, approved engine/boundary ids, required security metadata and dependency-state gates.
+
+## 51.2 Engine unit/property tests
+
+Test formulas/transforms without DOM. Finance/math require deterministic edge fixtures; property tests are preferred where invariants justify them.
+
+## 51.3 Boundary tests
+
+Test malformed/min/max inputs, size/work limits, canonicalization, unsupported formats, locale parsing and output limits.
+
+## 51.4 Worker/runtime tests
+
+Test message flow, cancellation, timeout/termination, error normalization and cleanup of Workers/Object URLs.
+
+## 51.5 Security/hostile fixtures
+
+The architecture supports malformed PDF/image/archive/HTML, catastrophic regex, resource bombs, active content, invalid encodings and oversized structures. Phase 7 defines exact corpora/gates.
+
+## 51.6 Route/SEO build tests
+
+Verify route artifacts, canonical, hreflang reciprocity, `<html lang>`, index/noindex, sitemap behavior, breadcrumbs, no demo-indexing regression and no provider hostname as canonical.
+
+## 51.7 Browser interaction/accessibility
+
+Exercise keyboard operation, reset/cancel, copy/download, async states, file selection and specialized renderer accessibility.
+
+## 51.8 Bundle isolation
+
+Prove common pages do not ship/load unrelated heavy chunks:
+
+- Percentage Calculator does not load PDF code;
+- Loan Calculator does not load Prettier;
+- Word Counter does not load image codecs.
+
+## 51.9 Economic/network tests
+
+Assert ordinary tool operations do not call MenezesDev processing APIs. Ads/analytics requests are tested separately and cannot be required for success.
+
+## 51.10 Provider-neutral smoke
+
+Verify the static artifact against Cloudflare-primary behavior and at least one approved fallback path before release.
+
+---
+
+# 52. Test fixtures
+
+Security/correctness fixtures may be synthetic and malformed but must not contain real user/private files or secrets.
+
+Hostile fixtures should be minimal enough to keep CI safe while still exercising resource guards.
+
+---
+
+# 53. Validation evolution
+
+The existing 16-route hard-coded validation is historical and must evolve for generated localized Tools.
+
+New validation consumes machine-readable route/build manifests while preserving legacy commercial assertions.
+
+The commercial acceptance contract is not deleted simply because Tools adds another validation layer.
+
+---
+
+# 54. Integration branch strategy
+
+Phase 10 creates `feat/tools-platform` only after Phase 9 planning.
+
+Intended relationship:
 
 ```text
 latest approved commercial implementation base
-           +
++
 Tools documentation/spec history
-           ↓
+↓
 feat/tools-platform
 ```
 
-At design time, the identified commercial base is:
+At design time the identified commercial implementation base is:
 
 ```text
 feat/phase-10-implementation
 @ 152fab910296f29cfae2e07bf6ccc2c69f0ce0df
 ```
 
-If that branch advances before Phase 10, the implementation plan must re-verify the successor commit rather than blindly pinning stale code.
+If that branch advances, Phase 10 re-verifies the successor rather than blindly pinning stale code.
+
+Tools history/workflow/addenda must remain recoverable and conflicts must be reviewed explicitly. `main` remains outside partial Tools implementation.
 
 ---
 
-# 61. Git-history preservation
+# 55. Focused changes to existing commercial code
 
-The Tools research/spec history must remain recoverable when the implementation branch is created.
-
-Phase 10 may merge/cherry-pick/reconcile histories according to the approved plan, but it must:
-
-- preserve canonical Tools docs;
-- preserve workflow/addenda authority;
-- review conflicts explicitly;
-- avoid overwriting newer commercial application work;
-- keep `main` out of partial Tools implementation.
-
-This design does not itself create or merge branches.
-
----
-
-# 62. Existing commercial code changes allowed later
-
-The implementation may make focused shared changes necessary for Tools, such as:
+Later implementation may make focused shared changes required by this architecture, including:
 
 - extracting neutral document metadata from `BaseLayout`;
 - changing canonical generation to explicit canonical paths;
 - changing Astro build format to `preserve`;
 - composing build route manifests;
 - expanding sitemap generation;
-- extending CSP when approved client dependencies require it.
+- extending CSP only when approved dependencies/runtime require it.
 
-These changes require tests that prove commercial/demo behavior is preserved.
+Tests must prove commercial/demo behavior remains intact.
 
-Unrelated redesign/refactoring of the commercial site is out of scope.
-
----
-
-# 63. CSP boundary
-
-The existing CSP is a valuable baseline.
-
-Phase 6 requires that Tools remain compatible with a strict CSP.
-
-Rules:
-
-- no `unsafe-eval` merely for convenience;
-- no arbitrary remote script dependency for tool engines;
-- Worker/WASM requirements are explicitly accounted for in Phase 7 security design;
-- Ads/analytics CSP additions belong to their later approved phases;
-- CSP changes cannot silently weaken commercial/demo security.
-
-Phase 7 owns the final concrete directive matrix.
+Unrelated commercial redesign/refactor is out of scope.
 
 ---
 
-# 64. Network boundary
+# 56. Future editorial fact-pack seam
 
-Ordinary engine modules receive no generic network adapter.
+Deterministic engines/tests should expose reusable verified fixtures or fact-generation helpers where appropriate.
 
-If a specific future capability needs network access, that is explicit tool metadata and a reviewed runtime class.
+Future Phase-21 editorial orchestration may consume these outputs through a separate layer.
 
-Launch 50 engines must not perform hidden fetch/XHR calls.
-
-This keeps browser-first behavior auditable.
+The LLM never becomes the source of truth for formulas or tool results.
 
 ---
 
-# 65. Deterministic fact packs for future editorial automation
+# 57. Tool Factory compatibility
 
-Where formulas/examples are deterministic, engines/tests should expose reusable verified fixtures or fact-generation helpers without coupling them to the LLM system.
+Future low-risk Tool Factory output must conform to this architecture:
 
-Future Phase-21 editorial automation may consume those verified outputs through a separate build/orchestration layer.
-
-The LLM never becomes the source of truth for formulas/results.
-
----
-
-# 66. Tool Factory compatibility
-
-The future Tool Factory can create a low-risk tool automatically only when it can produce/modify artifacts that conform to this architecture:
-
-- registry definition;
-- approved locale content;
-- approved engine id or new internal deterministic engine within whitelist;
-- boundary/security profile from existing approved classes;
+- catalog definition;
+- locale content;
+- approved engine id or policy-permitted deterministic internal engine;
+- approved boundary/security class;
 - tests;
-- SEO metadata;
+- SEO structure;
 - relations.
 
-It cannot grant itself:
-
-- a new dependency;
-- a new backend path;
-- a new security class;
-- a new crawler/provider;
-- a policy change.
-
-Those remain hard stops under the autonomous-growth addendum.
+It cannot grant itself a dependency, backend path, security class, crawler/provider or policy change.
 
 ---
 
-# 67. Implementation sequencing implications
+# 58. Later implementation-order implication
 
-This architecture implies the later implementation order should begin with foundations before 50 tool pages:
+The architecture implies foundation-first work:
 
 1. neutral document/SEO boundary;
-2. Tool SDK core types and registry validation;
-3. route generation;
-4. runtime/boundary/result/error primitives;
+2. Tool SDK core types + catalog validation;
+3. static route generation;
+4. boundary/result/error/runtime primitives;
 5. generic UI primitives;
-6. selected reference engines/renderers;
-7. Worker/lazy-load infrastructure as demonstrated by reference tools;
-8. security enforcement from Phase 7;
-9. Traffic/Ads seams from Phase 8;
-10. reference proof set;
+6. representative engines/renderers;
+7. Worker/lazy-load infrastructure demonstrated by reference tools;
+8. Phase-7 security enforcement;
+9. Phase-8 Traffic/Ads seams;
+10. proof set;
 11. mass waves.
 
-The exact task/commit plan belongs to Phase 9 `writing-plans`, not this design.
+Exact files/tasks/commits belong to Phase 9 `writing-plans`.
 
 ---
 
-# 68. Non-goals of Phase 6
+# 59. Non-goals
 
 Phase 6 does not:
 
 - install dependencies;
 - create `feat/tools-platform`;
 - edit `feat/phase-10-implementation`;
-- implement the Tool SDK;
-- implement any of the 50 tools;
+- implement Tool SDK/runtime;
+- implement any Launch-50 tool;
 - approve conditional dependencies;
-- finalize security budgets beyond existing policy/capability data;
+- finalize Phase-7 resource/threat details;
 - implement Traffic Guard/Cost Guard;
 - implement AdSense;
-- implement product analytics;
-- implement Search Console;
-- implement AI Editorial;
-- implement Trend Radar/crawler;
-- implement Tool Factory;
+- implement product analytics/Search Console;
+- implement AI Editorial/Trend Radar/crawler/Tool Factory;
 - enable a PWA/service worker;
 - merge Tools work to `main`.
 
 ---
 
-# 69. Phase-6 validation checklist
+# 60. Phase-6 validation checklist
 
-The written architecture is complete only if all are defined:
-
-- [x] existing Astro app reconciliation;
+- [x] existing Astro app reconciled;
 - [x] implementation base identified;
-- [x] Tools module boundaries;
-- [x] stable tool identity;
-- [x] Tool SDK semantic interface;
-- [x] registry/executable separation;
-- [x] route/static-generation contract;
-- [x] `build.format`/trailing-slash reconciliation;
-- [x] neutral document/layout boundary;
-- [x] generic vs specialized UI model;
-- [x] input boundary model;
-- [x] shared security metadata interface;
-- [x] pure engine contract;
-- [x] main-thread/Worker/WASM boundaries;
-- [x] no-backend Launch-50 path;
-- [x] lazy engine loader model;
-- [x] dependency isolation;
-- [x] error/result model;
-- [x] locale/content interface;
-- [x] SEO interface;
-- [x] related-tool/search generation;
-- [x] analytics interface;
-- [x] ad interface;
-- [x] Traffic Guard seam without Phase-8 policy leakage;
-- [x] provider-neutral build boundary;
-- [x] PWA compatibility decision;
-- [x] testing layers;
-- [x] integration-branch strategy;
-- [x] Tool Factory compatibility boundary.
+- [x] module boundaries defined;
+- [x] stable identity defined;
+- [x] data-only ToolDefinition semantics defined;
+- [x] executable boundary/engine bindings separated from catalog;
+- [x] static route generation defined;
+- [x] build-format/trailing-slash reconciliation defined;
+- [x] neutral document/layout boundary defined;
+- [x] generic vs specialized UI model defined;
+- [x] mandatory input pipeline defined;
+- [x] shared security interface defined;
+- [x] pure engine contract defined;
+- [x] main-thread/Worker/WASM boundaries defined;
+- [x] no-backend Launch-50 path defined;
+- [x] lazy loader/dependency isolation defined;
+- [x] result/error model defined;
+- [x] locale/content single-source ownership defined;
+- [x] resolved SEO ownership defined without duplicate localized copy;
+- [x] related/search generation defined;
+- [x] analytics interface defined;
+- [x] ad interface defined;
+- [x] Traffic Guard seam defined without Phase-8 policy leakage;
+- [x] provider-neutral/PWA decision defined;
+- [x] testing layers defined;
+- [x] integration strategy defined;
+- [x] Tool Factory compatibility defined.
 
 ---
 
-# 70. Current external documentation revalidated
+# 61. External documentation revalidated
 
-Official Astro documentation was rechecked on 2026-08-24 for the version-sensitive parts of this design.
-
-Relevant current documentation:
+Official Astro documentation was rechecked on 2026-08-24 for version-sensitive design points:
 
 - routing/static `getStaticPaths()`: `https://docs.astro.build/en/guides/routing/`
-- configuration reference / `build.format`: `https://docs.astro.build/reference/configuration-reference/`
+- configuration reference: `https://docs.astro.build/reference/configuration-reference/`
 
-Facts used in this architecture:
+Current facts used here:
 
 - static dynamic routes require `getStaticPaths()`;
-- `build.format` currently supports `file`, `directory` and `preserve`;
+- `build.format` supports `file`, `directory`, `preserve`;
 - `preserve` keeps source-file output form;
 - `trailingSlash` supports `always`, `never`, `ignore`;
-- for prerendered pages, the production host controls actual trailing-slash routing behavior;
-- build-time `Astro.url` changes with output format, reinforcing the need for explicit canonical-path metadata.
+- prerendered production slash behavior is ultimately hosting-platform behavior;
+- build-time `Astro.url` semantics vary with output format, so canonical ownership must remain explicit.
 
-These facts must be revalidated again if Astro is materially upgraded before implementation.
+Revalidate these facts if Astro is materially upgraded before implementation.
 
 ---
 
-# 71. Phase-6 gate state
+# 62. Phase-6 gate state
 
 Workflow gate:
 

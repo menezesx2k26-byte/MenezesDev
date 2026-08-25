@@ -12,8 +12,9 @@
 - Phase 2 — OSS Capability Audit: **CLOSED** (`docs/tools/PHASE2_CLOSURE.md`).
 - Phase 3 — Capability Map: **CLOSED** (`docs/tools/PHASE3_CLOSURE.md`).
 - Phase 4 — Freeze Launch 50: **CLOSED / exact matrix approved and frozen** (`docs/tools/LAUNCH50_FROZEN.md`, `docs/tools/PHASE4_CLOSURE.md`).
-- Phase 5 — Information architecture / international SEO: **WRITTEN SPEC COMMITTED + SELF-REVIEWED / USER REVIEW PENDING**.
-- Phase 6+ — not started under the Tools workflow.
+- Phase 5 — Information architecture / international SEO: **CLOSED / written spec approved** (`docs/tools/PHASE5_CLOSURE.md`).
+- Phase 6 — Tools architecture design spec: **ACTIVE / Superpowers architectural design cycle**.
+- Phase 7+ — not started under the Tools workflow.
 - Tools runtime implementation: **NOT STARTED**.
 - `main` remains outside partial Tools implementation.
 
@@ -109,10 +110,6 @@ Canonical frozen matrix:
 
 `docs/tools/LAUNCH50_FROZEN.md`
 
-Approval/closure:
-
-`docs/tools/PHASE4_CLOSURE.md`
-
 Allocation:
 
 - **35 SEO/AdSense-led tools (70%)**;
@@ -130,66 +127,60 @@ An ordered reserve pool of 18 reconstructs the 68-pool and is used if a conditio
 
 ---
 
-# Phase-5 current state
+# Phase-5 approved contract
 
-Superpowers classification: **architectural**.
-
-The in-chat Phase-5 design was approved by Gabriel with `segue` after the concrete SEO/IA design had been presented.
-
-Canonical written spec:
+Canonical spec:
 
 `docs/superpowers/specs/2026-08-24-menezesdev-tools-phase5-seo-ia-design.md`
 
-Self-review record:
+Self-review:
 
 `docs/superpowers/specs/2026-08-24-menezesdev-tools-phase5-seo-ia-self-review.md`
 
-The written spec now defines:
+Closure:
 
-- stable shallow category taxonomy;
-- exact English Launch-50 routes;
-- exact PT-BR Launch-50 localized routes;
-- canonical origin and trailing-slash policy;
-- self-canonical locale behavior;
-- reciprocal `hreflang` rules;
-- sitemap/robots/index/noindex contract;
-- breadcrumb and related-tool graph rules;
-- guide routing;
-- internal-search non-indexing behavior;
-- title/H1/meta contract;
-- structured-data applicability;
-- performance/static-HTML SEO requirements;
-- anti-thin/cannibalization rules;
-- finance/YMYL editorial constraints;
-- fallback-host canonical protection.
+`docs/tools/PHASE5_CLOSURE.md`
 
-Self-review result:
+The approved contract fixes the shallow category URL model, exact EN/PT-BR Launch-50 routes, canonical/hreflang behavior, sitemap/robots/indexing policy, breadcrumb/related-tool graph, guide routing, internal-search non-indexing, structured-data policy, anti-thin rules, static-HTML SEO requirements, finance/YMYL constraints and fallback-host canonical protection.
 
-- no `TBD`/`TODO` placeholders;
-- no conflict with workflow/security/autonomy/deployment portability;
-- Phase-5 scope remains separate from Phase 6 implementation architecture;
-- one category-indexing ambiguity was clarified: automatic `index` eligibility requires at least 3 complete tools; sub-threshold category hubs stay `noindex,follow` unless a later explicit SEO/design review approves an exception.
+Phase 5: **CLOSED**.
 
-Official Google Search Central guidance was revalidated on 2026-08-24 before the spec was written, including the May 2026 FAQ-rich-result deprecation.
+---
 
-The remaining Superpowers gate is **user review of the committed written spec package**.
+# Phase-6 current state
 
-Until that review is approved:
+Superpowers classification: **architectural**.
 
-- do not mark Phase 5 closed;
-- do not start Phase 6;
-- do not invoke implementation `writing-plans`;
-- do not implement Tool SDK/runtime/packages.
+The correct existing application implementation base has now been identified for design reconciliation:
+
+`feat/phase-10-implementation` @ `152fab910296f29cfae2e07bf6ccc2c69f0ce0df`
+
+That branch is 10 commits ahead of `main`, 0 behind, and contains the existing Astro application that is absent from the research branch/main baseline.
+
+Observed implementation base:
+
+- Astro `7.2.4`, static output;
+- TypeScript `6.0.3`;
+- Tailwind `4.3.3` through Vite;
+- pnpm `11.22.0` / Node 24;
+- current `BaseLayout.astro`, `siteConfig`, typed route list and route/build checks;
+- current `BaseLayout` is PT-BR/commercial-site oriented and cannot be reused unchanged for multilingual Tools;
+- current Astro config uses `trailingSlash: "never"`, while the approved Phase-5 Tools contract requires trailing-slash canonical content routes;
+- current sitemap filter only indexes Home + `/projetos/**`;
+- current route-check script assumes file-format non-trailing-slash output and the legacy 16-route set.
+
+These are design reconciliation inputs, not implementation defects to patch during Phase 6.
+
+Phase 6 must now define the Tool SDK/module/runtime/locale/SEO/analytics/ad/error/testing/lazy-load/provider-portability boundaries and how they integrate with the existing Astro application without turning commercial/demo surfaces into Tools-specific architecture.
+
+No Phase-6 spec is approved or written yet; the concrete design must first be presented under Superpowers brainstorming.
 
 ---
 
 # SEO / autonomous-growth sequencing
 
-Strategic SEO evidence is complete from Phase 1; Phase 5 formalizes the route/SEO contract.
-
 Later workflow remains:
 
-- Phase 5: route/SEO contract;
 - Phase 6: Tools architecture design;
 - Phase 7: security design/threat-model consolidation;
 - Phase 8: Traffic Guard / Cost Guard design;
@@ -220,13 +211,8 @@ Binding deployment addendum remains:
 
 # Current next legal action
 
-User reviews the committed Phase-5 written spec package.
+Present the concrete Phase-6 Tools architecture design under Superpowers brainstorming.
 
-If approved:
-
-1. record the written-spec approval;
-2. close Phase 5 if its workflow gate remains satisfied;
-3. begin Phase 6 only through a new Superpowers architectural-design cycle;
-4. do not infer approval for unseen Phase-6 decisions from the Phase-5 review.
+Only after that specific architecture is approved may a canonical Phase-6 written spec be committed and self-reviewed. Phase 7 remains blocked until Phase 6 closes.
 
 Before every future Tools action, reread the actual ref workflow, addenda and Tools-specific context. Git remains the source of truth.

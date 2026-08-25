@@ -13,11 +13,36 @@ O projeto está sendo construído com **Codex como agente principal**, documenta
 - **Agente principal:** Codex nativo.
 - **Custo obrigatório adicional de API para o baseline:** R$ 0.
 - **Pipeline raster oficial:** Codex ImageGen nativo.
-- **Primeiro asset oficial:** `public/assets/demos/m47/m47-hero.webp`.
-- **M47 hero:** WebP, 1536×960, 16:10, status `generated`.
+- **Implementação:** 16 rotas canônicas concluídas; 97/97 hard gates aprovados.
+- **Preview manual:** build estático enviado ao Cloudflare Pages por Wrangler em projeto temporário de preview.
+- **Projeto Pages temporário:** `menezesdev-preview`.
+- **Branch implementada:** `feat/phase-10-implementation`.
 - **MCP de imagem anterior:** desativado e mantido apenas como registro histórico.
 
-Os assets, wireframes responsivos, contratos de interação, especificação técnica e critérios de aceite foram implementados nas 16 rotas canônicas. Os 97 hard gates passaram. Produção continua bloqueada até a aprovação do WhatsApp comercial, domínio/TLS e configuração real do Cloudflare Pages.
+Os assets, wireframes responsivos, contratos de interação, especificação técnica e critérios de aceite já foram materializados na implementação. **IMPLEMENTATION DONE = SIM.** Produção continua bloqueada até a resolução dos release gates externos; **PRODUCTION READY = NÃO** e **VISUAL PORTFOLIO COMPLETE = NÃO**.
+
+## Preview manual no Cloudflare Pages
+
+A implementação já passou por build local e foi enviada manualmente para um projeto Pages temporário, sem merge em `main` e sem alterar o projeto definitivo de produção.
+
+Configuração usada:
+
+```text
+project: menezesdev-preview
+production branch declarada no projeto temporário: feat/phase-10-implementation
+build output: dist/
+deploy: Wrangler Pages Direct Upload
+```
+
+Último deployment informado pelo Wrangler:
+
+```text
+https://adc25a40.menezesdev-preview.pages.dev
+```
+
+**Status atual:** upload concluído pelo Wrangler, mas a disponibilidade pública da URL ainda precisa ser confirmada. Não considerar o preview validado apenas pelo sucesso do upload.
+
+O projeto `menezesdev-preview` é deliberadamente descartável. O release definitivo deve usar um projeto Cloudflare Pages separado, conectado ao GitHub, com `main` como origem de produção, domínio canônico, TLS e demais release gates aprovados.
 
 ## Baseline técnico fechado
 
@@ -44,6 +69,17 @@ corepack pnpm build
 ```
 
 Scripts adicionais: `format`, `format:check`, `check:routes`, `check:acceptance` e `check:release`. O último deve falhar enquanto a URL comercial real e o ambiente de produção não estiverem aprovados.
+
+### Preview manual
+
+Após uma build limpa:
+
+```text
+npx wrangler@latest login
+npx wrangler@latest pages deploy .\dist --project-name=menezesdev-preview
+```
+
+O warning de working tree dirty pode ocorrer enquanto existirem alterações locais preexistentes em `tools/mcp-image`; essas mudanças não pertencem à implementação e não devem ser incluídas em commits da Fase 10.
 
 ## Oferta comercial
 
@@ -157,9 +193,12 @@ Leia `docs/WORK_MODE_4_5.md` antes de alterar a infraestrutura de agentes.
 - [x] **Especificação técnica final**
 - [x] **Critérios de aceite**
 - [x] **Implementação das 16 rotas**
-- [ ] **Release de produção após gates externos**
-
-A implementação deve respeitar essa ordem para reduzir improvisação e retrabalho.
+- [x] **Build estático local validado**
+- [x] **Primeiro upload manual para Pages preview**
+- [ ] **Confirmar disponibilidade pública do preview**
+- [ ] **Resolver release gates externos**
+- [ ] **Release definitivo em projeto Pages integrado ao GitHub**
+- [ ] **Capturar screenshots reais e finalizar portfólio visual**
 
 ## Estrutura relevante do repositório
 
@@ -189,6 +228,7 @@ MenezesDev/
 │   ├── NATIVE_IMAGEGEN_WORKFLOW.md
 │   ├── TECHNICAL_SPEC.md
 │   ├── ACCEPTANCE_CRITERIA.md
+│   ├── PHASE_10_IMPLEMENTATION_REPORT.md
 │   ├── wireframes/
 │   ├── interactions/
 │   └── context/
@@ -213,7 +253,7 @@ MenezesDev/
 - `docs/NATIVE_IMAGEGEN_WORKFLOW.md` — workflow oficial do ImageGen nativo.
 - `docs/wireframes/README.md` — composição canônica desktop/mobile.
 - `docs/interactions/README.md` — estados e comportamento canônicos.
-- `docs/TECHNICAL_SPEC.md` — arquitetura e decisões técnicas canônicas para a implementação futura.
+- `docs/TECHNICAL_SPEC.md` — arquitetura e decisões técnicas canônicas.
 - `docs/ACCEPTANCE_CRITERIA.md` — matriz objetiva de hard gates, release gates, targets e Definition of Done.
 - `docs/PHASE_10_IMPLEMENTATION_REPORT.md` — evidências, matriz executada e blockers de release.
 - `docs/context/STATE.md` — estado operacional atual.

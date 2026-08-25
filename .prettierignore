@@ -11,3 +11,5 @@ Cases/
 *.webp
 *.woff2
 *.txt
+pnpm-lock.yaml
+worker-configuration.d.ts

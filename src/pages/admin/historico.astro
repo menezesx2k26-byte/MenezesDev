@@ -1,0 +1,87 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import VersionList from "../../components/admin/history/VersionList.astro";
+import RestoreDialog from "../../components/admin/history/RestoreDialog.astro";
+import { getRuntimeBindings } from "../../runtime/bindings";
+import { requireStudioAdminContext } from "../../studio/http";
+import { getDraft, listVersions, type StudioVersionSummary } from "../../studio/repository";
+
+const adminContext = requireStudioAdminContext({ isDev: import.meta.env.DEV });
+if (!adminContext) Astro.response.status = 404;
+
+let versions: StudioVersionSummary[] = [];
+let draftRevision: number | null = null;
+let loadError = false;
+
+if (adminContext) {
+  try {
+    const { DB } = getRuntimeBindings();
+    const [draft, loadedVersions] = await Promise.all([
+      getDraft(DB),
+      listVersions(DB, { limit: 100, offset: 0 }),
+    ]);
+    draftRevision = draft.revision;
+    versions = loadedVersions;
+  } catch {
+    loadError = true;
+  }
+}
+
+const ready = Boolean(adminContext && draftRevision !== null && !loadError);
+---
+
+{
+  adminContext ? (
+    <AdminLayout
+      title="Histórico"
+      description="Versões publicadas e restauração segura para o rascunho."
+      saveLabel={ready ? "Histórico carregado" : "Histórico indisponível"}
+      publicationLabel="Versões publicadas são imutáveis"
+      statusTone={ready ? "neutral" : "error"}
+    >
+      <Fragment slot="actions">
+        <a class="admin-button admin-button--quiet" href="/admin/studio">
+          Voltar ao Studio
+        </a>
+      </Fragment>
+
+      <section class="admin-page-heading" aria-labelledby="history-heading">
+        <p class="admin-kicker">Publicações</p>
+        <h2 id="history-heading">Histórico imutável.</h2>
+        <p>
+          Cada publicação permanece registrada. Restaurar uma versão apenas cria um novo rascunho;
+          nada muda no site ao vivo até uma publicação explícita.
+        </p>
+      </section>
+
+      {ready && draftRevision !== null ? (
+        <section data-history-root data-history-revision={draftRevision}>
+          <VersionList versions={versions} />
+          <RestoreDialog />
+          <script>
+            import {setupHistoryController} from "../../studio/client/history-controller";
+            setupHistoryController(); document.addEventListener("astro:page-load",
+            setupHistoryController);
+          </script>
+        </section>
+      ) : (
+        <section class="admin-panel admin-panel--full" role="alert">
+          <span class="admin-panel__label">Histórico indisponível</span>
+          <strong class="admin-panel__value">As versões não puderam ser carregadas.</strong>
+          <p class="admin-panel__detail">
+            Nenhuma versão foi alterada. Verifique o banco de dados antes de tentar novamente.
+          </p>
+        </section>
+      )}
+    </AdminLayout>
+  ) : (
+    <html lang="pt-BR">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="noindex, nofollow, noarchive" />
+        <title>Página não encontrada</title>
+      </head>
+      <body />
+    </html>
+  )
+}

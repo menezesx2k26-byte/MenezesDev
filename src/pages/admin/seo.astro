@@ -1,0 +1,104 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import ConflictDialog from "../../components/admin/ConflictDialog.astro";
+import SeoEditor from "../../components/admin/seo/SeoEditor.astro";
+import { siteConfig } from "../../config/site";
+import { getRuntimeBindings } from "../../runtime/bindings";
+import { requireStudioAdminContext } from "../../studio/http";
+import { getDraft, getPublished } from "../../studio/repository";
+
+const adminContext = requireStudioAdminContext({ isDev: import.meta.env.DEV });
+if (!adminContext) Astro.response.status = 404;
+
+let draft: Awaited<ReturnType<typeof getDraft>> | null = null;
+let baselineDocument: Awaited<ReturnType<typeof getPublished>>["document"] | null = null;
+let loadError = false;
+
+if (adminContext) {
+  try {
+    const { DB } = getRuntimeBindings();
+    const [loadedDraft, published] = await Promise.all([getDraft(DB), getPublished(DB)]);
+    draft = loadedDraft;
+    baselineDocument = published.document;
+  } catch {
+    loadError = true;
+  }
+}
+
+const ready = Boolean(adminContext && draft && baselineDocument && !loadError);
+const initialStateJson =
+  ready && draft && baselineDocument
+    ? JSON.stringify({
+        document: draft.document,
+        baseline: baselineDocument,
+        revision: draft.revision,
+      })
+        .replace(/&/g, "\\u0026")
+        .replace(/</g, "\\u003c")
+        .replace(/>/g, "\\u003e")
+        .replace(/\u2028/g, "\\u2028")
+        .replace(/\u2029/g, "\\u2029")
+    : "";
+---
+
+{
+  adminContext ? (
+    <AdminLayout
+      title="SEO"
+      description="Metadados e prévias do MenezesDev Studio."
+      saveLabel={ready ? "Rascunho carregado" : "SEO indisponível"}
+      publicationLabel="Publicação separada do rascunho"
+      statusTone={ready ? "neutral" : "error"}
+    >
+      {ready && draft ? (
+        <>
+          <section class="admin-page-heading" aria-labelledby="seo-heading">
+            <p class="admin-kicker">Descoberta</p>
+            <h2 id="seo-heading">SEO sem promessas mágicas.</h2>
+            <p>
+              Edite metadados com referências editoriais claras. O ambiente canônico permanece
+              somente leitura.
+            </p>
+          </section>
+
+          <div data-seo-settings-root>
+            <script
+              id="studio-initial-state"
+              type="application/json"
+              is:inline
+              set:html={initialStateJson}
+            />
+            <SeoEditor
+              seo={draft.document.seo}
+              canonicalUrl={siteConfig.baseUrl.toString()}
+              canonicalConfigured={siteConfig.canonicalConfigured}
+              deployEnvironment={siteConfig.deployEnvironment}
+            />
+          </div>
+          <ConflictDialog />
+
+          <script>
+            import {setupSeoSettingsController} from "../../studio/client/seo-settings-controller";
+            setupSeoSettingsController(); document.addEventListener("astro:page-load",
+            setupSeoSettingsController);
+          </script>
+        </>
+      ) : (
+        <section class="admin-panel admin-panel--full" role="alert">
+          <span class="admin-panel__label">SEO indisponível</span>
+          <strong class="admin-panel__value">O rascunho não pôde ser carregado.</strong>
+          <p class="admin-panel__detail">Nenhuma alteração foi feita.</p>
+        </section>
+      )}
+    </AdminLayout>
+  ) : (
+    <html lang="pt-BR">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="noindex, nofollow, noarchive" />
+        <title>Página não encontrada</title>
+      </head>
+      <body />
+    </html>
+  )
+}

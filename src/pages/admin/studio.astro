@@ -1,0 +1,95 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import ConflictDialog from "../../components/admin/ConflictDialog.astro";
+import StudioShell from "../../components/admin/studio/StudioShell.astro";
+import { getRuntimeBindings } from "../../runtime/bindings";
+import { requireStudioAdminContext } from "../../studio/http";
+import { getDraft, getPublished } from "../../studio/repository";
+import "../../styles/studio-admin.css";
+
+const adminContext = requireStudioAdminContext({ isDev: import.meta.env.DEV });
+if (!adminContext) Astro.response.status = 404;
+
+let draft: Awaited<ReturnType<typeof getDraft>> | null = null;
+let baselineDocument: Awaited<ReturnType<typeof getPublished>>["document"] | null = null;
+let loadError = false;
+
+if (adminContext) {
+  try {
+    const { DB } = getRuntimeBindings();
+    const [loadedDraft, published] = await Promise.all([getDraft(DB), getPublished(DB)]);
+    draft = loadedDraft;
+    baselineDocument = published.document;
+  } catch {
+    loadError = true;
+  }
+}
+
+const ready = Boolean(adminContext && draft && baselineDocument && !loadError);
+const initialStateJson =
+  ready && draft && baselineDocument
+    ? JSON.stringify({
+        document: draft.document,
+        baseline: baselineDocument,
+        revision: draft.revision,
+      })
+        .replace(/&/g, "\\u0026")
+        .replace(/</g, "\\u003c")
+        .replace(/>/g, "\\u003e")
+        .replace(/\u2028/g, "\\u2028")
+        .replace(/\u2029/g, "\\u2029")
+    : "";
+---
+
+{
+  adminContext ? (
+    <AdminLayout
+      title="Studio"
+      description="Editor visual da página inicial do MenezesDev."
+      saveLabel={ready ? "Rascunho carregado" : "Studio indisponível"}
+      publicationLabel="Publicação separada do rascunho"
+      statusTone={ready ? "neutral" : "error"}
+    >
+      {ready && draft ? (
+        <>
+          <section class="admin-page-heading" aria-labelledby="studio-heading">
+            <p class="admin-kicker">Página inicial</p>
+            <h2 id="studio-heading">Edite sem tocar no código.</h2>
+            <p>
+              As alterações ficam no rascunho e são salvas automaticamente. Nada é publicado por
+              este editor até você usar o fluxo explícito de publicação.
+            </p>
+          </section>
+
+          <script id="studio-initial-state" type="application/json" set:html={initialStateJson} />
+          <StudioShell document={draft.document} />
+          <ConflictDialog />
+
+          <script>
+            import {setupStudioController} from "../../studio/client/studio-controller";
+            setupStudioController(); document.addEventListener("astro:page-load",
+            setupStudioController);
+          </script>
+        </>
+      ) : (
+        <section class="admin-panel admin-panel--full" role="alert">
+          <span class="admin-panel__label">Studio indisponível</span>
+          <strong class="admin-panel__value">O rascunho não pôde ser carregado.</strong>
+          <p class="admin-panel__detail">
+            Nenhuma alteração foi feita. Verifique o estado do banco de dados antes de tentar editar
+            novamente.
+          </p>
+        </section>
+      )}
+    </AdminLayout>
+  ) : (
+    <html lang="pt-BR">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="noindex, nofollow, noarchive" />
+        <title>Página não encontrada</title>
+      </head>
+      <body />
+    </html>
+  )
+}

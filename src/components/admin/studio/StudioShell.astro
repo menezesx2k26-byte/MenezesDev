@@ -1,0 +1,101 @@
+---
+import type { SiteDocument } from "../../../studio/types";
+import PreviewFrame from "../PreviewFrame.astro";
+import SectionNavigator from "./SectionNavigator.astro";
+import HeroEditor from "./editors/HeroEditor.astro";
+import ProjectsSectionEditor from "./editors/ProjectsSectionEditor.astro";
+import ServicesSectionEditor from "./editors/ServicesSectionEditor.astro";
+import ProcessEditor from "./editors/ProcessEditor.astro";
+import PlansSectionEditor from "./editors/PlansSectionEditor.astro";
+import FaqEditor from "./editors/FaqEditor.astro";
+import ContactEditor from "./editors/ContactEditor.astro";
+
+interface Props {
+  document: SiteDocument;
+}
+
+const { document } = Astro.props;
+---
+
+<div
+  class="studio-workspace"
+  data-studio-root
+  data-studio-active-section="hero"
+  data-studio-active-mode="editor"
+>
+  <div class="studio-toolbar" aria-label="Controles do Studio">
+    <div class="studio-mode-switch" aria-label="Modo do Studio">
+      <button
+        type="button"
+        class="admin-button admin-button--compact"
+        data-studio-mode="editor"
+        aria-pressed="true"
+      >
+        Editor
+      </button>
+      <button
+        type="button"
+        class="admin-button admin-button--compact admin-button--ghost"
+        data-studio-mode="preview"
+        aria-pressed="false"
+      >
+        Prévia
+      </button>
+    </div>
+
+    <div class="studio-history-controls" aria-label="Histórico local">
+      <button type="button" class="admin-button admin-button--ghost" data-studio-undo disabled>
+        Desfazer
+      </button>
+      <button type="button" class="admin-button admin-button--ghost" data-studio-redo disabled>
+        Refazer
+      </button>
+    </div>
+
+    <button type="button" class="admin-button admin-button--ghost" data-studio-retry hidden>
+      Tentar salvar novamente
+    </button>
+
+    <p class="studio-save-state" data-studio-save-status aria-live="polite">
+      Rascunho sincronizado.
+    </p>
+  </div>
+
+  <div class="studio-workspace__columns">
+    <aside class="studio-workspace__navigator">
+      <SectionNavigator />
+    </aside>
+
+    <div class="studio-workspace__editor" data-studio-editor-panel>
+      <div data-studio-section="hero">
+        <HeroEditor section={document.home.hero} />
+      </div>
+      <div data-studio-section="projects" hidden>
+        <ProjectsSectionEditor section={document.home.projects} projects={document.projects} />
+      </div>
+      <div data-studio-section="services" hidden>
+        <ServicesSectionEditor section={document.home.services} />
+      </div>
+      <div data-studio-section="process" hidden>
+        <ProcessEditor section={document.home.process} />
+      </div>
+      <div data-studio-section="plans" hidden>
+        <PlansSectionEditor section={document.home.plans} />
+      </div>
+      <div data-studio-section="faq" hidden>
+        <FaqEditor section={document.home.faq} />
+      </div>
+      <div data-studio-section="contact" hidden>
+        <ContactEditor section={document.home.contact} />
+      </div>
+    </div>
+
+    <aside
+      class="studio-workspace__preview"
+      data-studio-preview-panel
+      aria-label="Prévia do rascunho"
+    >
+      <PreviewFrame src="/admin/preview" />
+    </aside>
+  </div>
+</div>

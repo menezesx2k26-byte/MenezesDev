@@ -1,0 +1,124 @@
+---
+import type { StudioVersionSummary } from "../../../studio/repository";
+
+interface Props {
+  versions: StudioVersionSummary[];
+}
+
+const { versions } = Astro.props;
+const formatDate = (value: string) => {
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return "Data indisponível";
+  return new Intl.DateTimeFormat("pt-BR", {
+    dateStyle: "medium",
+    timeStyle: "short",
+    timeZone: "America/Sao_Paulo",
+  }).format(parsed);
+};
+---
+
+<div class="history-list" aria-label="Versões publicadas">
+  {
+    versions.length > 0 ? (
+      versions.map((version) => (
+        <article class="admin-panel history-version">
+          <div class="history-version__heading">
+            <div>
+              <span class="admin-panel__label">Versão publicada</span>
+              <strong class="admin-panel__value">v{version.versionNumber}</strong>
+            </div>
+            {version.restoredFromVersionId !== null && (
+              <span class="history-version__badge">
+                Restaurada a partir do snapshot #{version.restoredFromVersionId}
+              </span>
+            )}
+          </div>
+
+          <dl class="history-version__meta">
+            <div>
+              <dt>Publicada em</dt>
+              <dd>{formatDate(version.publishedAt)}</dd>
+            </div>
+            <div>
+              <dt>Responsável</dt>
+              <dd>{version.publishedBy ?? "Ator indisponível"}</dd>
+            </div>
+            <div>
+              <dt>Revisão de origem</dt>
+              <dd>{version.sourceRevision}</dd>
+            </div>
+            <div>
+              <dt>Nota</dt>
+              <dd>Não registrada nesta versão.</dd>
+            </div>
+          </dl>
+
+          <button
+            type="button"
+            class="admin-button admin-button--secondary"
+            data-history-restore
+            data-version-number={version.versionNumber}
+            data-version-label={`v${version.versionNumber}`}
+          >
+            Restaurar como rascunho
+          </button>
+        </article>
+      ))
+    ) : (
+      <article class="admin-panel admin-panel--full">
+        <span class="admin-panel__label">Histórico</span>
+        <strong class="admin-panel__value">Nenhuma versão disponível</strong>
+        <p class="admin-panel__detail">O Studio não encontrou snapshots publicados para exibir.</p>
+      </article>
+    )
+  }
+</div>
+
+<style>
+  .history-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .history-version {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .history-version__heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .history-version__badge {
+    display: inline-flex;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.75rem;
+  }
+
+  .history-version__meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 0.75rem;
+    margin: 0;
+  }
+
+  .history-version__meta div {
+    display: grid;
+    gap: 0.2rem;
+  }
+
+  .history-version__meta dt {
+    font-size: 0.75rem;
+    opacity: 0.7;
+  }
+
+  .history-version__meta dd {
+    margin: 0;
+  }
+</style>

@@ -1,0 +1,25 @@
+---
+interface Props {
+  saveLabel?: string | undefined;
+  publicationLabel?: string | undefined;
+  tone?: "neutral" | "success" | "warning" | "error";
+}
+
+const {
+  saveLabel = "Estado de salvamento indisponível",
+  publicationLabel = "Estado de publicação indisponível",
+  tone = "neutral",
+} = Astro.props;
+---
+
+<div class:list={["admin-status", `admin-status--${tone}`]} aria-live="polite" aria-atomic="true">
+  <span class="admin-status__item">
+    <span class="admin-status__dot" aria-hidden="true"></span>
+    <strong>Salvamento</strong>
+    <span>{saveLabel}</span>
+  </span>
+  <span class="admin-status__item">
+    <strong>Publicação</strong>
+    <span>{publicationLabel}</span>
+  </span>
+</div>

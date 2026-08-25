@@ -1,0 +1,123 @@
+name: MenezesDev Studio TDD
+
+"on":
+  pull_request:
+    branches:
+      - feat/phase-10-implementation
+
+permissions:
+  contents: read
+
+concurrency:
+  group: menezesdev-studio-tdd-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  focused-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24.19.0
+          package-manager-cache: false
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install frozen dependencies
+        run: corepack pnpm install --frozen-lockfile
+
+      - name: Runtime and Studio contracts
+        run: corepack pnpm test -- tests/runtime/config.test.ts tests/runtime/wrangler-config.test.ts tests/runtime/prerender-policy.test.ts tests/runtime/astro-config.test.ts tests/runtime/cloudflare-dev-optimizer.test.ts tests/runtime/route-contract.test.ts tests/runtime/runtime-route-probe.test.ts tests/runtime/check-runtime-routes-contract.test.ts tests/runtime/health-dev-smoke-contract.test.ts tests/runtime/worker-types.test.ts tests/runtime/migration-contract.test.ts tests/runtime/health.test.ts tests/runtime/bindings-contract.test.ts tests/runtime/health-endpoint-contract.test.ts tests/studio/validation.test.ts tests/studio/default-document.test.ts tests/studio/repository.test.ts tests/studio/seed-contract.test.ts tests/studio/publication.test.ts tests/studio/http.test.ts tests/studio/public-content.test.ts tests/admin/navigation.test.ts tests/admin/draft-store.test.ts tests/admin/autosave.test.ts tests/admin/studio-form.test.ts tests/admin/projects.test.ts tests/admin/projects-controller.test.ts tests/admin/services-plans.test.ts tests/admin/seo-settings.test.ts tests/admin/preview.test.ts tests/admin/history.test.ts tests/admin/publication-ui.test.ts
+
+      - name: Apply local D1 migration
+        run: corepack pnpm db:migrate:local
+
+      - name: Re-apply local D1 migration
+        run: corepack pnpm db:migrate:local
+
+      - name: Verify local D1 schema
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./node_modules/.bin/wrangler d1 execute menezesdev-studio-local --local --json --command "SELECT type, name FROM sqlite_master WHERE (type = 'table' AND name IN ('studio_state', 'studio_versions', 'media_assets', 'audit_events')) OR (type = 'index' AND name IN ('idx_studio_versions_site_version', 'idx_media_assets_status', 'idx_audit_events_created_at')) ORDER BY type, name;" > /tmp/studio-schema.json
+          ./node_modules/.bin/wrangler d1 execute menezesdev-studio-local --local --json --command "SELECT name FROM d1_migrations WHERE name IN ('0001_studio_core.sql', '0002_studio_restore_lineage.sql') ORDER BY name;" > /tmp/studio-migrations.json
+          ./node_modules/.bin/wrangler d1 execute menezesdev-studio-local --local --json --command "PRAGMA table_info(studio_state);" > /tmp/studio-state-columns.json
+          ./node_modules/.bin/wrangler d1 execute menezesdev-studio-local --local --json --command "PRAGMA table_info(studio_versions);" > /tmp/studio-version-columns.json
+          node <<'NODE'
+          const { readFileSync } = require("node:fs");
+
+          const rowsFrom = (path) => {
+            const payload = JSON.parse(readFileSync(path, "utf8"));
+            const entries = Array.isArray(payload) ? payload : [payload];
+            return entries.flatMap((entry) => entry.results ?? []);
+          };
+
+          const schemaNames = rowsFrom("/tmp/studio-schema.json")
+            .map((row) => row.name)
+            .sort();
+          const expectedNames = [
+            "audit_events",
+            "idx_audit_events_created_at",
+            "idx_media_assets_status",
+            "idx_studio_versions_site_version",
+            "media_assets",
+            "studio_state",
+            "studio_versions",
+          ].sort();
+
+          if (JSON.stringify(schemaNames) !== JSON.stringify(expectedNames)) {
+            console.error("Unexpected local D1 schema:", schemaNames);
+            process.exit(1);
+          }
+
+          const migrationNames = rowsFrom("/tmp/studio-migrations.json").map((row) => row.name);
+          const expectedMigrations = ["0001_studio_core.sql", "0002_studio_restore_lineage.sql"];
+          if (JSON.stringify(migrationNames) !== JSON.stringify(expectedMigrations)) {
+            console.error("Unexpected applied migrations:", migrationNames);
+            process.exit(1);
+          }
+
+          const stateColumns = rowsFrom("/tmp/studio-state-columns.json").map((row) => row.name);
+          const versionColumns = rowsFrom("/tmp/studio-version-columns.json").map((row) => row.name);
+          if (!stateColumns.includes("draft_restored_from_version_id")) {
+            console.error("studio_state missing draft restore lineage column:", stateColumns);
+            process.exit(1);
+          }
+          if (!versionColumns.includes("restored_from_version_id")) {
+            console.error("studio_versions missing restore lineage column:", versionColumns);
+            process.exit(1);
+          }
+
+          console.log("PASS local D1 — schema present, migrations 0001/0002 applied once, restore lineage columns present.");
+          NODE
+
+      - name: Seed local Studio
+        run: corepack pnpm studio:seed:local
+
+      - name: Verify local Studio seed
+        run: corepack pnpm studio:check-seed
+
+      - name: Refuse duplicate local seed
+        shell: bash
+        run: |
+          set +e
+          corepack pnpm studio:seed:local
+          status=$?
+          set -e
+          if [ "$status" -ne 2 ]; then
+            echo "Expected duplicate seed to exit 2, got $status."
+            exit 1
+          fi
+          corepack pnpm studio:check-seed
+
+      - name: Verify Phase 10 public equivalence
+        run: node scripts/check-public-equivalence.mjs
+
+      - name: Smoke development runtime health
+        run: corepack pnpm check:runtime-health:dev

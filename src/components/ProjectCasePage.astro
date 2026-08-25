@@ -3,32 +3,57 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import MenezesHeader from "./MenezesHeader.astro";
 import MenezesFooter from "./MenezesFooter.astro";
 import { ArrowLeft, ArrowUpRight, Check } from "lucide-astro";
-import type { Project } from "../types";
+import type { PublicProjectView } from "../studio/public-content";
 import "../styles/menezesdev.css";
 
-interface Props {
-  project: Project;
+interface NavigationItem {
+  label: string;
+  href: string;
 }
 
-const { project } = Astro.props;
-const title = `${project.name} — Projeto MenezesDev`;
-const description = `${project.headline} ${project.description}`;
+interface Props {
+  project: PublicProjectView;
+  navigation?: NavigationItem[];
+  whatsappUrl?: string | null;
+  brandName?: string;
+  tagline?: string;
+  preview?: boolean;
+}
+
+const {
+  project,
+  navigation,
+  whatsappUrl,
+  brandName = "MenezesDev",
+  tagline = "Sites que impulsionam negócios.",
+  preview = false,
+} = Astro.props;
+const commercialHref = preview ? null : whatsappUrl;
+const backHref = preview ? "/admin/preview" : "/#projetos";
 ---
 
 <BaseLayout
-  title={title}
-  description={description}
+  title={project.title}
+  description={project.metaDescription}
   image={project.cover.src}
   theme="menezesdev"
   fonts={["--font-manrope", "--font-inter"]}
   preloadFont="--font-manrope"
+  noindex={preview}
 >
-  <MenezesHeader />
+  {
+    preview && (
+      <aside class="draft-preview-banner" role="status" aria-label="Prévia do rascunho">
+        Prévia do rascunho — não publicada
+      </aside>
+    )
+  }
+  <MenezesHeader navigation={navigation} whatsappUrl={commercialHref} brandLabel={brandName} />
   <main id="main-content">
     <section class="md-case-hero">
       <div class="container md-case-hero__grid">
         <div>
-          <a href="/#projetos"><ArrowLeft aria-hidden="true" size={18} /> Voltar aos projetos</a>
+          <a href={backHref}><ArrowLeft aria-hidden="true" size={18} /> Voltar aos projetos</a>
           <p class="eyebrow" style="margin-top:2rem">{project.category}</p>
           <p class="demo-disclosure">{project.label}</p>
           <h1>{project.name}</h1>
@@ -131,5 +156,5 @@ const description = `${project.headline} ${project.description}`;
       </div>
     </section>
   </main>
-  <MenezesFooter />
+  <MenezesFooter navigation={navigation} whatsappUrl={commercialHref} tagline={tagline} />
 </BaseLayout>

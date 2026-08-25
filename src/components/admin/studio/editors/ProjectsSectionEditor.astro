@@ -1,0 +1,94 @@
+---
+import PropertyPanel from "../PropertyPanel.astro";
+import { STUDIO_LIMITS } from "../../../../studio/validation";
+import type { HomeProjectsSection, StudioProject } from "../../../../studio/types";
+
+interface Props {
+  section: HomeProjectsSection;
+  projects: StudioProject[];
+}
+
+const { section, projects } = Astro.props;
+---
+
+<PropertyPanel
+  sectionKey="projects"
+  title="Projetos"
+  visible={section.visible}
+  layout={section.layout}
+>
+  <div class="studio-fields-grid">
+    <label class="studio-field">
+      <span>Chamada curta</span>
+      <input
+        type="text"
+        maxlength={STUDIO_LIMITS.longText}
+        value={section.eyebrow}
+        data-studio-path="home.projects.eyebrow"
+      />
+    </label>
+
+    <label class="studio-field studio-field--wide">
+      <span>Título</span>
+      <textarea maxlength={STUDIO_LIMITS.longText} rows="3" data-studio-path="home.projects.title"
+        >{section.title}</textarea
+      >
+    </label>
+
+    <label class="studio-field studio-field--wide">
+      <span>Texto de apoio</span>
+      <textarea maxlength={STUDIO_LIMITS.longText} rows="3" data-studio-path="home.projects.lead"
+        >{section.lead}</textarea
+      >
+    </label>
+
+    <label class="studio-field studio-field--wide">
+      <span>Corpo</span>
+      <textarea maxlength={STUDIO_LIMITS.longText} rows="4" data-studio-path="home.projects.body"
+        >{section.body}</textarea
+      >
+    </label>
+
+    <fieldset class="studio-field studio-field--wide studio-choice-list">
+      <legend>Projetos exibidos</legend>
+      <p class="studio-field__hint">A ordem continua seguindo a lista configurada no rascunho.</p>
+      {
+        projects.map((project) => (
+          <label class="studio-choice-list__item">
+            <input
+              type="checkbox"
+              value={project.id}
+              checked={section.projectIds.includes(project.id)}
+              data-studio-path="home.projects.projectIds"
+              data-studio-value-type="string-array-member"
+            />
+            <span>
+              <strong>{project.name}</strong>
+              <small>{project.category}</small>
+            </span>
+          </label>
+        ))
+      }
+    </fieldset>
+
+    <label class="studio-field">
+      <span>Título do CTA</span>
+      <input
+        type="text"
+        maxlength={STUDIO_LIMITS.longText}
+        value={section.ctaTitle}
+        data-studio-path="home.projects.ctaTitle"
+      />
+    </label>
+
+    <label class="studio-field">
+      <span>Texto do CTA</span>
+      <input
+        type="text"
+        maxlength={STUDIO_LIMITS.longText}
+        value={section.ctaLabel}
+        data-studio-path="home.projects.ctaLabel"
+      />
+    </label>
+  </div>
+</PropertyPanel>

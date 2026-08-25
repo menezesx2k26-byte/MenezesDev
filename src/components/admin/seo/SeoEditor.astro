@@ -1,0 +1,143 @@
+---
+import type { StudioSeo } from "../../../studio/types";
+import { STUDIO_LIMITS } from "../../../studio/validation";
+
+interface Props {
+  seo: StudioSeo;
+  canonicalUrl: string;
+  canonicalConfigured: boolean;
+  deployEnvironment: "development" | "preview" | "production";
+}
+
+const { seo, canonicalUrl, canonicalConfigured, deployEnvironment } = Astro.props;
+---
+
+<section class="admin-panel admin-panel--full" aria-labelledby="seo-editor-heading">
+  <div class="admin-page-heading">
+    <p class="admin-kicker">SEO</p>
+    <h2 id="seo-editor-heading">Metadados e prévias.</h2>
+    <p>
+      As faixas de caracteres são orientação editorial. Não garantem como Google ou redes sociais
+      vão cortar ou apresentar o conteúdo.
+    </p>
+  </div>
+
+  <section class="admin-panel" aria-labelledby="canonical-heading" data-canonical-status>
+    <span class="admin-panel__label">Ambiente canônico · somente leitura</span>
+    <h3 id="canonical-heading">Destino operacional</h3>
+    <dl>
+      <div>
+        <dt>Ambiente</dt>
+        <dd>{deployEnvironment}</dd>
+      </div>
+      <div>
+        <dt>URL base</dt>
+        <dd><code>{canonicalUrl}</code></dd>
+      </div>
+      <div>
+        <dt>Status</dt>
+        <dd>{canonicalConfigured ? "Configurado" : "Ainda não configurado"}</dd>
+      </div>
+    </dl>
+    <p class="admin-panel__detail">
+      Este valor vem do ambiente de execução e não é texto editável do Studio.
+    </p>
+  </section>
+
+  <div class="studio-fields-grid">
+    <label class="studio-field studio-field--wide">
+      <span>Template de título</span>
+      <input
+        type="text"
+        maxlength={STUDIO_LIMITS.shortText}
+        value={seo.titleTemplate}
+        data-settings-path="seo.titleTemplate"
+      />
+    </label>
+
+    <label class="studio-field studio-field--wide">
+      <span>Título padrão</span>
+      <input
+        type="text"
+        maxlength={STUDIO_LIMITS.shortText}
+        value={seo.defaultTitle}
+        data-settings-path="seo.defaultTitle"
+        data-preview-field="title"
+      />
+      <small>
+        Referência visual: 50–60 caracteres. Atual: <strong data-seo-count="title"
+          >{seo.defaultTitle.length}</strong
+        >.
+      </small>
+    </label>
+
+    <label class="studio-field studio-field--wide">
+      <span>Descrição padrão</span>
+      <textarea
+        rows="4"
+        maxlength={STUDIO_LIMITS.shortText}
+        data-settings-path="seo.defaultDescription"
+        data-preview-field="description">{seo.defaultDescription}</textarea
+      >
+      <small>
+        Referência visual: 140–160 caracteres. Atual: <strong data-seo-count="description"
+          >{seo.defaultDescription.length}</strong
+        >.
+      </small>
+    </label>
+
+    <label class="studio-field studio-field--wide">
+      <span>Título social</span>
+      <input
+        type="text"
+        maxlength={STUDIO_LIMITS.shortText}
+        value={seo.ogTitle}
+        data-settings-path="seo.ogTitle"
+        data-preview-field="social-title"
+      />
+    </label>
+
+    <label class="studio-field studio-field--wide">
+      <span>Descrição social</span>
+      <textarea
+        rows="4"
+        maxlength={STUDIO_LIMITS.shortText}
+        data-settings-path="seo.ogDescription"
+        data-preview-field="social-description">{seo.ogDescription}</textarea
+      >
+    </label>
+  </div>
+
+  <div class="admin-grid admin-grid--two">
+    <section class="admin-panel" aria-labelledby="serp-preview-heading">
+      <span class="admin-panel__label">Prévia aproximada · SERP</span>
+      <h3 id="serp-preview-heading" data-seo-preview="title">{seo.defaultTitle}</h3>
+      <p><code>{canonicalUrl}</code></p>
+      <p data-seo-preview="description">{seo.defaultDescription}</p>
+      <p class="admin-panel__detail">
+        Aproximação visual; não é garantia da renderização do mecanismo de busca.
+      </p>
+    </section>
+
+    <section class="admin-panel" aria-labelledby="social-preview-heading">
+      <span class="admin-panel__label">Prévia aproximada · social</span>
+      <h3 id="social-preview-heading" data-seo-preview="social-title">{seo.ogTitle}</h3>
+      <p data-seo-preview="social-description">{seo.ogDescription}</p>
+      <p class="admin-panel__detail">Plataformas podem variar layout, corte e imagem exibida.</p>
+    </section>
+  </div>
+
+  <section class="admin-panel" aria-labelledby="demo-seo-heading">
+    <span class="admin-panel__label">Segurança editorial</span>
+    <h3 id="demo-seo-heading">Demos nunca são indexáveis pelo Studio</h3>
+    <label class="studio-field">
+      <span>Permitir indexação dos demos</span>
+      <input type="checkbox" name="demosIndexable" checked={seo.demosIndexable} disabled />
+      <small>Bloqueado e somente leitura por política do produto.</small>
+    </label>
+  </section>
+
+  <p class="studio-save-state" data-seo-settings-save-status aria-live="polite">
+    Rascunho sincronizado.
+  </p>
+</section>

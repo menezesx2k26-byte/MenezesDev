@@ -1,0 +1,67 @@
+---
+import {
+  BadgeDollarSign,
+  FolderKanban,
+  House,
+  Images,
+  PanelsTopLeft,
+  Search,
+  Settings,
+  Wrench,
+} from "lucide-astro";
+
+interface Props {
+  currentPath?: string;
+  mobile?: boolean;
+}
+
+const { currentPath = Astro.url.pathname, mobile = false } = Astro.props;
+
+const navigation = [
+  { label: "Visão geral", href: "/admin", icon: House },
+  { label: "Studio", href: "/admin/studio", icon: PanelsTopLeft },
+  { label: "Projetos", href: "/admin/projetos", icon: FolderKanban },
+  { label: "Serviços", href: "/admin/servicos", icon: Wrench },
+  { label: "Planos", href: "/admin/planos", icon: BadgeDollarSign },
+  { label: "Mídia", href: "/admin/midia", icon: Images },
+  { label: "SEO", href: "/admin/seo", icon: Search },
+  { label: "Configurações", href: "/admin/configuracoes", icon: Settings },
+] as const;
+
+const isCurrent = (href: string) =>
+  href === "/admin"
+    ? currentPath === href
+    : currentPath === href || currentPath.startsWith(`${href}/`);
+---
+
+<aside class:list={["admin-sidebar", { "admin-sidebar--mobile": mobile }]} aria-label="Studio">
+  <a class="admin-sidebar__brand" href="/admin" aria-label="MenezesDev Studio — visão geral">
+    <img src="/assets/brand/brand-icon-512.png" width="40" height="40" alt="" />
+    <span>
+      <strong>MenezesDev</strong>
+      <small>Studio</small>
+    </span>
+  </a>
+
+  <nav class="admin-sidebar__nav" aria-label="Áreas do Studio">
+    {
+      navigation.map((item) => {
+        const Icon = item.icon;
+        return (
+          <a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>
+            <Icon aria-hidden="true" size={19} strokeWidth={1.8} />
+            <span>{item.label}</span>
+          </a>
+        );
+      })
+    }
+  </nav>
+
+  <div class="admin-sidebar__footer">
+    <span class="admin-sidebar__environment" aria-label="Ambiente do Studio">
+      <i aria-hidden="true"></i>
+      Administração
+    </span>
+    <a href="/" target="_blank" rel="noreferrer">Abrir site público</a>
+  </div>
+</aside>

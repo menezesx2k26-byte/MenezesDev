@@ -6,10 +6,16 @@ interface Props {
   label: string;
   class?: string;
   showPendingNote?: boolean;
+  href?: string | null;
 }
 
-const { label, class: className = "button", showPendingNote = false } = Astro.props;
-const href = siteConfig.commercial.whatsappUrl;
+const {
+  label,
+  class: className = "button",
+  showPendingNote = false,
+  href: providedHref,
+} = Astro.props;
+const href = providedHref === undefined ? siteConfig.commercial.whatsappUrl : providedHref;
 ---
 
 {

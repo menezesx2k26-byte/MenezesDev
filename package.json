@@ -11,17 +11,28 @@
   "scripts": {
     "dev": "astro dev",
     "check": "astro check",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "build:site": "astro build",
     "check:routes": "node scripts/check-routes.mjs",
+    "check:runtime-routes": "node scripts/check-runtime-routes.mjs",
+    "check:runtime-health:dev": "node scripts/check-runtime-health-dev.mjs",
     "check:acceptance": "node scripts/check-acceptance.mjs",
     "check:release": "node scripts/check-release.mjs",
-    "build": "astro check && astro build && node scripts/check-routes.mjs",
+    "build": "astro check && astro build && node scripts/check-routes.mjs && node scripts/check-runtime-routes.mjs",
     "preview": "astro preview",
+    "cf:types": "wrangler types",
+    "cf:dev": "wrangler dev",
+    "db:migrate:local": "wrangler d1 migrations apply menezesdev-studio-local --local",
+    "db:query:local": "wrangler d1 execute menezesdev-studio-local --local --command",
+    "studio:seed:local": "node scripts/seed-studio.mjs",
+    "studio:check-seed": "node scripts/check-studio-seed.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "validate": "prettier --check . && astro check && astro build && node scripts/check-routes.mjs && node scripts/check-acceptance.mjs"
+    "validate": "prettier --check . && vitest run && astro check && astro build && node scripts/check-routes.mjs && node scripts/check-runtime-routes.mjs && node scripts/check-acceptance.mjs"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "14.2.3",
     "@astrojs/sitemap": "3.7.3",
     "astro": "7.2.4",
     "lucide-astro": "0.556.0"
@@ -32,6 +43,8 @@
     "prettier": "3.9.6",
     "prettier-plugin-astro": "0.14.1",
     "tailwindcss": "4.3.3",
-    "typescript": "6.0.3"
+    "typescript": "6.0.3",
+    "vitest": "4.1.11",
+    "wrangler": "4.125.0"
   }
 }

@@ -1,0 +1,115 @@
+---
+import AdminLayout from "../../../layouts/AdminLayout.astro";
+import ConflictDialog from "../../../components/admin/ConflictDialog.astro";
+import ProjectEditor from "../../../components/admin/projects/ProjectEditor.astro";
+import SlugChangeDialog from "../../../components/admin/projects/SlugChangeDialog.astro";
+import { getRuntimeBindings } from "../../../runtime/bindings";
+import { requireStudioAdminContext } from "../../../studio/http";
+import { getDraft, getPublished } from "../../../studio/repository";
+
+const adminContext = requireStudioAdminContext({ isDev: import.meta.env.DEV });
+if (!adminContext) Astro.response.status = 404;
+
+const projectId = Astro.params.id ?? "";
+let draft: Awaited<ReturnType<typeof getDraft>> | null = null;
+let baselineDocument: Awaited<ReturnType<typeof getPublished>>["document"] | null = null;
+let projectIndex = -1;
+let loadError = false;
+
+if (adminContext) {
+  try {
+    const { DB } = getRuntimeBindings();
+    const [loadedDraft, published] = await Promise.all([getDraft(DB), getPublished(DB)]);
+    draft = loadedDraft;
+    baselineDocument = published.document;
+    projectIndex = loadedDraft.document.projects.findIndex((project) => project.id === projectId);
+    if (projectIndex < 0) Astro.response.status = 404;
+  } catch {
+    loadError = true;
+  }
+}
+
+const project = draft && projectIndex >= 0 ? (draft.document.projects[projectIndex] ?? null) : null;
+const ready = Boolean(adminContext && draft && baselineDocument && project && !loadError);
+const initialStateJson =
+  ready && draft && baselineDocument
+    ? JSON.stringify({
+        document: draft.document,
+        baseline: baselineDocument,
+        revision: draft.revision,
+      })
+        .replace(/&/g, "\\u0026")
+        .replace(/</g, "\\u003c")
+        .replace(/>/g, "\\u003e")
+        .replace(/\u2028/g, "\\u2028")
+        .replace(/\u2029/g, "\\u2029")
+    : "";
+---
+
+{
+  adminContext ? (
+    <AdminLayout
+      title={project ? `Projeto — ${project.name}` : "Projeto"}
+      description="Editor de case do MenezesDev Studio."
+      saveLabel={ready ? "Rascunho carregado" : "Projeto indisponível"}
+      publicationLabel="Publicação separada do rascunho"
+      statusTone={ready ? "neutral" : "error"}
+    >
+      {ready && draft && project ? (
+        <>
+          <section class="admin-page-heading" aria-labelledby="project-heading">
+            <p class="admin-kicker">Projetos</p>
+            <h2 id="project-heading">{project.name}</h2>
+            <p>
+              O case continua marcado como conceito demonstrativo enquanto estiver ligado a um demo.
+              Alterar o slug exige confirmação porque muda a URL pública.
+            </p>
+            <a class="admin-button admin-button--quiet" href="/admin/projetos">
+              Voltar para projetos
+            </a>
+          </section>
+
+          <div data-projects-root>
+            <script
+              id="studio-initial-state"
+              type="application/json"
+              is:inline
+              set:html={initialStateJson}
+            />
+            <ProjectEditor project={project} projectIndex={projectIndex} />
+          </div>
+          <SlugChangeDialog />
+          <ConflictDialog />
+
+          <script>
+            import {setupProjectsController} from "../../../studio/client/projects-controller";
+            setupProjectsController(); document.addEventListener("astro:page-load",
+            setupProjectsController);
+          </script>
+        </>
+      ) : (
+        <section class="admin-panel admin-panel--full" role="alert">
+          <span class="admin-panel__label">Projeto indisponível</span>
+          <strong class="admin-panel__value">
+            {projectIndex < 0 && !loadError
+              ? "Projeto não encontrado."
+              : "O rascunho não pôde ser carregado."}
+          </strong>
+          <p class="admin-panel__detail">Nenhuma alteração foi feita.</p>
+          <a class="admin-button admin-button--quiet" href="/admin/projetos">
+            Voltar para projetos
+          </a>
+        </section>
+      )}
+    </AdminLayout>
+  ) : (
+    <html lang="pt-BR">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="noindex, nofollow, noarchive" />
+        <title>Página não encontrada</title>
+      </head>
+      <body />
+    </html>
+  )
+}

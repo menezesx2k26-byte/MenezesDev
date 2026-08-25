@@ -1,0 +1,6871 @@
+{
+  "baselineCommit": "152fab910296f29cfae2e07bf6ccc2c69f0ce0df",
+  "capturedFrom": "Phase 10 static Astro output",
+  "routes": [
+    {
+      "path": "/",
+      "title": "MenezesDev | Criação de Sites Profissionais",
+      "description": "Sites profissionais, rápidos e responsivos para empresas e negócios. Landing pages e sites institucionais a partir de R$600.",
+      "tokens": [
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "#main-content"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Pular para o conteúdo"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "header"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "aria-label": "MenezesDev — início",
+            "href": "/"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/brand/brand-icon-512.png",
+            "width": "512",
+            "height": "512"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "MenezesDev"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "nav",
+          "attrs": {
+            "aria-label": "Navegação principal"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#projetos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Projetos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#servicos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Serviços"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#processo"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Processo"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#planos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Planos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#faq"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "FAQ"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "text",
+          "value": "Solicitar orçamento"
+        },
+        {
+          "kind": "close",
+          "tag": "nav"
+        },
+        {
+          "kind": "open",
+          "tag": "button",
+          "attrs": {
+            "aria-label": "Abrir menu",
+            "type": "button",
+            "aria-haspopup": "dialog",
+            "aria-controls": "mobile-menu-menezesdev"
+          }
+        },
+        {
+          "kind": "close",
+          "tag": "button"
+        },
+        {
+          "kind": "close",
+          "tag": "header"
+        },
+        {
+          "kind": "open",
+          "tag": "dialog",
+          "attrs": {
+            "id": "mobile-menu-menezesdev",
+            "aria-labelledby": "mobile-menu-menezesdev-title"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "strong",
+          "attrs": {
+            "id": "mobile-menu-menezesdev-title"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "MenezesDev"
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "open",
+          "tag": "button",
+          "attrs": {
+            "aria-label": "Fechar menu",
+            "type": "button"
+          }
+        },
+        {
+          "kind": "close",
+          "tag": "button"
+        },
+        {
+          "kind": "open",
+          "tag": "nav",
+          "attrs": {
+            "aria-label": "Navegação móvel"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#projetos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Projetos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#servicos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Serviços"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#processo"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Processo"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#planos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Planos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#faq"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "FAQ"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "close",
+          "tag": "nav"
+        },
+        {
+          "kind": "text",
+          "value": "Falar pelo WhatsApp"
+        },
+        {
+          "kind": "open",
+          "tag": "small"
+        },
+        {
+          "kind": "text",
+          "value": "Contato comercial aguardando URL aprovada."
+        },
+        {
+          "kind": "close",
+          "tag": "small"
+        },
+        {
+          "kind": "close",
+          "tag": "dialog"
+        },
+        {
+          "kind": "open",
+          "tag": "main",
+          "attrs": {
+            "id": "main-content"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "DESENVOLVIMENTO WEB PARA NEGÓCIOS"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h1"
+        },
+        {
+          "kind": "text",
+          "value": "Seu negócio merece um site"
+        },
+        {
+          "kind": "text",
+          "value": "à altura."
+        },
+        {
+          "kind": "close",
+          "tag": "h1"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Sites rápidos, modernos e profissionais para empresas que querem transformar presença digital em mais credibilidade, contatos e oportunidades."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Quero meu site"
+        },
+        {
+          "kind": "open",
+          "tag": "small"
+        },
+        {
+          "kind": "text",
+          "value": "Contato comercial aguardando URL aprovada."
+        },
+        {
+          "kind": "close",
+          "tag": "small"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "#projetos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Ver projetos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Projetos a partir de R$600."
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Design profissional · Responsivo · SEO técnico · HTTPS"
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/demos/m47/m47-hero.webp",
+            "alt": "Conceito M47 Barber",
+            "width": "1536",
+            "height": "960"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/demos/tavola27/tavola27-hero.webp",
+            "alt": "Conceito Tavola 27",
+            "width": "1536",
+            "height": "960"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/demos/prismae/prismae-hero-graphic.svg",
+            "alt": "Conceito gráfico Prismae",
+            "width": "960",
+            "height": "720"
+          }
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "section",
+          "attrs": {
+            "aria-label": "Características dos projetos"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Rápido"
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Experiência leve e otimizada."
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Responsivo"
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Perfeito em qualquer tela."
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Seguro"
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "HTTPS e infraestrutura moderna."
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Encontrável"
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Base técnica preparada para SEO."
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "PRESENÇA DIGITAL"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h2",
+          "attrs": {
+            "id": "problema-title"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Ter Instagram não é ter presença digital completa."
+        },
+        {
+          "kind": "close",
+          "tag": "h2"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Redes sociais são importantes, mas pertencem a plataformas de terceiros."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Um site próprio organiza sua marca, apresenta seus serviços e oferece ao cliente um lugar profissional para encontrar tudo o que precisa."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Seu site funciona como a sede digital do seu negócio."
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Apenas redes sociais"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "ul"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "informações espalhadas"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "conteúdo depende da plataforma"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "difícil apresentar todos os serviços"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "pouca liberdade visual"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "contato nem sempre é imediato"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "close",
+          "tag": "ul"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Com um site próprio"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "ul"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "sua marca em um endereço próprio"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "serviços organizados"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "apresentação profissional"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "contato direto"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "presença permanente na web"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "close",
+          "tag": "ul"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "section",
+          "attrs": {
+            "id": "projetos"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "PROJETOS"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h2",
+          "attrs": {
+            "id": "projects-title"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Sites que parecem caros."
+        },
+        {
+          "kind": "text",
+          "value": "Sem precisar custar uma fortuna."
+        },
+        {
+          "kind": "close",
+          "tag": "h2"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Design profissional não deveria ser exclusividade de grandes empresas."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Cada projeto é desenvolvido para combinar identidade, clareza e desempenho."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Barbearia · Landing Page"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Conceito demonstrativo"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Presença forte para uma marca de personalidade."
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Website desenvolvido como conceito para uma barbearia moderna, reunindo serviços, localização, horários e contato em uma experiência visual direta e sofisticada."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "ul"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Landing Page"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Mobile First"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "WhatsApp"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Localização"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "close",
+          "tag": "ul"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Essencial — a partir de R$600"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/projetos/m47"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Ver projeto"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/demos/m47/m47-hero.webp",
+            "alt": "Barbeiro finalizando o corte de um cliente em uma barbearia contemporânea escura.",
+            "width": "1536",
+            "height": "960"
+          }
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Restaurante · Site institucional"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Conceito demonstrativo"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "A experiência começa antes da primeira mesa."
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Conceito de website para restaurante, pensado para apresentar ambiente, cardápio, localização e canais de contato com uma linguagem visual marcante."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "ul"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Restaurante"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Cardápio"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Responsivo"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Contato"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "close",
+          "tag": "ul"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Profissional — a partir de R$950"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/projetos/tavola-27"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Ver projeto"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/demos/tavola27/tavola27-hero.webp",
+            "alt": "Mesa de restaurante contemporâneo com massa, vinho e interior em tons quentes.",
+            "width": "1536",
+            "height": "960"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/demos/tavola27/tavola27-food-01.webp",
+            "alt": "Tagliatelle ao ragu do conceito Tavola 27",
+            "width": "1200",
+            "height": "1500"
+          }
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Consultoria · Site para geração de leads"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Conceito demonstrativo"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Confiança também é construída no digital."
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Website institucional para uma empresa de serviços, com foco em autoridade, organização da informação e geração de contatos comerciais."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "ul"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Institucional"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Serviços"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Formulário"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "SEO técnico"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "close",
+          "tag": "ul"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Negócio — a partir de R$1.500"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/projetos/prismae"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Ver projeto"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/demos/prismae/prismae-hero-graphic.svg",
+            "alt": "Sistema gráfico abstrato da Prismae sobre estratégia, processos e indicadores.",
+            "width": "960",
+            "height": "720"
+          }
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Quer um projeto com a identidade do seu negócio?"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Solicitar orçamento"
+        },
+        {
+          "kind": "open",
+          "tag": "small"
+        },
+        {
+          "kind": "text",
+          "value": "Contato comercial aguardando URL aprovada."
+        },
+        {
+          "kind": "close",
+          "tag": "small"
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "section",
+          "attrs": {
+            "id": "servicos"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "SERVIÇOS"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h2",
+          "attrs": {
+            "id": "services-title"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Do primeiro clique ao site publicado."
+        },
+        {
+          "kind": "close",
+          "tag": "h2"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Desenvolvimento completo, da estrutura visual à publicação."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "text",
+          "value": "01"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Sites institucionais"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Apresente sua empresa, seus serviços e seus diferenciais em uma presença digital profissional."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "small"
+        },
+        {
+          "kind": "text",
+          "value": "Ideal para empresas e profissionais."
+        },
+        {
+          "kind": "close",
+          "tag": "small"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "text",
+          "value": "02"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Landing Pages"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Páginas objetivas para apresentar uma oferta, serviço, campanha ou negócio com clareza e foco em conversão."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "small"
+        },
+        {
+          "kind": "text",
+          "value": "A partir de R$600."
+        },
+        {
+          "kind": "close",
+          "tag": "small"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "text",
+          "value": "03"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Catálogos digitais"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Organize produtos ou serviços em uma experiência simples de navegar e fácil de compartilhar."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "small"
+        },
+        {
+          "kind": "close",
+          "tag": "small"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "text",
+          "value": "04"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Integrações"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "WhatsApp, formulários, mapas, analytics e outras ferramentas conectadas ao seu site."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "small"
+        },
+        {
+          "kind": "close",
+          "tag": "small"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "text",
+          "value": "05"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Aplicações personalizadas"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Dashboards, bancos de dados, áreas administrativas e soluções web desenvolvidas conforme a necessidade do projeto."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "small"
+        },
+        {
+          "kind": "text",
+          "value": "Sob orçamento."
+        },
+        {
+          "kind": "close",
+          "tag": "small"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "section",
+          "attrs": {
+            "id": "processo"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "COMO FUNCIONA"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h2",
+          "attrs": {
+            "id": "process-title"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Seu novo site em quatro etapas."
+        },
+        {
+          "kind": "close",
+          "tag": "h2"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Um processo simples, claro e organizado do início ao lançamento."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "text",
+          "value": "01"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Briefing"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Entendemos seu negócio, seus objetivos, seu público e o que o site precisa comunicar."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "text",
+          "value": "02"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Direção visual"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Definimos estrutura, identidade, hierarquia visual, conteúdo e experiência de navegação."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "text",
+          "value": "03"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Desenvolvimento"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "O site é construído, adaptado para diferentes dispositivos e integrado às ferramentas necessárias."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "text",
+          "value": "04"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Publicação"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Configuramos domínio, HTTPS, hospedagem e os últimos detalhes antes do lançamento."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Você acompanha o projeto e possui até duas rodadas de revisão dentro do escopo contratado."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "POR DENTRO"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h2",
+          "attrs": {
+            "id": "capabilities-title"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Bonito por fora."
+        },
+        {
+          "kind": "text",
+          "value": "Bem construído por dentro."
+        },
+        {
+          "kind": "close",
+          "tag": "h2"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Um site profissional precisa fazer mais do que simplesmente parecer bom."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "A estrutura técnica também influencia velocidade, experiência, manutenção e presença nos mecanismos de busca."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Desenvolvido para ser rápido."
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Performance"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Arquitetura leve, imagens otimizadas e carregamento pensado para uma experiência rápida."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Responsividade"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "A experiência é planejada para funcionar bem em celulares, tablets e computadores."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "SEO técnico"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Estrutura semântica, metadados e boas práticas para facilitar a indexação do site."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Segurança"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "HTTPS e boas práticas adequadas à arquitetura utilizada."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Infraestrutura moderna"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Projetos preparados para utilizar serviços modernos de distribuição, hospedagem e entrega de conteúdo."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Código versionado"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "O desenvolvimento utiliza Git para manter histórico e organização das alterações do projeto."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "section",
+          "attrs": {
+            "id": "planos"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "PLANOS"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h2",
+          "attrs": {
+            "id": "plans-title"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Um site para cada momento do seu negócio."
+        },
+        {
+          "kind": "close",
+          "tag": "h2"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Comece com o que sua empresa precisa hoje e evolua quando fizer sentido."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Todos os valores representam preços iniciais e podem variar conforme o escopo."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Essencial"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "A partir de R$600"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Para quem precisa colocar o negócio na internet com uma presença profissional."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Landing page completa"
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "open",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "summary"
+        },
+        {
+          "kind": "text",
+          "value": "O que inclui"
+        },
+        {
+          "kind": "close",
+          "tag": "summary"
+        },
+        {
+          "kind": "open",
+          "tag": "ul"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "uma página"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "até 8 seções"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "design responsivo"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "botão de WhatsApp"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "links para redes sociais"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "localização"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "SEO técnico básico"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "HTTPS"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "publicação"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "2 rodadas de revisão"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "close",
+          "tag": "ul"
+        },
+        {
+          "kind": "close",
+          "tag": "details"
+        },
+        {
+          "kind": "text",
+          "value": "Quero começar"
+        },
+        {
+          "kind": "open",
+          "tag": "small"
+        },
+        {
+          "kind": "text",
+          "value": "Contato comercial aguardando URL aprovada."
+        },
+        {
+          "kind": "close",
+          "tag": "small"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "text",
+          "value": "RECOMENDADO"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Profissional"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "A partir de R$950"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Para empresas que precisam de uma presença institucional completa."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Site com até 5 páginas"
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "open",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "summary"
+        },
+        {
+          "kind": "text",
+          "value": "O que inclui"
+        },
+        {
+          "kind": "close",
+          "tag": "summary"
+        },
+        {
+          "kind": "open",
+          "tag": "ul"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "tudo do Essencial"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "até 5 páginas"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "formulário de contato"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "proteção contra spam"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "SEO técnico ampliado"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "página 404"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "analytics quando solicitado"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "estrutura preparada para expansão"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "2 rodadas de revisão"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "close",
+          "tag": "ul"
+        },
+        {
+          "kind": "close",
+          "tag": "details"
+        },
+        {
+          "kind": "text",
+          "value": "Solicitar orçamento"
+        },
+        {
+          "kind": "open",
+          "tag": "small"
+        },
+        {
+          "kind": "text",
+          "value": "Contato comercial aguardando URL aprovada."
+        },
+        {
+          "kind": "close",
+          "tag": "small"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Negócio"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "A partir de R$1.500"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Para empresas que querem transformar o site em uma ferramenta ativa de geração de contatos."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Estrutura orientada a conversão"
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "open",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "summary"
+        },
+        {
+          "kind": "text",
+          "value": "O que inclui"
+        },
+        {
+          "kind": "close",
+          "tag": "summary"
+        },
+        {
+          "kind": "open",
+          "tag": "ul"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "tudo do Profissional"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "até 7 páginas"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "formulários personalizados"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "rastreamento de conversões"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Google Analytics"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "integração com Meta Pixel quando solicitada"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "páginas estratégicas"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "CTAs orientados a conversão"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "preparação para campanhas"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "close",
+          "tag": "ul"
+        },
+        {
+          "kind": "close",
+          "tag": "details"
+        },
+        {
+          "kind": "text",
+          "value": "Quero gerar mais contatos"
+        },
+        {
+          "kind": "open",
+          "tag": "small"
+        },
+        {
+          "kind": "text",
+          "value": "Contato comercial aguardando URL aprovada."
+        },
+        {
+          "kind": "close",
+          "tag": "small"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Precisa de algo além de um site convencional?"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Também desenvolvemos projetos com banco de dados, dashboards, áreas administrativas, autenticação, integrações e outras funcionalidades específicas."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Projetos personalizados a partir de R$2.500."
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Contar sobre meu projeto"
+        },
+        {
+          "kind": "open",
+          "tag": "small"
+        },
+        {
+          "kind": "text",
+          "value": "Contato comercial aguardando URL aprovada."
+        },
+        {
+          "kind": "close",
+          "tag": "small"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Domínio, serviços pagos de terceiros e funcionalidades fora do escopo podem gerar custos adicionais. Nenhum serviço externo será contratado sem alinhamento prévio."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "section",
+          "attrs": {
+            "id": "faq"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "DÚVIDAS FREQUENTES"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h2",
+          "attrs": {
+            "id": "faq-title"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Antes de começar, talvez você queira saber."
+        },
+        {
+          "kind": "close",
+          "tag": "h2"
+        },
+        {
+          "kind": "open",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "summary"
+        },
+        {
+          "kind": "text",
+          "value": "Quanto custa um site?"
+        },
+        {
+          "kind": "close",
+          "tag": "summary"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Projetos começam em R$600 para uma landing page profissional."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Sites institucionais completos começam em R$950 e projetos mais avançados são avaliados conforme o escopo."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "summary"
+        },
+        {
+          "kind": "text",
+          "value": "O domínio está incluído?"
+        },
+        {
+          "kind": "close",
+          "tag": "summary"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "O registro do domínio não está incluído no valor do desenvolvimento."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "A configuração e o apontamento podem ser feitos durante a publicação do projeto."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "O domínio deve preferencialmente ficar registrado em nome do cliente."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "summary"
+        },
+        {
+          "kind": "text",
+          "value": "Preciso pagar hospedagem todo mês?"
+        },
+        {
+          "kind": "close",
+          "tag": "summary"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Nem sempre."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Muitos sites institucionais conseguem operar em infraestruturas modernas com planos gratuitos ou de baixo custo."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Caso o projeto ultrapasse esses limites ou precise de serviços adicionais, os possíveis custos são apresentados antes da contratação."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "summary"
+        },
+        {
+          "kind": "text",
+          "value": "Quanto tempo demora para o site ficar pronto?"
+        },
+        {
+          "kind": "close",
+          "tag": "summary"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Uma landing page costuma levar entre 5 e 10 dias úteis após o recebimento do conteúdo necessário."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Sites maiores podem levar de 7 a 20 dias úteis, dependendo do escopo."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "summary"
+        },
+        {
+          "kind": "text",
+          "value": "Preciso ter todos os textos e imagens prontos?"
+        },
+        {
+          "kind": "close",
+          "tag": "summary"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Não necessariamente."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Podemos ajudar a organizar o conteúdo e indicar soluções para imagens e elementos visuais."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Produções mais extensas de texto ou material específico podem ser contratadas separadamente."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "summary"
+        },
+        {
+          "kind": "text",
+          "value": "Posso pedir alterações durante o projeto?"
+        },
+        {
+          "kind": "close",
+          "tag": "summary"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Sim."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Os pacotes incluem duas rodadas de revisão dentro do escopo contratado."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Mudanças estruturais, novas páginas ou funcionalidades adicionais são avaliadas separadamente."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "summary"
+        },
+        {
+          "kind": "text",
+          "value": "O site funciona bem no celular?"
+        },
+        {
+          "kind": "close",
+          "tag": "summary"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Sim."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Todos os projetos são desenvolvidos para funcionar em celulares, tablets e computadores."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "summary"
+        },
+        {
+          "kind": "text",
+          "value": "Meu site vai aparecer em primeiro no Google?"
+        },
+        {
+          "kind": "close",
+          "tag": "summary"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Nenhuma empresa séria pode garantir uma posição específica nos resultados de busca."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "O projeto inclui boas práticas técnicas de SEO para facilitar indexação, desempenho e compreensão do conteúdo pelos mecanismos de busca."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "summary"
+        },
+        {
+          "kind": "text",
+          "value": "Sou obrigado a contratar manutenção mensal?"
+        },
+        {
+          "kind": "close",
+          "tag": "summary"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Não."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Depois da entrega, você pode manter o site sem plano mensal e contratar alterações quando precisar."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Também existem planos opcionais de manutenção para quem prefere acompanhamento contínuo."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "summary"
+        },
+        {
+          "kind": "text",
+          "value": "O projeto é meu depois da entrega?"
+        },
+        {
+          "kind": "close",
+          "tag": "summary"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Após a quitação, os arquivos e o código do projeto podem ser entregues ao cliente, respeitando as licenças das tecnologias e serviços utilizados."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "details"
+        },
+        {
+          "kind": "open",
+          "tag": "summary"
+        },
+        {
+          "kind": "text",
+          "value": "Como funciona o pagamento?"
+        },
+        {
+          "kind": "close",
+          "tag": "summary"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "O modelo padrão é 50% para iniciar o projeto e 50% antes da publicação definitiva."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Projetos maiores podem utilizar etapas intermediárias."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "close",
+          "tag": "details"
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "VAMOS COMEÇAR?"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h2"
+        },
+        {
+          "kind": "text",
+          "value": "Sua empresa já existe."
+        },
+        {
+          "kind": "text",
+          "value": "Agora faça ela existir na internet."
+        },
+        {
+          "kind": "close",
+          "tag": "h2"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Conte um pouco sobre seu negócio e o que você precisa."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "A partir disso, analisamos o projeto e indicamos a solução mais adequada."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Orçamento sem compromisso."
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Falar pelo WhatsApp"
+        },
+        {
+          "kind": "open",
+          "tag": "small"
+        },
+        {
+          "kind": "text",
+          "value": "Contato comercial aguardando URL aprovada."
+        },
+        {
+          "kind": "close",
+          "tag": "small"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "#planos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Ver planos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "close",
+          "tag": "main"
+        },
+        {
+          "kind": "open",
+          "tag": "footer"
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/brand/logo-dark.png",
+            "alt": "MenezesDev",
+            "width": "2172",
+            "height": "724"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Sites que impulsionam negócios."
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Design e desenvolvimento web para empresas e profissionais que querem uma presença digital mais profissional."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "nav",
+          "attrs": {
+            "aria-label": "Navegação do rodapé"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Navegação"
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#projetos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Projetos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#servicos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Serviços"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#processo"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Processo"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#planos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Planos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#faq"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "FAQ"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "close",
+          "tag": "nav"
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Serviços"
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Landing Pages"
+        },
+        {
+          "kind": "text",
+          "value": "Sites institucionais"
+        },
+        {
+          "kind": "text",
+          "value": "Catálogos"
+        },
+        {
+          "kind": "text",
+          "value": "Integrações"
+        },
+        {
+          "kind": "text",
+          "value": "Projetos personalizados"
+        },
+        {
+          "kind": "text",
+          "value": "Solicitar orçamento"
+        },
+        {
+          "kind": "open",
+          "tag": "small"
+        },
+        {
+          "kind": "text",
+          "value": "Contato comercial aguardando URL aprovada."
+        },
+        {
+          "kind": "close",
+          "tag": "small"
+        },
+        {
+          "kind": "text",
+          "value": "© 2026 MenezesDev. Todos os direitos reservados."
+        },
+        {
+          "kind": "text",
+          "value": "Sites que impulsionam negócios."
+        },
+        {
+          "kind": "close",
+          "tag": "footer"
+        }
+      ]
+    },
+    {
+      "path": "/projetos/m47",
+      "title": "M47 Barber — Projeto MenezesDev",
+      "description": "Presença forte para uma marca de personalidade. Website desenvolvido como conceito para uma barbearia moderna, reunindo serviços, localização, horários e contato em uma experiência visual direta e sofisticada.",
+      "tokens": [
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "#main-content"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Pular para o conteúdo"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "header"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "aria-label": "MenezesDev — início",
+            "href": "/"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/brand/brand-icon-512.png",
+            "width": "512",
+            "height": "512"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "MenezesDev"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "nav",
+          "attrs": {
+            "aria-label": "Navegação principal"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#projetos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Projetos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#servicos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Serviços"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#processo"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Processo"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#planos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Planos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#faq"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "FAQ"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "text",
+          "value": "Solicitar orçamento"
+        },
+        {
+          "kind": "close",
+          "tag": "nav"
+        },
+        {
+          "kind": "open",
+          "tag": "button",
+          "attrs": {
+            "aria-label": "Abrir menu",
+            "type": "button",
+            "aria-haspopup": "dialog",
+            "aria-controls": "mobile-menu-menezesdev"
+          }
+        },
+        {
+          "kind": "close",
+          "tag": "button"
+        },
+        {
+          "kind": "close",
+          "tag": "header"
+        },
+        {
+          "kind": "open",
+          "tag": "dialog",
+          "attrs": {
+            "id": "mobile-menu-menezesdev",
+            "aria-labelledby": "mobile-menu-menezesdev-title"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "strong",
+          "attrs": {
+            "id": "mobile-menu-menezesdev-title"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "MenezesDev"
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "open",
+          "tag": "button",
+          "attrs": {
+            "aria-label": "Fechar menu",
+            "type": "button"
+          }
+        },
+        {
+          "kind": "close",
+          "tag": "button"
+        },
+        {
+          "kind": "open",
+          "tag": "nav",
+          "attrs": {
+            "aria-label": "Navegação móvel"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#projetos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Projetos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#servicos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Serviços"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#processo"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Processo"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#planos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Planos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#faq"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "FAQ"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "close",
+          "tag": "nav"
+        },
+        {
+          "kind": "text",
+          "value": "Falar pelo WhatsApp"
+        },
+        {
+          "kind": "open",
+          "tag": "small"
+        },
+        {
+          "kind": "text",
+          "value": "Contato comercial aguardando URL aprovada."
+        },
+        {
+          "kind": "close",
+          "tag": "small"
+        },
+        {
+          "kind": "close",
+          "tag": "dialog"
+        },
+        {
+          "kind": "open",
+          "tag": "main",
+          "attrs": {
+            "id": "main-content"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#projetos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Voltar aos projetos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Barbearia · Landing Page"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Conceito demonstrativo"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h1"
+        },
+        {
+          "kind": "text",
+          "value": "M47 Barber"
+        },
+        {
+          "kind": "close",
+          "tag": "h1"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Presença forte para uma marca de personalidade."
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Website desenvolvido como conceito para uma barbearia moderna, reunindo serviços, localização, horários e contato em uma experiência visual direta e sofisticada."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Essencial — a partir de R$600"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "ul"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Landing Page"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Mobile First"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "WhatsApp"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Localização"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "close",
+          "tag": "ul"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/demo/m47"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Ver projeto"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#planos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Ver planos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/demos/m47/m47-hero.webp",
+            "alt": "Barbeiro finalizando o corte de um cliente em uma barbearia contemporânea escura.",
+            "width": "1536",
+            "height": "960"
+          }
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "CONTEXTO"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h2"
+        },
+        {
+          "kind": "text",
+          "value": "Contexto do projeto."
+        },
+        {
+          "kind": "close",
+          "tag": "h2"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Landing page compacta para uma barbearia urbana, precisa, masculina e contemporânea."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "O projeto organiza serviços, ambiente, localização e uma ação demonstrativa de agendamento em uma narrativa direta."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "DIREÇÃO VISUAL"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Hero cinematográfico com copy à esquerda e ação fotográfica à direita."
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Galeria editorial com seis cenas distintas do mesmo ensaio."
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Hierarquia linear e responsiva para sustentar uma decisão rápida."
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "SISTEMA VISUAL"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h2",
+          "attrs": {
+            "id": "assets-title"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Assets aprovados."
+        },
+        {
+          "kind": "close",
+          "tag": "h2"
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/demos/m47/m47-gallery-01.webp",
+            "alt": "Barbeiro realizando corte masculino com tesoura e pente.",
+            "width": "1200",
+            "height": "1500"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/demos/m47/m47-gallery-05.webp",
+            "alt": "Interior contemporâneo da barbearia M47 em luz quente.",
+            "width": "1536",
+            "height": "960"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/demos/m47/m47-gallery-06.webp",
+            "alt": "Retrato editorial masculino depois do atendimento.",
+            "width": "1200",
+            "height": "1500"
+          }
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "ESCOPO DEMONSTRADO"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h2"
+        },
+        {
+          "kind": "text",
+          "value": "Recursos demonstrados."
+        },
+        {
+          "kind": "close",
+          "tag": "h2"
+        },
+        {
+          "kind": "open",
+          "tag": "ul"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Landing page"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Galeria editorial"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Navegação por âncoras"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Agendamento demonstrativo"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "close",
+          "tag": "ul"
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "CONCEITO DEMONSTRATIVO"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Ver projeto"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Este case apresenta uma empresa fictícia e não representa resultados comerciais reais."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/demo/m47"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Ver projeto"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "close",
+          "tag": "main"
+        },
+        {
+          "kind": "open",
+          "tag": "footer"
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/brand/logo-dark.png",
+            "alt": "MenezesDev",
+            "width": "2172",
+            "height": "724"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Sites que impulsionam negócios."
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Design e desenvolvimento web para empresas e profissionais que querem uma presença digital mais profissional."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "nav",
+          "attrs": {
+            "aria-label": "Navegação do rodapé"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Navegação"
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#projetos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Projetos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#servicos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Serviços"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#processo"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Processo"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#planos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Planos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#faq"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "FAQ"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "close",
+          "tag": "nav"
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Serviços"
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Landing Pages"
+        },
+        {
+          "kind": "text",
+          "value": "Sites institucionais"
+        },
+        {
+          "kind": "text",
+          "value": "Catálogos"
+        },
+        {
+          "kind": "text",
+          "value": "Integrações"
+        },
+        {
+          "kind": "text",
+          "value": "Projetos personalizados"
+        },
+        {
+          "kind": "text",
+          "value": "Solicitar orçamento"
+        },
+        {
+          "kind": "open",
+          "tag": "small"
+        },
+        {
+          "kind": "text",
+          "value": "Contato comercial aguardando URL aprovada."
+        },
+        {
+          "kind": "close",
+          "tag": "small"
+        },
+        {
+          "kind": "text",
+          "value": "© 2026 MenezesDev. Todos os direitos reservados."
+        },
+        {
+          "kind": "text",
+          "value": "Sites que impulsionam negócios."
+        },
+        {
+          "kind": "close",
+          "tag": "footer"
+        }
+      ]
+    },
+    {
+      "path": "/projetos/tavola-27",
+      "title": "Tavola 27 — Projeto MenezesDev",
+      "description": "A experiência começa antes da primeira mesa. Conceito de website para restaurante, pensado para apresentar ambiente, cardápio, localização e canais de contato com uma linguagem visual marcante.",
+      "tokens": [
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "#main-content"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Pular para o conteúdo"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "header"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "aria-label": "MenezesDev — início",
+            "href": "/"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/brand/brand-icon-512.png",
+            "width": "512",
+            "height": "512"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "MenezesDev"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "nav",
+          "attrs": {
+            "aria-label": "Navegação principal"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#projetos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Projetos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#servicos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Serviços"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#processo"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Processo"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#planos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Planos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#faq"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "FAQ"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "text",
+          "value": "Solicitar orçamento"
+        },
+        {
+          "kind": "close",
+          "tag": "nav"
+        },
+        {
+          "kind": "open",
+          "tag": "button",
+          "attrs": {
+            "aria-label": "Abrir menu",
+            "type": "button",
+            "aria-haspopup": "dialog",
+            "aria-controls": "mobile-menu-menezesdev"
+          }
+        },
+        {
+          "kind": "close",
+          "tag": "button"
+        },
+        {
+          "kind": "close",
+          "tag": "header"
+        },
+        {
+          "kind": "open",
+          "tag": "dialog",
+          "attrs": {
+            "id": "mobile-menu-menezesdev",
+            "aria-labelledby": "mobile-menu-menezesdev-title"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "strong",
+          "attrs": {
+            "id": "mobile-menu-menezesdev-title"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "MenezesDev"
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "open",
+          "tag": "button",
+          "attrs": {
+            "aria-label": "Fechar menu",
+            "type": "button"
+          }
+        },
+        {
+          "kind": "close",
+          "tag": "button"
+        },
+        {
+          "kind": "open",
+          "tag": "nav",
+          "attrs": {
+            "aria-label": "Navegação móvel"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#projetos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Projetos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#servicos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Serviços"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#processo"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Processo"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#planos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Planos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#faq"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "FAQ"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "close",
+          "tag": "nav"
+        },
+        {
+          "kind": "text",
+          "value": "Falar pelo WhatsApp"
+        },
+        {
+          "kind": "open",
+          "tag": "small"
+        },
+        {
+          "kind": "text",
+          "value": "Contato comercial aguardando URL aprovada."
+        },
+        {
+          "kind": "close",
+          "tag": "small"
+        },
+        {
+          "kind": "close",
+          "tag": "dialog"
+        },
+        {
+          "kind": "open",
+          "tag": "main",
+          "attrs": {
+            "id": "main-content"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#projetos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Voltar aos projetos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Restaurante · Site institucional"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Conceito demonstrativo"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h1"
+        },
+        {
+          "kind": "text",
+          "value": "Tavola 27"
+        },
+        {
+          "kind": "close",
+          "tag": "h1"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "A experiência começa antes da primeira mesa."
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Conceito de website para restaurante, pensado para apresentar ambiente, cardápio, localização e canais de contato com uma linguagem visual marcante."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Profissional — a partir de R$950"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "ul"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Restaurante"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Cardápio"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Responsivo"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Contato"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "close",
+          "tag": "ul"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/demo/tavola27"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Ver projeto"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#planos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Ver planos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/demos/tavola27/tavola27-hero.webp",
+            "alt": "Mesa de restaurante contemporâneo com massa, vinho e interior em tons quentes.",
+            "width": "1536",
+            "height": "960"
+          }
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "CONTEXTO"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h2"
+        },
+        {
+          "kind": "text",
+          "value": "Contexto do projeto."
+        },
+        {
+          "kind": "close",
+          "tag": "h2"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Site institucional multipágina para um restaurante contemporâneo de cozinha italiana."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "A coleção fotográfica funciona como sistema editorial para comida, espaço, história e contato."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "DIREÇÃO VISUAL"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Imagens grandes alternam com copy curta e serifada."
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "As páginas internas mudam o ritmo e a seleção de imagens conforme a função."
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "A reserva permanece inequivocamente demonstrativa e local."
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "SISTEMA VISUAL"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h2",
+          "attrs": {
+            "id": "assets-title"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Assets aprovados."
+        },
+        {
+          "kind": "close",
+          "tag": "h2"
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/demos/tavola27/tavola27-food-01.webp",
+            "alt": "Tagliatelle ao ragu servido em louça artesanal.",
+            "width": "1200",
+            "height": "1500"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/demos/tavola27/tavola27-space-01.webp",
+            "alt": "Salão acolhedor do Tavola 27 com madeira natural.",
+            "width": "1536",
+            "height": "960"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/demos/tavola27/tavola27-detail-02.webp",
+            "alt": "Detalhe de massa fresca sendo preparada.",
+            "width": "1536",
+            "height": "1024"
+          }
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "ESCOPO DEMONSTRADO"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h2"
+        },
+        {
+          "kind": "text",
+          "value": "Recursos demonstrados."
+        },
+        {
+          "kind": "close",
+          "tag": "h2"
+        },
+        {
+          "kind": "open",
+          "tag": "ul"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Site multipágina"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Menu editorial"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Galeria"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Reserva demonstrativa"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "close",
+          "tag": "ul"
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "CONCEITO DEMONSTRATIVO"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Ver projeto"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Este case apresenta uma empresa fictícia e não representa resultados comerciais reais."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/demo/tavola27"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Ver projeto"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "close",
+          "tag": "main"
+        },
+        {
+          "kind": "open",
+          "tag": "footer"
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/brand/logo-dark.png",
+            "alt": "MenezesDev",
+            "width": "2172",
+            "height": "724"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Sites que impulsionam negócios."
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Design e desenvolvimento web para empresas e profissionais que querem uma presença digital mais profissional."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "nav",
+          "attrs": {
+            "aria-label": "Navegação do rodapé"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Navegação"
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#projetos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Projetos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#servicos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Serviços"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#processo"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Processo"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#planos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Planos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#faq"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "FAQ"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "close",
+          "tag": "nav"
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Serviços"
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Landing Pages"
+        },
+        {
+          "kind": "text",
+          "value": "Sites institucionais"
+        },
+        {
+          "kind": "text",
+          "value": "Catálogos"
+        },
+        {
+          "kind": "text",
+          "value": "Integrações"
+        },
+        {
+          "kind": "text",
+          "value": "Projetos personalizados"
+        },
+        {
+          "kind": "text",
+          "value": "Solicitar orçamento"
+        },
+        {
+          "kind": "open",
+          "tag": "small"
+        },
+        {
+          "kind": "text",
+          "value": "Contato comercial aguardando URL aprovada."
+        },
+        {
+          "kind": "close",
+          "tag": "small"
+        },
+        {
+          "kind": "text",
+          "value": "© 2026 MenezesDev. Todos os direitos reservados."
+        },
+        {
+          "kind": "text",
+          "value": "Sites que impulsionam negócios."
+        },
+        {
+          "kind": "close",
+          "tag": "footer"
+        }
+      ]
+    },
+    {
+      "path": "/projetos/prismae",
+      "title": "Prismae — Projeto MenezesDev",
+      "description": "Confiança também é construída no digital. Website institucional para uma empresa de serviços, com foco em autoridade, organização da informação e geração de contatos comerciais.",
+      "tokens": [
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "#main-content"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Pular para o conteúdo"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "header"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "aria-label": "MenezesDev — início",
+            "href": "/"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/brand/brand-icon-512.png",
+            "width": "512",
+            "height": "512"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "MenezesDev"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "nav",
+          "attrs": {
+            "aria-label": "Navegação principal"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#projetos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Projetos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#servicos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Serviços"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#processo"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Processo"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#planos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Planos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#faq"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "FAQ"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "text",
+          "value": "Solicitar orçamento"
+        },
+        {
+          "kind": "close",
+          "tag": "nav"
+        },
+        {
+          "kind": "open",
+          "tag": "button",
+          "attrs": {
+            "aria-label": "Abrir menu",
+            "type": "button",
+            "aria-haspopup": "dialog",
+            "aria-controls": "mobile-menu-menezesdev"
+          }
+        },
+        {
+          "kind": "close",
+          "tag": "button"
+        },
+        {
+          "kind": "close",
+          "tag": "header"
+        },
+        {
+          "kind": "open",
+          "tag": "dialog",
+          "attrs": {
+            "id": "mobile-menu-menezesdev",
+            "aria-labelledby": "mobile-menu-menezesdev-title"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "strong",
+          "attrs": {
+            "id": "mobile-menu-menezesdev-title"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "MenezesDev"
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "open",
+          "tag": "button",
+          "attrs": {
+            "aria-label": "Fechar menu",
+            "type": "button"
+          }
+        },
+        {
+          "kind": "close",
+          "tag": "button"
+        },
+        {
+          "kind": "open",
+          "tag": "nav",
+          "attrs": {
+            "aria-label": "Navegação móvel"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#projetos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Projetos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#servicos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Serviços"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#processo"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Processo"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#planos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Planos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#faq"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "FAQ"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "close",
+          "tag": "nav"
+        },
+        {
+          "kind": "text",
+          "value": "Falar pelo WhatsApp"
+        },
+        {
+          "kind": "open",
+          "tag": "small"
+        },
+        {
+          "kind": "text",
+          "value": "Contato comercial aguardando URL aprovada."
+        },
+        {
+          "kind": "close",
+          "tag": "small"
+        },
+        {
+          "kind": "close",
+          "tag": "dialog"
+        },
+        {
+          "kind": "open",
+          "tag": "main",
+          "attrs": {
+            "id": "main-content"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#projetos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Voltar aos projetos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Consultoria · Site para geração de leads"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Conceito demonstrativo"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h1"
+        },
+        {
+          "kind": "text",
+          "value": "Prismae"
+        },
+        {
+          "kind": "close",
+          "tag": "h1"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Confiança também é construída no digital."
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Website institucional para uma empresa de serviços, com foco em autoridade, organização da informação e geração de contatos comerciais."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Negócio — a partir de R$1.500"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "ul"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Institucional"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Serviços"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Formulário"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "SEO técnico"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "close",
+          "tag": "ul"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/demo/prismae"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Ver projeto"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#planos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Ver planos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/demos/prismae/prismae-hero-graphic.svg",
+            "alt": "Sistema gráfico abstrato da Prismae sobre estratégia, processos e indicadores.",
+            "width": "960",
+            "height": "720"
+          }
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "CONTEXTO"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h2"
+        },
+        {
+          "kind": "text",
+          "value": "Contexto do projeto."
+        },
+        {
+          "kind": "close",
+          "tag": "h2"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Site institucional multipágina para uma consultoria fictícia de gestão e estratégia."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "A autoridade visual nasce de grid, tipografia, processos, dados ilustrativos e formulário — sem fotografia corporativa."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "DIREÇÃO VISUAL"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Sistema visual determinístico construído com SVG e frontend."
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Soluções distribuídas em rotas específicas sem promessas empresariais inventadas."
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "article"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Formulário com validação e sucesso local, sem transmissão ou persistência."
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "close",
+          "tag": "article"
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "SISTEMA VISUAL"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h2",
+          "attrs": {
+            "id": "assets-title"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Assets aprovados."
+        },
+        {
+          "kind": "close",
+          "tag": "h2"
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/demos/prismae/prismae-process.svg",
+            "alt": "Processo em quatro etapas: diagnóstico, priorização, implementação e acompanhamento.",
+            "width": "1280",
+            "height": "360"
+          }
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "ESCOPO DEMONSTRADO"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h2"
+        },
+        {
+          "kind": "text",
+          "value": "Recursos demonstrados."
+        },
+        {
+          "kind": "close",
+          "tag": "h2"
+        },
+        {
+          "kind": "open",
+          "tag": "ul"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Site multipágina"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Dados ilustrativos"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "SVG responsivo"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "open",
+          "tag": "li"
+        },
+        {
+          "kind": "text",
+          "value": "Formulário demonstrativo"
+        },
+        {
+          "kind": "close",
+          "tag": "li"
+        },
+        {
+          "kind": "close",
+          "tag": "ul"
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "section"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "CONCEITO DEMONSTRATIVO"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "h3"
+        },
+        {
+          "kind": "text",
+          "value": "Ver projeto"
+        },
+        {
+          "kind": "close",
+          "tag": "h3"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Este case apresenta uma empresa fictícia e não representa resultados comerciais reais."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/demo/prismae"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Ver projeto"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "close",
+          "tag": "section"
+        },
+        {
+          "kind": "close",
+          "tag": "main"
+        },
+        {
+          "kind": "open",
+          "tag": "footer"
+        },
+        {
+          "kind": "open",
+          "tag": "img",
+          "attrs": {
+            "src": "/assets/brand/logo-dark.png",
+            "alt": "MenezesDev",
+            "width": "2172",
+            "height": "724"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Sites que impulsionam negócios."
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "p"
+        },
+        {
+          "kind": "text",
+          "value": "Design e desenvolvimento web para empresas e profissionais que querem uma presença digital mais profissional."
+        },
+        {
+          "kind": "close",
+          "tag": "p"
+        },
+        {
+          "kind": "open",
+          "tag": "nav",
+          "attrs": {
+            "aria-label": "Navegação do rodapé"
+          }
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Navegação"
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#projetos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Projetos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#servicos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Serviços"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#processo"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Processo"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#planos"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "Planos"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "open",
+          "tag": "a",
+          "attrs": {
+            "href": "/#faq"
+          }
+        },
+        {
+          "kind": "text",
+          "value": "FAQ"
+        },
+        {
+          "kind": "close",
+          "tag": "a"
+        },
+        {
+          "kind": "close",
+          "tag": "nav"
+        },
+        {
+          "kind": "open",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Serviços"
+        },
+        {
+          "kind": "close",
+          "tag": "strong"
+        },
+        {
+          "kind": "text",
+          "value": "Landing Pages"
+        },
+        {
+          "kind": "text",
+          "value": "Sites institucionais"
+        },
+        {
+          "kind": "text",
+          "value": "Catálogos"
+        },
+        {
+          "kind": "text",
+          "value": "Integrações"
+        },
+        {
+          "kind": "text",
+          "value": "Projetos personalizados"
+        },
+        {
+          "kind": "text",
+          "value": "Solicitar orçamento"
+        },
+        {
+          "kind": "open",
+          "tag": "small"
+        },
+        {
+          "kind": "text",
+          "value": "Contato comercial aguardando URL aprovada."
+        },
+        {
+          "kind": "close",
+          "tag": "small"
+        },
+        {
+          "kind": "text",
+          "value": "© 2026 MenezesDev. Todos os direitos reservados."
+        },
+        {
+          "kind": "text",
+          "value": "Sites que impulsionam negócios."
+        },
+        {
+          "kind": "close",
+          "tag": "footer"
+        }
+      ]
+    }
+  ]
+}

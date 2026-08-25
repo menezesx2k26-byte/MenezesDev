@@ -1,0 +1,44 @@
+---
+interface Props {
+  id?: string;
+}
+
+const { id = "studio-conflict-dialog" } = Astro.props;
+const titleId = `${id}-title`;
+const descriptionId = `${id}-description`;
+---
+
+<dialog
+  id={id}
+  class="admin-conflict-dialog"
+  aria-labelledby={titleId}
+  aria-describedby={descriptionId}
+>
+  <form method="dialog" class="admin-conflict-dialog__panel">
+    <header>
+      <p class="admin-conflict-dialog__eyebrow">Conflito de edição</p>
+      <h2 id={titleId}>O rascunho no servidor mudou</h2>
+    </header>
+
+    <div id={descriptionId} class="admin-conflict-dialog__copy">
+      <p>
+        Suas alterações locais continuam disponíveis neste navegador e não serão descartadas
+        automaticamente.
+      </p>
+      <p>
+        Antes de recarregar o rascunho do servidor, copie qualquer conteúdo local que você queira
+        preservar. Recarregar substituirá as alterações locais que ainda não foram salvas.
+      </p>
+    </div>
+
+    <div class="admin-conflict-dialog__actions">
+      <button type="button" value="keep-local" data-conflict-action="keep-local">
+        Manter alterações locais para copiar
+      </button>
+      <button type="button" value="reload-server" data-conflict-action="reload-server">
+        Recarregar rascunho do servidor
+      </button>
+      <button type="submit" value="cancel">Fechar</button>
+    </div>
+  </form>
+</dialog>

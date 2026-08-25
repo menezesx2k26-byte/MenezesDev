@@ -1,0 +1,151 @@
+---
+import PropertyPanel from "../PropertyPanel.astro";
+import { STUDIO_LIMITS } from "../../../../studio/validation";
+import type { HomePlansSection } from "../../../../studio/types";
+
+interface Props {
+  section: HomePlansSection;
+}
+
+const { section } = Astro.props;
+---
+
+<PropertyPanel sectionKey="plans" title="Planos" visible={section.visible} layout={section.layout}>
+  <div class="studio-fields-grid">
+    <label class="studio-field">
+      <span>Chamada curta</span>
+      <input
+        type="text"
+        maxlength={STUDIO_LIMITS.longText}
+        value={section.eyebrow}
+        data-studio-path="home.plans.eyebrow"
+      />
+    </label>
+    <label class="studio-field studio-field--wide">
+      <span>Título</span>
+      <textarea maxlength={STUDIO_LIMITS.longText} rows="3" data-studio-path="home.plans.title"
+        >{section.title}</textarea
+      >
+    </label>
+    <label class="studio-field studio-field--wide">
+      <span>Texto de apoio</span>
+      <textarea maxlength={STUDIO_LIMITS.longText} rows="3" data-studio-path="home.plans.lead"
+        >{section.lead}</textarea
+      >
+    </label>
+    <label class="studio-field studio-field--wide">
+      <span>Nota</span>
+      <textarea maxlength={STUDIO_LIMITS.longText} rows="3" data-studio-path="home.plans.note"
+        >{section.note}</textarea
+      >
+    </label>
+  </div>
+
+  <div class="studio-repeater" aria-label="Planos">
+    {
+      section.items.map((plan, index) => (
+        <section class="studio-repeater__item">
+          <h3>{plan.name}</h3>
+          <div class="studio-fields-grid">
+            <label class="studio-field">
+              <span>Nome</span>
+              <input
+                type="text"
+                maxlength={STUDIO_LIMITS.longText}
+                value={plan.name}
+                data-studio-path={`home.plans.items.${index}.name`}
+              />
+            </label>
+            <label class="studio-field">
+              <span>Preço exibido</span>
+              <input
+                type="text"
+                maxlength={STUDIO_LIMITS.longText}
+                value={plan.priceLabel}
+                data-studio-path={`home.plans.items.${index}.priceLabel`}
+              />
+            </label>
+            <label class="studio-field studio-field--wide">
+              <span>Descrição</span>
+              <textarea
+                maxlength={STUDIO_LIMITS.longText}
+                rows="3"
+                data-studio-path={`home.plans.items.${index}.description`}
+              >
+                {plan.description}
+              </textarea>
+            </label>
+            <label class="studio-field">
+              <span>CTA</span>
+              <input
+                type="text"
+                maxlength={STUDIO_LIMITS.longText}
+                value={plan.ctaLabel}
+                data-studio-path={`home.plans.items.${index}.ctaLabel`}
+              />
+            </label>
+            <label class="studio-control studio-control--toggle">
+              <span>
+                <strong>Visível</strong>
+              </span>
+              <input
+                type="checkbox"
+                checked={plan.visible}
+                data-studio-value-type="boolean"
+                data-studio-path={`home.plans.items.${index}.visible`}
+              />
+            </label>
+          </div>
+        </section>
+      ))
+    }
+  </div>
+
+  <section class="studio-repeater__item">
+    <h3>Plano personalizado</h3>
+    <div class="studio-fields-grid">
+      <label class="studio-field">
+        <span>Título</span>
+        <input
+          type="text"
+          maxlength={STUDIO_LIMITS.longText}
+          value={section.custom.title}
+          data-studio-path="home.plans.custom.title"
+        />
+      </label>
+      <label class="studio-field studio-field--wide">
+        <span>Descrição</span>
+        <textarea
+          maxlength={STUDIO_LIMITS.longText}
+          rows="3"
+          data-studio-path="home.plans.custom.text">{section.custom.text}</textarea
+        >
+      </label>
+      <label class="studio-field">
+        <span>Preço exibido</span>
+        <input
+          type="text"
+          maxlength={STUDIO_LIMITS.longText}
+          value={section.custom.priceLabel}
+          data-studio-path="home.plans.custom.priceLabel"
+        />
+      </label>
+      <label class="studio-field">
+        <span>CTA</span>
+        <input
+          type="text"
+          maxlength={STUDIO_LIMITS.longText}
+          value={section.custom.ctaLabel}
+          data-studio-path="home.plans.custom.ctaLabel"
+        />
+      </label>
+    </div>
+  </section>
+
+  <label class="studio-field studio-field--wide">
+    <span>Aviso</span>
+    <textarea maxlength={STUDIO_LIMITS.longText} rows="3" data-studio-path="home.plans.disclaimer"
+      >{section.disclaimer}</textarea
+    >
+  </label>
+</PropertyPanel>

@@ -1,0 +1,54 @@
+name: MenezesDev Studio PR CI
+
+on:
+  pull_request:
+    branches:
+      - feat/phase-10-implementation
+
+permissions:
+  contents: read
+
+concurrency:
+  group: menezesdev-studio-pr-ci-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24.19.0
+          package-manager-cache: false
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install frozen dependencies
+        run: corepack pnpm install --frozen-lockfile
+
+      - name: Format check
+        run: corepack pnpm format:check
+
+      - name: Astro and TypeScript check
+        run: corepack pnpm check
+
+      - name: Apply local D1 migrations
+        run: corepack pnpm db:migrate:local
+
+      - name: Seed local Studio
+        run: corepack pnpm studio:seed:local
+
+      - name: Verify local Studio seed
+        run: corepack pnpm studio:check-seed
+
+      - name: Production build
+        run: corepack pnpm build
+
+      - name: Acceptance gates
+        run: corepack pnpm check:acceptance

@@ -1,12 +1,30 @@
+import cloudflare from "@astrojs/cloudflare";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
 
 const configuredSite = process.env.PUBLIC_SITE_URL?.trim() || "http://localhost:4321";
 
+const cloudflareDevOptimizer = {
+  name: "menezesdev-cloudflare-dev-optimizer",
+  configEnvironment(environment) {
+    if (environment === "client") return;
+
+    return {
+      optimizeDeps: {
+        include: ["astro/assets/services/noop"],
+      },
+    };
+  },
+};
+
 export default defineConfig({
   site: configuredSite,
-  output: "static",
+  output: "server",
+  adapter: cloudflare({
+    imageService: "passthrough",
+  }),
+  session: false,
   outDir: "dist",
   trailingSlash: "never",
   build: {
@@ -24,7 +42,7 @@ export default defineConfig({
     }),
   ],
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [cloudflareDevOptimizer, tailwindcss()],
   },
   fonts: [
     {

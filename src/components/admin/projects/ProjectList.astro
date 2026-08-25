@@ -1,0 +1,79 @@
+---
+import type { StudioProject } from "../../../studio/types";
+
+interface Props {
+  projects: StudioProject[];
+}
+
+const { projects } = Astro.props;
+---
+
+<section class="admin-panel admin-panel--full" aria-labelledby="projects-list-heading">
+  <div class="admin-page-heading">
+    <p class="admin-kicker">Cases</p>
+    <h2 id="projects-list-heading">Projetos editoriais</h2>
+    <p>Reordene, duplique ou arquive sem apagar histórico. Drag nunca é obrigatório.</p>
+  </div>
+
+  <div class="studio-repeater" data-project-list>
+    {
+      projects.map((project, index) => (
+        <article class="studio-repeater__item" data-project-card={project.id}>
+          <div class="admin-page-heading">
+            <p class="admin-kicker">{project.visible ? "Ativo" : "Arquivado"}</p>
+            <h3>{project.name}</h3>
+            <p>
+              /projetos/{project.slug} · {project.category}
+              {project.showOnHome ? " · aparece na Home" : ""}
+            </p>
+          </div>
+
+          <div class="admin-shortcuts" aria-label={`Ações de ${project.name}`}>
+            <a class="admin-button admin-button--secondary" href={`/admin/projetos/${project.id}`}>
+              Editar
+            </a>
+            <button
+              type="button"
+              class="admin-button admin-button--quiet"
+              data-project-action="move-up"
+              data-project-id={project.id}
+              disabled={index === 0}
+            >
+              Mover para cima
+            </button>
+            <button
+              type="button"
+              class="admin-button admin-button--quiet"
+              data-project-action="move-down"
+              data-project-id={project.id}
+              disabled={index === projects.length - 1}
+            >
+              Mover para baixo
+            </button>
+            <button
+              type="button"
+              class="admin-button admin-button--quiet"
+              data-project-action="duplicate"
+              data-project-id={project.id}
+            >
+              Duplicar como novo
+            </button>
+            <button
+              type="button"
+              class="admin-button admin-button--quiet"
+              data-project-action="archive"
+              data-project-id={project.id}
+              disabled={!project.visible}
+            >
+              Arquivar
+            </button>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <p class="studio-save-state" data-project-save-status aria-live="polite">
+    Rascunho sincronizado.
+  </p>
+</section>

@@ -1,0 +1,509 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import MenezesHeader from "../MenezesHeader.astro";
+import MenezesFooter from "../MenezesFooter.astro";
+import CommercialAction from "../CommercialAction.astro";
+import { ArrowRight, Check } from "lucide-astro";
+import { toPublicHomeView } from "../../studio/public-content";
+import type { SiteDocument } from "../../studio/types";
+import "../../styles/menezesdev.css";
+
+interface Props {
+  document: SiteDocument;
+  preview?: boolean;
+}
+
+const { document, preview = false } = Astro.props;
+const view = toPublicHomeView(document);
+const navigation = view.navigation.map(({ label, href }) => ({ label, href }));
+const commercialHref = preview ? null : view.whatsappUrl;
+
+const splitFirstSentence = (value: string) => {
+  const separator = value.indexOf(". ");
+  if (separator < 0) return { first: value, second: "" };
+  return {
+    first: value.slice(0, separator + 1),
+    second: value.slice(separator + 2),
+  };
+};
+
+const splitAccentTail = (value: string) => {
+  const words = value.trim().split(/\s+/);
+  if (words.length < 3) return { leading: value, accent: "" };
+  return {
+    leading: `${words.slice(0, -2).join(" ")} `,
+    accent: words.slice(-2).join(" "),
+  };
+};
+
+const samePageHref = (href: string) => (href.startsWith("/#") ? href.slice(1) : href);
+
+const heroTitle = splitAccentTail(view.hero.title);
+const projectTitle = splitFirstSentence(view.projectsSection.title);
+const capabilitiesTitle = splitFirstSentence(view.capabilitiesSection.title);
+const contactTitle = splitFirstSentence(view.contact.title);
+const heroMicrocopy = splitFirstSentence(view.hero.microcopy);
+---
+
+<BaseLayout
+  title={view.metadata.title}
+  description={view.metadata.description}
+  image={view.metadata.image ?? undefined}
+  theme="menezesdev"
+  fonts={["--font-manrope", "--font-inter"]}
+  preloadFont="--font-manrope"
+  noindex={preview}
+>
+  {
+    preview && (
+      <aside class="draft-preview-banner" role="status" aria-label="Prévia do rascunho">
+        Prévia do rascunho — não publicada
+      </aside>
+    )
+  }
+  <MenezesHeader
+    navigation={navigation}
+    whatsappUrl={commercialHref}
+    brandLabel={document.brand.name}
+  />
+  <main id="main-content">
+    {
+      view.hero.visible && (
+        <section class="md-hero">
+          <div class="container md-hero__grid">
+            <div class="md-hero__copy">
+              <p class="eyebrow">{view.hero.eyebrow}</p>
+              <h1>
+                {heroTitle.leading}
+                {heroTitle.accent && <span>{heroTitle.accent}</span>}
+              </h1>
+              <p class="lead">{view.hero.lead}</p>
+              <div class="button-row">
+                <CommercialAction
+                  label={view.hero.primaryCtaLabel}
+                  showPendingNote
+                  href={commercialHref}
+                />
+                <a class="button button--secondary" href={samePageHref(view.hero.secondaryCtaHref)}>
+                  {view.hero.secondaryCtaLabel} <ArrowRight aria-hidden="true" size={18} />
+                </a>
+              </div>
+              <div class="md-hero__microcopy">
+                <strong>{heroMicrocopy.first}</strong>
+                {heroMicrocopy.second && <span>{heroMicrocopy.second}</span>}
+              </div>
+            </div>
+            <div class="md-mosaic" aria-label="Três conceitos visuais MenezesDev">
+              {view.hero.media.map((media, index) => (
+                <div class="md-mosaic__item">
+                  <img
+                    src={media.src}
+                    width={media.width}
+                    height={media.height}
+                    alt={media.alt}
+                    fetchpriority={index === 0 ? "high" : "low"}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      document.home.trust.visible && (
+        <section class="md-trust" aria-label="Características dos projetos">
+          <div class="container md-trust__grid">
+            {view.trustItems.map((item) => (
+              <div class="md-trust__item">
+                <>
+                  <Check aria-hidden="true" size={22} />
+                  <strong>{item.title}</strong>
+                  <span>{item.text}</span>
+                </>
+              </div>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      view.problem.visible && (
+        <section class="section" aria-labelledby="problema-title">
+          <div class="container md-problem__grid">
+            <div>
+              <p class="eyebrow">{view.problem.eyebrow}</p>
+              <h2 id="problema-title">{view.problem.title}</h2>
+              <p class="lead">{view.problem.lead}</p>
+              {view.problem.paragraphs.map((paragraph) => (
+                <p>{paragraph}</p>
+              ))}
+              <p>
+                <strong>{view.problem.emphasis}</strong>
+              </p>
+            </div>
+            <div class="md-compare">
+              {view.problem.comparisons.map((comparison) => (
+                <article class="surface-card">
+                  <h3>{comparison.title}</h3>
+                  <ul>
+                    {comparison.items.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      view.projectsSection.visible && (
+        <section class="section--compact" id="projetos" aria-labelledby="projects-title">
+          <div class="container">
+            <div class="section-heading">
+              <p class="eyebrow">{view.projectsSection.eyebrow}</p>
+              <h2 id="projects-title">
+                {projectTitle.first}
+                {projectTitle.second && (
+                  <>
+                    <br />
+                    {projectTitle.second}
+                  </>
+                )}
+              </h2>
+              <p class="lead">{view.projectsSection.lead}</p>
+              <p>{view.projectsSection.body}</p>
+            </div>
+            <div class="md-projects">
+              {view.projects.map((project) => (
+                <article
+                  class:list={[
+                    "md-project",
+                    `md-project--${project.slug === "tavola-27" ? "tavola" : project.slug}`,
+                  ]}
+                >
+                  <div class="md-project__copy">
+                    <p class="eyebrow">{project.category}</p>
+                    <p class="demo-disclosure">{project.label}</p>
+                    <h3>{project.headline}</h3>
+                    <p class="lead">{project.description}</p>
+                    <ul class="tag-list">
+                      {project.tags.map((tag) => (
+                        <li>{tag}</li>
+                      ))}
+                    </ul>
+                    <p class="md-project__meta">{project.plan}</p>
+                    <a
+                      class="button"
+                      href={
+                        preview
+                          ? `/admin/preview/projetos/${project.id}`
+                          : `/projetos/${project.slug}`
+                      }
+                    >
+                      Ver projeto <ArrowRight aria-hidden="true" size={18} />
+                    </a>
+                  </div>
+                  <div class="md-project__media">
+                    <img
+                      src={project.cover.src}
+                      width={project.cover.width}
+                      height={project.cover.height}
+                      alt={project.cover.alt}
+                      loading="lazy"
+                    />
+                    {project.slug === "tavola-27" && (
+                      <img
+                        src="/assets/demos/tavola27/tavola27-food-01.webp"
+                        width="1200"
+                        height="1500"
+                        alt="Tagliatelle ao ragu do conceito Tavola 27"
+                        loading="lazy"
+                      />
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
+            <div class="surface-card md-portfolio-cta">
+              <h3>{view.projectsSection.ctaTitle}</h3>
+              <CommercialAction
+                label={view.projectsSection.ctaLabel}
+                showPendingNote
+                href={commercialHref}
+              />
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      view.servicesSection.visible && (
+        <section class="section" id="servicos" aria-labelledby="services-title">
+          <div class="container md-split">
+            <div class="section-heading">
+              <p class="eyebrow">{view.servicesSection.eyebrow}</p>
+              <h2 id="services-title">{view.servicesSection.title}</h2>
+              <p class="lead">{view.servicesSection.lead}</p>
+            </div>
+            <div class="md-services">
+              {view.services.map((service, index) => (
+                <article class="md-service">
+                  <>
+                    <span>0{index + 1}</span>
+                    <div>
+                      <>
+                        <h3>{service.title}</h3>
+                        <p>{service.text}</p>
+                      </>
+                    </div>
+                    <small>{service.microcopy}</small>
+                  </>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      view.processSection.visible && (
+        <section class="section" id="processo" aria-labelledby="process-title">
+          <div class="container">
+            <div class="section-heading">
+              <p class="eyebrow">{view.processSection.eyebrow}</p>
+              <h2 id="process-title">{view.processSection.title}</h2>
+              <p class="lead">{view.processSection.lead}</p>
+            </div>
+            <div class="md-process">
+              {view.processSteps.map((step) => (
+                <article>
+                  <>
+                    <span class="md-process__number">{step.number}</span>
+                    <h3>{step.title}</h3>
+                    <p>{step.text}</p>
+                  </>
+                </article>
+              ))}
+            </div>
+            <p class="md-process-note">{view.processSection.note}</p>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      view.capabilitiesSection.visible && (
+        <section class="section" aria-labelledby="capabilities-title">
+          <div class="container md-split">
+            <div class="section-heading">
+              <p class="eyebrow">{view.capabilitiesSection.eyebrow}</p>
+              <h2 id="capabilities-title">
+                {capabilitiesTitle.first}
+                {capabilitiesTitle.second && (
+                  <>
+                    <br />
+                    {capabilitiesTitle.second}
+                  </>
+                )}
+              </h2>
+              <p class="lead">{view.capabilitiesSection.lead}</p>
+              <p>{view.capabilitiesSection.body}</p>
+              <strong>{view.capabilitiesSection.emphasis}</strong>
+            </div>
+            <div class="md-capabilities">
+              {view.capabilities.map((item) => (
+                <article class="surface-card">
+                  <>
+                    <Check aria-hidden="true" size={22} />
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      view.plansSection.visible && (
+        <section class="section" id="planos" aria-labelledby="plans-title">
+          <div class="container">
+            <div class="section-heading">
+              <p class="eyebrow">{view.plansSection.eyebrow}</p>
+              <h2 id="plans-title">{view.plansSection.title}</h2>
+              <p class="lead">{view.plansSection.lead}</p>
+              <p>{view.plansSection.note}</p>
+            </div>
+            <div class="md-plans">
+              {view.plans.map((plan) => (
+                <article
+                  class:list={[
+                    "surface-card md-plan",
+                    { "md-plan--recommended": plan.recommended },
+                  ]}
+                >
+                  {plan.recommended && <span class="md-plan__badge">RECOMENDADO</span>}
+                  <h3>{plan.name}</h3>
+                  <p class="md-plan__price">{plan.priceLabel}</p>
+                  <p>{plan.description}</p>
+                  <strong>{plan.highlight}</strong>
+                  <details>
+                    <>
+                      <summary>O que inclui</summary>
+                      <ul>
+                        {plan.includes.map((item) => (
+                          <li>{item}</li>
+                        ))}
+                      </ul>
+                    </>
+                  </details>
+                  <CommercialAction
+                    label={plan.ctaLabel}
+                    class="button button--wide"
+                    showPendingNote
+                    href={commercialHref}
+                  />
+                </article>
+              ))}
+            </div>
+            <article class="surface-card md-custom-plan">
+              <div>
+                <h3>{view.plansSection.custom.title}</h3>
+                <p>{view.plansSection.custom.text}</p>
+                <strong>{view.plansSection.custom.priceLabel}</strong>
+              </div>
+              <CommercialAction
+                label={view.plansSection.custom.ctaLabel}
+                showPendingNote
+                href={commercialHref}
+              />
+            </article>
+            <p class="md-process-note">{view.plansSection.disclaimer}</p>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      view.faqSection.visible && (
+        <section class="section" id="faq" aria-labelledby="faq-title">
+          <div class="container md-split">
+            <div class="section-heading">
+              <p class="eyebrow">{view.faqSection.eyebrow}</p>
+              <h2 id="faq-title">{view.faqSection.title}</h2>
+            </div>
+            <div class="md-faq">
+              {view.faqs.map((item) => (
+                <details>
+                  <>
+                    <summary>{item.question}</summary>
+                    <div class="md-faq__answer">
+                      {item.answer.map((paragraph) => (
+                        <p>{paragraph}</p>
+                      ))}
+                    </div>
+                  </>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      view.contact.visible && (
+        <section class="section--compact">
+          <div class="container surface-card md-final-cta">
+            <div>
+              <p class="eyebrow">{view.contact.eyebrow}</p>
+              <h2>
+                {contactTitle.first}
+                {contactTitle.second && (
+                  <>
+                    <br />
+                    {contactTitle.second}
+                  </>
+                )}
+              </h2>
+              <p class="lead">{view.contact.lead}</p>
+              <p>{view.contact.body}</p>
+              <strong>{view.contact.emphasis}</strong>
+            </div>
+            <div class="button-row">
+              <CommercialAction
+                label={view.contact.primaryCtaLabel}
+                showPendingNote
+                href={commercialHref}
+              />
+              <a
+                class="button button--secondary"
+                href={samePageHref(view.contact.secondaryCtaHref)}
+              >
+                {view.contact.secondaryCtaLabel}
+              </a>
+            </div>
+          </div>
+        </section>
+      )
+    }
+  </main>
+  <MenezesFooter
+    navigation={navigation}
+    whatsappUrl={commercialHref}
+    tagline={document.brand.tagline}
+  />
+  <script>
+    const setupFaq = () => {
+      const detailsItems = [...document.querySelectorAll<HTMLDetailsElement>(".md-faq details")];
+      const summaries = detailsItems
+        .map((details) => details.querySelector<HTMLElement>("summary"))
+        .filter((summary): summary is HTMLElement => Boolean(summary));
+
+      detailsItems.forEach((details) => {
+        if (details.dataset.ready === "true") return;
+        details.dataset.ready = "true";
+        const summary = details.querySelector<HTMLElement>("summary");
+        if (!summary) return;
+        const syncExpanded = () => summary.setAttribute("aria-expanded", String(details.open));
+        syncExpanded();
+        details.addEventListener("toggle", syncExpanded);
+        summary.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            details.open = !details.open;
+            return;
+          }
+
+          const currentIndex = summaries.indexOf(summary);
+          const focusSummary = (index: number) => {
+            event.preventDefault();
+            summaries[index]?.focus();
+          };
+
+          if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+            focusSummary((currentIndex + 1) % summaries.length);
+          } else if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+            focusSummary((currentIndex - 1 + summaries.length) % summaries.length);
+          } else if (event.key === "Home") {
+            focusSummary(0);
+          } else if (event.key === "End") {
+            focusSummary(summaries.length - 1);
+          }
+        });
+      });
+    };
+    setupFaq();
+    document.addEventListener("astro:page-load", setupFaq);
+  </script>
+</BaseLayout>

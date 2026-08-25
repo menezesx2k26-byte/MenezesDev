@@ -1,0 +1,23 @@
+---
+import { Menu } from "lucide-astro";
+---
+
+<header class="admin-topbar">
+  <button
+    class="admin-topbar__menu"
+    type="button"
+    aria-label="Abrir navegação do Studio"
+    aria-controls="admin-mobile-navigation"
+    aria-haspopup="dialog"
+  >
+    <Menu aria-hidden="true" size={22} />
+  </button>
+
+  <div class="admin-topbar__title">
+    <slot />
+  </div>
+
+  <div class="admin-topbar__actions">
+    <slot name="actions" />
+  </div>
+</header>

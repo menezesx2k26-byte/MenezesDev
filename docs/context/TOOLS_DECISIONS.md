@@ -243,3 +243,21 @@ The frozen portfolio remains:
 Phase 4 approval unblocks Phase 5 but does not pre-approve its route/SEO architecture. Current official Google Search documentation may be researched before approval, but the Phase-5 design/spec must be presented and approved under Superpowers brainstorming before it is committed as the canonical SEO/IA contract.
 
 A generic “continue” after that specific design is presented is sufficient approval of the presented design; it is not approval of unseen later architecture.
+
+## T-D036 — Phase 5 written SEO/IA contract is approved and closed
+**Status:** accepted / gate passed  
+**Date:** 2026-08-24
+
+The concrete Phase-5 design was presented and approved, then written to:
+
+`docs/superpowers/specs/2026-08-24-menezesdev-tools-phase5-seo-ia-design.md`
+
+It was self-reviewed in:
+
+`docs/superpowers/specs/2026-08-24-menezesdev-tools-phase5-seo-ia-self-review.md`
+
+Gabriel then replied `Segue` to the written-spec review gate. `docs/tools/PHASE5_CLOSURE.md` records the gate pass.
+
+The approved Phase-5 contract includes stable shallow category routes, exact EN/PT-BR Launch-50 routes, self-canonical localized pages, reciprocal hreflang for real pairs, sitemap/robots/indexing rules, related-tool graph rules, guide routing, structured-data policy, anti-thin rules and fallback-host canonical protection.
+
+This approval closes Phase 5 only. Phase 6 requires its own architectural design approval before a written Phase-6 spec or implementation plan can be produced.

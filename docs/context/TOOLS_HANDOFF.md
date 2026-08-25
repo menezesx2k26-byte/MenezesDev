@@ -7,54 +7,104 @@
 
 # Mandatory verification completed
 
-Before acting in this pass, re-read from the exact branch/ref:
+Before this pass, the exact Tools workflow/addenda/security/state were re-read from the canonical branch. Superpowers `using-superpowers` and `brainstorming` were also re-read before entering Phase 6.
 
-- Superpowers `using-superpowers`;
-- Superpowers `brainstorming` when Phase 5 became architectural;
-- `AGENTS.md`;
-- `TOOLS_STATE.md`;
-- `TOOLS_DECISIONS.md`;
-- prior `TOOLS_HANDOFF.md`;
-- `IMMUTABLE_WORKFLOW.md` in full;
-- binding workflow addenda;
-- `SECURITY_POLICY.md`;
-- `TOOLS_SCOPE.md`;
-- deployment-portability addendum;
-- current Launch-50 recommendation/preflight;
-- current branch state.
-
-User instruction: continue autonomously as far as the workflow permits and avoid unnecessary questions.
+User instruction remains to proceed through every workflow-legal action without unnecessary questions.
 
 No workflow/security hard gate was weakened.
 
 ---
 
-# Phase 4 completed in this pass
+# Phase 5 closed in this pass
 
-The exact Launch-50 matrix had already been presented as the sole remaining Phase-4 gate. The user's new continue instruction arrived immediately after that presentation and was recorded as approval of that exact matrix only.
+The written Phase-5 package had already been committed and self-reviewed:
+
+- `docs/superpowers/specs/2026-08-24-menezesdev-tools-phase5-seo-ia-design.md`;
+- `docs/superpowers/specs/2026-08-24-menezesdev-tools-phase5-seo-ia-self-review.md`.
+
+Gabriel replied `Segue` to the written-spec review gate.
 
 Created:
 
-- `docs/tools/LAUNCH50_FROZEN.md`;
-- `docs/tools/PHASE4_CLOSURE.md`.
+- `docs/tools/PHASE5_CLOSURE.md`.
 
-Frozen allocation:
+Result:
 
-- 35 SEO/AdSense-led;
-- 10 architectural coverage;
-- 5 experiments;
-- exactly 50.
+- Phase 5 workflow gate: **PASS**;
+- Phase 5: **CLOSED**;
+- Phase 6: legally unblocked, but requires its own Superpowers architectural design approval.
 
-Technical posture:
+---
 
-- 46/50 clear/internal/local-bounded;
-- 4/50 local-conditional: Image Compressor, HTML Formatter, Merge PDF, Split PDF;
-- 0/50 backend-required;
-- 0/50 HOLD/UNRESOLVED.
+# Correct implementation base discovered for Phase 6
 
-Phase-4 gate: **PASS / CLOSED**.
+The research branch/main baseline does not contain the public Astro app implementation.
 
-This approval does not pre-approve unseen later designs and does not weaken any conditional admission/security gate.
+The actual existing application is on:
+
+`feat/phase-10-implementation` @ `152fab910296f29cfae2e07bf6ccc2c69f0ce0df`
+
+Comparison to `main`:
+
+- 10 commits ahead;
+- 0 behind.
+
+Observed stack:
+
+- Astro 7.2.4 static;
+- TypeScript 6.0.3;
+- Tailwind 4.3.3 via Vite;
+- pnpm 11.22.0;
+- Node 24;
+- Lucide Astro;
+- no client UI framework;
+- semantic HTML + minimal vanilla JS baseline.
+
+Important reconciliation facts:
+
+- current `BaseLayout.astro` is PT-BR/commercial-oriented;
+- current `siteConfig.locale` is fixed `pt-BR`;
+- current Astro config uses `build.format: "file"` and `trailingSlash: "never"`;
+- current Phase-5 Tools contract requires trailing-slash canonical tool/content routes;
+- current sitemap filter only indexes Home + `/projetos/**`;
+- current route validation is hard-coded to the legacy 16-route set;
+- current canonical generation derives from `Astro.url.pathname`, which should not become the canonical source for generated Tools routes/fallback hosts.
+
+These are architecture inputs, not permission to patch code before design approval.
+
+---
+
+# Current Phase-6 proposal — NON-BINDING UNTIL APPROVED
+
+Superpowers classification: **architectural**.
+
+Recommended approach is a hybrid typed Tool SDK:
+
+1. build-time typed tool registry as the source of truth;
+2. locale content separated from executable engines;
+3. generic UI primitives for common calculators/text tools;
+4. specialized renderers for image/file/PDF tools;
+5. pure deterministic engine modules behind stable engine ids;
+6. separate boundary/validation layer implementing validate → bound → canonicalize → process → safe output;
+7. lazy engine-loader manifest so heavy packages never enter a monolithic bundle;
+8. browser main-thread / Worker / WASM-worker adapters, with Launch 50 `serverRequired=false`;
+9. static Astro route generation from the registry using `getStaticPaths()`;
+10. no runtime i18n framework — each locale is statically generated;
+11. SEO/sitemap/search/related-tool data derived from the same registry rather than duplicate route arrays;
+12. analytics and Ads are adapter contracts/no-op capable until their later workflow phases;
+13. tool correctness must not depend on Ads, analytics or Cloudflare-specific APIs;
+14. provider-neutral output remains mandatory.
+
+Recommended Astro integration strategy:
+
+- later create `feat/tools-platform` from the approved commercial implementation base (or an explicitly reviewed successor), not from documentation-only `main`;
+- bring the Tools docs/spec history into that integration branch without merging partial Tools to `main`;
+- use Astro `build.format: "preserve"` so existing flat commercial page files can retain their current URL shape while Tools pages live as nested `index.astro` routes that materialize directory/trailing-slash artifacts;
+- use `trailingSlash: "ignore"` at Astro route-matching level and verify one-hop canonical normalization at hosting/preflight;
+- generate canonical URLs from explicit registry route data + configured MenezesDev canonical origin, never request/provider hostname inference;
+- keep separate commercial/demo and Tools layouts, sharing only neutral document/SEO primitives where beneficial.
+
+No Phase-6 spec has been written. The next gate is approval of the concrete Phase-6 design presented in chat.
 
 ---
 
@@ -64,81 +114,29 @@ This approval does not pre-approve unseen later designs and does not weaken any 
 - Phase 1: CLOSED.
 - Phase 2: CLOSED.
 - Phase 3: CLOSED.
-- Phase 4: **CLOSED**.
-- Phase 5: **UNBLOCKED / architectural design pending Superpowers approval**.
-- Phase 6+: NOT STARTED.
-- Runtime implementation: NOT STARTED.
+- Phase 4: CLOSED.
+- Phase 5: **CLOSED**.
+- Phase 6: **ACTIVE / design approval pending**.
+- Phase 7+: NOT STARTED.
+- Tool runtime implementation: NOT STARTED.
 - Autonomous Growth implementation: NOT STARTED.
-
----
-
-# Phase-5 research completed before approval gate
-
-Superpowers classifies Phase 5 as **architectural**.
-
-Current official Google Search Central guidance was revalidated for:
-
-- canonicalization;
-- localized URLs and reciprocal hreflang;
-- sitemap behavior and honest `lastmod`;
-- structured-data eligibility;
-- breadcrumbs;
-- avoiding thin/duplicate query surfaces.
-
-A concrete design proposal is ready for presentation in chat.
-
-No Phase-5 spec has been committed yet because Superpowers brainstorming requires approval of the specific presented design first.
-
----
-
-# Recommended Phase-5 direction awaiting approval
-
-The current non-binding recommendation is:
-
-- stable one-category tool URL hierarchy rather than flat or deeply nested routes;
-- English canonical tool surface under `/tools/<category>/<slug>/`;
-- PT-BR localized surface under `/pt-br/ferramentas/<categoria>/<slug-localizado>/`;
-- broad stable categories only; no thin indexable subcategory/filter pages;
-- self-canonical URLs;
-- reciprocal `hreflang="en"` and `hreflang="pt-BR"` only when a real localized counterpart exists;
-- HTML-head hreflang as the single implementation method;
-- XML sitemap index containing only canonical/indexable URLs and honest significant-change `lastmod`;
-- tool/category/guide BreadcrumbList where visible hierarchy exists;
-- no FAQPage rich-result markup and no fabricated SoftwareApplication ratings/reviews;
-- utility-first static HTML plus adaptive explanatory content;
-- local internal search with non-indexable/hash state rather than crawlable query-result pages;
-- small real guide layer, not one article mechanically generated for every tool;
-- no separate AEO/GEO hacks or llms.txt dependency;
-- all primary crawl/index content available in static HTML;
-- canonical origin remains MenezesDev domain regardless of fallback host.
-
-This proposal is not binding until the user approves it after presentation.
-
----
-
-# Repo implementation-base observation
-
-The current `feat/tools-oss-catalog` tree is documentation/research-oriented and does not expose the main public Astro application source/root package in the inspected tree. It contains docs/public assets plus the unrelated `tools/mcp-image` package.
-
-This is not a Phase-5 blocker, but Phase 6 must identify/reconcile the correct application implementation base/ref before any runtime implementation plan or code work.
-
-Do not infer that `tools/mcp-image` is the public MenezesDev Tools runtime.
 
 ---
 
 # Next legal sequence
 
-1. Present the concrete Phase-5 design and 2–3 route-architecture approaches.
-2. Obtain approval of that **specific** design; a direct “segue/prossegue” after presentation is sufficient.
-3. Write the Phase-5 design/spec to `docs/superpowers/specs/` and commit it.
-4. Self-review for placeholders, contradictions, ambiguity and scope.
-5. Verify Phase-5 workflow gate and record closure if satisfied.
-6. Then begin Phase 6 under its own architectural design process.
+1. Present the Phase-6 approaches and recommended architecture in chat.
+2. Obtain approval of that specific design.
+3. Write/commit the Phase-6 spec.
+4. Self-review it for placeholders, contradictions, scope and ambiguity.
+5. Obtain written-spec review approval.
+6. Close Phase 6 if its workflow gate passes.
+7. Continue to Phase 7 threat-model/security design.
 
-Higher-precedence workflow sequencing overrides any generic skill tendency to jump directly to an implementation plan: Phase 6, 7 and 8 design gates must still happen before Phase 9 implementation planning.
+Do not invoke implementation planning yet. Workflow Phases 6–8 must close before Phase 9 `writing-plans`.
 
 ---
 
 # Governance reminder
 
-Before any future Tools action, reread the actual branch/ref workflow, all binding addenda and Tools-specific context. Git is source of truth; no memory-only execution.
+Before future Tools actions, reread the actual branch/ref workflow, all binding addenda and Tools-specific context. Git remains source of truth; no memory-only execution.

@@ -57,8 +57,8 @@ Estado atual do workflow Tools:
 - Phase 3 — Capability Map: **CLOSED**;
 - Phase 4 — Freeze Launch 50: **CLOSED / 50 aprovadas e congeladas**;
 - Phase 5 — Information architecture / international SEO: **CLOSED**;
-- Phase 6 — Tools architecture design: **written spec approved; closure being recorded before Phase 7**;
-- Phase 7 — Security design / threat-model consolidation: **next active architectural phase**;
+- Phase 6 — Tools architecture design: **CLOSED / written spec approved**;
+- Phase 7 — Security design / threat-model consolidation: **ACTIVE / architectural design cycle**;
 - runtime Tools: **ainda não implementado**;
 - `main`: **não recebe implementação parcial do Tools**.
 
@@ -226,6 +226,12 @@ Spec:
 
 ```text
 docs/superpowers/specs/2026-08-24-menezesdev-tools-phase6-architecture-design.md
+```
+
+Closure:
+
+```text
+docs/tools/PHASE6_CLOSURE.md
 ```
 
 ---
@@ -464,7 +470,8 @@ A futura `feat/tools-platform` deve nascer da implementação comercial aprovada
 - `docs/tools/OSS_CATALOG.md` — catálogo/audit OSS;
 - `docs/tools/AUTONOMOUS_GROWTH_SECURITY.md` — controles do crescimento autônomo;
 - `docs/superpowers/specs/2026-08-24-menezesdev-tools-phase5-seo-ia-design.md` — SEO/IA;
-- `docs/superpowers/specs/2026-08-24-menezesdev-tools-phase6-architecture-design.md` — arquitetura Tool SDK/runtime.
+- `docs/superpowers/specs/2026-08-24-menezesdev-tools-phase6-architecture-design.md` — arquitetura Tool SDK/runtime;
+- `docs/tools/PHASE6_CLOSURE.md` — fechamento formal da arquitetura.
 
 ### Comercial
 

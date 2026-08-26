@@ -1,134 +1,282 @@
 # MenezesDev
 
-**Sites que impulsionam negócios — e uma plataforma internacional de ferramentas web em construção.**
+## Uma plataforma de aquisição orgânica, utilidades web e mídia digital
 
-Este repositório reúne dois workstreams relacionados, mas governados separadamente:
+**MenezesDev está evoluindo de um estúdio/site comercial para um ativo digital escalável: uma rede internacional de ferramentas gratuitas e conteúdo editorial orientado por dados, desenhada para transformar tráfego orgânico em receita publicitária com custo marginal baixo.**
 
-1. **MenezesDev comercial** — site institucional, portfólio e demos fictícias;
-2. **MenezesDev Tools** — plataforma internacional de utilidades web gratuitas, browser-first e AdSense-first.
+A tese central é simples:
 
-O Git é a fonte de verdade. As branches de implementação e pesquisa permanecem isoladas até os gates de release/merge serem satisfeitos.
+> construir utilidades que as pessoas realmente procuram, executar o máximo possível no navegador do usuário, adquirir tráfego via SEO e uso recorrente, monetizar páginas elegíveis com publicidade e reinvestir os dados de busca/receita na próxima oportunidade.
 
----
-
-## Estado atual
-
-### MenezesDev comercial
-
-A implementação do site comercial está materializada em:
-
-```text
-feat/phase-10-implementation
-```
-
-Base registrada para integração futura:
-
-```text
-152fab910296f29cfae2e07bf6ccc2c69f0ce0df
-```
-
-Estado documentado nessa linha de trabalho:
-
-- Phase 10 de implementação concluída;
-- Astro 7.2.4 + TypeScript 6 + Tailwind CSS 4;
-- 16 rotas canônicas + 404 implementadas;
-- demos fictícias mantidas `noindex`;
-- hard gates de implementação concluídos;
-- release de produção ainda bloqueada por gates externos/operacionais;
-- `IMPLEMENTATION DONE`: sim;
-- `PRODUCTION READY`: não;
-- `VISUAL PORTFOLIO COMPLETE`: não.
-
-A documentação detalhada dessa implementação vive em `docs/context/STATE.md` e `docs/PHASE_10_IMPLEMENTATION_REPORT.md` na branch comercial.
-
-### MenezesDev Tools
-
-Branch canônica de pesquisa, governança e especificação:
-
-```text
-feat/tools-oss-catalog
-```
-
-Estado atual do workflow Tools:
-
-- Phase 0 — Product constitution: **CLOSED**;
-- Phase 1 — Global Market Intelligence: **CLOSED**;
-- Phase 2 — OSS Capability Audit: **CLOSED**;
-- Phase 3 — Capability Map: **CLOSED**;
-- Phase 4 — Freeze Launch 50: **CLOSED / 50 aprovadas e congeladas**;
-- Phase 5 — Information architecture / international SEO: **CLOSED**;
-- Phase 6 — Tools architecture design: **CLOSED / written spec approved**;
-- Phase 7 — Security design / threat-model consolidation: **ACTIVE / architectural design cycle**;
-- runtime Tools: **ainda não implementado**;
-- `main`: **não recebe implementação parcial do Tools**.
-
-Estado canônico detalhado:
-
-```text
-docs/context/TOOLS_STATE.md
-```
+O projeto não depende de prospecção ativa para crescer. A superfície comercial continua existindo, mas o principal motor de escala planejado para o MenezesDev Tools é **produto gratuito + SEO + distribuição orgânica + mídia**.
 
 ---
 
-# MenezesDev Tools
+# A oportunidade
 
-## Missão
-
-Construir uma grande plataforma internacional de ferramentas web gratuitas dentro do mesmo domínio/repositório, com crescimento por SEO e uso recorrente, monetização principalmente por Google AdSense e custo marginal extremamente baixo.
-
-A regra econômica central é simples:
-
-> Se uma operação determinística pode rodar com segurança no navegador do usuário, ela não deve virar uma requisição de backend paga por uso.
-
-## Superfície pública planejada
+Grande parte da web de utilidades opera em um modelo extremamente simples e poderoso:
 
 ```text
-menezesdev.com/
-├── /                         site comercial; sem Ads
-├── /projetos/...             portfólio; sem Ads
-├── /demo/...                 demos fictícias; sem Ads
-├── /tools/...                Tools em inglês internacional
-├── /pt-br/ferramentas/...    localização PT-BR
-└── /guides/...               conteúdo editorial/educacional
+problema recorrente do usuário
+        ↓
+busca no Google
+        ↓
+ferramenta gratuita útil
+        ↓
+uso imediato
+        ↓
+pageview + retorno direto + links internos
+        ↓
+monetização publicitária
 ```
 
-English (`en`) é o idioma principal do Tools. PT-BR é a localização secundária.
+MenezesDev Tools foi desenhado para capturar essa dinâmica sem transformar crescimento em uma conta crescente de infraestrutura.
+
+A arquitetura é **browser-first**: calculadoras, conversores, ferramentas de texto, processamento de imagens, utilidades para desenvolvedores e várias operações de arquivos podem executar localmente no dispositivo do visitante.
+
+Isso cria uma relação econômica importante:
+
+```text
+mais tráfego
+   ↓
+mais oportunidades de receita
+
+sem obrigatoriamente gerar
+
+mais processamento pago no backend
+```
+
+A meta não é simplesmente publicar centenas de páginas. A meta é construir um **portfólio de ativos orgânicos úteis** que possam acumular tráfego, autoridade, uso recorrente e receita ao longo do tempo.
 
 ---
 
-## Launch 50
+# O flywheel de crescimento
 
-O primeiro release público do Tools exige **50 ferramentas completas e funcionais**.
+O produto foi planejado como um sistema que pode aprender com o próprio tráfego.
 
-A matriz congelada usa:
+```text
+50 ferramentas gratuitas no Launch
+        ↓
+SEO + busca orgânica + uso recorrente
+        ↓
+Search Console + analytics + dados de receita
+        ↓
+Opportunity Engine
+        ↓
+Trend Radar + sinais de mercado
+        ↓
+melhorias / novos guias / novas oportunidades de ferramenta
+        ↓
+agente editorial sob demanda
+        ↓
+quality + SEO + security + cost gates
+        ↓
+publicação
+        ↓
+mais tráfego orgânico
+        ↓
+AdSense + canais de mídia adicionais validados
+        ↓
+novos dados de RPM / CTR / posição / demanda
+        ↺
+```
 
-- **35** ferramentas SEO/AdSense-led — 70%;
-- **10** ferramentas de cobertura arquitetural — 20%;
-- **5** experimentos/strategic bets — 10%.
+O sistema não publica por calendário.
+
+Se não existir oportunidade qualificada, o resultado correto é **não publicar**.
+
+Essa diferença é fundamental: a automação é pensada para ampliar ativos que funcionam, não para criar uma fazenda de conteúdo fino.
+
+---
+
+# Launch 50: primeira carteira de ativos
+
+O primeiro release público do MenezesDev Tools exige **50 ferramentas completas e funcionais**.
+
+A matriz já está selecionada e congelada:
+
+- **35 ferramentas orientadas principalmente a SEO/AdSense** — 70%;
+- **10 ferramentas de cobertura arquitetural** — 20%;
+- **5 experimentos estratégicos** — 10%.
+
+O portfólio inicial cobre clusters como:
+
+- finanças e negócios;
+- matemática e estatística;
+- ferramentas para desenvolvedores;
+- texto e conteúdo;
+- imagem;
+- arquivos e dados estruturados;
+- PDF seletivo;
+- conversões e utilidades recorrentes.
+
+A seleção não foi feita apenas por facilidade de desenvolvimento. O funil partiu de **177 candidatos pesquisados**, passou por market intelligence, análise de concorrência, CPC/demanda, auditoria OSS, segurança, custo e intenção de busca até chegar ao Launch 50.
 
 Situação técnica da matriz:
 
-- **46/50** clear/internal/local-bounded;
-- **4/50** local-conditional: Image Compressor, HTML Formatter, Merge PDF e Split PDF;
+- **46/50** têm caminho clear/internal/local-bounded;
+- **4/50** são local-conditional e precisam provar gates adicionais;
 - **0/50** exigem backend de processamento por operação comum.
 
-Matriz canônica:
+Documentação:
 
 ```text
 docs/tools/LAUNCH50_FROZEN.md
-```
-
-Pool técnico/econômico completo:
-
-```text
 docs/tools/CAPABILITY_MAP.md
 ```
 
 ---
 
-## Arquitetura browser-first
+# Monetização: mídia antes de SaaS pesado
 
-Ordem obrigatória de decisão:
+O modelo inicial aprovado é **Google AdSense** nas superfícies elegíveis de Tools e conteúdo.
+
+A proposta é preservar uma experiência gratuita e de baixa fricção enquanto o portfólio acumula tráfego.
+
+## Camada inicial
+
+```text
+Tools gratuitas
++ guides úteis
++ tráfego orgânico
+        ↓
+AdSense
+```
+
+A publicidade não pode parecer botão da ferramenta, não pode induzir clique acidental e não pode comprometer privacidade ou performance.
+
+## Expansão de mídia
+
+Depois de tráfego e audiência suficientes, o projeto pode avaliar canais complementares como:
+
+- **Taboola / native discovery / native ads**, sujeito a elegibilidade, termos, qualidade de inventário, UX e RPM real;
+- outros parceiros de mídia compatíveis com a experiência;
+- afiliados contextuais quando fizerem sentido;
+- patrocínios de clusters específicos;
+- formatos premium/ad-free futuramente.
+
+**Taboola não é tratado como receita já contratada nem como requisito de Launch.** É uma avenida de monetização/distribuição a validar quando escala e audiência justificarem.
+
+A regra econômica é data-driven:
+
+> nenhum canal entra apenas porque “sites grandes usam”. Ele precisa melhorar receita líquida sem degradar produto, SEO, privacidade ou retenção.
+
+---
+
+# Conteúdo editorial automático — mas não automático no sentido ruim
+
+O plano pós-launch inclui um **AI Editorial Engine** orientado por oportunidades reais.
+
+A IA não recebe uma instrução genérica do tipo “publique três artigos hoje”.
+
+O pipeline planejado é:
+
+```text
+oportunidade observada
+        ↓
+brief estruturado
+        ↓
+fact / formula / source pack verificado
+        ↓
+IA escreve ou melhora o conteúdo
+        ↓
+validação determinística
+        ↓
+SEO / duplicação / qualidade / segurança
+        ↓
+CI + build
+        ↓
+autopublish somente se estiver dentro da whitelist
+```
+
+O agente pode explicar, estruturar e redigir.
+
+Ele **não pode inventar**:
+
+- fórmulas;
+- resultados das ferramentas;
+- fatos de licença;
+- fatos de segurança;
+- fontes;
+- claims de performance financeira.
+
+Fatos determinísticos devem vir dos próprios engines testados.
+
+---
+
+# Trend Radar + crawler ético
+
+O crescimento editorial futuro também inclui uma camada de descoberta de oportunidades.
+
+Prioridade das fontes:
+
+1. Search Console e dados first-party;
+2. APIs, RSS e feeds estruturados;
+3. índices públicos de tendências/notícias;
+4. crawler HTML somente como fallback para domínios aprovados.
+
+O crawler será **whitelist-only** e projetado para respeitar fontes:
+
+- `robots.txt` e termos aplicáveis;
+- User-Agent identificável;
+- cache e fingerprints;
+- `ETag` / `If-Modified-Since` quando disponíveis;
+- rate limits e concurrency limits;
+- backoff em `429`/`503`;
+- nenhum bypass de login, paywall, CAPTCHA, WAF ou anti-bot;
+- nenhum espelhamento automático de artigos inteiros;
+- nenhum URL arbitrário fornecido por usuário virando proxy SSRF.
+
+A notícia não é o produto.
+
+Ela funciona como **sensor de oportunidade** para criar ou melhorar um ativo útil relacionado aos clusters já aprovados.
+
+---
+
+# Verticais e subdomínios: expansão possível
+
+A arquitetura canônica atual do Launch permanece no domínio principal:
+
+```text
+menezesdev.com/tools/...
+menezesdev.com/pt-br/ferramentas/...
+menezesdev.com/guides/...
+```
+
+Isso concentra autoridade e simplifica o primeiro lançamento.
+
+Entretanto, o produto foi pensado em **verticais independentes de intenção**, o que abre uma possível expansão futura para propriedades/subdomínios especializados caso dados de SEO, marca, monetização ou distribuição justifiquem a separação.
+
+Exemplos de topologia futura em avaliação:
+
+```text
+finance.menezesdev.com
+  └── calculadoras financeiras + conteúdo financeiro educacional
+
+dev.menezesdev.com
+  └── JSON, regex, Base64, hashes, formatters e conteúdo técnico
+
+image.menezesdev.com
+  └── resize, compressão, crop, metadata e conteúdo de imagem
+
+text.menezesdev.com
+  └── contadores, case conversion, diff, Markdown e conteúdo editorial
+
+pdf.menezesdev.com
+  └── operações PDF que passarem os gates de segurança
+```
+
+**Esses subdomínios não são a arquitetura de Launch já aprovada.** São uma estratégia futura possível e só devem ser ativados após revisão explícita de SEO, canonicalização, migração, autoridade de domínio, Ads, analytics e impacto operacional.
+
+Para sócios, a leitura importante é outra: o portfólio não precisa permanecer uma lista plana de calculadoras. Ele pode evoluir para uma **rede de verticais digitais especializadas**, cada uma com ferramentas, conteúdo, distribuição e monetização próprias — sem exigir marcas completamente desconectadas.
+
+---
+
+# Por que isso pode escalar
+
+## 1. Custo marginal baixo
+
+A ordem obrigatória de execução é:
 
 ```text
 secure native browser API
@@ -140,17 +288,142 @@ secure local WASM
 backend somente quando realmente necessário
 ```
 
-`Web Worker` significa isolamento no navegador, não backend.
+O navegador do usuário executa a maior parte do trabalho determinístico.
 
-Para o Launch 50, a arquitetura aprovada assume `serverRequired = false` para as operações comuns das 50 ferramentas.
+Isso reduz a chance de um crescimento de tráfego transformar-se automaticamente em uma explosão de custo de compute.
 
-Rust/WASM é usado quando traz ganho concreto de segurança, performance, parsing hostil, determinismo ou controle de recursos. Não é requisito ideológico.
+## 2. Uma mesma infraestrutura serve muitos produtos
+
+O Tool SDK aprovado foi desenhado para que novas ferramentas compartilhem:
+
+- rotas;
+- SEO;
+- segurança;
+- localization;
+- analytics;
+- Ads metadata;
+- input boundaries;
+- UI primitives;
+- search/aliases;
+- related tools;
+- lazy loading.
+
+Uma ferramenta nova tende a ser **definition + engine + conteúdo + testes**, e não um novo site construído do zero.
+
+## 3. O tráfego gera dados para descobrir mais tráfego
+
+Search Console, queries internas, posição, CTR, RPM, retenção e desempenho de clusters podem alimentar a próxima decisão.
+
+A plataforma foi desenhada para melhorar o próprio funil de priorização com dados reais.
+
+## 4. O sistema também pode podar
+
+O growth engine não é create-only.
+
+Conteúdo fraco pode ser:
+
+- melhorado;
+- consolidado;
+- redirecionado;
+- `noindex`;
+- removido.
+
+Isso protege qualidade e reduz canibalização.
+
+## 5. Internacional desde a arquitetura
+
+English (`en`) é a superfície primária do Tools.
+
+PT-BR é secundário.
+
+O contrato SEO já cobre:
+
+- URLs independentes por locale;
+- self-canonical;
+- `hreflang` recíproco;
+- sitemap segmentado;
+- anti-thin rules;
+- category hubs;
+- related-tool graph;
+- guides por intenção independente.
 
 ---
 
-## Segurança
+# Modelo de negócio em camadas
 
-Todo input controlado pelo usuário é não confiável.
+```text
+CAMADA 1 — aquisição
+SEO + uso recorrente + direct traffic
+
+CAMADA 2 — inventário
+Tools + guides + verticais
+
+CAMADA 3 — monetização inicial
+AdSense
+
+CAMADA 4 — expansão de mídia
+native ads / Taboola-like networks / patrocínio / afiliados
+
+CAMADA 5 — produto futuro data-gated
+Pro / ad-free / batch / API
+
+CAMADA 6 — automação
+Opportunity Engine + AI Editorial + Tool Factory
+```
+
+Nenhuma camada futura é necessária para provar a primeira.
+
+Isso permite validar o negócio gradualmente em vez de financiar uma infraestrutura SaaS grande antes de existir tráfego.
+
+---
+
+# Tese para parceiros e sócios
+
+O projeto procura parceiros que enxerguem o MenezesDev Tools como **ativo digital de longo prazo**, não apenas como um projeto de desenvolvimento web.
+
+Áreas onde um sócio estratégico pode acrescentar valor:
+
+- distribuição e SEO internacional;
+- monetização programática/native ads;
+- mídia e AdOps;
+- relacionamento com redes como AdSense/native discovery;
+- conteúdo e expansão editorial;
+- produto e growth;
+- parcerias comerciais;
+- capital para acelerar implementação/experimentação após os gates;
+- operação de portfólio digital.
+
+O que já existe antes da implementação do Tools:
+
+- tese de produto documentada;
+- universo de mercado pesquisado;
+- Launch 50 congelado;
+- Capability Map técnico/econômico;
+- auditoria de engines/OSS;
+- arquitetura internacional de SEO;
+- arquitetura do Tool SDK;
+- browser-first/cost model;
+- política formal de segurança;
+- arquitetura de crescimento autônomo;
+- estratégia de deploy/fallback;
+- workflow versionado com hard gates.
+
+O que **não** estamos vendendo como fato hoje:
+
+- receita existente do Tools;
+- tráfego existente do Tools;
+- aprovação garantida em AdSense ou Taboola;
+- valuation inventado;
+- crescimento garantido;
+- “IA que imprime dinheiro”.
+
+A oportunidade é participar da construção e validação dessa máquina antes da fase de escala.
+
+---
+
+# Segurança e privacidade como vantagem de produto
+
+Todo input do usuário é tratado como não confiável.
 
 Pipeline obrigatório:
 
@@ -166,18 +439,20 @@ process
 encode safe output
 ```
 
-Entre os hard gates:
+Arquivos e textos de ferramentas browser-first permanecem preferencialmente no dispositivo do usuário.
 
-- limites de bytes/caracteres/páginas/dimensões/profundidade/trabalho;
-- nenhuma confiança em extensão/MIME/filename;
-- proteção contra bombs e inputs patológicos;
-- regex potencialmente catastrófica isolada e limitada;
-- PDF/SVG/HTML ativos desabilitados por padrão;
-- nenhum server-side fetch arbitrário sem threat model SSRF específico;
-- nenhum conteúdo de arquivo/texto privado em telemetry;
-- erros públicos sem stack trace, segredo ou caminho interno.
+A telemetria não deve armazenar:
 
-Contrato obrigatório:
+- arquivos enviados;
+- texto colado;
+- conteúdo de documentos;
+- valores financeiros privados;
+- resultados privados;
+- metadata privada extraída.
+
+Isso também reduz custo operacional e responsabilidade sobre dados sensíveis.
+
+Contrato:
 
 ```text
 docs/tools/SECURITY_POLICY.md
@@ -185,11 +460,9 @@ docs/tools/SECURITY_POLICY.md
 
 ---
 
-## Tool SDK
+# Arquitetura do Tool SDK
 
-O Tools será guiado por um SDK híbrido tipado, não por 50 páginas completamente independentes nem por um renderer universal gigantesco.
-
-Direção aprovada da Phase 6:
+Direção aprovada:
 
 ```text
 Tool Catalog
@@ -211,16 +484,16 @@ safe renderer
 
 Princípios:
 
-- stable tool id independente de slug/locale;
-- catálogo serializável e data-only;
-- engines puros, sem Astro/DOM/Ads/analytics;
-- boundaries executáveis resolvidos por IDs allowlisted;
-- UI genérica para calculadoras/texto comuns;
-- renderers especializados para experiências como PDF/image crop/regex/Markdown;
-- dependências pesadas carregadas apenas na ferramenta que precisa delas;
-- locale/content gerado no build;
-- SEO/search/related tools derivados da mesma fonte canônica;
-- Ads e analytics são adapters opcionais, nunca dependências da correção da ferramenta.
+- stable tool id independente de locale/slug;
+- catálogo data-only;
+- engines puros;
+- boundaries allowlisted;
+- execução local sempre que possível;
+- dependências pesadas carregadas sob demanda;
+- UI compartilhada onde faz sentido;
+- renderers especializados quando necessário;
+- Ads e analytics opcionais para a correção da ferramenta;
+- provider-neutral static build.
 
 Spec:
 
@@ -228,294 +501,181 @@ Spec:
 docs/superpowers/specs/2026-08-24-menezesdev-tools-phase6-architecture-design.md
 ```
 
-Closure:
+---
+
+# Estado atual do projeto
+
+## MenezesDev Tools
+
+Branch canônica de pesquisa/governança/spec:
 
 ```text
-docs/tools/PHASE6_CLOSURE.md
+feat/tools-oss-catalog
 ```
+
+Workflow atual:
+
+- Phase 0 — Product constitution: **CLOSED**;
+- Phase 1 — Global Market Intelligence: **CLOSED**;
+- Phase 2 — OSS Capability Audit: **CLOSED**;
+- Phase 3 — Capability Map: **CLOSED**;
+- Phase 4 — Freeze Launch 50: **CLOSED**;
+- Phase 5 — International SEO / IA: **CLOSED**;
+- Phase 6 — Tools architecture: **CLOSED**;
+- Phase 7 — Security design / threat model: **ACTIVE**;
+- runtime Tools: **NOT STARTED**;
+- `main`: não recebe implementação parcial do Tools.
+
+Estado canônico:
+
+```text
+docs/context/TOOLS_STATE.md
+```
+
+## MenezesDev comercial
+
+A implementação comercial existe em:
+
+```text
+feat/phase-10-implementation
+```
+
+Base registrada:
+
+```text
+152fab910296f29cfae2e07bf6ccc2c69f0ce0df
+```
+
+Stack atual:
+
+- Astro 7.2.4 static;
+- TypeScript 6;
+- Tailwind CSS 4;
+- pnpm 11;
+- Node 24;
+- HTML semântico;
+- CSS-first;
+- JavaScript cliente mínimo;
+- sem React/Vue/Svelte obrigatório.
+
+A implementação comercial está concluída em sua branch, mas o release ainda possui gates externos/operacionais próprios.
 
 ---
 
-## SEO internacional
+# Deploy e custo
 
-A Phase 5 já fechou o contrato de SEO/IA.
-
-Direção principal:
-
-```text
-/tools/<categoria>/<tool>/
-/pt-br/ferramentas/<categoria>/<ferramenta>/
-```
-
-O contrato inclui:
-
-- rotas EN/PT-BR exatas das 50;
-- self-canonical por locale;
-- `hreflang` recíproco somente para variantes reais/publicadas;
-- sitemap segmentado;
-- robots/index/noindex;
-- breadcrumbs;
-- related-tool graph;
-- guides por intenção independente;
-- busca interna não indexável;
-- política anti-thin/doorway;
-- utility-first content;
-- HTML estático com conteúdo SEO-critical;
-- fallbacks de hosting nunca viram origem canônica por acidente.
-
-Spec:
-
-```text
-docs/superpowers/specs/2026-08-24-menezesdev-tools-phase5-seo-ia-design.md
-```
-
----
-
-## AdSense e custo
-
-A monetização inicial planejada do Tools é Google AdSense.
-
-Princípios:
-
-- comercial/portfólio/demo continuam ad-free;
-- slots de Ads não podem parecer controles da ferramenta;
-- Ads não ficam colados a Upload/Download/Convert/Calculate de forma enganosa;
-- `adsEligible` será controlado pelo Traffic Guard;
-- suspicious/automated traffic não entra intencionalmente no mesmo caminho monetizado de humanos elegíveis;
-- global/per-route kill switches serão obrigatórios antes de escala monetizada;
-- ferramenta continua funcionando se Ads ou analytics estiverem desligados.
-
----
-
-## Autonomous Growth Engine
-
-Após Launch 50 e dados reais, o produto poderá operar um flywheel policy-gated:
-
-```text
-Search Console + product analytics + revenue + Trend Radar
-                           ↓
-                  Opportunity Engine
-                           ↓
-        improve page / guide / approved new tool
-                           ↓
-        policy + quality + security + cost gates
-                           ↓
-                     publish
-                           ↓
-                     measure
-                           ↓
-             improve / expand / prune
-                           ↺
-```
-
-### Agente editorial
-
-O agente de IA é **on-demand**, alimentado por brief estruturado e fact/source pack verificado.
-
-Ele pode explicar, organizar e reescrever; não estabelece sozinho:
-
-- fórmulas canônicas;
-- resultados das ferramentas;
-- fatos de licença;
-- fatos de segurança;
-- claims de fonte.
-
-### Trend Radar e crawler
-
-Ordem preferida de sinais:
-
-1. Search Console e dados first-party;
-2. APIs/RSS/feeds;
-3. índices públicos de trends/news;
-4. crawler HTML apenas como fallback e somente para domínios aprovados.
-
-O crawler futuro será whitelist-only, respeitará robots/terms, rate limits, cache/ETag/backoff e nunca poderá burlar login, paywall, CAPTCHA, WAF ou anti-bot.
-
-A implementação desse sistema permanece pós-launch, principalmente nas Phases 21–22.
-
-Binding addendum:
-
-```text
-docs/tools/workflow-addenda/2026-08-24-autonomous-growth-autopilot.md
-```
-
----
-
-## Deployment e fallback
-
-O host primário planejado é Cloudflare Pages, mas o produto deve permanecer provider-portable.
+Direção de infraestrutura:
 
 ```text
 GitHub — source of truth
         ↓
-reproducible static build
+reproducible build
         ↓
-provider-neutral artifact
+provider-neutral static artifact
         ↓
-Cloudflare Pages primary
-        +
+Cloudflare Pages — primary
+        ↓
 approved static fallback
 ```
 
-Não vamos transformar ferramenta browser-capable em Cloudflare-dependent apenas por conveniência.
+Cloudflare Pages é o host primário planejado, mas o produto não deve ficar preso a APIs Cloudflare para operações que podem executar no browser.
 
-Fallback deve preservar:
+Isso protege margem e reduz risco operacional.
 
-- canonical domain;
-- segurança;
-- URLs públicas;
-- custo controlado;
-- possibilidade de desligar Ads se consent/policy não puder ser garantido.
+---
 
-Addendum:
+# Roadmap macro
 
 ```text
-docs/tools/addenda/2026-08-24_DEPLOYMENT_PORTABILITY_AND_FALLBACK.md
+Market research        ✅
+OSS/security audit     ✅
+Capability Map         ✅
+Launch 50 freeze       ✅
+International SEO      ✅
+Tool SDK architecture  ✅
+Security architecture  ◀ current
+Traffic/Cost Guard
+Implementation plan
+Tool SDK
+Reference tools
+Design system
+Ad readiness
+Launch 50 implementation
+Editorial QA
+PT-BR
+Analytics
+Production preflight
+Launch
+Autonomous Growth
+Tool Factory
+Scale by evidence
 ```
 
----
+A automação editorial/crawler não é pré-requisito para colocar as primeiras 50 ferramentas no ar.
 
-# MenezesDev comercial
-
-## Oferta
-
-Os valores públicos são preços de entrada; o orçamento final depende do escopo.
-
-| Plano | A partir de | Entrega principal |
-|---|---:|---|
-| **Essencial** | **R$600** | Landing page profissional, responsiva e publicada |
-| **Profissional** | **R$950** | Site institucional com até 5 páginas |
-| **Negócio** | **R$1.500** | Site orientado à geração de contatos e conversão |
-| **Personalizado** | **R$2.500** | Aplicações, integrações, dashboards e funcionalidades especiais |
-
-A oferta completa está em:
-
-```text
-SERVICES_AND_PRICING.md — MenezesDev.md
-```
-
-## Cases demonstrativos
-
-O portfólio usa três empresas fictícias, sem fingir clientes reais:
-
-| Case | Nicho | Papel |
-|---|---|---|
-| **M47 Barber** | Barbearia contemporânea | landing page de entrada |
-| **Tavola 27** | Restaurante italiano contemporâneo | site institucional editorial/multipágina |
-| **Prismae** | Consultoria empresarial | autoridade, estrutura, dados e leads |
-
-As rotas `/demo/**` são demos fictícias e permanecem fora da indexação orgânica.
+Ela entra depois que o produto dispõe de dados reais para decidir onde crescer.
 
 ---
 
-## Stack atual
-
-Base comercial implementada:
-
-- Astro 7.2.4 static;
-- TypeScript 6.0.3;
-- Tailwind CSS 4.3.3;
-- pnpm 11.22.0;
-- Node.js 24;
-- Lucide Astro;
-- HTML semântico;
-- CSS-first;
-- JavaScript cliente mínimo;
-- sem framework cliente obrigatório;
-- Cloudflare Pages como direção primária de hosting.
-
-Tools reutilizará essa base, mas com layouts/metadata/runtime próprios onde a separação fizer sentido.
-
----
-
-## Branches importantes
+# Branches principais
 
 ```text
 main
-  └── produção; não recebe Tools parcial
+  └── produção; sem Tools parcial
 
 feat/phase-10-implementation
   └── implementação comercial atual
 
 feat/tools-oss-catalog
-  └── pesquisa, governança, SEO, arquitetura e audits do Tools
+  └── pesquisa, governança, SEO, segurança e arquitetura Tools
 
 feat/tools-platform
-  └── futura branch de integração da implementação Tools
+  └── futura integração da implementação Tools
 ```
-
-A futura `feat/tools-platform` deve nascer da implementação comercial aprovada/sucessora e carregar junto toda a governança/spec do Tools.
 
 ---
 
-## Documentação principal
+# Documentação-chave
 
-### Governança geral
+## Tools
 
-- `AGENTS.md` — contrato operacional para agentes;
-- `docs/context/STATE.md` — estado do workstream comercial/geral;
-- `docs/context/DECISIONS.md` — decisões comerciais/gerais;
-- `docs/context/HANDOFF.md` — continuidade comercial/geral.
-
-### Tools
-
-- `docs/context/TOOLS_STATE.md` — estado canônico do Tools;
-- `docs/context/TOOLS_DECISIONS.md` — decisões duráveis do Tools;
-- `docs/context/TOOLS_HANDOFF.md` — continuidade entre sessões/agentes;
+- `docs/context/TOOLS_STATE.md` — estado canônico;
+- `docs/context/TOOLS_DECISIONS.md` — decisões duráveis;
+- `docs/context/TOOLS_HANDOFF.md` — continuidade entre agentes/sessões;
 - `docs/tools/IMMUTABLE_WORKFLOW.md` — workflow operacional canônico;
 - `docs/tools/TOOLS_SCOPE.md` — escopo aprovado;
-- `docs/tools/SECURITY_POLICY.md` — contrato de segurança;
-- `docs/tools/CAPABILITY_MAP.md` — caminhos técnicos/econômicos do pool final;
-- `docs/tools/LAUNCH50_FROZEN.md` — Launch 50 congelado;
-- `docs/tools/OSS_CATALOG.md` — catálogo/audit OSS;
-- `docs/tools/AUTONOMOUS_GROWTH_SECURITY.md` — controles do crescimento autônomo;
+- `docs/tools/LAUNCH50_FROZEN.md` — carteira inicial de 50;
+- `docs/tools/CAPABILITY_MAP.md` — mapa técnico/econômico;
+- `docs/tools/SECURITY_POLICY.md` — política de segurança;
+- `docs/tools/AUTONOMOUS_GROWTH_SECURITY.md` — segurança da automação;
+- `docs/tools/OSS_CATALOG.md` — auditoria OSS;
+- `docs/tools/workflow-addenda/2026-08-24-autonomous-growth-autopilot.md` — autonomia policy-gated;
 - `docs/superpowers/specs/2026-08-24-menezesdev-tools-phase5-seo-ia-design.md` — SEO/IA;
-- `docs/superpowers/specs/2026-08-24-menezesdev-tools-phase6-architecture-design.md` — arquitetura Tool SDK/runtime;
-- `docs/tools/PHASE6_CLOSURE.md` — fechamento formal da arquitetura.
+- `docs/superpowers/specs/2026-08-24-menezesdev-tools-phase6-architecture-design.md` — Tool SDK/runtime;
+- `docs/tools/PHASE6_CLOSURE.md` — fechamento da Phase 6.
 
-### Comercial
+## Comercial
 
-- `docs/BRAND_GUIDE.md` — identidade visual;
-- `docs/DEMO_CASES.md` — cases;
-- `docs/TECHNICAL_SPEC.md` — arquitetura comercial;
-- `docs/ACCEPTANCE_CRITERIA.md` — hard/release gates;
-- `docs/wireframes/` — wireframes;
-- `docs/interactions/` — comportamento/interações;
-- `docs/NATIVE_IMAGEGEN_WORKFLOW.md` — pipeline visual.
-
----
-
-## Regras para agentes
-
-Antes de qualquer trabalho de MenezesDev Tools, leia `AGENTS.md` e siga o verification gate definido ali.
-
-Em resumo:
-
-```text
-TOOLS_STATE
-→ TOOLS_DECISIONS
-→ TOOLS_HANDOFF
-→ IMMUTABLE_WORKFLOW completo
-→ binding addenda
-→ SECURITY_POLICY quando aplicável
-→ relevant scope/spec/audit
-→ confirmar phase/gate
-→ só então agir
-```
-
-**No memory-only execution is permitted for MenezesDev Tools. Git is the source of truth.**
+- `docs/BRAND_GUIDE.md`;
+- `docs/DEMO_CASES.md`;
+- `docs/TECHNICAL_SPEC.md`;
+- `docs/ACCEPTANCE_CRITERIA.md`;
+- `docs/wireframes/`;
+- `docs/interactions/`;
+- `docs/NATIVE_IMAGEGEN_WORKFLOW.md`.
 
 ---
 
-## Segurança e custo — regras gerais
+# Interesse em parceria
 
-- nenhuma chave, token, certificado, cookie, senha ou `.env` entra no Git;
-- nenhum serviço pago vira requisito silenciosamente;
-- browser-first continua sendo o padrão econômico do Tools;
-- demos fictícias não fingem clientes/resultados reais;
-- produção não recebe implementação parcial apenas para mostrar progresso;
-- deploy deve permanecer reproduzível a partir do repositório.
+**MenezesDev Tools está em fase de arquitetura pré-implementação e busca parceiros/sócios interessados em construir um portfólio internacional de ativos web orientados a SEO, mídia e automação.**
+
+O perfil ideal não precisa ser apenas técnico.
+
+SEO, distribuição, AdOps, mídia programática, native ads, growth, parcerias e operação comercial podem ser tão relevantes quanto engenharia.
+
+A tese é construir uma infraestrutura que consiga produzir e melhorar ativos digitais de maneira disciplinada, medir retorno real e expandir somente onde os dados justificarem.
 
 ---
 
-**MenezesDev — direção visual, engenharia, utilidade e crescimento com custo controlado.**
+**MenezesDev — de serviços digitais para uma plataforma de aquisição orgânica, utilidades e mídia escalável.**

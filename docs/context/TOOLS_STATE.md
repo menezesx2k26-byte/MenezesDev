@@ -1,6 +1,6 @@
 # MenezesDev Tools — Current State
 
-**Last updated:** 2026-08-24  
+**Last updated:** 2026-08-26  
 **Canonical branch:** `feat/tools-oss-catalog`
 
 ---
@@ -12,9 +12,10 @@
 - Phase 2 — OSS Capability Audit: **CLOSED** (`docs/tools/PHASE2_CLOSURE.md`).
 - Phase 3 — Capability Map: **CLOSED** (`docs/tools/PHASE3_CLOSURE.md`).
 - Phase 4 — Freeze Launch 50: **CLOSED / frozen** (`docs/tools/LAUNCH50_FROZEN.md`).
-- Phase 5 — Information architecture / international SEO: **CLOSED / written spec approved** (`docs/tools/PHASE5_CLOSURE.md`).
-- Phase 6 — Tools architecture design: **WRITTEN SPEC COMMITTED + SELF-REVIEWED / USER REVIEW PENDING**.
-- Phase 7+ — not started.
+- Phase 5 — Information architecture / international SEO: **CLOSED** (`docs/tools/PHASE5_CLOSURE.md`).
+- Phase 6 — Tools architecture design: **CLOSED / written spec approved** (`docs/tools/PHASE6_CLOSURE.md`).
+- Phase 7 — Security design and threat-model consolidation: **ACTIVE / Superpowers architectural design cycle**.
+- Phase 8+ — not started.
 - Tools runtime implementation: **NOT STARTED**.
 - `main` remains outside partial Tools implementation.
 
@@ -69,28 +70,13 @@ Canonical spec:
 
 `docs/superpowers/specs/2026-08-24-menezesdev-tools-phase5-seo-ia-design.md`
 
-It fixes:
-
-- shallow category route taxonomy;
-- exact EN/PT-BR Launch-50 routes;
-- canonical/hreflang behavior;
-- sitemap/robots/indexing contract;
-- breadcrumbs/related-tool graph;
-- guide routing;
-- internal-search non-indexing;
-- structured-data policy;
-- anti-thin rules;
-- static-HTML SEO requirements;
-- finance/YMYL constraints;
-- fallback-host canonical protection.
+It fixes the route taxonomy, exact EN/PT-BR Launch-50 routes, canonical/hreflang behavior, sitemap/robots/indexing contract, breadcrumb/related-tool graph, guide routing, anti-thin rules, static-HTML SEO requirements, YMYL constraints and fallback-host canonical protection.
 
 ---
 
-# Phase-6 written architecture package
+# Phase-6 approved architecture
 
-Concrete architecture was presented in chat and approved by Gabriel with `Vai`.
-
-Written design:
+Canonical design:
 
 `docs/superpowers/specs/2026-08-24-menezesdev-tools-phase6-architecture-design.md`
 
@@ -98,35 +84,30 @@ Self-review:
 
 `docs/superpowers/specs/2026-08-24-menezesdev-tools-phase6-architecture-self-review.md`
 
-Current architecture defines:
+Closure:
 
-- correct existing implementation base reconciliation;
+`docs/tools/PHASE6_CLOSURE.md`
+
+Approved architecture includes:
+
 - hybrid typed Tool SDK;
-- serializable build-time Tool catalog;
+- serializable build-time catalog;
 - stable tool ids independent from locale routes;
-- separate localized content ownership;
-- structural SEO policy + derived localized SEO output;
-- allowlisted boundary/engine bindings rather than executable functions in catalog metadata;
-- mandatory validate/bound/canonicalize/process/safe-output pipeline;
-- pure engines;
-- main-thread / Web Worker / optional WASM-worker execution classes;
+- localized copy as the single localized SEO/content authoring source;
+- explicit canonical-path metadata;
+- data-only boundary/engine bindings resolved through allowlisted executable registries;
+- mandatory boundary before pure engines;
+- main-thread / browser Web Worker / optional WASM-worker runtime classes;
 - `serverRequired=false` for ordinary frozen Launch-50 operations;
-- generic UI primitives plus specialized renderer escape hatch;
-- lazy engine/dependency loading;
-- no React/Vue/Svelte requirement for Launch 50;
-- no-op-capable analytics and Ads adapters;
-- Traffic Guard seam without pre-empting Phase 8 policy;
+- generic primitives plus specialized renderers;
+- lazy dependency loading;
+- no React/Vue/Svelte requirement;
+- no-op-capable Ads and analytics seams;
 - provider-neutral static artifact boundary;
-- PWA-compatible but no service worker by default;
-- layered correctness/security/SEO/bundle/economic/provider tests;
-- later integration-branch strategy.
+- separate commercial and Tools layouts;
+- layered correctness/security/SEO/bundle/economic/provider tests.
 
-Self-review corrected two ambiguity risks before user review:
-
-1. catalog boundary bindings are now data-only ids/profiles; executable boundaries resolve through allowlisted code;
-2. localized title/description are authored only in locale content; SEO metadata is derived at build time rather than duplicated.
-
-Fresh scans found no `TODO` or `TBD` placeholders.
+On 2026-08-26 Gabriel approved the committed written package and explicitly authorized proceeding into Phase 7.
 
 ---
 
@@ -144,17 +125,33 @@ Observed stack:
 - pnpm 11.22.0 / Node 24;
 - no client UI framework.
 
-Important integration seams:
+Phase-6 integration direction uses provider-neutral static output, explicit canonical metadata and nested index routes for Tools without contaminating commercial/demo surfaces.
 
-- current `BaseLayout` is PT-BR/commercial oriented;
-- current canonical generation uses `Astro.url.pathname`;
-- current build uses `format: "file"`, `trailingSlash: "never"`;
-- current sitemap only includes Home + `/projetos/**`;
-- current route validation assumes the legacy 16-route set.
+---
 
-Phase-6 design target uses static output with `build.format: "preserve"` and `trailingSlash: "ignore"`, explicit canonical-path metadata, nested index routes for Tools, and provider/preflight normalization for prerendered trailing-slash behavior.
+# Phase-7 design scope
 
-Official Astro docs were revalidated on 2026-08-24 for these version-sensitive semantics.
+Phase 7 must convert the existing security policy and Capability Map profiles into concrete, testable SDK/runtime security gates.
+
+Required design areas:
+
+- threat model and trust boundaries;
+- byte/character/page/pixel/row/depth/work budgets;
+- pre-parse guards;
+- file signature/sniffing strategy;
+- parser isolation and Worker lifecycle;
+- cancellation/time budgets;
+- hostile fixture taxonomy;
+- PDF/image/archive/structured-text/regex-specific controls;
+- safe HTML/Markdown/output rendering rules;
+- CSP and browser network policy;
+- future URL-fetch/SSRF boundary policy without creating such a path now;
+- error sanitization;
+- telemetry privacy enforcement;
+- dependency/parsing hard stops;
+- CI security invariants.
+
+Phase 7 is Architectural under Superpowers. Its concrete design must be presented and approved before a written Phase-7 spec is committed.
 
 ---
 
@@ -179,7 +176,7 @@ No crawler, AI Editorial provider, Workflow, D1 resource or Tool Factory runtime
 
 Later sequence remains:
 
-- Phase 7: security/threat model;
+- Phase 7: security/threat model — **ACTIVE**;
 - Phase 8: Traffic Guard / Cost Guard;
 - Phase 9: implementation plan;
 - Phase 10+: isolated implementation;
@@ -190,16 +187,12 @@ Later sequence remains:
 
 ---
 
-# Current hard gate / next legal action
+# Current next legal action
 
-Superpowers written-spec user review is still required for Phase 6.
+Present the concrete Phase-7 security/threat-model design under Superpowers brainstorming.
 
-Until Gabriel approves the committed Phase-6 package:
+Only after that specific design is approved may the Phase-7 written spec be committed and self-reviewed. Phase 8 remains blocked until Phase 7 closes.
 
-- do not create `PHASE6_CLOSURE.md`;
-- do not mark Phase 6 closed;
-- do not begin Phase 7;
-- do not invoke `writing-plans`;
-- do not install dependencies or implement runtime code.
+Do not invoke `writing-plans`, install dependencies, create `feat/tools-platform` or implement Tool SDK/runtime/tools yet.
 
-Before every future Tools action, reread the exact-ref workflow, all binding addenda, Tools context and relevant specs. Git remains source of truth.
+Before every future Tools action, reread the exact-ref workflow, binding addenda, security policy, Tools context and relevant approved specs. Git remains source of truth.

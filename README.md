@@ -1,91 +1,64 @@
 # MenezesDev
 
-## Uma plataforma de aquisição orgânica, utilidades web e mídia digital
+## Infraestrutura de aquisição orgânica, utilidades web e mídia digital
 
-**MenezesDev está evoluindo de um estúdio/site comercial para um ativo digital escalável: uma rede internacional de ferramentas gratuitas e conteúdo editorial orientado por dados, desenhada para transformar tráfego orgânico em receita publicitária com custo marginal baixo.**
+**MenezesDev está evoluindo de um projeto de serviços digitais para uma plataforma internacional de ativos web: ferramentas gratuitas, conteúdo orientado por dados e uma arquitetura preparada para transformar utilidade real em tráfego orgânico recorrente e receita publicitária.**
 
-A tese central é simples:
+A tese é simples:
 
-> construir utilidades que as pessoas realmente procuram, executar o máximo possível no navegador do usuário, adquirir tráfego via SEO e uso recorrente, monetizar páginas elegíveis com publicidade e reinvestir os dados de busca/receita na próxima oportunidade.
+```text
+resolver problemas que as pessoas já procuram
+        ↓
+entregar ferramentas gratuitas e rápidas
+        ↓
+executar o máximo possível no navegador
+        ↓
+capturar tráfego por SEO + uso recorrente
+        ↓
+medir demanda, CTR, posição e receita
+        ↓
+expandir somente onde os dados justificarem
+```
 
-O projeto não depende de prospecção ativa para crescer. A superfície comercial continua existindo, mas o principal motor de escala planejado para o MenezesDev Tools é **produto gratuito + SEO + distribuição orgânica + mídia**.
+O objetivo não é acumular páginas. É construir um **portfólio de propriedades digitais úteis**, com baixo custo marginal, capacidade de distribuição orgânica e monetização progressiva.
 
 ---
 
 # A oportunidade
 
-Grande parte da web de utilidades opera em um modelo extremamente simples e poderoso:
+Ferramentas web simples resolvem problemas de altíssima frequência: calcular, converter, validar, comprimir, formatar, comparar, gerar e transformar dados.
+
+Boa parte dessa demanda começa em uma busca e termina em uma ação imediata.
 
 ```text
-problema recorrente do usuário
+necessidade do usuário
         ↓
-busca no Google
+busca
         ↓
-ferramenta gratuita útil
+ferramenta gratuita
         ↓
-uso imediato
+resultado imediato
         ↓
-pageview + retorno direto + links internos
+pageview + retorno + navegação interna
         ↓
-monetização publicitária
+inventário de mídia
 ```
 
-MenezesDev Tools foi desenhado para capturar essa dinâmica sem transformar crescimento em uma conta crescente de infraestrutura.
+MenezesDev Tools foi desenhado para explorar essa dinâmica sem acoplar crescimento de tráfego a crescimento proporcional de custo operacional.
 
-A arquitetura é **browser-first**: calculadoras, conversores, ferramentas de texto, processamento de imagens, utilidades para desenvolvedores e várias operações de arquivos podem executar localmente no dispositivo do visitante.
-
-Isso cria uma relação econômica importante:
+A arquitetura é **browser-first**: sempre que uma operação puder ser executada com segurança no dispositivo do visitante, ela não depende de processamento pago no backend.
 
 ```text
 mais tráfego
    ↓
-mais oportunidades de receita
+mais inventário e mais sinais de demanda
 
-sem obrigatoriamente gerar
+sem necessariamente significar
 
-mais processamento pago no backend
+mais custo de compute por operação
 ```
 
-A meta não é simplesmente publicar centenas de páginas. A meta é construir um **portfólio de ativos orgânicos úteis** que possam acumular tráfego, autoridade, uso recorrente e receita ao longo do tempo.
-
----
-
-# O flywheel de crescimento
-
-O produto foi planejado como um sistema que pode aprender com o próprio tráfego.
-
-```text
-50 ferramentas gratuitas no Launch
-        ↓
-SEO + busca orgânica + uso recorrente
-        ↓
-Search Console + analytics + dados de receita
-        ↓
-Opportunity Engine
-        ↓
-Trend Radar + sinais de mercado
-        ↓
-melhorias / novos guias / novas oportunidades de ferramenta
-        ↓
-agente editorial sob demanda
-        ↓
-quality + SEO + security + cost gates
-        ↓
-publicação
-        ↓
-mais tráfego orgânico
-        ↓
-AdSense + canais de mídia adicionais validados
-        ↓
-novos dados de RPM / CTR / posição / demanda
-        ↺
-```
-
-O sistema não publica por calendário.
-
-Se não existir oportunidade qualificada, o resultado correto é **não publicar**.
-
-Essa diferença é fundamental: a automação é pensada para ampliar ativos que funcionam, não para criar uma fazenda de conteúdo fino.
+Essa diferença é central para a tese econômica do projeto.
 
 ---
 
@@ -93,9 +66,9 @@ Essa diferença é fundamental: a automação é pensada para ampliar ativos que
 
 O primeiro release público do MenezesDev Tools exige **50 ferramentas completas e funcionais**.
 
-A matriz já está selecionada e congelada:
+A matriz inicial já está selecionada e congelada:
 
-- **35 ferramentas orientadas principalmente a SEO/AdSense** — 70%;
+- **35 ferramentas SEO/AdSense-led** — 70%;
 - **10 ferramentas de cobertura arquitetural** — 20%;
 - **5 experimentos estratégicos** — 10%.
 
@@ -110,15 +83,15 @@ O portfólio inicial cobre clusters como:
 - PDF seletivo;
 - conversões e utilidades recorrentes.
 
-A seleção não foi feita apenas por facilidade de desenvolvimento. O funil partiu de **177 candidatos pesquisados**, passou por market intelligence, análise de concorrência, CPC/demanda, auditoria OSS, segurança, custo e intenção de busca até chegar ao Launch 50.
+A seleção partiu de **177 candidatos pesquisados** e foi reduzida por market intelligence, concorrência, intenção de busca, CPC/demanda, viabilidade técnica, auditoria OSS, segurança e custo marginal.
 
-Situação técnica da matriz:
+Situação técnica atual da matriz:
 
-- **46/50** têm caminho clear/internal/local-bounded;
+- **46/50** possuem caminho clear/internal/local-bounded;
 - **4/50** são local-conditional e precisam provar gates adicionais;
 - **0/50** exigem backend de processamento por operação comum.
 
-Documentação:
+Documentação canônica:
 
 ```text
 docs/tools/LAUNCH50_FROZEN.md
@@ -127,49 +100,46 @@ docs/tools/CAPABILITY_MAP.md
 
 ---
 
-# Monetização: mídia antes de SaaS pesado
+# O flywheel de crescimento
 
-O modelo inicial aprovado é **Google AdSense** nas superfícies elegíveis de Tools e conteúdo.
-
-A proposta é preservar uma experiência gratuita e de baixa fricção enquanto o portfólio acumula tráfego.
-
-## Camada inicial
+O produto foi desenhado para usar o próprio tráfego como sinal da próxima oportunidade.
 
 ```text
-Tools gratuitas
-+ guides úteis
-+ tráfego orgânico
+Launch 50
         ↓
-AdSense
+SEO + uso recorrente
+        ↓
+Search Console + analytics + receita
+        ↓
+Opportunity Engine
+        ↓
+Trend Radar + sinais de mercado
+        ↓
+melhorar página / criar guide / avaliar nova ferramenta
+        ↓
+AI Editorial sob demanda
+        ↓
+quality + SEO + security + cost gates
+        ↓
+publicação
+        ↓
+mais tráfego e mais dados
+        ↺
 ```
 
-A publicidade não pode parecer botão da ferramenta, não pode induzir clique acidental e não pode comprometer privacidade ou performance.
+O sistema não publica por calendário.
 
-## Expansão de mídia
+Sem oportunidade qualificada, o resultado correto é **não publicar**.
 
-Depois de tráfego e audiência suficientes, o projeto pode avaliar canais complementares como:
-
-- **Taboola / native discovery / native ads**, sujeito a elegibilidade, termos, qualidade de inventário, UX e RPM real;
-- outros parceiros de mídia compatíveis com a experiência;
-- afiliados contextuais quando fizerem sentido;
-- patrocínios de clusters específicos;
-- formatos premium/ad-free futuramente.
-
-**Taboola não é tratado como receita já contratada nem como requisito de Launch.** É uma avenida de monetização/distribuição a validar quando escala e audiência justificarem.
-
-A regra econômica é data-driven:
-
-> nenhum canal entra apenas porque “sites grandes usam”. Ele precisa melhorar receita líquida sem degradar produto, SEO, privacidade ou retenção.
+Isso diferencia o projeto de uma fábrica de conteúdo fino: o objetivo é aumentar a qualidade e o valor econômico do portfólio, não o número bruto de URLs.
 
 ---
 
-# Conteúdo editorial automático — mas não automático no sentido ruim
+# Conteúdo editorial orientado por oportunidade
 
-O plano pós-launch inclui um **AI Editorial Engine** orientado por oportunidades reais.
+O plano pós-launch inclui um **AI Editorial Engine** que trabalha a partir de oportunidades reais observadas em dados de busca, uso e receita.
 
-A IA não recebe uma instrução genérica do tipo “publique três artigos hoje”.
-
-O pipeline planejado é:
+Pipeline planejado:
 
 ```text
 oportunidade observada
@@ -178,7 +148,7 @@ brief estruturado
         ↓
 fact / formula / source pack verificado
         ↓
-IA escreve ou melhora o conteúdo
+IA redige ou melhora conteúdo
         ↓
 validação determinística
         ↓
@@ -186,12 +156,12 @@ SEO / duplicação / qualidade / segurança
         ↓
 CI + build
         ↓
-autopublish somente se estiver dentro da whitelist
+autopublish somente dentro da whitelist
 ```
 
-O agente pode explicar, estruturar e redigir.
+A IA pode explicar, estruturar e reescrever.
 
-Ele **não pode inventar**:
+Ela não pode inventar:
 
 - fórmulas;
 - resultados das ferramentas;
@@ -206,7 +176,7 @@ Fatos determinísticos devem vir dos próprios engines testados.
 
 # Trend Radar + crawler ético
 
-O crescimento editorial futuro também inclui uma camada de descoberta de oportunidades.
+O crescimento editorial futuro também possui uma camada de descoberta de oportunidades.
 
 Prioridade das fontes:
 
@@ -215,7 +185,7 @@ Prioridade das fontes:
 3. índices públicos de tendências/notícias;
 4. crawler HTML somente como fallback para domínios aprovados.
 
-O crawler será **whitelist-only** e projetado para respeitar fontes:
+O crawler será **whitelist-only** e desenhado para respeitar fontes:
 
 - `robots.txt` e termos aplicáveis;
 - User-Agent identificável;
@@ -224,18 +194,54 @@ O crawler será **whitelist-only** e projetado para respeitar fontes:
 - rate limits e concurrency limits;
 - backoff em `429`/`503`;
 - nenhum bypass de login, paywall, CAPTCHA, WAF ou anti-bot;
-- nenhum espelhamento automático de artigos inteiros;
-- nenhum URL arbitrário fornecido por usuário virando proxy SSRF.
+- nenhum espelhamento automático de artigos completos;
+- nenhum URL arbitrário fornecido pelo usuário virando proxy SSRF.
 
-A notícia não é o produto.
+Notícia não é o produto.
 
-Ela funciona como **sensor de oportunidade** para criar ou melhorar um ativo útil relacionado aos clusters já aprovados.
+Ela funciona como **sensor de oportunidade** para um ativo útil relacionado a um cluster já aprovado.
 
 ---
 
-# Verticais e subdomínios: expansão possível
+# Monetização
 
-A arquitetura canônica atual do Launch permanece no domínio principal:
+O modelo inicial aprovado é **Google AdSense** nas superfícies elegíveis de Tools e guides.
+
+```text
+ferramenta gratuita
++ conteúdo útil
++ tráfego orgânico
+        ↓
+AdSense
+```
+
+A publicidade não pode:
+
+- parecer um controle da ferramenta;
+- incentivar clique acidental;
+- ficar colada de forma enganosa a ações como Upload, Download, Convert ou Calculate;
+- comprometer privacidade, segurança ou Core Web Vitals.
+
+Depois que audiência e inventário existirem, o projeto pode avaliar canais complementares de mídia, como:
+
+- **Taboola / native discovery / native ads**;
+- outras redes compatíveis com a experiência;
+- patrocínios de clusters;
+- afiliados contextuais;
+- formatos premium/ad-free;
+- APIs ou batch features quando os dados justificarem.
+
+Esses canais não são tratados como receita já contratada nem como requisito de Launch.
+
+A lógica é econômica e incremental:
+
+> cada camada de monetização precisa aumentar receita líquida sem degradar produto, SEO, privacidade, retenção ou custo operacional.
+
+---
+
+# Rede de verticais digitais
+
+O Launch permanece concentrado no domínio principal:
 
 ```text
 menezesdev.com/tools/...
@@ -243,15 +249,15 @@ menezesdev.com/pt-br/ferramentas/...
 menezesdev.com/guides/...
 ```
 
-Isso concentra autoridade e simplifica o primeiro lançamento.
+Essa estrutura concentra autoridade e reduz complexidade no início.
 
-Entretanto, o produto foi pensado em **verticais independentes de intenção**, o que abre uma possível expansão futura para propriedades/subdomínios especializados caso dados de SEO, marca, monetização ou distribuição justifiquem a separação.
+Ao mesmo tempo, o produto foi pensado por **clusters independentes de intenção**, permitindo que o portfólio evolua futuramente para uma rede de verticais especializadas caso os dados justifiquem a separação.
 
-Exemplos de topologia futura em avaliação:
+Topologia possível de expansão:
 
 ```text
 finance.menezesdev.com
-  └── calculadoras financeiras + conteúdo financeiro educacional
+  └── calculadoras financeiras + conteúdo educacional
 
 dev.menezesdev.com
   └── JSON, regex, Base64, hashes, formatters e conteúdo técnico
@@ -263,16 +269,26 @@ text.menezesdev.com
   └── contadores, case conversion, diff, Markdown e conteúdo editorial
 
 pdf.menezesdev.com
-  └── operações PDF que passarem os gates de segurança
+  └── operações PDF aprovadas pelos gates de segurança
 ```
 
-**Esses subdomínios não são a arquitetura de Launch já aprovada.** São uma estratégia futura possível e só devem ser ativados após revisão explícita de SEO, canonicalização, migração, autoridade de domínio, Ads, analytics e impacto operacional.
+Esses subdomínios **não fazem parte da arquitetura canônica do Launch 50**.
 
-Para sócios, a leitura importante é outra: o portfólio não precisa permanecer uma lista plana de calculadoras. Ele pode evoluir para uma **rede de verticais digitais especializadas**, cada uma com ferramentas, conteúdo, distribuição e monetização próprias — sem exigir marcas completamente desconectadas.
+Eles representam uma opção de expansão futura sujeita a revisão de:
+
+- SEO e autoridade de domínio;
+- canonicalização e migração;
+- analytics;
+- inventário publicitário;
+- custos operacionais;
+- segurança;
+- experiência de navegação.
+
+O ponto estrutural é que o projeto pode crescer de uma única superfície de ferramentas para uma **rede de propriedades digitais especializadas**, sem precisar reconstruir a plataforma do zero para cada vertical.
 
 ---
 
-# Por que isso pode escalar
+# Por que a arquitetura pode escalar
 
 ## 1. Custo marginal baixo
 
@@ -288,11 +304,11 @@ secure local WASM
 backend somente quando realmente necessário
 ```
 
-O navegador do usuário executa a maior parte do trabalho determinístico.
+A maior parte do processamento determinístico fica no dispositivo do usuário.
 
-Isso reduz a chance de um crescimento de tráfego transformar-se automaticamente em uma explosão de custo de compute.
+Isso reduz a chance de crescimento de audiência criar automaticamente uma explosão de custo de compute.
 
-## 2. Uma mesma infraestrutura serve muitos produtos
+## 2. Uma infraestrutura para muitos produtos
 
 O Tool SDK aprovado foi desenhado para que novas ferramentas compartilhem:
 
@@ -306,21 +322,31 @@ O Tool SDK aprovado foi desenhado para que novas ferramentas compartilhem:
 - UI primitives;
 - search/aliases;
 - related tools;
-- lazy loading.
+- lazy loading;
+- testes e convenções de runtime.
 
-Uma ferramenta nova tende a ser **definition + engine + conteúdo + testes**, e não um novo site construído do zero.
+A tendência é que uma nova ferramenta seja expressa como:
 
-## 3. O tráfego gera dados para descobrir mais tráfego
+```text
+definition
++ engine
++ conteúdo
++ testes
+```
 
-Search Console, queries internas, posição, CTR, RPM, retenção e desempenho de clusters podem alimentar a próxima decisão.
+em vez de exigir um novo site construído do zero.
 
-A plataforma foi desenhada para melhorar o próprio funil de priorização com dados reais.
+## 3. Tráfego gera dados para encontrar mais tráfego
 
-## 4. O sistema também pode podar
+Search Console, posição, CTR, RPM, buscas internas e performance de clusters podem alimentar a próxima decisão de produto ou conteúdo.
+
+Isso cria um ciclo em que aquisição também melhora priorização.
+
+## 4. O sistema também poda
 
 O growth engine não é create-only.
 
-Conteúdo fraco pode ser:
+Conteúdo fraco ou canibalizante pode ser:
 
 - melhorado;
 - consolidado;
@@ -328,7 +354,7 @@ Conteúdo fraco pode ser:
 - `noindex`;
 - removido.
 
-Isso protege qualidade e reduz canibalização.
+Escala sem poda vira dívida editorial; o desenho atual evita esse modelo.
 
 ## 5. Internacional desde a arquitetura
 
@@ -371,57 +397,13 @@ CAMADA 6 — automação
 Opportunity Engine + AI Editorial + Tool Factory
 ```
 
-Nenhuma camada futura é necessária para provar a primeira.
+Nenhuma camada futura é necessária para provar a anterior.
 
-Isso permite validar o negócio gradualmente em vez de financiar uma infraestrutura SaaS grande antes de existir tráfego.
-
----
-
-# Tese para parceiros e sócios
-
-O projeto procura parceiros que enxerguem o MenezesDev Tools como **ativo digital de longo prazo**, não apenas como um projeto de desenvolvimento web.
-
-Áreas onde um sócio estratégico pode acrescentar valor:
-
-- distribuição e SEO internacional;
-- monetização programática/native ads;
-- mídia e AdOps;
-- relacionamento com redes como AdSense/native discovery;
-- conteúdo e expansão editorial;
-- produto e growth;
-- parcerias comerciais;
-- capital para acelerar implementação/experimentação após os gates;
-- operação de portfólio digital.
-
-O que já existe antes da implementação do Tools:
-
-- tese de produto documentada;
-- universo de mercado pesquisado;
-- Launch 50 congelado;
-- Capability Map técnico/econômico;
-- auditoria de engines/OSS;
-- arquitetura internacional de SEO;
-- arquitetura do Tool SDK;
-- browser-first/cost model;
-- política formal de segurança;
-- arquitetura de crescimento autônomo;
-- estratégia de deploy/fallback;
-- workflow versionado com hard gates.
-
-O que **não** estamos vendendo como fato hoje:
-
-- receita existente do Tools;
-- tráfego existente do Tools;
-- aprovação garantida em AdSense ou Taboola;
-- valuation inventado;
-- crescimento garantido;
-- “IA que imprime dinheiro”.
-
-A oportunidade é participar da construção e validação dessa máquina antes da fase de escala.
+A plataforma pode validar aquisição, retenção e RPM antes de adicionar complexidade de produto ou infraestrutura.
 
 ---
 
-# Segurança e privacidade como vantagem de produto
+# Segurança e privacidade como parte do produto
 
 Todo input do usuário é tratado como não confiável.
 
@@ -450,7 +432,7 @@ A telemetria não deve armazenar:
 - resultados privados;
 - metadata privada extraída.
 
-Isso também reduz custo operacional e responsabilidade sobre dados sensíveis.
+Isso reduz exposição de dados, superfície de responsabilidade e custo operacional.
 
 Contrato:
 
@@ -503,11 +485,68 @@ docs/superpowers/specs/2026-08-24-menezesdev-tools-phase6-architecture-design.md
 
 ---
 
-# Estado atual do projeto
+# SEO internacional
+
+A Phase 5 já fechou o contrato de IA/SEO para o Launch 50.
+
+Direção principal:
+
+```text
+/tools/<categoria>/<tool>/
+/pt-br/ferramentas/<categoria>/<ferramenta>/
+```
+
+O contrato inclui:
+
+- rotas EN/PT-BR exatas;
+- self-canonical por locale;
+- `hreflang` recíproco apenas para variantes reais;
+- sitemap segmentado;
+- robots/index/noindex;
+- breadcrumbs;
+- related-tool graph;
+- guides por intenção independente;
+- busca interna não indexável;
+- política anti-thin/doorway;
+- utility-first content;
+- HTML estático com conteúdo SEO-critical;
+- proteção contra fallback host virar canonical por acidente.
+
+Spec:
+
+```text
+docs/superpowers/specs/2026-08-24-menezesdev-tools-phase5-seo-ia-design.md
+```
+
+---
+
+# Deploy e portabilidade
+
+Direção de infraestrutura:
+
+```text
+GitHub — source of truth
+        ↓
+reproducible build
+        ↓
+provider-neutral static artifact
+        ↓
+Cloudflare Pages — primary
+        ↓
+approved static fallback
+```
+
+Cloudflare Pages é o host primário planejado, mas ferramentas browser-capable não devem depender de APIs Cloudflare para funcionar.
+
+A portabilidade protege margem e reduz risco operacional.
+
+---
+
+# Estado atual
 
 ## MenezesDev Tools
 
-Branch canônica de pesquisa/governança/spec:
+Branch canônica de pesquisa, governança e especificação:
 
 ```text
 feat/tools-oss-catalog
@@ -558,29 +597,7 @@ Stack atual:
 - JavaScript cliente mínimo;
 - sem React/Vue/Svelte obrigatório.
 
-A implementação comercial está concluída em sua branch, mas o release ainda possui gates externos/operacionais próprios.
-
----
-
-# Deploy e custo
-
-Direção de infraestrutura:
-
-```text
-GitHub — source of truth
-        ↓
-reproducible build
-        ↓
-provider-neutral static artifact
-        ↓
-Cloudflare Pages — primary
-        ↓
-approved static fallback
-```
-
-Cloudflare Pages é o host primário planejado, mas o produto não deve ficar preso a APIs Cloudflare para operações que podem executar no browser.
-
-Isso protege margem e reduz risco operacional.
+A implementação comercial está concluída em sua branch; o release continua submetido aos gates externos/operacionais próprios desse workstream.
 
 ---
 
@@ -611,7 +628,7 @@ Tool Factory
 Scale by evidence
 ```
 
-A automação editorial/crawler não é pré-requisito para colocar as primeiras 50 ferramentas no ar.
+A automação editorial/crawler não é necessária para colocar as primeiras 50 ferramentas no ar.
 
 Ela entra depois que o produto dispõe de dados reais para decidir onde crescer.
 
@@ -666,16 +683,4 @@ feat/tools-platform
 
 ---
 
-# Interesse em parceria
-
-**MenezesDev Tools está em fase de arquitetura pré-implementação e busca parceiros/sócios interessados em construir um portfólio internacional de ativos web orientados a SEO, mídia e automação.**
-
-O perfil ideal não precisa ser apenas técnico.
-
-SEO, distribuição, AdOps, mídia programática, native ads, growth, parcerias e operação comercial podem ser tão relevantes quanto engenharia.
-
-A tese é construir uma infraestrutura que consiga produzir e melhorar ativos digitais de maneira disciplinada, medir retorno real e expandir somente onde os dados justificarem.
-
----
-
-**MenezesDev — de serviços digitais para uma plataforma de aquisição orgânica, utilidades e mídia escalável.**
+**MenezesDev — uma infraestrutura para transformar utilidade em distribuição, distribuição em dados e dados em um portfólio digital cada vez mais eficiente.**

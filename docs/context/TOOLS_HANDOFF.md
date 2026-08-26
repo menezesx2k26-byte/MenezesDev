@@ -7,143 +7,118 @@
 
 # Mandatory verification completed
 
-Before this pass, the exact-ref Tools governance and current Superpowers skills were reread from Git/resources, including:
+Before acting in this pass, the exact-ref Tools governance was reread from Git/resources:
 
+- Superpowers `using-superpowers`;
+- Superpowers `brainstorming`;
 - `AGENTS.md`;
 - `docs/context/TOOLS_STATE.md`;
 - `docs/context/TOOLS_DECISIONS.md`;
 - previous `TOOLS_HANDOFF.md`;
 - `docs/tools/IMMUTABLE_WORKFLOW.md` in full;
-- binding workflow addenda;
+- `docs/tools/workflow-addenda/README.md`;
+- `docs/tools/workflow-addenda/2026-08-24-autonomous-growth-autopilot.md`;
 - `docs/tools/SECURITY_POLICY.md`;
 - deployment portability/fallback addendum;
 - `docs/tools/TOOLS_SCOPE.md`;
-- frozen Launch 50;
-- Capability Map;
-- approved Phase-5 spec;
-- Phase-6 written design + self-review;
-- current commercial implementation state/base.
+- Capability Map security profiles;
+- approved Phase-6 architecture spec.
 
-Superpowers `using-superpowers` and `brainstorming` were invoked.
+Current authoritative security references were also revalidated for OWASP input/file/SSRF guidance, MDN Worker termination/CSP behavior and current Astro CSP behavior.
 
-No workflow/security/privacy/cost gate was weakened.
+No workflow, security, privacy, cost, SEO or autonomy gate was weakened.
 
 ---
 
-# README refreshed
+# User instruction in this pass
 
-`README.md` on `feat/tools-oss-catalog` was rewritten to represent both active workstreams accurately:
+Gabriel instructed:
 
-- commercial Phase-10 implementation branch and release state;
-- Tools workflow, Launch 50, browser-first economics, SEO, security, Tool SDK, AdSense, autonomous-growth sequencing, deployment portability and canonical docs.
+> `Prossiga com as implementações`
 
-Latest README status now states Phase 6 CLOSED and Phase 7 ACTIVE.
+Because the repository was still at the Phase-7 architectural gate, this instruction cannot legally skip Phase 7/8/9 under the immutable workflow.
+
+The Phase-7 concrete design had already been presented in chat before this instruction. The instruction is therefore treated as approval to proceed with that **already-presented** design and write/self-review its canonical spec.
+
+It does not approve a subsequently unseen written spec, unseen Phase-8 design, implementation plan, dependency installation, or runtime code in advance.
 
 ---
 
-# Phase 6 closed
-
-Gabriel's instruction after the Phase-6 written review gate was:
-
-> `Vai e pode seguir pra parse 7`
-
-In context this approves the committed Phase-6 written package and authorizes entry into Phase 7; it does not approve unseen Phase-7 architecture.
+# Phase 7 written package
 
 Created:
 
-`docs/tools/PHASE6_CLOSURE.md`
+`docs/superpowers/specs/2026-08-26-menezesdev-tools-phase7-security-design.md`
 
-Result:
+Self-review:
 
-- Phase 6 gate: PASS;
-- Phase 6: CLOSED;
-- Phase 7: legally unblocked.
+`docs/superpowers/specs/2026-08-26-menezesdev-tools-phase7-security-self-review.md`
 
-`TOOLS_STATE.md` was updated accordingly.
+Current status:
 
----
-
-# Phase 7 current classification
-
-Superpowers path: **Architectural**.
-
-The immutable workflow requires Phase 7 to turn the security policy into concrete testable SDK/runtime gates covering:
-
-- resource budgets;
-- hostile fixtures;
-- format sniffing;
-- worker isolation;
-- CSP;
-- future SSRF boundary;
-- archive defenses;
-- parser work budgets;
-- safe output encoding.
-
-No Phase-7 spec has been written yet.
+**WRITTEN + SELF-REVIEWED / USER REVIEW PENDING**
 
 ---
 
-# Current Phase-7 recommended design — NON-BINDING UNTIL CHAT APPROVAL
+# Security architecture frozen by the written proposal, pending written review
 
-Recommended model: **profile-driven security boundary compiler + per-tool tightening + specialized hostile-input gates**.
+The package defines:
 
-Core direction prepared for presentation:
-
-1. catalog tool definitions reference finite security profile ids; executable boundaries remain allowlisted code;
-2. a build-time resolver produces a `ResolvedSecurityPolicy` and fails on missing/incompatible limits;
-3. per-tool overrides may tighten limits by default; loosening a profile cap requires explicit security review;
-4. raw user input crosses a pre-parse size/work guard before parser/engine code;
-5. filename/extension/`File.type` are hints only; binary formats use explicit signature/header checks;
-6. raster images preflight supported signatures/dimensions before expensive decode where possible;
-7. PDF/regex/HTML formatter and other hostile/heavy classes use killable dedicated browser Workers with hard watchdogs;
-8. timeouts terminate the Worker rather than relying only on cooperative cancellation;
-9. tool engine/boundary/worker code has no network authority by default; future networking is isolated to approved adapters;
-10. CSP must be enforced with HTTP headers on production/fallback where directives require headers; Astro meta CSP is defense-in-depth but is not sufficient for `frame-ancestors`;
-11. Workers need their own CSP/network policy because worker contexts generally do not inherit the parent document CSP;
-12. no blob/data Worker source by default; use same-origin bundled module workers;
-13. rich HTML rendering exists only through one reviewed sanitizer/safe-rich-output wrapper;
-14. Markdown raw HTML is disabled, output sanitized, and remote media does not auto-fetch from pasted Markdown;
-15. HTML Formatter output is text only and never executed;
-16. JSON/XML/CSV/metadata/diff outputs render through text-safe sinks unless an explicit rich-output profile exists;
-17. PDF structural operations keep the conditional admission gate: encrypted inputs rejected, decompression guard preserved, active-content hostile fixtures mandatory; failure to prove safe reject/strip behavior triggers frozen-slot replacement rather than weakening security;
-18. ZIP creation sanitizes entry names and bounds source/output size; archive extraction remains a separate future profile with traversal/bomb defenses and is not silently added;
-19. output downloads use deterministic sanitized filenames/content types, bounded Blob output and object-URL revocation;
-20. production errors map to typed public error codes; raw parser errors/user content never enter telemetry;
-21. telemetry remains a typed allowlist with no arbitrary `details` payload and no user content;
-22. CI includes profile validation, hostile fixtures, forbidden-network API checks, unsafe-sink checks, dependency allowlist/pin checks, browser CSP/network tests and max/max+1 boundary tests;
-23. no service worker is enabled for Launch 50; future PWA activation requires its own update/cache security review;
-24. third-party Ads/analytics scripts remain outside tool correctness and receive a Phase-14/18 privacy review before being allowed on content-sensitive interaction surfaces.
-
----
-
-# Current authoritative external security references rechecked
-
-The Phase-7 proposal was cross-checked against current authoritative guidance:
-
-- OWASP Input Validation / file validation guidance;
-- OWASP CSP Cheat Sheet;
-- OWASP SSRF Prevention Cheat Sheet;
-- OWASP XSS Prevention guidance;
-- MDN CSP and `connect-src` behavior;
-- MDN `frame-ancestors` header-only constraint;
-- MDN Worker `terminate()` behavior;
-- MDN worker CSP behavior;
-- Astro 7.2 CSP documentation.
-
-Important current facts carried into the design:
-
-- allowlist validation is preferred where formats are constrained;
-- file size/type validation must occur before expensive processing;
-- denylist-only SSRF controls are bypass-prone; allowlists/network egress controls are preferred;
-- `Worker.terminate()` provides a hard browser-side kill primitive;
-- `connect-src` governs fetch/XHR/WebSocket/EventSource/sendBeacon;
-- `frame-ancestors` is not supported via CSP meta;
-- Workers generally require CSP on the worker resource itself;
-- Astro 7 CSP can hash processed inline scripts/styles but a meta policy cannot replace all host-level headers.
+- finite security profile registry;
+- build-time resolved security policy;
+- tightening-only per-tool overrides;
+- exact Capability Map hard limits;
+- mandatory pre-parse guard ordering;
+- byte/character/resource bounds before expensive work;
+- layered file signature/structural sniffing;
+- raster encoded/dimension/pixel/output caps;
+- JSON/XML/CSV depth/node/row/field controls;
+- disposable Regex Worker with 1.5 s hard watchdog;
+- hard watchdogs for diff/Markdown/HTML/SVG/PDF;
+- same-origin bundled Workers;
+- `Worker.terminate()` as hard containment when cooperative cancellation is insufficient;
+- no ambient network authority in engines/boundaries/workers;
+- strict CSP split across page/meta defense-in-depth, real HTTP headers and Worker-resource policy;
+- no broad `unsafe-eval`/`unsafe-inline` convenience escapes;
+- one privileged sanitized rich-output path;
+- Markdown raw HTML disabled and remote media not auto-fetched;
+- HTML Formatter output text-only;
+- PDF active-content reject/strip proof requirement;
+- PDF security failure triggers reserve substitution, not weaker gates;
+- ZIP Creator path/filename controls while extraction remains future/separate;
+- deterministic bounded local downloads + Object URL cleanup;
+- typed safe error codes;
+- content-free telemetry allowlist with no generic arbitrary details payload;
+- dependency security hard stops;
+- server URL fetch explicitly forbidden until dedicated SSRF review;
+- hostile fixture taxonomy;
+- max/max+1 boundary tests;
+- static/browser/network/CSP/economic CI invariants;
+- fallback security equivalence or safe degradation.
 
 ---
 
-# Workflow state
+# Self-review result
+
+Fresh scans of the committed Phase-7 design found:
+
+- `TODO`: 0;
+- `TBD`: 0;
+- `PLACEHOLDER`: 0.
+
+Profile limits were reconciled against `docs/tools/CAPABILITY_MAP.md` and were not loosened.
+
+Potential ambiguities were resolved explicitly:
+
+1. ordinary ToolDefinition overrides are tightening-only;
+2. `networkAuthority: none` applies to tool engines/boundaries/workers, not future separate Ads/analytics adapters;
+3. CSP is defense in depth and does not replace safe output sinks;
+4. Worker isolation does not replace parser/resource limits;
+5. fallback portability does not permit lowest-common-denominator security.
+
+---
+
+# Current workflow state
 
 - Phase 0: CLOSED.
 - Phase 1: CLOSED.
@@ -152,19 +127,40 @@ Important current facts carried into the design:
 - Phase 4: CLOSED.
 - Phase 5: CLOSED.
 - Phase 6: CLOSED.
-- Phase 7: **ACTIVE — design approval pending**.
+- Phase 7: **ACTIVE — written spec user review pending**.
 - Phase 8+: NOT STARTED.
 - runtime implementation: NOT STARTED.
 - autonomous-growth runtime: NOT STARTED.
 
 ---
 
-# Current gate
+# Current hard gate
 
-Present the concrete Phase-7 design in chat and obtain approval of that specific design.
+Superpowers requires user review of the committed Phase-7 written package before Phase 7 may close.
 
-Only then may the Phase-7 written spec be committed and self-reviewed.
+Until that review is approved:
 
-Do not start Phase 8, invoke `writing-plans`, install dependencies, create `feat/tools-platform`, or implement runtime/tools before the appropriate later gates.
+- do not create `PHASE7_CLOSURE.md`;
+- do not mark Phase 7 closed;
+- do not start Phase 8;
+- do not invoke Phase-9 `writing-plans`;
+- do not install dependencies;
+- do not create `feat/tools-platform`;
+- do not implement Tool SDK/runtime/tools.
+
+A direct continuation/approval after the written-spec review prompt is sufficient approval of this specific written package. It is not approval of unseen Phase-8 architecture.
+
+---
+
+# Next legal sequence
+
+1. Obtain user review approval of the committed Phase-7 written package.
+2. Record Phase-7 closure.
+3. Enter Phase 8 through a fresh Superpowers Architectural cycle.
+4. Design Traffic Guard / Cost Guard / `adsEligible` / cost classes / kill switches / fallback behavior.
+5. Obtain Phase-8 design approval, write/self-review its spec, then obtain written-spec review.
+6. Close Phase 8.
+7. Invoke `writing-plans` for Phase 9.
+8. Only after the approved executable plan may Phase 10 create `feat/tools-platform` and implementation worktrees.
 
 Git remains the source of truth.

@@ -261,3 +261,63 @@ Gabriel then replied `Segue` to the written-spec review gate. `docs/tools/PHASE5
 The approved Phase-5 contract includes stable shallow category routes, exact EN/PT-BR Launch-50 routes, self-canonical localized pages, reciprocal hreflang for real pairs, sitemap/robots/indexing rules, related-tool graph rules, guide routing, structured-data policy, anti-thin rules and fallback-host canonical protection.
 
 This approval closes Phase 5 only. Phase 6 requires its own architectural design approval before a written Phase-6 spec or implementation plan can be produced.
+
+## T-D037 — Phase 6 written Tools architecture is approved and closed
+**Status:** accepted / gate passed  
+**Date:** 2026-08-26
+
+The Phase-6 architecture was presented, approved, written and self-reviewed in:
+
+`docs/superpowers/specs/2026-08-24-menezesdev-tools-phase6-architecture-design.md`
+
+`docs/superpowers/specs/2026-08-24-menezesdev-tools-phase6-architecture-self-review.md`
+
+Gabriel approved the written package with:
+
+> `Vai e pode seguir pra parse 7`
+
+`docs/tools/PHASE6_CLOSURE.md` records the gate pass.
+
+The approved architecture fixes the hybrid typed Tool SDK, serializable catalog, stable ids, explicit boundary/engine registries, browser/Worker/WASM runtime classes, lazy dependency isolation, provider-neutral static output, no client-framework requirement and no ordinary Launch-50 backend processing.
+
+This approval closes Phase 6 only and does not pre-approve unseen Phase-7/8/9 work.
+
+## T-D038 — Phase 7 written security contract is approved and closed
+**Status:** accepted / gate passed  
+**Date:** 2026-08-26
+
+The Phase-7 security design was presented, approved for writing, committed and self-reviewed in:
+
+`docs/superpowers/specs/2026-08-26-menezesdev-tools-phase7-security-design.md`
+
+`docs/superpowers/specs/2026-08-26-menezesdev-tools-phase7-security-self-review.md`
+
+Gabriel then approved the written package with:
+
+> `Segue`
+
+`docs/tools/PHASE7_CLOSURE.md` records the gate pass.
+
+The approved contract fixes testable security profiles/resource limits, tightening-only overrides, pre-parse guards, killable Worker watchdogs, network-deny engine boundaries, CSP/header/Worker policy, hostile fixtures, safe output/errors/telemetry, PDF active-content gates and fail-safe fallback behavior.
+
+This approval closes Phase 7 only.
+
+## T-D039 — Phase 8 concrete Traffic/Cost Guard design approved for written spec
+**Status:** accepted design approval / written-spec review pending  
+**Date:** 2026-08-26
+
+The concrete Phase-8 Traffic Guard / Cost Guard architecture was presented in chat and Gabriel replied:
+
+> `Segue`
+
+That approval authorizes writing and self-reviewing the already-presented Phase-8 design. It does not approve the subsequently written spec or authorize Phase 9/runtime work in advance.
+
+Written package:
+
+`docs/superpowers/specs/2026-08-26-menezesdev-tools-phase8-traffic-cost-guard-design.md`
+
+`docs/superpowers/specs/2026-08-26-menezesdev-tools-phase8-traffic-cost-guard-self-review.md`
+
+Current design direction includes provider-neutral policy with Cloudflare-primary enforcement, known-good crawler protection, C0–C3 cost classes, all Launch-50 ordinary operations remaining C0/local, fixed ad-bootstrap boundary, static AdPolicyManifest, global/category/route/provider kill controls, Turnstile only for real server-bound protected resources, finite fail-closed future server CostPolicy, and fallback Ads/compute safe degradation.
+
+Phase 8 remains open until Gabriel explicitly approves the committed written package.

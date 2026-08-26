@@ -257,7 +257,7 @@ Conceptual contract:
 interface TrafficDecision {
   trafficClass: TrafficClass
   adsEligible: boolean
-  maxCostClass: CostClass
+  maxCostClass: CostClass | "DENY"
   challenge: "none" | "managed" | "turnstile"
   reasonCodes: readonly TrafficReasonCode[]
 }
@@ -268,6 +268,14 @@ This object is an internal policy result.
 A browser-supplied `TrafficDecision` is never trusted by a server endpoint.
 
 Any future C1/C2/C3 server handler evaluates or verifies its own decision from trusted server/edge inputs.
+
+Default ceiling semantics:
+
+- `verified-crawler` → public content/C0 only unless a separately approved automated-client API contract exists;
+- `eligible` → route-declared maximum, but C2/C3 still require their explicit proof/quota policy;
+- `restricted` → C0 by default;
+- `unknown` → C0 by default;
+- `hostile` → `DENY` for protected server compute.
 
 ---
 
@@ -398,14 +406,18 @@ AdPolicyManifest
       ↓
 consent/privacy eligibility
       ↓
-TrafficDecision.adsEligible
+first-party ad bootstrap request
       ↓
-first-party ad bootstrap
+edge Traffic Guard may allow/suppress bootstrap
       ↓
 AdProvider
 ```
 
-If any stage says no, the tool remains functional with Ads absent.
+There is **no required per-page TrafficDecision API call** for C0 pages.
+
+Static/client code can determine only the route/policy/consent candidate state. The primary edge remains the authoritative enforcement point for traffic-based suppression of the fixed ad-bootstrap path.
+
+If the bootstrap is suppressed, blocked, unavailable or disabled, no provider loads and the tool remains functional.
 
 ---
 
@@ -424,7 +436,8 @@ The exact source filename/path belongs to Phase 9 planning, but the architectura
 - separate from tool engine/runtime chunks;
 - known crawlers do not need it;
 - provider failure does not break tools;
-- third-party providers do not receive direct control over tool correctness.
+- third-party providers do not receive direct control over tool correctness;
+- edge traffic policy can suppress this path without dynamically rendering each tool page.
 
 ---
 
@@ -438,7 +451,7 @@ Conceptual data:
 interface AdPolicyManifest {
   globalEnabled: boolean
   categories: Record<ToolCategory, boolean>
-  routes: Record<ToolId, boolean | undefined>
+  routes: Partial<Record<ToolId, boolean>>
   providers: Record<AdProviderId, boolean>
 }
 ```
@@ -465,12 +478,12 @@ AND global policy enabled
 AND category/route policy enabled
 AND provider enabled
 AND consent/privacy requirements satisfied
-AND traffic class is eligible
+AND edge traffic policy allows the ad-bootstrap capability
 ```
 
-`verified-crawler`, `restricted`, `unknown`, and `hostile` resolve `adsEligible=false` by default.
+Known-good crawlers, restricted/unknown traffic, and hostile traffic do not intentionally receive the ordinary ad-provider path.
 
-Phase 14 owns actual AdSense/native-provider scripts, placement and consent implementation.
+Phase 14 owns actual AdSense scripts, placement and consent implementation.
 
 ---
 
@@ -492,7 +505,11 @@ A provider incident must not require taking Tools offline.
 
 # 20. Future native-ad providers
 
-A future provider such as Taboola/native discovery may be evaluated in Phase 14/revenue expansion, but it must use the same:
+A future provider such as Taboola/native discovery may be evaluated only in the appropriate later monetization phase or through a separate explicit authorization.
+
+It is **not** silently added to the Phase-14 AdSense launch scope merely because the provider abstraction exists.
+
+If later approved, it must use the same:
 
 - route monetization rules;
 - traffic eligibility;
@@ -501,7 +518,7 @@ A future provider such as Taboola/native discovery may be evaluated in Phase 14/
 - provider abstraction;
 - performance/security review.
 
-No provider receives a parallel path that bypasses `adsEligible`.
+No provider receives a parallel path that bypasses the first-party eligibility boundary.
 
 This design does not assert provider approval, contract, eligibility or revenue.
 
@@ -818,7 +835,7 @@ Production-like tests must verify:
 - known-good crawler policy does not receive custom Managed Challenge/Block on indexable public content;
 - sitemap/robots/public tool pages remain reachable under expected crawler classification;
 - known-good crawler does not enter ordinary ad-bootstrap flow;
-- route/canonical behavior is unchanged by TrafficDecision;
+- route/canonical behavior is unchanged by traffic classification;
 - fallback/no-Cloudflare mode remains crawlable according to the approved SEO contract.
 
 ---
@@ -836,7 +853,8 @@ Test matrix includes:
 - unknown/fallback traffic;
 - eligible traffic;
 - consent/privacy failure;
-- provider/bootstrap failure.
+- provider/bootstrap failure;
+- edge suppression of the fixed bootstrap path.
 
 Every negative case must leave tool correctness intact.
 
@@ -893,13 +911,14 @@ Build/release validation must reject:
 
 - monetized route with no known monetization class;
 - ad bootstrap outside the approved first-party boundary;
-- provider path bypassing `adsEligible`;
+- provider path bypassing the first-party eligibility boundary;
 - C1/C2/C3 endpoint with no finite CostPolicy;
 - C2/C3 endpoint marked unlimited;
 - server route trusting client-supplied traffic/cost class;
 - fallback config exposing C2/C3 without equivalent controls;
 - tool engine importing traffic/provider-specific logic;
-- commercial/demo route accidentally made ad-eligible.
+- commercial/demo route accidentally made ad-eligible;
+- C0 page requiring a per-page traffic-classification API call for tool correctness or ad eligibility candidate calculation.
 
 ---
 
@@ -937,7 +956,7 @@ Official Cloudflare documentation was rechecked on 2026-08-26.
 
 Facts used:
 
-- known-good crawler field `cf.client.bot` is available broadly and identifies known good bots/crawlers;
+- known-good crawler field `cf.client.bot` identifies known good bots/crawlers and is available to all customers according to current WAF documentation;
 - granular bot score `cf.bot_management.score` is an Enterprise Bot Management feature;
 - WAF custom rules are available across plans, with limits varying by plan;
 - rate limiting rules are available across plans, with rule count/fields/windows varying materially by plan; current Free availability is one rule;
@@ -998,18 +1017,20 @@ Traffic Guard protects request/ad/cost surfaces; it does not turn hostile files 
 
 # 48. Phase-14 handoff
 
-Phase 14 may implement provider-specific Ads only after consuming this contract.
+Phase 14 may implement AdSense provider behavior only after consuming this contract.
 
 It must preserve:
 
 - fixed first-party bootstrap boundary;
-- `adsEligible` gate;
+- traffic-based suppression at the edge where available;
 - kill switches;
 - route monetization classes;
 - provider-independent tool correctness;
 - consent/privacy gating;
 - crawler suppression;
 - CSP/security review.
+
+Other native-ad providers remain later monetization work unless separately authorized.
 
 ---
 
@@ -1090,7 +1111,8 @@ A release fails Phase-8-derived gates when any applicable condition is true:
 10. fallback serves Ads when policy/consent integrity is not verified;
 11. abuse telemetry captures user tool content;
 12. a Cloudflare Enterprise-only feature becomes a requirement for ordinary Tools correctness;
-13. Launch-50 C0 operations make MenezesDev processing requests.
+13. Launch-50 C0 operations make MenezesDev processing requests;
+14. static C0 pages add a classification backend request solely to decide whether ordinary local tool use may proceed.
 
 ---
 
@@ -1110,8 +1132,9 @@ The design side is satisfied when the written package is approved and explicitly
 - suspicious/local-tool behavior;
 - Ads as separate optional capability;
 - first-party ad-bootstrap boundary;
+- no per-page traffic-classification API requirement for C0;
 - global/category/route/provider kill switches;
-- deterministic `adsEligible` resolution;
+- deterministic route/policy/consent eligibility plus edge bootstrap enforcement;
 - future provider non-bypass rule;
 - Managed Challenge versus Turnstile policy;
 - server-side Turnstile validation requirement;

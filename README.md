@@ -1,40 +1,379 @@
 # MenezesDev
 
-**Sites que impulsionam negócios.**
+**Sites que impulsionam negócios — e uma plataforma internacional de ferramentas web em construção.**
 
-Repositório principal do site comercial, dos cases demonstrativos e do ambiente de trabalho da **MenezesDev**.
+Este repositório reúne dois workstreams relacionados, mas governados separadamente:
 
-O projeto está sendo construído com **Codex como agente principal**, documentação explícita no repositório e uma regra simples: tecnologia, design e automação só entram quando melhoram o produto sem criar dependência desnecessária ou custo obrigatório.
+1. **MenezesDev comercial** — site institucional, portfólio e demos fictícias;
+2. **MenezesDev Tools** — plataforma internacional de utilidades web gratuitas, browser-first e AdSense-first.
+
+O Git é a fonte de verdade. As branches de implementação e pesquisa permanecem isoladas até os gates de release/merge serem satisfeitos.
+
+---
 
 ## Estado atual
 
-- **Fase atual:** 9 — critérios de aceite e release gates concluídos.
-- **Work Mode:** 4.5.
-- **Agente principal:** Codex nativo.
-- **Custo obrigatório adicional de API para o baseline:** R$ 0.
-- **Pipeline raster oficial:** Codex ImageGen nativo.
-- **Primeiro asset oficial:** `public/assets/demos/m47/m47-hero.webp`.
-- **M47 hero:** WebP, 1536×960, 16:10, status `generated`.
-- **MCP de imagem anterior:** desativado e mantido apenas como registro histórico.
+### MenezesDev comercial
 
-Os assets, wireframes responsivos, contratos de interação, especificação técnica e critérios de aceite estão concluídos. A Fase 10 de implementação ainda não foi iniciada.
+A implementação do site comercial está materializada em:
 
-## Baseline técnico fechado
+```text
+feat/phase-10-implementation
+```
 
-- Astro 7 com geração estática e TypeScript strict;
-- Tailwind CSS 4 via `@tailwindcss/vite`;
-- pnpm 11 e Node.js 24 LTS;
-- HTML semântico, CSS-first e JavaScript cliente mínimo;
-- GitHub `main` como origem de produção no Cloudflare Pages;
-- `pnpm build` como build e `dist` como diretório publicado;
-- nenhum framework cliente, backend, endpoint ou segredo no baseline;
-- Cloudflare Web Analytics somente na superfície real de produção, nunca nas demos fictícias.
+Base registrada para integração futura:
 
-O contrato técnico completo está em `docs/TECHNICAL_SPEC.md`. A auditoria futura usa `docs/ACCEPTANCE_CRITERIA.md`, com 97 hard gates, 10 release gates e 8 targets. Nenhum scaffold ou pacote foi criado nas Fases 8–9.
+```text
+152fab910296f29cfae2e07bf6ccc2c69f0ce0df
+```
 
-## Oferta comercial
+Estado documentado nessa linha de trabalho:
 
-Os valores públicos representam preços de entrada; o orçamento final depende do escopo.
+- Phase 10 de implementação concluída;
+- Astro 7.2.4 + TypeScript 6 + Tailwind CSS 4;
+- 16 rotas canônicas + 404 implementadas;
+- demos fictícias mantidas `noindex`;
+- hard gates de implementação concluídos;
+- release de produção ainda bloqueada por gates externos/operacionais;
+- `IMPLEMENTATION DONE`: sim;
+- `PRODUCTION READY`: não;
+- `VISUAL PORTFOLIO COMPLETE`: não.
+
+A documentação detalhada dessa implementação vive em `docs/context/STATE.md` e `docs/PHASE_10_IMPLEMENTATION_REPORT.md` na branch comercial.
+
+### MenezesDev Tools
+
+Branch canônica de pesquisa, governança e especificação:
+
+```text
+feat/tools-oss-catalog
+```
+
+Estado atual do workflow Tools:
+
+- Phase 0 — Product constitution: **CLOSED**;
+- Phase 1 — Global Market Intelligence: **CLOSED**;
+- Phase 2 — OSS Capability Audit: **CLOSED**;
+- Phase 3 — Capability Map: **CLOSED**;
+- Phase 4 — Freeze Launch 50: **CLOSED / 50 aprovadas e congeladas**;
+- Phase 5 — Information architecture / international SEO: **CLOSED**;
+- Phase 6 — Tools architecture design: **written spec approved; closure being recorded before Phase 7**;
+- Phase 7 — Security design / threat-model consolidation: **next active architectural phase**;
+- runtime Tools: **ainda não implementado**;
+- `main`: **não recebe implementação parcial do Tools**.
+
+Estado canônico detalhado:
+
+```text
+docs/context/TOOLS_STATE.md
+```
+
+---
+
+# MenezesDev Tools
+
+## Missão
+
+Construir uma grande plataforma internacional de ferramentas web gratuitas dentro do mesmo domínio/repositório, com crescimento por SEO e uso recorrente, monetização principalmente por Google AdSense e custo marginal extremamente baixo.
+
+A regra econômica central é simples:
+
+> Se uma operação determinística pode rodar com segurança no navegador do usuário, ela não deve virar uma requisição de backend paga por uso.
+
+## Superfície pública planejada
+
+```text
+menezesdev.com/
+├── /                         site comercial; sem Ads
+├── /projetos/...             portfólio; sem Ads
+├── /demo/...                 demos fictícias; sem Ads
+├── /tools/...                Tools em inglês internacional
+├── /pt-br/ferramentas/...    localização PT-BR
+└── /guides/...               conteúdo editorial/educacional
+```
+
+English (`en`) é o idioma principal do Tools. PT-BR é a localização secundária.
+
+---
+
+## Launch 50
+
+O primeiro release público do Tools exige **50 ferramentas completas e funcionais**.
+
+A matriz congelada usa:
+
+- **35** ferramentas SEO/AdSense-led — 70%;
+- **10** ferramentas de cobertura arquitetural — 20%;
+- **5** experimentos/strategic bets — 10%.
+
+Situação técnica da matriz:
+
+- **46/50** clear/internal/local-bounded;
+- **4/50** local-conditional: Image Compressor, HTML Formatter, Merge PDF e Split PDF;
+- **0/50** exigem backend de processamento por operação comum.
+
+Matriz canônica:
+
+```text
+docs/tools/LAUNCH50_FROZEN.md
+```
+
+Pool técnico/econômico completo:
+
+```text
+docs/tools/CAPABILITY_MAP.md
+```
+
+---
+
+## Arquitetura browser-first
+
+Ordem obrigatória de decisão:
+
+```text
+secure native browser API
+        >
+secure browser JS/TS
+        >
+secure local WASM
+        >
+backend somente quando realmente necessário
+```
+
+`Web Worker` significa isolamento no navegador, não backend.
+
+Para o Launch 50, a arquitetura aprovada assume `serverRequired = false` para as operações comuns das 50 ferramentas.
+
+Rust/WASM é usado quando traz ganho concreto de segurança, performance, parsing hostil, determinismo ou controle de recursos. Não é requisito ideológico.
+
+---
+
+## Segurança
+
+Todo input controlado pelo usuário é não confiável.
+
+Pipeline obrigatório:
+
+```text
+validate
+   ↓
+bound
+   ↓
+sanitize / canonicalize
+   ↓
+process
+   ↓
+encode safe output
+```
+
+Entre os hard gates:
+
+- limites de bytes/caracteres/páginas/dimensões/profundidade/trabalho;
+- nenhuma confiança em extensão/MIME/filename;
+- proteção contra bombs e inputs patológicos;
+- regex potencialmente catastrófica isolada e limitada;
+- PDF/SVG/HTML ativos desabilitados por padrão;
+- nenhum server-side fetch arbitrário sem threat model SSRF específico;
+- nenhum conteúdo de arquivo/texto privado em telemetry;
+- erros públicos sem stack trace, segredo ou caminho interno.
+
+Contrato obrigatório:
+
+```text
+docs/tools/SECURITY_POLICY.md
+```
+
+---
+
+## Tool SDK
+
+O Tools será guiado por um SDK híbrido tipado, não por 50 páginas completamente independentes nem por um renderer universal gigantesco.
+
+Direção aprovada da Phase 6:
+
+```text
+Tool Catalog
+    ↓
+locale content + routes/SEO + relations/search
+    ↓
+Astro static generation
+    ↓
+Tool Runtime Controller
+    ↓
+validate / bound / canonicalize
+    ↓
+main thread | Web Worker | WASM Worker
+    ↓
+typed result
+    ↓
+safe renderer
+```
+
+Princípios:
+
+- stable tool id independente de slug/locale;
+- catálogo serializável e data-only;
+- engines puros, sem Astro/DOM/Ads/analytics;
+- boundaries executáveis resolvidos por IDs allowlisted;
+- UI genérica para calculadoras/texto comuns;
+- renderers especializados para experiências como PDF/image crop/regex/Markdown;
+- dependências pesadas carregadas apenas na ferramenta que precisa delas;
+- locale/content gerado no build;
+- SEO/search/related tools derivados da mesma fonte canônica;
+- Ads e analytics são adapters opcionais, nunca dependências da correção da ferramenta.
+
+Spec:
+
+```text
+docs/superpowers/specs/2026-08-24-menezesdev-tools-phase6-architecture-design.md
+```
+
+---
+
+## SEO internacional
+
+A Phase 5 já fechou o contrato de SEO/IA.
+
+Direção principal:
+
+```text
+/tools/<categoria>/<tool>/
+/pt-br/ferramentas/<categoria>/<ferramenta>/
+```
+
+O contrato inclui:
+
+- rotas EN/PT-BR exatas das 50;
+- self-canonical por locale;
+- `hreflang` recíproco somente para variantes reais/publicadas;
+- sitemap segmentado;
+- robots/index/noindex;
+- breadcrumbs;
+- related-tool graph;
+- guides por intenção independente;
+- busca interna não indexável;
+- política anti-thin/doorway;
+- utility-first content;
+- HTML estático com conteúdo SEO-critical;
+- fallbacks de hosting nunca viram origem canônica por acidente.
+
+Spec:
+
+```text
+docs/superpowers/specs/2026-08-24-menezesdev-tools-phase5-seo-ia-design.md
+```
+
+---
+
+## AdSense e custo
+
+A monetização inicial planejada do Tools é Google AdSense.
+
+Princípios:
+
+- comercial/portfólio/demo continuam ad-free;
+- slots de Ads não podem parecer controles da ferramenta;
+- Ads não ficam colados a Upload/Download/Convert/Calculate de forma enganosa;
+- `adsEligible` será controlado pelo Traffic Guard;
+- suspicious/automated traffic não entra intencionalmente no mesmo caminho monetizado de humanos elegíveis;
+- global/per-route kill switches serão obrigatórios antes de escala monetizada;
+- ferramenta continua funcionando se Ads ou analytics estiverem desligados.
+
+---
+
+## Autonomous Growth Engine
+
+Após Launch 50 e dados reais, o produto poderá operar um flywheel policy-gated:
+
+```text
+Search Console + product analytics + revenue + Trend Radar
+                           ↓
+                  Opportunity Engine
+                           ↓
+        improve page / guide / approved new tool
+                           ↓
+        policy + quality + security + cost gates
+                           ↓
+                     publish
+                           ↓
+                     measure
+                           ↓
+             improve / expand / prune
+                           ↺
+```
+
+### Agente editorial
+
+O agente de IA é **on-demand**, alimentado por brief estruturado e fact/source pack verificado.
+
+Ele pode explicar, organizar e reescrever; não estabelece sozinho:
+
+- fórmulas canônicas;
+- resultados das ferramentas;
+- fatos de licença;
+- fatos de segurança;
+- claims de fonte.
+
+### Trend Radar e crawler
+
+Ordem preferida de sinais:
+
+1. Search Console e dados first-party;
+2. APIs/RSS/feeds;
+3. índices públicos de trends/news;
+4. crawler HTML apenas como fallback e somente para domínios aprovados.
+
+O crawler futuro será whitelist-only, respeitará robots/terms, rate limits, cache/ETag/backoff e nunca poderá burlar login, paywall, CAPTCHA, WAF ou anti-bot.
+
+A implementação desse sistema permanece pós-launch, principalmente nas Phases 21–22.
+
+Binding addendum:
+
+```text
+docs/tools/workflow-addenda/2026-08-24-autonomous-growth-autopilot.md
+```
+
+---
+
+## Deployment e fallback
+
+O host primário planejado é Cloudflare Pages, mas o produto deve permanecer provider-portable.
+
+```text
+GitHub — source of truth
+        ↓
+reproducible static build
+        ↓
+provider-neutral artifact
+        ↓
+Cloudflare Pages primary
+        +
+approved static fallback
+```
+
+Não vamos transformar ferramenta browser-capable em Cloudflare-dependent apenas por conveniência.
+
+Fallback deve preservar:
+
+- canonical domain;
+- segurança;
+- URLs públicas;
+- custo controlado;
+- possibilidade de desligar Ads se consent/policy não puder ser garantido.
+
+Addendum:
+
+```text
+docs/tools/addenda/2026-08-24_DEPLOYMENT_PORTABILITY_AND_FALLBACK.md
+```
+
+---
+
+# MenezesDev comercial
+
+## Oferta
+
+Os valores públicos são preços de entrada; o orçamento final depende do escopo.
 
 | Plano | A partir de | Entrega principal |
 |---|---:|---|
@@ -43,167 +382,133 @@ Os valores públicos representam preços de entrada; o orçamento final depende 
 | **Negócio** | **R$1.500** | Site orientado à geração de contatos e conversão |
 | **Personalizado** | **R$2.500** | Aplicações, integrações, dashboards e funcionalidades especiais |
 
-Princípios comerciais:
+A oferta completa está em:
 
-- escopo fechado;
-- 2 rodadas de revisão nos pacotes-base;
-- domínio e serviços pagos de terceiros são tratados separadamente;
-- nenhuma funcionalidade é prometida antes de análise técnica;
-- manutenção mensal é opcional.
-
-A especificação completa está em `SERVICES_AND_PRICING.md — MenezesDev.md`.
+```text
+SERVICES_AND_PRICING.md — MenezesDev.md
+```
 
 ## Cases demonstrativos
 
-O portfólio inicial usa três empresas fictícias para demonstrar níveis diferentes de produto sem inventar clientes reais.
+O portfólio usa três empresas fictícias, sem fingir clientes reais:
 
-| Case | Nicho | Pacote representado | Objetivo |
-|---|---|---|---|
-| **M47 Barber** | Barbearia contemporânea | Essencial | Mostrar a força de uma landing page de entrada |
-| **Tavola 27** | Restaurante italiano contemporâneo | Profissional | Demonstrar um site institucional editorial e multipágina |
-| **Prismae** | Consultoria empresarial | Negócio | Demonstrar autoridade, estrutura, dados e geração de leads |
+| Case | Nicho | Papel |
+|---|---|---|
+| **M47 Barber** | Barbearia contemporânea | landing page de entrada |
+| **Tavola 27** | Restaurante italiano contemporâneo | site institucional editorial/multipágina |
+| **Prismae** | Consultoria empresarial | autoridade, estrutura, dados e leads |
 
-Os três cases devem parecer produtos independentes, não variações do mesmo template.
-
-### M47 Barber
-
-Direção visual: masculina, urbana, precisa e contemporânea; preto profundo, iluminação lateral quente, madeira discreta e dourado fosco.
-
-O primeiro hero oficial já foi produzido com ImageGen nativo e passou por revisão de realismo, anatomia, ferramentas, iluminação, espaço negativo e crop mobile.
-
-![Hero demonstrativo M47 Barber](public/assets/demos/m47/m47-hero.webp)
-
-## Pipeline nativo de imagens
-
-A arquitetura oficial da Etapa 4.5 é:
-
-```text
-briefing do repositório
-  → $menezesdev-image-director
-  → $imagegen nativo
-  → revisão visual
-  → asset + .prompt.md + .meta.json
-  → validação no layout real
-```
-
-### Regras principais
-
-- O briefing do repositório vem antes da improvisação.
-- A função da imagem no layout vem antes da estética isolada.
-- Texto de interface deve ser HTML, não pixels gerados.
-- Logo final, mark, gráfico, diagrama e UI exata devem ser SVG/frontend quando possível.
-- Screenshots de portfólio devem vir do site real implementado.
-- Nada de clientes, avaliações, métricas ou resultados comerciais fictícios apresentados como reais.
-- Assets aprovados não devem ser sobrescritos silenciosamente.
-- Cada raster importante mantém prompt e metadata auditáveis.
-
-O skill repo-local de direção de arte fica em:
-
-```text
-.agents/skills/menezesdev-image-director/SKILL.md
-```
-
-### Canva
-
-Canva Premium é reservado para a camada editorial posterior:
-
-- mockups com screenshots reais;
-- thumbnails;
-- banners;
-- posts e stories;
-- apresentações de case;
-- redimensionamento e peças comerciais.
-
-Ele não substitui screenshots reais nem deve inventar a interface final dos sites.
-
-## Work Mode 4.5
-
-Este repositório mantém o **Codex nativo como caminho padrão e de rollback**.
-
-Princípios:
-
-- Codex nativo é o agente principal.
-- OmniRoute é opcional e nunca substitui o Codex silenciosamente.
-- Headroom é opcional e só entra em sessões explicitamente iniciadas com ele.
-- Segredos ficam fora do Git (`.env`, chaves e tokens nunca entram no repositório).
-- Memória de projeto fica em arquivos explícitos e auditáveis dentro de `docs/context/`.
-- Ferramentas experimentais só entram após teste e rollback simples.
-- Nenhuma dependência paga vira requisito sem aprovação explícita.
-
-Leia `docs/WORK_MODE_4_5.md` antes de alterar a infraestrutura de agentes.
-
-## Roadmap atual
-
-- [x] Brand Kit real
-- [x] Oferta comercial
-- [x] Copy completa da Home
-- [x] Cases demonstrativos
-- [x] Produção dos assets visuais
-- [x] Wireframe desktop + mobile
-- [x] **Interações e comportamento**
-- [x] **Especificação técnica final**
-- [x] **Critérios de aceite**
-- [ ] Prompt Mestre do Codex
-
-A implementação deve respeitar essa ordem para reduzir improvisação e retrabalho.
-
-## Estrutura relevante do repositório
-
-```text
-MenezesDev/
-├── AGENTS.md
-├── README.md
-├── .agents/
-│   └── skills/
-│       └── menezesdev-image-director/
-├── .codex/
-├── docs/
-│   ├── BRAND_GUIDE.md
-│   ├── DEMO_CASES.md
-│   ├── IMAGE_GENERATION_RULES.md
-│   ├── MCP_IMAGE_PIPELINE_SPEC.md
-│   ├── NATIVE_IMAGEGEN_WORKFLOW.md
-│   ├── TECHNICAL_SPEC.md
-│   ├── ACCEPTANCE_CRITERIA.md
-│   ├── wireframes/
-│   ├── interactions/
-│   └── context/
-├── public/
-│   └── assets/
-│       └── demos/
-│           ├── m47/
-│           ├── tavola27/
-│           └── prismae/
-└── tools/
-    └── mcp-image/   # implementação histórica/desativada
-```
-
-## Documentação principal
-
-- `AGENTS.md` — regras operacionais para agentes.
-- `docs/BRAND_GUIDE.md` — identidade da MenezesDev.
-- `docs/DEMO_CASES.md` — especificação dos três cases demonstrativos.
-- `HOME_COPY.md — MenezesDev.md` — copy aprovada da Home.
-- `SERVICES_AND_PRICING.md — MenezesDev.md` — oferta e limites comerciais.
-- `docs/IMAGE_GENERATION_RULES.md` — regras globais de produção visual.
-- `docs/NATIVE_IMAGEGEN_WORKFLOW.md` — workflow oficial do ImageGen nativo.
-- `docs/wireframes/README.md` — composição canônica desktop/mobile.
-- `docs/interactions/README.md` — estados e comportamento canônicos.
-- `docs/TECHNICAL_SPEC.md` — arquitetura e decisões técnicas canônicas para a implementação futura.
-- `docs/ACCEPTANCE_CRITERIA.md` — matriz objetiva de hard gates, release gates, targets e Definition of Done.
-- `docs/context/STATE.md` — estado operacional atual.
-- `docs/context/DECISIONS.md` — decisões canônicas do projeto.
-- `docs/context/HANDOFF.md` — continuidade entre sessões/agentes.
-
-`tools/mcp-image/`, `docs/MCP_IMAGE_PIPELINE_SPEC.md` e `docs/FASE_2_REPORT.md` permanecem para rastreabilidade histórica da implementação MCP substituída; não representam o caminho ativo de geração raster.
-
-## Segurança e custo
-
-- Nenhuma chave de API deve ser commitada.
-- O baseline não depende de API paga para geração de imagens.
-- Serviços externos pagos devem ser opcionais e explícitos.
-- O repositório deve permanecer reproduzível e auditável.
+As rotas `/demo/**` são demos fictícias e permanecem fora da indexação orgânica.
 
 ---
 
-**MenezesDev — sites profissionais com direção visual, engenharia e escopo claros.**
+## Stack atual
+
+Base comercial implementada:
+
+- Astro 7.2.4 static;
+- TypeScript 6.0.3;
+- Tailwind CSS 4.3.3;
+- pnpm 11.22.0;
+- Node.js 24;
+- Lucide Astro;
+- HTML semântico;
+- CSS-first;
+- JavaScript cliente mínimo;
+- sem framework cliente obrigatório;
+- Cloudflare Pages como direção primária de hosting.
+
+Tools reutilizará essa base, mas com layouts/metadata/runtime próprios onde a separação fizer sentido.
+
+---
+
+## Branches importantes
+
+```text
+main
+  └── produção; não recebe Tools parcial
+
+feat/phase-10-implementation
+  └── implementação comercial atual
+
+feat/tools-oss-catalog
+  └── pesquisa, governança, SEO, arquitetura e audits do Tools
+
+feat/tools-platform
+  └── futura branch de integração da implementação Tools
+```
+
+A futura `feat/tools-platform` deve nascer da implementação comercial aprovada/sucessora e carregar junto toda a governança/spec do Tools.
+
+---
+
+## Documentação principal
+
+### Governança geral
+
+- `AGENTS.md` — contrato operacional para agentes;
+- `docs/context/STATE.md` — estado do workstream comercial/geral;
+- `docs/context/DECISIONS.md` — decisões comerciais/gerais;
+- `docs/context/HANDOFF.md` — continuidade comercial/geral.
+
+### Tools
+
+- `docs/context/TOOLS_STATE.md` — estado canônico do Tools;
+- `docs/context/TOOLS_DECISIONS.md` — decisões duráveis do Tools;
+- `docs/context/TOOLS_HANDOFF.md` — continuidade entre sessões/agentes;
+- `docs/tools/IMMUTABLE_WORKFLOW.md` — workflow operacional canônico;
+- `docs/tools/TOOLS_SCOPE.md` — escopo aprovado;
+- `docs/tools/SECURITY_POLICY.md` — contrato de segurança;
+- `docs/tools/CAPABILITY_MAP.md` — caminhos técnicos/econômicos do pool final;
+- `docs/tools/LAUNCH50_FROZEN.md` — Launch 50 congelado;
+- `docs/tools/OSS_CATALOG.md` — catálogo/audit OSS;
+- `docs/tools/AUTONOMOUS_GROWTH_SECURITY.md` — controles do crescimento autônomo;
+- `docs/superpowers/specs/2026-08-24-menezesdev-tools-phase5-seo-ia-design.md` — SEO/IA;
+- `docs/superpowers/specs/2026-08-24-menezesdev-tools-phase6-architecture-design.md` — arquitetura Tool SDK/runtime.
+
+### Comercial
+
+- `docs/BRAND_GUIDE.md` — identidade visual;
+- `docs/DEMO_CASES.md` — cases;
+- `docs/TECHNICAL_SPEC.md` — arquitetura comercial;
+- `docs/ACCEPTANCE_CRITERIA.md` — hard/release gates;
+- `docs/wireframes/` — wireframes;
+- `docs/interactions/` — comportamento/interações;
+- `docs/NATIVE_IMAGEGEN_WORKFLOW.md` — pipeline visual.
+
+---
+
+## Regras para agentes
+
+Antes de qualquer trabalho de MenezesDev Tools, leia `AGENTS.md` e siga o verification gate definido ali.
+
+Em resumo:
+
+```text
+TOOLS_STATE
+→ TOOLS_DECISIONS
+→ TOOLS_HANDOFF
+→ IMMUTABLE_WORKFLOW completo
+→ binding addenda
+→ SECURITY_POLICY quando aplicável
+→ relevant scope/spec/audit
+→ confirmar phase/gate
+→ só então agir
+```
+
+**No memory-only execution is permitted for MenezesDev Tools. Git is the source of truth.**
+
+---
+
+## Segurança e custo — regras gerais
+
+- nenhuma chave, token, certificado, cookie, senha ou `.env` entra no Git;
+- nenhum serviço pago vira requisito silenciosamente;
+- browser-first continua sendo o padrão econômico do Tools;
+- demos fictícias não fingem clientes/resultados reais;
+- produção não recebe implementação parcial apenas para mostrar progresso;
+- deploy deve permanecer reproduzível a partir do repositório.
+
+---
+
+**MenezesDev — direção visual, engenharia, utilidade e crescimento com custo controlado.**

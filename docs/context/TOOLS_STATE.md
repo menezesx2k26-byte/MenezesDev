@@ -14,8 +14,8 @@
 - Phase 4 — Freeze Launch 50: **CLOSED / frozen** (`docs/tools/LAUNCH50_FROZEN.md`).
 - Phase 5 — Information architecture / international SEO: **CLOSED** (`docs/tools/PHASE5_CLOSURE.md`).
 - Phase 6 — Tools architecture design: **CLOSED / written spec approved** (`docs/tools/PHASE6_CLOSURE.md`).
-- Phase 7 — Security design and threat-model consolidation: **ACTIVE / Superpowers architectural design cycle**.
-- Phase 8+ — not started.
+- Phase 7 — Security design and threat-model consolidation: **WRITTEN SPEC COMMITTED + SELF-REVIEWED / USER REVIEW PENDING**.
+- Phase 8+ — **NOT STARTED**.
 - Tools runtime implementation: **NOT STARTED**.
 - `main` remains outside partial Tools implementation.
 
@@ -80,10 +80,6 @@ Canonical design:
 
 `docs/superpowers/specs/2026-08-24-menezesdev-tools-phase6-architecture-design.md`
 
-Self-review:
-
-`docs/superpowers/specs/2026-08-24-menezesdev-tools-phase6-architecture-self-review.md`
-
 Closure:
 
 `docs/tools/PHASE6_CLOSURE.md`
@@ -107,7 +103,53 @@ Approved architecture includes:
 - separate commercial and Tools layouts;
 - layered correctness/security/SEO/bundle/economic/provider tests.
 
-On 2026-08-26 Gabriel approved the committed written package and explicitly authorized proceeding into Phase 7.
+---
+
+# Phase-7 written security package
+
+The concrete Phase-7 security design was presented in chat before the written file existed.
+
+On 2026-08-26 Gabriel instructed:
+
+> `Prossiga com as implementações`
+
+In the immediate project context, this is treated as approval to proceed with the already-presented Phase-7 design and produce/self-review the written spec. It is **not** approval of the subsequently written package or of unseen Phase-8/9 architecture.
+
+Canonical design:
+
+`docs/superpowers/specs/2026-08-26-menezesdev-tools-phase7-security-design.md`
+
+Self-review:
+
+`docs/superpowers/specs/2026-08-26-menezesdev-tools-phase7-security-self-review.md`
+
+Current Phase-7 design fixes:
+
+- finite profile-driven security policies;
+- build-time `ResolvedSecurityPolicy` semantics;
+- tightening-only per-tool overrides;
+- exact Capability Map resource limits;
+- pre-parse byte/char/signature/structural guards;
+- image dimension/pixel preflight;
+- structured-text depth/node/row/field controls;
+- disposable Regex Worker + 1.5 s hard kill;
+- Worker watchdogs for diff/Markdown/HTML/SVG/PDF;
+- zero ambient network authority in engines/boundaries/workers;
+- strict CSP split between Astro meta defense-in-depth, real HTTP headers and Worker-resource CSP;
+- single privileged sanitized rich-output path;
+- remote Markdown media disabled by default;
+- conditional PDF active-content reject/strip proof gate;
+- ZIP-create entry-name/path controls;
+- deterministic output filename/Blob/Object-URL lifecycle;
+- safe public error codes;
+- typed content-free telemetry allowlist;
+- dependency security hard stops;
+- future server URL fetch explicitly forbidden until dedicated SSRF review;
+- hostile fixture taxonomy;
+- static/browser/economic security CI invariants;
+- provider/fallback security equivalence or safe degradation.
+
+Fresh self-review found no `TODO`, `TBD` or `PLACEHOLDER` markers and no profile limit loosening.
 
 ---
 
@@ -129,32 +171,6 @@ Phase-6 integration direction uses provider-neutral static output, explicit cano
 
 ---
 
-# Phase-7 design scope
-
-Phase 7 must convert the existing security policy and Capability Map profiles into concrete, testable SDK/runtime security gates.
-
-Required design areas:
-
-- threat model and trust boundaries;
-- byte/character/page/pixel/row/depth/work budgets;
-- pre-parse guards;
-- file signature/sniffing strategy;
-- parser isolation and Worker lifecycle;
-- cancellation/time budgets;
-- hostile fixture taxonomy;
-- PDF/image/archive/structured-text/regex-specific controls;
-- safe HTML/Markdown/output rendering rules;
-- CSP and browser network policy;
-- future URL-fetch/SSRF boundary policy without creating such a path now;
-- error sanitization;
-- telemetry privacy enforcement;
-- dependency/parsing hard stops;
-- CI security invariants.
-
-Phase 7 is Architectural under Superpowers. Its concrete design must be presented and approved before a written Phase-7 spec is committed.
-
----
-
 # Deployment portability
 
 Binding addendum:
@@ -166,7 +182,8 @@ Binding addendum:
 - provider-neutral static artifact required;
 - browser-capable tools cannot become Cloudflare-backend-dependent;
 - at least one approved fallback path must be verified before release;
-- fallback must preserve canonical-domain and ad-safety behavior.
+- fallback must preserve canonical-domain and application security or safely degrade;
+- Ads are disabled on fallback when policy/consent integrity cannot be guaranteed.
 
 ---
 
@@ -176,7 +193,7 @@ No crawler, AI Editorial provider, Workflow, D1 resource or Tool Factory runtime
 
 Later sequence remains:
 
-- Phase 7: security/threat model — **ACTIVE**;
+- Phase 7: security/threat model — **written review pending**;
 - Phase 8: Traffic Guard / Cost Guard;
 - Phase 9: implementation plan;
 - Phase 10+: isolated implementation;
@@ -187,12 +204,18 @@ Later sequence remains:
 
 ---
 
-# Current next legal action
+# Current hard gate / next legal action
 
-Present the concrete Phase-7 security/threat-model design under Superpowers brainstorming.
+Superpowers requires user review of the committed Phase-7 written spec before Phase 7 may close.
 
-Only after that specific design is approved may the Phase-7 written spec be committed and self-reviewed. Phase 8 remains blocked until Phase 7 closes.
+Until Gabriel approves the written Phase-7 package:
 
-Do not invoke `writing-plans`, install dependencies, create `feat/tools-platform` or implement Tool SDK/runtime/tools yet.
+- do not create `PHASE7_CLOSURE.md`;
+- do not mark Phase 7 closed;
+- do not start Phase 8;
+- do not invoke Phase-9 `writing-plans`;
+- do not install dependencies;
+- do not create `feat/tools-platform`;
+- do not implement Tool SDK/runtime/tools.
 
-Before every future Tools action, reread the exact-ref workflow, binding addenda, security policy, Tools context and relevant approved specs. Git remains source of truth.
+Before every future Tools action, reread the exact-ref workflow, all binding addenda, Tools context and relevant specs. Git remains source of truth.

@@ -1,19 +1,17 @@
 # MenezesDev Tools — Session Handoff
 
-**Date:** 2026-08-24  
+**Date:** 2026-08-26  
 **Branch:** `feat/tools-oss-catalog`
 
 ---
 
 # Mandatory verification completed
 
-Before acting in this pass, the exact-ref Tools governance was reread from Git:
+Before this pass, the exact-ref Tools governance and current Superpowers skills were reread from Git/resources, including:
 
-- Superpowers `using-superpowers`;
-- Superpowers `brainstorming`;
 - `AGENTS.md`;
-- `TOOLS_STATE.md`;
-- `TOOLS_DECISIONS.md`;
+- `docs/context/TOOLS_STATE.md`;
+- `docs/context/TOOLS_DECISIONS.md`;
 - previous `TOOLS_HANDOFF.md`;
 - `docs/tools/IMMUTABLE_WORKFLOW.md` in full;
 - binding workflow addenda;
@@ -22,108 +20,126 @@ Before acting in this pass, the exact-ref Tools governance was reread from Git:
 - `docs/tools/TOOLS_SCOPE.md`;
 - frozen Launch 50;
 - Capability Map;
-- approved Phase-5 SEO/IA spec;
-- existing application base on `feat/phase-10-implementation`.
+- approved Phase-5 spec;
+- Phase-6 written design + self-review;
+- current commercial implementation state/base.
 
-No workflow, security, privacy, SEO, cost or autonomy gate was weakened.
+Superpowers `using-superpowers` and `brainstorming` were invoked.
 
----
-
-# Phase 6 design approval
-
-The Phase-6 architecture was presented in chat under the Superpowers Architectural path.
-
-Gabriel approved the presented design with:
-
-> `Vai`
-
-That approval authorized writing/self-reviewing the concrete Phase-6 spec only. It does not count as review approval of the subsequently written spec package.
+No workflow/security/privacy/cost gate was weakened.
 
 ---
 
-# Phase 6 written package
+# README refreshed
 
-Canonical design:
+`README.md` on `feat/tools-oss-catalog` was rewritten to represent both active workstreams accurately:
 
-`docs/superpowers/specs/2026-08-24-menezesdev-tools-phase6-architecture-design.md`
+- commercial Phase-10 implementation branch and release state;
+- Tools workflow, Launch 50, browser-first economics, SEO, security, Tool SDK, AdSense, autonomous-growth sequencing, deployment portability and canonical docs.
 
-Self-review:
-
-`docs/superpowers/specs/2026-08-24-menezesdev-tools-phase6-architecture-self-review.md`
-
-Current status:
-
-**WRITTEN + SELF-REVIEWED / USER REVIEW PENDING**
-
-The design defines:
-
-- reconciliation with the current Astro commercial application;
-- hybrid typed Tool SDK;
-- serializable build-time catalog;
-- stable tool ids independent from locale routes;
-- data-only boundary/engine bindings resolved through allowlisted executable registries;
-- localized content as the single source of localized title/H1/description/copy;
-- derived build-time SEO metadata rather than duplicate authoring;
-- static `getStaticPaths()` generation;
-- `build.format: "preserve"` + `trailingSlash: "ignore"` integration direction;
-- explicit canonical paths independent from request/provider hostname;
-- neutral document metadata + separate ToolLayout;
-- generic UI primitives with specialized renderers where interaction requires them;
-- mandatory input-boundary pipeline;
-- pure engines;
-- main-thread / Web Worker / optional WASM-worker execution classes;
-- no normal Launch-50 backend processing;
-- lazy engine/dependency loaders;
-- typed result/error model;
-- privacy-safe analytics seam;
-- no-op-capable Ads seam;
-- Traffic Guard seam without pre-empting Phase 8;
-- strict CSP/network/provider-neutral boundaries;
-- PWA compatibility without enabling a service worker;
-- correctness/security/SEO/browser/accessibility/bundle/economic/fallback test layers;
-- integration-branch strategy for later Phase 10.
+Latest README status now states Phase 6 CLOSED and Phase 7 ACTIVE.
 
 ---
 
-# Self-review findings
+# Phase 6 closed
 
-Fresh review found and fixed two ambiguity risks before user review:
+Gabriel's instruction after the Phase-6 written review gate was:
 
-1. the Tool catalog could have been interpreted as storing executable boundary functions; it now stores only allowlisted boundary ids/profiles;
-2. localized SEO title/description could have had two authoring locations; localized copy now lives only in locale content and the SEO object is derived at build time.
+> `Vai e pode seguir pra parse 7`
 
-Fresh scans after the fix:
+In context this approves the committed Phase-6 written package and authorizes entry into Phase 7; it does not approve unseen Phase-7 architecture.
 
-- `TODO`: 0;
-- `TBD`: 0;
-- obsolete executable catalog-boundary model: 0;
-- obsolete duplicate localized SEO model: 0.
+Created:
+
+`docs/tools/PHASE6_CLOSURE.md`
+
+Result:
+
+- Phase 6 gate: PASS;
+- Phase 6: CLOSED;
+- Phase 7: legally unblocked.
+
+`TOOLS_STATE.md` was updated accordingly.
 
 ---
 
-# Astro implementation-base reconciliation
+# Phase 7 current classification
 
-Current identified implementation base:
+Superpowers path: **Architectural**.
 
-`feat/phase-10-implementation` @ `152fab910296f29cfae2e07bf6ccc2c69f0ce0df`
+The immutable workflow requires Phase 7 to turn the security policy into concrete testable SDK/runtime gates covering:
 
-Observed app baseline:
+- resource budgets;
+- hostile fixtures;
+- format sniffing;
+- worker isolation;
+- CSP;
+- future SSRF boundary;
+- archive defenses;
+- parser work budgets;
+- safe output encoding.
 
-- Astro 7.2.4 static;
-- TypeScript 6.0.3;
-- Tailwind 4.3.3;
-- pnpm 11.22.0 / Node 24;
-- no React/Vue/Svelte requirement.
+No Phase-7 spec has been written yet.
 
-Current implementation seams accounted for by Phase 6:
+---
 
-- commercial `BaseLayout` is PT-BR oriented;
-- canonical currently derives from `Astro.url.pathname`;
-- build uses `format: "file"` and `trailingSlash: "never"`;
-- sitemap currently covers only Home + `/projetos/**`;
-- route checks currently hard-code the legacy route set.
+# Current Phase-7 recommended design — NON-BINDING UNTIL CHAT APPROVAL
 
-Official current Astro routing/config documentation was revalidated for `getStaticPaths`, `build.format`, `preserve` and prerendered trailing-slash behavior before freezing those semantics in the spec.
+Recommended model: **profile-driven security boundary compiler + per-tool tightening + specialized hostile-input gates**.
+
+Core direction prepared for presentation:
+
+1. catalog tool definitions reference finite security profile ids; executable boundaries remain allowlisted code;
+2. a build-time resolver produces a `ResolvedSecurityPolicy` and fails on missing/incompatible limits;
+3. per-tool overrides may tighten limits by default; loosening a profile cap requires explicit security review;
+4. raw user input crosses a pre-parse size/work guard before parser/engine code;
+5. filename/extension/`File.type` are hints only; binary formats use explicit signature/header checks;
+6. raster images preflight supported signatures/dimensions before expensive decode where possible;
+7. PDF/regex/HTML formatter and other hostile/heavy classes use killable dedicated browser Workers with hard watchdogs;
+8. timeouts terminate the Worker rather than relying only on cooperative cancellation;
+9. tool engine/boundary/worker code has no network authority by default; future networking is isolated to approved adapters;
+10. CSP must be enforced with HTTP headers on production/fallback where directives require headers; Astro meta CSP is defense-in-depth but is not sufficient for `frame-ancestors`;
+11. Workers need their own CSP/network policy because worker contexts generally do not inherit the parent document CSP;
+12. no blob/data Worker source by default; use same-origin bundled module workers;
+13. rich HTML rendering exists only through one reviewed sanitizer/safe-rich-output wrapper;
+14. Markdown raw HTML is disabled, output sanitized, and remote media does not auto-fetch from pasted Markdown;
+15. HTML Formatter output is text only and never executed;
+16. JSON/XML/CSV/metadata/diff outputs render through text-safe sinks unless an explicit rich-output profile exists;
+17. PDF structural operations keep the conditional admission gate: encrypted inputs rejected, decompression guard preserved, active-content hostile fixtures mandatory; failure to prove safe reject/strip behavior triggers frozen-slot replacement rather than weakening security;
+18. ZIP creation sanitizes entry names and bounds source/output size; archive extraction remains a separate future profile with traversal/bomb defenses and is not silently added;
+19. output downloads use deterministic sanitized filenames/content types, bounded Blob output and object-URL revocation;
+20. production errors map to typed public error codes; raw parser errors/user content never enter telemetry;
+21. telemetry remains a typed allowlist with no arbitrary `details` payload and no user content;
+22. CI includes profile validation, hostile fixtures, forbidden-network API checks, unsafe-sink checks, dependency allowlist/pin checks, browser CSP/network tests and max/max+1 boundary tests;
+23. no service worker is enabled for Launch 50; future PWA activation requires its own update/cache security review;
+24. third-party Ads/analytics scripts remain outside tool correctness and receive a Phase-14/18 privacy review before being allowed on content-sensitive interaction surfaces.
+
+---
+
+# Current authoritative external security references rechecked
+
+The Phase-7 proposal was cross-checked against current authoritative guidance:
+
+- OWASP Input Validation / file validation guidance;
+- OWASP CSP Cheat Sheet;
+- OWASP SSRF Prevention Cheat Sheet;
+- OWASP XSS Prevention guidance;
+- MDN CSP and `connect-src` behavior;
+- MDN `frame-ancestors` header-only constraint;
+- MDN Worker `terminate()` behavior;
+- MDN worker CSP behavior;
+- Astro 7.2 CSP documentation.
+
+Important current facts carried into the design:
+
+- allowlist validation is preferred where formats are constrained;
+- file size/type validation must occur before expensive processing;
+- denylist-only SSRF controls are bypass-prone; allowlists/network egress controls are preferred;
+- `Worker.terminate()` provides a hard browser-side kill primitive;
+- `connect-src` governs fetch/XHR/WebSocket/EventSource/sendBeacon;
+- `frame-ancestors` is not supported via CSP meta;
+- Workers generally require CSP on the worker resource itself;
+- Astro 7 CSP can hash processed inline scripts/styles but a meta policy cannot replace all host-level headers.
 
 ---
 
@@ -135,37 +151,20 @@ Official current Astro routing/config documentation was revalidated for `getStat
 - Phase 3: CLOSED.
 - Phase 4: CLOSED.
 - Phase 5: CLOSED.
-- Phase 6: **ACTIVE — written spec review pending**.
-- Phase 7+: NOT STARTED.
+- Phase 6: CLOSED.
+- Phase 7: **ACTIVE — design approval pending**.
+- Phase 8+: NOT STARTED.
 - runtime implementation: NOT STARTED.
 - autonomous-growth runtime: NOT STARTED.
 
 ---
 
-# Current hard gate
+# Current gate
 
-Superpowers requires user review of the committed Phase-6 written spec before the architectural phase can close.
+Present the concrete Phase-7 design in chat and obtain approval of that specific design.
 
-Until Gabriel approves that written package:
+Only then may the Phase-7 written spec be committed and self-reviewed.
 
-- do not create `PHASE6_CLOSURE.md`;
-- do not mark Phase 6 closed;
-- do not start Phase 7;
-- do not invoke `writing-plans`;
-- do not install dependencies;
-- do not create `feat/tools-platform`;
-- do not implement Tool SDK/runtime/tools.
+Do not start Phase 8, invoke `writing-plans`, install dependencies, create `feat/tools-platform`, or implement runtime/tools before the appropriate later gates.
 
-A direct `segue`/`vai` after the written-spec review prompt is sufficient approval of this specific written package; it is not approval of unseen Phase-7 architecture.
-
----
-
-# Next legal sequence
-
-1. Obtain user review approval of the committed Phase-6 package.
-2. Record Phase-6 closure if the workflow gate remains satisfied.
-3. Enter Phase 7 through a new Superpowers Architectural cycle.
-4. Design concrete security/resource/hostile-input/CSP/Worker gates.
-5. Only after Phases 7 and 8 close may Phase 9 invoke `writing-plans`.
-
-Before every future Tools action, reread the exact-ref workflow, binding addenda, security policy, Tools context and relevant specs. Git remains source of truth.
+Git remains the source of truth.

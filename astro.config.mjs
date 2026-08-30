@@ -1,3 +1,4 @@
+import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
@@ -16,6 +17,7 @@ export default defineConfig({
     syntaxHighlight: false,
   },
   integrations: [
+    react(),
     sitemap({
       filter: (page) => {
         const pathname = new URL(page).pathname.replace(/\/$/, "") || "/";

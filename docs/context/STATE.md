@@ -65,9 +65,9 @@ Last updated: 2026-08-22
 ## Phase 8 technical specification
 
 - `docs/TECHNICAL_SPEC.md` is the canonical architecture contract for the future Phase 10 implementation.
-- Baseline: Astro 7 static output, strict TypeScript, Tailwind CSS 4 through `@tailwindcss/vite`, pnpm 11, Node.js 24 LTS, Lucide, semantic HTML, CSS-first and minimal vanilla client JavaScript.
+- Baseline: Astro 7 static output, strict TypeScript, Tailwind CSS 4 through `@tailwindcss/vite`, pnpm 11, Node.js 24 LTS, Lucide, semantic HTML, CSS-first, minimal vanilla JavaScript and selective React/Motion islands with explicit hydration.
 - Cloudflare Pages is sufficient for the initial static scope. GitHub `main` is the production source, pull requests may receive previews, the build command is `pnpm build`, and the output directory is `dist`.
-- No Cloudflare adapter, client framework, backend, persistence, external demo submission, real demo booking/reservation or frontend secret is part of the baseline.
+- No Cloudflare adapter, SPA/client router, global framework hydration, backend, persistence, external demo submission, real demo booking/reservation or frontend secret is part of the baseline.
 - All 16 public routes from Phase 7 are fixed. `/demo/prismae/about` remains absent until approved expanded copy exists.
 - MenezesDev and its three portfolio case pages are indexable. All `/demo/**` routes are `noindex, nofollow, noarchive` and excluded from the sitemap because the businesses are fictitious.
 - Cloudflare Web Analytics is planned only for the canonical production host and real MenezesDev/portfolio routes; demos, previews and development are excluded.

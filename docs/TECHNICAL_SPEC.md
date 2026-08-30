@@ -39,18 +39,19 @@ Esta fase não autoriza inicializar Astro, criar package.json ou src/, instalar 
 | Ícones de interface | Lucide por lucide-astro |
 | Marcação | HTML semântico |
 | Estilo | CSS-first; utilidades Tailwind sobre tokens |
-| Cliente | JavaScript mínimo e vanilla |
+| Cliente | JavaScript vanilla + ilhas React seletivas |
 
-O projeto é static-first e multi-page. Astro deve entregar HTML estático por padrão, sem runtime de framework cliente. React, Vue, Svelte, Preact, Solid e equivalentes não fazem parte do baseline.
+O projeto continua static-first e multi-page: Astro entrega HTML estático por padrão e não existe SPA shell ou client router. React 19 é permitido somente em ilhas isoladas via `@astrojs/react`, com hidratação explícita e escopo local. Vue, Svelte, Preact, Solid e equivalentes não fazem parte do baseline.
 
 A ordem obrigatória para interações é:
 
 1. HTML nativo;
 2. CSS;
 3. TypeScript/JavaScript vanilla pequeno;
-4. dependência externa apenas após justificativa objetiva e novo registro de decisão.
+4. ilha React quando uma interação ou motion de alto valor justificar o runtime local;
+5. outra dependência externa apenas após justificativa objetiva e novo registro de decisão.
 
-Navbar, menu modal, accordion, trilho editorial e formulário demonstrativo não justificam framework client-side.
+Navbar, menu modal, accordion, trilho editorial e formulário demonstrativo permanecem Astro/vanilla enquanto essa solução continuar mais simples. React não é autorização para reescrever componentes existentes por conveniência.
 
 ## Configuração Astro futura
 
@@ -438,7 +439,7 @@ O hero graphic Prismae recebe descrição equivalente em texto. No mobile, prism
 
 # 14. JavaScript
 
-Astro entrega zero JavaScript por padrão. Não há client directives nem islands de framework no baseline.
+Astro entrega zero JavaScript por padrão. Client directives só podem aparecer em ilhas React documentadas; páginas passivas continuam sem runtime React.
 
 Módulos vanilla permitidos:
 
@@ -453,10 +454,11 @@ Cada módulo carrega apenas nas rotas que o usam. M47 não recebe JS de galeria;
 
 Orçamento arquitetural inicial:
 
-- nenhum runtime de framework;
+- nenhum runtime global de framework ou client router;
+- React só carrega nas rotas que montam ilhas e somente após a diretiva de hidratação escolhida;
 - páginas passivas: zero JS próprio sempre que possível;
 - módulos compartilhados pequenos e tree-shaken;
-- revisão obrigatória se uma rota ultrapassar aproximadamente 20 kB gzip de JS próprio.
+- revisão obrigatória se uma rota ultrapassar aproximadamente 35 kB gzip de JS próprio ou se uma ilha aumentar o LCP/TBT além dos targets.
 
 Esse valor orienta a arquitetura; os limites de aceite finais pertencem à Fase 9.
 
@@ -466,7 +468,7 @@ O accordion usa button + região associada porque o contrato exige aria-expanded
 
 # 15. Motion
 
-Motion é predominantemente CSS.
+Motion continua CSS-first. Em ilhas React aprovadas, `motion` é o runtime padrão para animações que exigem estado, layout ou sequência difícil de manter em CSS/vanilla.
 
 | Token | Duração | Easing |
 |---|---:|---|
@@ -479,11 +481,11 @@ Motion é predominantemente CSS.
 
 Limites: pressão até 2 px, hover até 4 px, entrada até 16 px, imagem clicável no máximo 1.02 e stagger no máximo 60 ms em grupos curtos.
 
-Não usar GSAP, Framer Motion, biblioteca equivalente, parallax, autoplay, partículas, contadores, scroll hijacking ou loops.
+Não usar GSAP, Lenis, scroll hijacking, autoplay contínuo ou loops decorativos no baseline. `motion` pode ser usado apenas dentro de ilhas React aprovadas. Parallax, partículas, contadores e efeitos contínuos exigem justificativa visual, medição de performance e fallback de reduced motion.
 
-prefers-reduced-motion remove smooth scroll, translate, stagger, zoom e animação de disclosure. Foco, erro, sucesso e estado atual permanecem visíveis.
+`prefers-reduced-motion` remove smooth scroll, translate, stagger, zoom e animações não essenciais. Foco, erro, sucesso e estado atual permanecem visíveis. Ilhas React devem consultar a preferência de redução de movimento e renderizar um estado equivalente sem animação.
 
-Entradas por scroll são opcionais e não fazem parte do baseline inicial. Se implementadas após validação, conteúdo começa visível e o enhancement nunca esconde H1, hero, CTA ou erro.
+Entradas por scroll são progressive enhancement: conteúdo começa visível, a ilha pode animá-lo quando entra no viewport e nunca esconde H1, hero, CTA ou erro antes da hidratação.
 
 # 16. Formulário Prismae
 
@@ -800,10 +802,10 @@ Nenhuma pendência permite placeholder público, rota vazia, CTA enganoso ou con
 
 ## DR-01 — Astro static
 
-- **DECISÃO:** Astro 7 com output static, formato file e sem framework cliente.
-- **MOTIVAÇÃO:** 16 rotas conhecidas, conteúdo editorial e interações pequenas.
-- **ALTERNATIVAS DESCARTADAS:** SPA, Next.js, SSR e ilhas React.
-- **IMPACTO:** HTML pré-renderizado, JS mínimo, rotas verificáveis no dist.
+- **DECISÃO:** Astro 7 com output static e formato file continua sendo a arquitetura de entrega; ilhas React seletivas não alteram o modelo de rotas.
+- **MOTIVAÇÃO:** 16 rotas conhecidas, conteúdo editorial e necessidade de preservar HTML pré-renderizado sem impedir interações premium pontuais.
+- **ALTERNATIVAS DESCARTADAS:** SPA, Next.js e SSR como baseline.
+- **IMPACTO:** HTML pré-renderizado, hidratação localizada e rotas verificáveis no dist.
 - **REVISITAR QUANDO:** uma rota realmente exigir renderização sob demanda ou estado complexo compartilhado.
 
 ## DR-02 — Cloudflare Pages
@@ -814,13 +816,21 @@ Nenhuma pendência permite placeholder público, rota vazia, CTA enganoso ou con
 - **IMPACTO:** sem runtime, binding, endpoint ou segredo.
 - **REVISITAR QUANDO:** surgir API, auth, storage dinâmico, SSR ou middleware runtime.
 
-## DR-03 — Ausência de framework cliente
+## DR-03 — Ausência de framework cliente global
 
-- **DECISÃO:** HTML/CSS/TypeScript vanilla; nenhum React/Vue/Svelte.
-- **MOTIVAÇÃO:** dialog, accordion, scroll, status e formulário local são pequenos.
-- **ALTERNATIVAS DESCARTADAS:** adicionar runtime para conveniência de componentes.
-- **IMPACTO:** menor JS e menos abstração; controllers acessíveis precisam de testes próprios.
-- **REVISITAR QUANDO:** complexidade interativa comprovada superar módulos vanilla.
+- **DECISÃO:** manter Astro/HTML/CSS/TypeScript vanilla como padrão e proibir SPA/client router; decisão original de proibir qualquer React foi superada em 29/08/2026 pela necessidade de ilhas visuais seletivas.
+- **MOTIVAÇÃO:** dialog, accordion, scroll, status e formulário local continuam pequenos, mas o portfólio precisa demonstrar motion/interações premium sem migrar a aplicação inteira.
+- **ALTERNATIVAS DESCARTADAS:** reescrever o site em React/Next.js ou hidratar páginas completas.
+- **IMPACTO:** React e Motion entram apenas em ilhas documentadas, com hidratação explícita e orçamento de bundle.
+- **REVISITAR QUANDO:** ilhas começarem a dominar a página ou estado compartilhado exigir outra arquitetura.
+
+## DR-09 — React islands e Motion seletivos
+
+- **DECISÃO:** `@astrojs/react`, React/ReactDOM e `motion` fazem parte do baseline técnico, mas só carregam em ilhas explicitamente montadas.
+- **MOTIVAÇÃO:** permitir componentes visuais sofisticados mantendo output estático, SEO, acessibilidade e performance como defaults.
+- **DIRETIVAS:** preferir `client:visible` e `client:idle`; `client:load` exige interação crítica acima da dobra.
+- **RESTRIÇÕES:** sem client router, sem shadcn/GSAP/Lenis no baseline e sem conversão automática de componentes Astro existentes.
+- **REVISITAR QUANDO:** bundle, LCP/TBT ou manutenção mostrarem custo maior que o ganho visual.
 
 ## DR-04 — Tailwind 4 CSS-first
 

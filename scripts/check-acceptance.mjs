@@ -11,12 +11,22 @@ const read = (path) => readFileSync(join(root, path), "utf8");
 
 const packageJson = JSON.parse(read("package.json"));
 const expected = {
-  dependencies: { astro: "7.2.4", "@astrojs/sitemap": "3.7.3", "lucide-astro": "0.556.0" },
+  dependencies: {
+    astro: "7.2.4",
+    "@astrojs/sitemap": "3.7.3",
+    "@astrojs/react": "6.0.4",
+    "lucide-astro": "0.556.0",
+    react: "19.2.8",
+    "react-dom": "19.2.8",
+    motion: "13.1.1",
+  },
   devDependencies: {
     typescript: "6.0.3",
     tailwindcss: "4.3.3",
     "@tailwindcss/vite": "4.3.3",
     "@astrojs/check": "0.9.10",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.5",
     prettier: "3.9.6",
     "prettier-plugin-astro": "0.14.1",
   },
@@ -33,11 +43,17 @@ check(
 );
 check(packageJson.engines?.node === ">=24.19.0 <25", "BUILD-001", "Node 24.19.x declarado");
 check(
-  !["react", "vue", "svelte", "solid-js"].some(
+  !["vue", "svelte", "solid-js", "react-router-dom", "@tanstack/react-router", "next"].some(
     (name) => packageJson.dependencies?.[name] || packageJson.devDependencies?.[name],
   ),
   "JS-003",
-  "nenhum framework cliente instalado",
+  "nenhum SPA/client router ou segundo framework cliente instalado",
+);
+const astroConfigSource = read("astro.config.mjs");
+check(
+  astroConfigSource.includes('import react from "@astrojs/react"') && /integrations:\s*\[[\s\S]*react\(\)/.test(astroConfigSource),
+  "JS-003",
+  "@astrojs/react integrado explicitamente",
 );
 
 const finalAssets = [
@@ -70,9 +86,12 @@ const finalAssets = [
   "public/assets/demos/prismae/prismae-logo.svg",
 ];
 const sourceText = readdirSync(join(root, "src"), { recursive: true, withFileTypes: true })
-  .filter((entry) => entry.isFile() && /\.(astro|ts|css)$/.test(entry.name))
+  .filter((entry) => entry.isFile() && /\.(astro|ts|tsx|css)$/.test(entry.name))
   .map((entry) => readFileSync(join(entry.parentPath, entry.name), "utf8"))
   .join("\n");
+check(!sourceText.includes("client:only"), "JS-003", "nenhuma ilha client:only");
+check(sourceText.includes("client:visible"), "JS-003", "há prova de hidratação seletiva client:visible");
+check(sourceText.includes("useReducedMotion"), "JS-003", "ilha Motion respeita reduced motion");
 check(finalAssets.length === 23, "ASSET-001", "catálogo contém 23 assets finais");
 for (const asset of finalAssets) {
   check(existsSync(join(root, asset)), "ASSET-001", `${asset} existe`);

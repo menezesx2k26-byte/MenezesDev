@@ -190,6 +190,12 @@ The 16 canonical routes are implemented as Astro static output with strict TypeS
 
 Development and previews remain noindex. Indexable metadata requires both an explicit production environment and an approved canonical URL. The commercial WhatsApp value remains null and its negative release test blocks publication instead of creating a fake or broken link. Cloudflare analytics remains disabled until production host and configuration are approved.
 
+## D-033 — Static delivery now permits selective React islands
+**Status:** accepted
+**Date:** 2026-08-29
+
+Astro static output remains authoritative, but React 19 islands and Motion are allowed for high-value visual interaction when mounted with explicit Astro client directives. Existing Astro/vanilla components are not rewritten merely for framework consistency. Prefer `client:visible` or `client:idle`, preserve reduced-motion behavior, and reject SPA/client-router or page-wide hydration. Originkit and Skiper UI remain reuse references rather than baseline component dependencies.
+
 ## D-032 — Measured target exceptions do not weaken hard gates
 **Status:** accepted
 **Date:** 2026-08-22

@@ -246,7 +246,7 @@ Segundo a documentação oficial do [Lighthouse](https://developer.chrome.com/do
 
 # 20. JavaScript
 
-Auditar bundles por rota. Páginas passivas devem tender a zero JS próprio; menu, foco, FAQ/disclosures, trilho Tavola, estados locais e formulário Prismae são os únicos domínios aprovados. React, Vue, Svelte, client router ou dependência cliente pesada exigem nova decisão e falham o baseline atual.
+Auditar bundles por rota. Páginas passivas devem tender a zero JS próprio; menu, foco, FAQ/disclosures, trilho Tavola, estados locais, formulário Prismae e ilhas visuais documentadas são domínios aprovados. React só é permitido em ilhas com hidratação explícita; SPA/client router, hidratação global ou dependência cliente pesada sem decisão continuam FAIL.
 
 # 21. Fontes
 
@@ -439,7 +439,7 @@ As tabelas abaixo são a matriz executável. `Todas` significa as 16 rotas; `pri
 | PERF-107 | Web Vitals lab | TBT | TARGET | principais | mobile | Mediana de três runs. | TBT ≤200 ms. |
 | JS-001 | JavaScript | Static-first | HARD GATE | todas | n/a | Inspecionar HTML/bundles e comportamento sem JS onde passivo. | HTML estático; JS somente em rotas/interações aprovadas. |
 | JS-002 | JavaScript | Domínios permitidos | HARD GATE | todas | n/a | Mapear módulos a menu, foco, FAQ, trilho, estados e form. | Nenhum módulo cliente sem função documentada. |
-| JS-003 | JavaScript | Sem framework/dependência grande | HARD GATE | todas | n/a | Lockfile, bundles e decisões. | Sem React/Vue/Svelte/client router; dependência grande exige ADR prévio. |
+| JS-003 | JavaScript | Hidratação seletiva | HARD GATE | todas | n/a | Lockfile, bundles, client directives e decisões. | React somente em ilhas explícitas; sem SPA/client router, hidratação global ou runtime pesado sem ADR. |
 | FONT-001 | Fontes | Self-hosting WOFF2 | HARD GATE | todas | n/a | Network, CSS e arquivos. | Só WOFF2 locais; zero Google Fonts/CDN runtime. |
 | FONT-002 | Fontes | Famílias e pesos por identidade | HARD GATE | todas | n/a | Computed styles e Network por rota. | Manrope/Inter, Archivo/Inter, Cormorant/Manrope e Jakarta/Inter conforme contrato; só pesos usados. |
 | FONT-003 | Fontes | Display, fallback e preload | HARD GATE | todas | n/a | CSS/waterfall com falha simulada de fonte. | `font-display` definido; fallback legível; preload só do recurso acima da dobra realmente usado. |

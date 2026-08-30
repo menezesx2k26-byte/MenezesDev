@@ -18,7 +18,7 @@ Resultado completo da matriz: **97 PASS** em hard gates; release gates **4 PASS 
 
 ## Produto entregue
 
-A implementação é Astro estático com TypeScript strict, Tailwind CSS 4 CSS-first, HTML semântico e JavaScript vanilla pequeno. Não há framework cliente, SSR, adapter Cloudflare, Function, Worker, backend, banco, endpoint ou segredo no baseline.
+A implementação original desta fase foi Astro estático com TypeScript strict, Tailwind CSS 4 CSS-first, HTML semântico e JavaScript vanilla pequeno. Naquele corte não havia framework cliente, SSR, adapter Cloudflare, Function, Worker, backend, banco, endpoint ou segredo. Em 29/08/2026, D-033 ampliou o baseline para permitir ilhas React/Motion seletivas sem alterar o output estático.
 
 As 16 rotas canônicas foram materializadas:
 
@@ -204,7 +204,7 @@ Investigação dos targets:
 | PERF-107 | PASS | TBT mediano 0 ms em todas as páginas. |
 | JS-001 | PASS | HTML estático por padrão; JS apenas para comportamento. |
 | JS-002 | PASS | Módulos limitados a menu/foco/FAQ/trilho/status/form. |
-| JS-003 | PASS | Sem React, Vue, Svelte ou client router. |
+| JS-003 | PASS | No corte original: sem React/Vue/Svelte/client router. D-033 posteriormente substituiu a proibição de React por hidratação seletiva, mantendo client router proibido. |
 | FONT-001 | PASS | WOFF2 local; zero Google Fonts/CDN runtime. |
 | FONT-002 | PASS | Famílias/pesos seguem cada identidade. |
 | FONT-003 | PASS | `font-display`, fallback e preload seletivo presentes. |

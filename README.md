@@ -49,10 +49,10 @@ O projeto `menezesdev-preview` é deliberadamente descartável. O release defini
 - Astro 7 com geração estática e TypeScript strict;
 - Tailwind CSS 4 via `@tailwindcss/vite`;
 - pnpm 11 e Node.js 24 LTS;
-- HTML semântico, CSS-first e JavaScript cliente mínimo;
+- HTML semântico, CSS-first, JavaScript vanilla mínimo e ilhas React seletivas;
 - GitHub `main` como origem de produção no Cloudflare Pages;
 - `pnpm build` como build e `dist` como diretório publicado;
-- nenhum framework cliente, backend, endpoint ou segredo no baseline;
+- nenhum SPA/client router, hidratação global, backend, endpoint ou segredo no baseline;
 - Cloudflare Web Analytics somente na superfície real de produção, nunca nas demos fictícias.
 
 O contrato técnico completo está em `docs/TECHNICAL_SPEC.md`. A auditoria usa `docs/ACCEPTANCE_CRITERIA.md`, com 97 hard gates, 10 release gates e 8 targets. O resultado da implementação está em `docs/PHASE_10_IMPLEMENTATION_REPORT.md`.

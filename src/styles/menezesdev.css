@@ -44,6 +44,8 @@
 }
 
 .md-mosaic {
+  position: relative;
+  isolation: isolate;
   display: grid;
   min-height: 32rem;
   grid-template-columns: 1.35fr 0.8fr;
@@ -78,6 +80,51 @@
   place-items: center;
   padding: 1rem;
   background: #eef7f3;
+}
+
+.md-motion-reveal {
+  position: absolute;
+  z-index: 2;
+  inset: -1rem;
+  pointer-events: none;
+}
+
+.md-motion-reveal__halo,
+.md-motion-reveal__trace {
+  position: absolute;
+  display: block;
+}
+
+.md-motion-reveal__halo {
+  border: 1px solid color-mix(in srgb, var(--accent) 44%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  box-shadow: 0 0 4rem color-mix(in srgb, var(--accent-alt) 20%, transparent);
+}
+
+.md-motion-reveal__halo--a {
+  top: 5%;
+  right: -2.5rem;
+  width: clamp(7rem, 12vw, 11rem);
+  aspect-ratio: 1;
+}
+
+.md-motion-reveal__halo--b {
+  bottom: 7%;
+  left: -2.25rem;
+  width: clamp(4.5rem, 8vw, 7rem);
+  aspect-ratio: 1;
+  border-color: color-mix(in srgb, var(--accent-alt) 42%, transparent);
+  background: color-mix(in srgb, var(--accent-alt) 8%, transparent);
+}
+
+.md-motion-reveal__trace {
+  right: 10%;
+  bottom: -0.35rem;
+  width: 46%;
+  height: 1px;
+  transform-origin: right center;
+  background: linear-gradient(90deg, transparent, var(--accent), var(--accent-alt));
 }
 
 .md-trust {

@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import MenezesHeader from "../components/MenezesHeader.astro";
 import MenezesFooter from "../components/MenezesFooter.astro";
 import CommercialAction from "../components/CommercialAction.astro";
+import MotionReveal from "../components/islands/MotionReveal";
 import { ArrowRight, Check } from "lucide-astro";
 import {
   capabilities,
@@ -48,6 +49,7 @@ import "../styles/menezesdev.css";
           </div>
         </div>
         <div class="md-mosaic" aria-label="Três conceitos visuais MenezesDev">
+          <MotionReveal client:visible />
           <div class="md-mosaic__item">
             <img
               src="/assets/demos/m47/m47-hero.webp"

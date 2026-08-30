@@ -664,7 +664,7 @@ Estratégia:
 
 - SSG e HTML estático;
 - CSS enxuto e dividido por layout quando isso reduzir transferência;
-- zero framework cliente;
+- zero framework cliente global; React apenas em ilhas hidratadas seletivamente;
 - módulos JS por rota;
 - WebPs existentes;
 - fontes WOFF2 locais e pesos mínimos;

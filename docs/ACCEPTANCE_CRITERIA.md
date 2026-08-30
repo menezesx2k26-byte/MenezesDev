@@ -427,7 +427,7 @@ As tabelas abaixo são a matriz executável. `Todas` significa as 16 rotas; `pri
 | HTML-003 | Semântica | Listas e tabelas | HARD GATE | todas | n/a | Árvore acessível/DOM. | Coleções e dados tabulares usam estruturas corretas. |
 | PERF-001 | LCP | Prioridade do hero | HARD GATE | principais | mobile/desktop | Inspecionar markup e waterfall. | LCP/hero não lazy; eager/high quando imagem; sem bloqueio evitável. |
 | PERF-002 | Imagens | Carregamento abaixo da dobra | HARD GATE | páginas com mídia | mobile/desktop | Markup e waterfall. | Lazy/async quando apropriado; dimensões reservadas. |
-| PERF-003 | Arquitetura | Sem peso preventivo | HARD GATE | todas | n/a | Auditar dependências e bundles. | Sem framework cliente, animação pesada, carrossel pesado ou vídeo autoplay. |
+| PERF-003 | Arquitetura | Sem peso preventivo | HARD GATE | todas | n/a | Auditar dependências e bundles. | Sem SPA/runtime global, hidratação desnecessária, animação pesada, carrossel pesado ou vídeo autoplay. |
 | PERF-004 | Fontes/JS | Carga seletiva | HARD GATE | todas | n/a | Coverage, Network e bundles por rota. | Só pesos/famílias/módulos necessários à rota. |
 | PERF-005 | Auditoria | Ambiente reproduzível | HARD GATE | principais | mobile | Três Lighthouse por página com ambiente registrado. | Três relatórios válidos; mediana calculada sem excluir pior execução arbitrariamente. |
 | PERF-101 | Performance | Lighthouse Performance | TARGET | principais | mobile | Mediana de três runs. | Score ≥90. |

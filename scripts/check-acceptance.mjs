@@ -51,7 +51,8 @@ check(
 );
 const astroConfigSource = read("astro.config.mjs");
 check(
-  astroConfigSource.includes('import react from "@astrojs/react"') && /integrations:\s*\[[\s\S]*react\(\)/.test(astroConfigSource),
+  astroConfigSource.includes('import react from "@astrojs/react"') &&
+    /integrations:\s*\[[\s\S]*react\(\)/.test(astroConfigSource),
   "JS-003",
   "@astrojs/react integrado explicitamente",
 );
@@ -90,7 +91,11 @@ const sourceText = readdirSync(join(root, "src"), { recursive: true, withFileTyp
   .map((entry) => readFileSync(join(entry.parentPath, entry.name), "utf8"))
   .join("\n");
 check(!sourceText.includes("client:only"), "JS-003", "nenhuma ilha client:only");
-check(sourceText.includes("client:visible"), "JS-003", "há prova de hidratação seletiva client:visible");
+check(
+  sourceText.includes("client:visible"),
+  "JS-003",
+  "há prova de hidratação seletiva client:visible",
+);
 check(sourceText.includes("useReducedMotion"), "JS-003", "ilha Motion respeita reduced motion");
 check(finalAssets.length === 23, "ASSET-001", "catálogo contém 23 assets finais");
 for (const asset of finalAssets) {

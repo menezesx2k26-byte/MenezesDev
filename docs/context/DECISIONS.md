@@ -124,6 +124,8 @@ Use Astro 7 with static output and publish `dist` from GitHub `main` through Clo
 
 The implementation baseline is Node.js 24 LTS, pnpm 11, strict TypeScript, Tailwind CSS 4 through `@tailwindcss/vite`, Lucide and local CSS. React, Vue, Svelte, a client router and heavy animation libraries are excluded because the approved interactions can use native HTML, CSS and small vanilla TypeScript controllers.
 
+**Superseded in part by D-033 (2026-08-29):** React/Motion are now permitted only as selectively hydrated islands; SPA/client router and page-wide framework hydration remain excluded.
+
 ## D-021 — Fonts are local and route-scoped
 **Status:** accepted
 **Date:** 2026-08-22
@@ -183,6 +185,8 @@ WCAG 2.2 AA is the conformance target, with zero automated critical/serious find
 **Date:** 2026-08-22
 
 The 16 canonical routes are implemented as Astro static output with strict TypeScript, Tailwind CSS-first, semantic HTML and small vanilla client scripts. No client framework, SSR, Cloudflare adapter/runtime, backend, persistence or secret was introduced. The feature branch may be reviewed, but it must not be merged or deployed automatically while release gates remain open.
+
+**Historical note:** this describes the 2026-08-22 Phase 10 implementation cut. D-033 later added selective React/Motion islands while preserving static output and the remaining restrictions.
 
 ## D-031 — Production behavior is conditional and fail-closed
 **Status:** accepted

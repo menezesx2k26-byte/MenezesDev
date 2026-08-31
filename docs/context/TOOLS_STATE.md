@@ -1,7 +1,8 @@
 # MenezesDev Tools — Current State
 
-**Last updated:** 2026-08-29  
-**Canonical branch:** `feat/tools-oss-catalog`
+**Last updated:** 2026-08-31  
+**Canonical governance branch:** `feat/tools-oss-catalog`  
+**Implementation branch:** `feat/tools-platform`
 
 ## Workflow status
 
@@ -13,69 +14,67 @@
 - Phase 5: CLOSED / SEO-IA written contract approved.
 - Phase 6: CLOSED / Tools architecture written contract approved.
 - Phase 7: CLOSED / security design written contract approved.
-- Phase 8: CLOSED / Traffic Guard + Cost Guard written contract approved (`docs/tools/PHASE8_CLOSURE.md`).
-- Phase 9: **WRITTEN PLAN + SELF-REVIEW COMMITTED / USER REVIEW PENDING**.
-- Phase 10+: NOT STARTED.
-- Tools runtime: NOT STARTED.
+- Phase 8: CLOSED / Traffic Guard + Cost Guard written contract approved.
+- Phase 9: **CLOSED / implementation plan approved** (`docs/tools/PHASE9_CLOSURE.md`).
+- Phase 10: **ACTIVE / integration setup partially completed**.
+- Phase 11+: NOT STARTED.
+- Tools runtime feature implementation: NOT STARTED.
 - `main` remains outside partial Tools implementation.
 
-## Phase-9 plan package
+## Phase-9 approved execution package
 
-Canonical implementation plan:
+Plan:
 
 `docs/superpowers/plans/2026-08-29-menezesdev-tools-phase10-12-foundation.md`
 
-Mandatory plan self-review / execution clarifications:
+Mandatory self-review / clarifications:
 
 `docs/superpowers/plans/2026-08-29-menezesdev-tools-phase10-12-foundation-self-review.md`
 
-Scope:
+Approved scope:
 
-1. Phase 10 — create isolated `feat/tools-platform` from the freshly revalidated commercial implementation base and merge canonical Tools history;
+1. Phase 10 — isolated `feat/tools-platform` integration branch/worktree;
 2. Phase 11 — typed/security-enforced Tool SDK foundation;
-3. Phase 12 — four-tool proof set.
-
-Proof set:
-
-- Percentage Calculator — N-MATH / main-thread / generic UI / EN + PT-BR pair;
-- JSON Formatter — S-JSON bounded structured-text path;
-- Image Resizer — I-RASTER native PNG/JPEG browser path;
-- Regex Tester — R-REGEX disposable Worker + 1.5 s hard kill.
+3. Phase 12 — four-tool proof set: Percentage Calculator, JSON Formatter, Image Resizer and Regex Tester.
 
 No conditional PDF/HTML/Image-Compressor dependency and no speculative WASM framework enter this package.
 
-## Current implementation-base observation
+## Phase-10 execution evidence
 
-`feat/phase-10-implementation` was observed at:
+Commercial source branch was freshly revalidated at Git ref level on 2026-08-31:
 
-`a98be87db3863505397ba9f2e80d9b656228d750`
+`feat/phase-10-implementation` @ `a98be87db3863505397ba9f2e80d9b656228d750`
 
-Phase 10 must fetch/revalidate the branch head before branch creation; this SHA is a planning observation, not a permanent pin.
+`feat/tools-platform` was created from that exact commit.
 
-Current baseline remains Astro 7.2.4 static + TypeScript 6.0.3 strictest + Tailwind 4.3.3 + pnpm 11.22.0 + Node >=24.19 <25, with no client framework.
+A local clone/workspace was created on the authorized Windows device and `corepack pnpm install --frozen-lockfile` completed from the local pnpm store. `corepack pnpm validate` then started and reached the formatting stage, but the Remote Desktop Commander device disconnected before a final exit code/output was captured.
 
-## Phase-9 review result
+Therefore:
 
-The committed plan was checked for scope, sequencing, security/economic consistency and execution ambiguity. Marker scan recorded:
+- commercial baseline validation is **INCONCLUSIVE**, not green;
+- no runtime/SDK production code is authorized to be called complete from that interrupted run;
+- the first action after execution access returns is to rerun the complete commercial baseline validation and capture the final exit code.
 
-- TODO: 0;
-- TBD: 0;
-- unresolved marker text: 0.
+## Git integration checkpoint
 
-The self-review makes the locale-content registry and renderer dispatch explicit, fixes mixed flat/index output handling for `build.format: preserve`, sequences executable-loader validation after loaders exist, keeps JSON raw parsing inside the boundary, keeps proof hubs conservative, and does not claim the final sitemap contract complete.
+`feat/tools-platform` contains merge commit:
+
+`eec4503326420b5b268c390c102fa929f75ca8c5`
+
+It combines the commercial implementation parent with the approved Tools governance/spec/plan history while keeping `main` untouched. A compare against the commercial base showed the platform branch ahead with no behind commits at the integration checkpoint.
+
+Execution verification remains mandatory before Phase-10 closure.
 
 ## Current hard gate
 
-The only legal next action is user review/approval of the written Phase-9 plan package.
+Resume Phase-10 Task 1 verification:
 
-Until approval:
+1. obtain an isolated checkout/worktree of `feat/tools-platform`;
+2. run `corepack pnpm install --frozen-lockfile`;
+3. run the full commercial baseline validation (`corepack pnpm validate`);
+4. record the complete output and exit code;
+5. only if green, continue the approved TDD tasks from Phase 10–12.
 
-- do not create `feat/tools-platform`;
-- do not create implementation worktrees;
-- do not install dependencies;
-- do not edit runtime code;
-- do not configure production Cloudflare controls.
+Do not mark Phase 10 closed, implement later-phase dependencies, configure production Ads/Cloudflare controls, or merge to `main` without their own workflow gates.
 
-After approval, Phase 10 begins at Task 1 under `using-git-worktrees`, TDD, code-review and verification skills.
-
-Before every future Tools action, reread the exact-ref workflow, all binding addenda, security policy, Tools context and relevant specs. Git remains source of truth.
+Before every future Tools action, reread exact-ref `AGENTS.md`, this file, `TOOLS_DECISIONS.md`, `TOOLS_HANDOFF.md`, `IMMUTABLE_WORKFLOW.md` in full, binding addenda, security policy and relevant approved specs. Git remains source of truth.

@@ -1,93 +1,81 @@
 # MenezesDev Tools — Session Handoff
 
-**Date:** 2026-08-29  
-**Branch:** `feat/tools-oss-catalog`
+**Date:** 2026-08-31  
+**Governance branch:** `feat/tools-oss-catalog`  
+**Implementation branch:** `feat/tools-platform`
 
 ## Canonical state
 
-- Phases 0–8: CLOSED.
-- Phase 8 closure: `docs/tools/PHASE8_CLOSURE.md`.
-- Phase 9: **implementation plan written + self-reviewed / user review pending**.
-- Phase 10+: NOT STARTED.
-- Tools runtime: NOT STARTED.
+- Phases 0–9: CLOSED.
+- Phase 9 closure: `docs/tools/PHASE9_CLOSURE.md`.
+- Phase 10: ACTIVE.
+- Phase 11+: NOT STARTED.
 - `main`: untouched by partial Tools implementation.
 
-Git remains the source of truth. Re-read `AGENTS.md`, Tools state/decisions/handoff, `IMMUTABLE_WORKFLOW.md` in full, binding addenda, security policy and relevant specs before the next Tools action.
+Git remains the source of truth. Before any Tools action read exact-ref `AGENTS.md`, `TOOLS_STATE.md`, `TOOLS_DECISIONS.md`, this handoff, `IMMUTABLE_WORKFLOW.md` in full, binding addenda, security policy and relevant approved specs/plans.
 
-## Phase-9 plan package
-
-Plan:
+## Approved implementation plan
 
 `docs/superpowers/plans/2026-08-29-menezesdev-tools-phase10-12-foundation.md`
 
-Self-review / mandatory clarifications:
+Mandatory self-review / execution clarifications:
 
 `docs/superpowers/plans/2026-08-29-menezesdev-tools-phase10-12-foundation-self-review.md`
 
-The package covers exactly:
+The plan covers exactly Phase 10–12: integration foundation, Tool SDK foundation and the four-tool proof set.
 
-1. Phase 10 — isolated integration branch/worktree;
-2. Phase 11 — Tool SDK foundation;
-3. Phase 12 — reference proof set.
+## Phase-10 execution checkpoint
 
-It intentionally excludes Phase 13 final visual design, Phase 14 production Ads/consent/provider activation and Phase 15 mass Launch-50 implementation waves.
+Fresh commercial implementation ref:
 
-## Fresh implementation-base planning observation
+`feat/phase-10-implementation` @ `a98be87db3863505397ba9f2e80d9b656228d750`
 
-`feat/phase-10-implementation` was observed at:
+Actions completed:
 
-`a98be87db3863505397ba9f2e80d9b656228d750`
+1. verified the commercial branch HEAD through GitHub;
+2. created local clone `C:\Users\Pichau\repos\MenezesDev` on the authorized Windows device;
+3. created an isolated commercial-baseline workspace under `C:\Users\Pichau\repos\MenezesDev-worktrees\commercial-baseline`;
+4. ran `corepack pnpm install --frozen-lockfile`; pnpm reused the local store and completed installation;
+5. started `corepack pnpm validate`;
+6. created remote branch `feat/tools-platform` from exact commercial SHA `a98be87...`;
+7. created merge commit `eec4503326420b5b268c390c102fa929f75ca8c5` with the commercial implementation as first parent and approved Tools governance/spec/plan history as second parent;
+8. unified the root README for the platform branch while retaining factual commercial status and the Tools acquisition/media thesis;
+9. verified by GitHub compare that the integrated platform branch was ahead of the commercial base with zero behind commits at the integration checkpoint.
 
-Its parent is the previously reviewed runtime commit `152fab910296f29cfae2e07bf6ccc2c69f0ce0df`; the current head adds README/manual preview status.
+## Important interruption
 
-Phase 10 must fetch and revalidate the branch immediately before creating `feat/tools-platform`.
+Remote Desktop Commander went offline while `pnpm validate` was running. The last captured output showed formatting checks had started, but no final process exit code was captured.
 
-Current app baseline observed during planning:
+**Ruling:** baseline status is INCONCLUSIVE. Do not infer PASS or FAIL from partial output.
 
-- Astro 7.2.4 static;
-- TypeScript 6.0.3 strictest;
-- Tailwind 4.3.3;
-- pnpm 11.22.0;
-- Node >=24.19 <25;
-- no client framework;
-- current `build.format: file` / `trailingSlash: never`;
-- commercial `BaseLayout` is PT-BR oriented and derives canonical from build/request path;
-- existing route validator assumes flat output;
-- static security headers already exist.
+## Exact resume point
 
-## Proof set
+When execution access exists again:
 
-- Percentage Calculator — generic N-MATH/main-thread; first real EN/PT-BR reciprocal route pair.
-- JSON Formatter — S-JSON bounded raw-text boundary + pure formatter engine.
-- Image Resizer — I-RASTER native PNG/JPEG local browser path.
-- Regex Tester — R-REGEX disposable Worker + parent-owned 1.5 s watchdog.
+```text
+1. fetch/checkout feat/tools-platform in an isolated worktree
+2. verify HEAD contains the integration checkpoint and any documented state-only successors
+3. corepack pnpm install --frozen-lockfile
+4. corepack pnpm validate
+5. capture full output + final exit code
+```
+
+If baseline is green, continue Task 2 of the approved Phase-10–12 plan with strict TDD. If baseline is red, invoke `systematic-debugging` and treat it as a pre-existing/integration-baseline problem before writing Tools runtime code.
+
+## Proof set still planned
+
+- Percentage Calculator — N-MATH/main-thread + EN/PT-BR pair;
+- JSON Formatter — S-JSON boundary + pure formatter;
+- Image Resizer — I-RASTER native browser path;
+- Regex Tester — disposable Worker + 1.5 s hard kill.
 
 All four remain C0 / `serverRequired=false`.
 
-No conditional dependency is pulled in. No speculative WASM framework is added.
+## Prohibited shortcuts
 
-## Plan review findings already resolved/recorded
-
-- `build.format: preserve` uses mixed flat/index output artifacts; release manifest models each route explicitly.
-- executable loader existence is checked only after loader maps exist.
-- `src/tools/content/index.ts` is mandatory build-time locale-content registry.
-- `src/tools/ui/ToolRenderer.astro` is mandatory fail-closed renderer dispatcher.
-- JSON raw parsing/security stays in the boundary.
-- proof roots/category hubs remain `noindex,follow`.
-- final Launch sitemap grouping is not falsely claimed complete in Phase 12.
-- Node 24 built-in test runner is used instead of adding a test framework.
-
-## Current hard gate
-
-Only legal next action: Gabriel reviews/approves the written Phase-9 plan package.
-
-If approved:
-
-1. begin Phase 10 Task 1;
-2. invoke `superpowers:using-git-worktrees`;
-3. revalidate commercial base;
-4. create `feat/tools-platform` in isolation;
-5. execute tasks with TDD;
-6. request/review code changes and run verification before closure claims.
-
-Until approval, do not create implementation branches/worktrees, install dependencies, edit runtime code, or configure production Cloudflare/Ads controls.
+- no claim that commercial baseline passed without a fresh full validation;
+- no merge to `main`;
+- no production deployment;
+- no new conditional parser/codec dependency;
+- no production AdSense/Taboola/Turnstile/WAF activation;
+- no Phase-13 visual system or Phase-15 mass Launch-50 wave before their gates.

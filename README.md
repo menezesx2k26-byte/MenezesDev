@@ -1,274 +1,175 @@
 # MenezesDev
 
-**Sites que impulsionam negócios.**
+## Infraestrutura de aquisição orgânica, utilidades web e mídia digital
 
-Repositório principal do site comercial, dos cases demonstrativos e do ambiente de trabalho da **MenezesDev**.
+**MenezesDev está evoluindo de um projeto de serviços digitais para uma plataforma internacional de ativos web: ferramentas gratuitas, conteúdo orientado por dados e uma arquitetura preparada para transformar utilidade real em tráfego orgânico recorrente e receita publicitária.**
 
-O projeto está sendo construído com **Codex como agente principal**, documentação explícita no repositório e uma regra simples: tecnologia, design e automação só entram quando melhoram o produto sem criar dependência desnecessária ou custo obrigatório.
-
-## Estado atual
-
-- **Fase atual:** 10 — implementação concluída na feature branch; release de produção bloqueado por entradas externas.
-- **Work Mode:** 4.5.
-- **Agente principal:** Codex nativo.
-- **Custo obrigatório adicional de API para o baseline:** R$ 0.
-- **Pipeline raster oficial:** Codex ImageGen nativo.
-- **Implementação:** 16 rotas canônicas concluídas; 97/97 hard gates aprovados.
-- **Preview manual:** build estático enviado ao Cloudflare Pages por Wrangler em projeto temporário de preview.
-- **Projeto Pages temporário:** `menezesdev-preview`.
-- **Branch implementada:** `feat/phase-10-implementation`.
-- **MCP de imagem anterior:** desativado e mantido apenas como registro histórico.
-
-Os assets, wireframes responsivos, contratos de interação, especificação técnica e critérios de aceite já foram materializados na implementação. **IMPLEMENTATION DONE = SIM.** Produção continua bloqueada até a resolução dos release gates externos; **PRODUCTION READY = NÃO** e **VISUAL PORTFOLIO COMPLETE = NÃO**.
-
-## Preview manual no Cloudflare Pages
-
-A implementação já passou por build local e foi enviada manualmente para um projeto Pages temporário, sem merge em `main` e sem alterar o projeto definitivo de produção.
-
-Configuração usada:
+A tese é simples:
 
 ```text
-project: menezesdev-preview
-production branch declarada no projeto temporário: feat/phase-10-implementation
-build output: dist/
-deploy: Wrangler Pages Direct Upload
+resolver problemas que as pessoas já procuram
+        ↓
+entregar ferramentas gratuitas e rápidas
+        ↓
+executar o máximo possível no navegador
+        ↓
+capturar tráfego por SEO + uso recorrente
+        ↓
+medir demanda, CTR, posição e receita
+        ↓
+expandir somente onde os dados justificarem
 ```
 
-Último deployment informado pelo Wrangler:
+O objetivo é construir um **portfólio de propriedades digitais úteis**, com baixo custo marginal, distribuição orgânica e monetização progressiva.
+
+## Launch 50
+
+O primeiro release público do MenezesDev Tools exige **50 ferramentas completas e funcionais**:
+
+- **35** SEO/AdSense-led;
+- **10** de cobertura arquitetural;
+- **5** experimentos estratégicos;
+- **46/50** com caminho clear/internal/local-bounded;
+- **4/50** local-conditional;
+- **0/50** com backend obrigatório por operação comum.
+
+A execução é browser-first: quando uma operação puder ser feita com segurança no dispositivo do visitante, ela não deve criar processamento pago no backend MenezesDev.
+
+## Flywheel de crescimento
 
 ```text
-https://adc25a40.menezesdev-preview.pages.dev
+Launch 50
+  ↓
+SEO + uso recorrente
+  ↓
+Search Console + analytics + receita
+  ↓
+Opportunity Engine + Trend Radar
+  ↓
+melhorar página / guide / avaliar nova tool
+  ↓
+AI Editorial dentro de gates
+  ↓
+mais tráfego e dados
+  ↺
 ```
 
-**Status atual:** upload concluído pelo Wrangler, mas a disponibilidade pública da URL ainda precisa ser confirmada. Não considerar o preview validado apenas pelo sucesso do upload.
+Sem oportunidade qualificada, o resultado correto é **não publicar**. O sistema futuro também deve consolidar, noindexar, redirecionar ou remover ativos fracos/canibalizantes.
 
-O projeto `menezesdev-preview` é deliberadamente descartável. O release definitivo deve usar um projeto Cloudflare Pages separado, conectado ao GitHub, com `main` como origem de produção, domínio canônico, TLS e demais release gates aprovados.
+## Monetização
 
-## Baseline técnico fechado
+O modelo inicial aprovado é **Google AdSense** nas superfícies elegíveis de Tools e guides. Após audiência e inventário existirem, canais adicionais — como **Taboola/native discovery**, patrocínios de clusters, afiliados, Pro/ad-free, batch e API — podem ser avaliados somente se aumentarem receita líquida sem degradar produto, SEO, privacidade, retenção ou custo.
 
-- Astro 7 com geração estática e TypeScript strict;
-- Tailwind CSS 4 via `@tailwindcss/vite`;
-- pnpm 11 e Node.js 24 LTS;
-- HTML semântico, CSS-first e JavaScript cliente mínimo;
-- GitHub `main` como origem de produção no Cloudflare Pages;
-- `pnpm build` como build e `dist` como diretório publicado;
-- nenhum framework cliente, backend, endpoint ou segredo no baseline;
-- Cloudflare Web Analytics somente na superfície real de produção, nunca nas demos fictícias.
+## Rede de verticais
 
-O contrato técnico completo está em `docs/TECHNICAL_SPEC.md`. A auditoria usa `docs/ACCEPTANCE_CRITERIA.md`, com 97 hard gates, 10 release gates e 8 targets. O resultado da implementação está em `docs/PHASE_10_IMPLEMENTATION_REPORT.md`.
-
-### Desenvolvimento local
-
-Use Node.js 24.19.0 e pnpm 11.22.0:
+O Launch permanece concentrado no domínio principal:
 
 ```text
-corepack pnpm install --frozen-lockfile
-corepack pnpm dev
-corepack pnpm check
-corepack pnpm build
+menezesdev.com/tools/...
+menezesdev.com/pt-br/ferramentas/...
+menezesdev.com/guides/...
 ```
 
-Scripts adicionais: `format`, `format:check`, `check:routes`, `check:acceptance` e `check:release`. O último deve falhar enquanto a URL comercial real e o ambiente de produção não estiverem aprovados.
-
-### Preview manual
-
-Após uma build limpa:
+A arquitetura permite avaliar, no futuro e com revisão SEO própria, verticais especializadas como:
 
 ```text
-npx wrangler@latest login
-npx wrangler@latest pages deploy .\dist --project-name=menezesdev-preview
+finance.menezesdev.com
+dev.menezesdev.com
+image.menezesdev.com
+text.menezesdev.com
+pdf.menezesdev.com
 ```
 
-O warning de working tree dirty pode ocorrer enquanto existirem alterações locais preexistentes em `tools/mcp-image`; essas mudanças não pertencem à implementação e não devem ser incluídas em commits da Fase 10.
+Esses subdomínios **não fazem parte da arquitetura canônica do Launch 50**; representam uma opção de expansão do portfólio quando os dados justificarem a separação.
 
-## Oferta comercial
+## Tool SDK
 
-Os valores públicos representam preços de entrada; o orçamento final depende do escopo.
-
-| Plano | A partir de | Entrega principal |
-|---|---:|---|
-| **Essencial** | **R$600** | Landing page profissional, responsiva e publicada |
-| **Profissional** | **R$950** | Site institucional com até 5 páginas |
-| **Negócio** | **R$1.500** | Site orientado à geração de contatos e conversão |
-| **Personalizado** | **R$2.500** | Aplicações, integrações, dashboards e funcionalidades especiais |
-
-Princípios comerciais:
-
-- escopo fechado;
-- 2 rodadas de revisão nos pacotes-base;
-- domínio e serviços pagos de terceiros são tratados separadamente;
-- nenhuma funcionalidade é prometida antes de análise técnica;
-- manutenção mensal é opcional.
-
-A especificação completa está em `SERVICES_AND_PRICING.md — MenezesDev.md`.
-
-## Cases demonstrativos
-
-O portfólio inicial usa três empresas fictícias para demonstrar níveis diferentes de produto sem inventar clientes reais.
-
-| Case | Nicho | Pacote representado | Objetivo |
-|---|---|---|---|
-| **M47 Barber** | Barbearia contemporânea | Essencial | Mostrar a força de uma landing page de entrada |
-| **Tavola 27** | Restaurante italiano contemporâneo | Profissional | Demonstrar um site institucional editorial e multipágina |
-| **Prismae** | Consultoria empresarial | Negócio | Demonstrar autoridade, estrutura, dados e geração de leads |
-
-Os três cases devem parecer produtos independentes, não variações do mesmo template.
-
-### M47 Barber
-
-Direção visual: masculina, urbana, precisa e contemporânea; preto profundo, iluminação lateral quente, madeira discreta e dourado fosco.
-
-O primeiro hero oficial já foi produzido com ImageGen nativo e passou por revisão de realismo, anatomia, ferramentas, iluminação, espaço negativo e crop mobile.
-
-![Hero demonstrativo M47 Barber](public/assets/demos/m47/m47-hero.webp)
-
-## Pipeline nativo de imagens
-
-A arquitetura oficial da Etapa 4.5 é:
+Direção aprovada:
 
 ```text
-briefing do repositório
-  → $menezesdev-image-director
-  → $imagegen nativo
-  → revisão visual
-  → asset + .prompt.md + .meta.json
-  → validação no layout real
+Tool Catalog
+    ↓
+locale content + routes/SEO + relations/search
+    ↓
+Astro static generation
+    ↓
+Tool Runtime Controller
+    ↓
+validate / bound / canonicalize
+    ↓
+main thread | Web Worker | WASM Worker
+    ↓
+typed result
+    ↓
+safe renderer
 ```
 
-### Regras principais
+Princípios: stable tool id, catálogo data-only, engines puros, boundaries allowlisted, dependências pesadas lazy, generic primitives + specialized renderers, Ads/analytics opcionais para a correção da ferramenta e build estático provider-neutral.
 
-- O briefing do repositório vem antes da improvisação.
-- A função da imagem no layout vem antes da estética isolada.
-- Texto de interface deve ser HTML, não pixels gerados.
-- Logo final, mark, gráfico, diagrama e UI exata devem ser SVG/frontend quando possível.
-- Screenshots de portfólio devem vir do site real implementado.
-- Nada de clientes, avaliações, métricas ou resultados comerciais fictícios apresentados como reais.
-- Assets aprovados não devem ser sobrescritos silenciosamente.
-- Cada raster importante mantém prompt e metadata auditáveis.
+## Segurança e privacidade
 
-O skill repo-local de direção de arte fica em:
+Todo input é não confiável e segue:
 
 ```text
-.agents/skills/menezesdev-image-director/SKILL.md
+validate → bound → sanitize/canonicalize → process → encode safe output
 ```
 
-### Canva
+Arquivos, textos, valores financeiros e resultados privados não entram em telemetria. Engines/boundaries/workers não recebem autoridade de rede por padrão. Security profiles têm limites finitos e overrides locais só podem apertá-los.
 
-Canva Premium é reservado para a camada editorial posterior:
+## SEO internacional
 
-- mockups com screenshots reais;
-- thumbnails;
-- banners;
-- posts e stories;
-- apresentações de case;
-- redimensionamento e peças comerciais.
+English (`en`) é a superfície primária; PT-BR é secundária. O contrato cobre rotas independentes por locale, self-canonical, `hreflang` recíproco para pares reais, sitemaps, anti-thin, category hubs, related tools, guides e busca interna não indexável.
 
-Ele não substitui screenshots reais nem deve inventar a interface final dos sites.
-
-## Work Mode 4.5
-
-Este repositório mantém o **Codex nativo como caminho padrão e de rollback**.
-
-Princípios:
-
-- Codex nativo é o agente principal.
-- OmniRoute é opcional e nunca substitui o Codex silenciosamente.
-- Headroom é opcional e só entra em sessões explicitamente iniciadas com ele.
-- Segredos ficam fora do Git (`.env`, chaves e tokens nunca entram no repositório).
-- Memória de projeto fica em arquivos explícitos e auditáveis dentro de `docs/context/`.
-- Ferramentas experimentais só entram após teste e rollback simples.
-- Nenhuma dependência paga vira requisito sem aprovação explícita.
-
-Leia `docs/WORK_MODE_4_5.md` antes de alterar a infraestrutura de agentes.
-
-## Roadmap atual
-
-- [x] Brand Kit real
-- [x] Oferta comercial
-- [x] Copy completa da Home
-- [x] Cases demonstrativos
-- [x] Produção dos assets visuais
-- [x] Wireframe desktop + mobile
-- [x] **Interações e comportamento**
-- [x] **Especificação técnica final**
-- [x] **Critérios de aceite**
-- [x] **Implementação das 16 rotas**
-- [x] **Build estático local validado**
-- [x] **Primeiro upload manual para Pages preview**
-- [ ] **Confirmar disponibilidade pública do preview**
-- [ ] **Resolver release gates externos**
-- [ ] **Release definitivo em projeto Pages integrado ao GitHub**
-- [ ] **Capturar screenshots reais e finalizar portfólio visual**
-
-## Estrutura relevante do repositório
+Rotas-base:
 
 ```text
-MenezesDev/
-├── AGENTS.md
-├── README.md
-├── package.json
-├── pnpm-lock.yaml
-├── astro.config.mjs
-├── src/
-│   ├── components/
-│   ├── config/
-│   ├── data/
-│   ├── layouts/
-│   ├── pages/
-│   └── styles/
-├── .agents/
-│   └── skills/
-│       └── menezesdev-image-director/
-├── .codex/
-├── docs/
-│   ├── BRAND_GUIDE.md
-│   ├── DEMO_CASES.md
-│   ├── IMAGE_GENERATION_RULES.md
-│   ├── MCP_IMAGE_PIPELINE_SPEC.md
-│   ├── NATIVE_IMAGEGEN_WORKFLOW.md
-│   ├── TECHNICAL_SPEC.md
-│   ├── ACCEPTANCE_CRITERIA.md
-│   ├── PHASE_10_IMPLEMENTATION_REPORT.md
-│   ├── wireframes/
-│   ├── interactions/
-│   └── context/
-├── public/
-│   └── assets/
-│       └── demos/
-│           ├── m47/
-│           ├── tavola27/
-│           └── prismae/
-└── tools/
-    └── mcp-image/   # implementação histórica/desativada
+/tools/<category>/<tool>/
+/pt-br/ferramentas/<categoria>/<ferramenta>/
 ```
 
-## Documentação principal
+## Infraestrutura
 
-- `AGENTS.md` — regras operacionais para agentes.
-- `docs/BRAND_GUIDE.md` — identidade da MenezesDev.
-- `docs/DEMO_CASES.md` — especificação dos três cases demonstrativos.
-- `HOME_COPY.md — MenezesDev.md` — copy aprovada da Home.
-- `SERVICES_AND_PRICING.md — MenezesDev.md` — oferta e limites comerciais.
-- `docs/IMAGE_GENERATION_RULES.md` — regras globais de produção visual.
-- `docs/NATIVE_IMAGEGEN_WORKFLOW.md` — workflow oficial do ImageGen nativo.
-- `docs/wireframes/README.md` — composição canônica desktop/mobile.
-- `docs/interactions/README.md` — estados e comportamento canônicos.
-- `docs/TECHNICAL_SPEC.md` — arquitetura e decisões técnicas canônicas.
-- `docs/ACCEPTANCE_CRITERIA.md` — matriz objetiva de hard gates, release gates, targets e Definition of Done.
-- `docs/PHASE_10_IMPLEMENTATION_REPORT.md` — evidências, matriz executada e blockers de release.
-- `docs/context/STATE.md` — estado operacional atual.
-- `docs/context/DECISIONS.md` — decisões canônicas do projeto.
-- `docs/context/HANDOFF.md` — continuidade entre sessões/agentes.
+- Astro 7 static-first;
+- TypeScript strict;
+- Tailwind CSS 4;
+- pnpm 11 / Node 24;
+- sem React/Vue/Svelte no baseline;
+- GitHub como source of truth;
+- Cloudflare Pages como host primário;
+- `dist/` provider-neutral;
+- fallback estático aprovado antes de release;
+- nenhuma tool browser-capable pode depender do runtime Cloudflare para funcionar.
 
-`tools/mcp-image/`, `docs/MCP_IMAGE_PIPELINE_SPEC.md` e `docs/FASE_2_REPORT.md` permanecem para rastreabilidade histórica da implementação MCP substituída; não representam o caminho ativo de geração raster.
+## Workstreams
 
-## Segurança e custo
+### Site comercial
 
-- Nenhuma chave de API deve ser commitada.
-- O baseline não depende de API paga para geração de imagens.
-- Serviços externos pagos devem ser opcionais e explícitos.
-- O repositório deve permanecer reproduzível e auditável.
+A implementação comercial está materializada em `feat/phase-10-implementation` com 16 rotas canônicas e os 97 hard gates históricos implementados. O release definitivo continua separado dos gates do MenezesDev Tools; produção não deve ser declarada pronta apenas porque o build/preview existe.
 
----
+### MenezesDev Tools
 
-**MenezesDev — sites profissionais com direção visual, engenharia e escopo claros.**
+- Phases 0–9: contratos de produto, market intelligence, Launch 50, SEO/IA, Tool SDK, security, Traffic/Cost Guard e plano de implementação concluídos/aprovados;
+- implementação parcial permanece fora de `main`;
+- branch de plataforma: `feat/tools-platform`;
+- plano canônico de foundation: `docs/superpowers/plans/2026-08-29-menezesdev-tools-phase10-12-foundation.md`.
+
+O proof set da foundation cobre Percentage Calculator, JSON Formatter, Image Resizer e Regex Tester antes das waves de implementação das 50.
+
+## Documentação canônica
+
+```text
+docs/context/TOOLS_STATE.md
+docs/context/TOOLS_DECISIONS.md
+docs/context/TOOLS_HANDOFF.md
+docs/tools/IMMUTABLE_WORKFLOW.md
+docs/tools/SECURITY_POLICY.md
+docs/tools/LAUNCH50_FROZEN.md
+docs/tools/CAPABILITY_MAP.md
+docs/superpowers/specs/2026-08-24-menezesdev-tools-phase5-seo-ia-design.md
+docs/superpowers/specs/2026-08-24-menezesdev-tools-phase6-architecture-design.md
+docs/superpowers/specs/2026-08-26-menezesdev-tools-phase7-security-design.md
+docs/superpowers/specs/2026-08-26-menezesdev-tools-phase8-traffic-cost-guard-design.md
+docs/superpowers/plans/2026-08-29-menezesdev-tools-phase10-12-foundation.md
+```
+
+MenezesDev é uma infraestrutura para transformar **utilidade em distribuição, distribuição em dados e dados em um portfólio digital progressivamente mais eficiente**.
